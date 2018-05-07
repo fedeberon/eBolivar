@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.1.xsd">
+
+    <http access-denied-page="/www/error.html" auto-config="true">
+
+        <form-login always-use-default-target="true"
+                    authentication-failure-url="/webapp/login?login_error=1"
+                    default-target-url="/webapp/" login-page="/webapp/login"/>
+
+        <logout logout-success-url="/webapp/home"/>
+
+        <!-- 		<intercept-url pattern="/webapp/" access="IS_AUTHENTICATED_FULLY" /> -->
+        <intercept-url pattern="/webapp/logout" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <intercept-url pattern="/webapp/login" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+
+        <intercept-url pattern="/webapp/notificacionPadron/show/" access="IS_AUTHENTICATED_FULLY"/>
+        <intercept-url pattern="/webapp/notificacionPadron/list/" access="IS_AUTHENTICATED_FULLY"/>
+        <intercept-url pattern="/webapp/notificacionPadron/udpate/" access="IS_AUTHENTICATED_FULLY"/>
+
+
+        <intercept-url pattern="/css/**" filters="none" />
+        <intercept-url pattern="/js/**" filters="none" />
+
+    </http>
+
+
+
+    <authentication-provider user-service-ref="userDetailsService">
+        <password-encoder hash="plaintext"/>
+    </authentication-provider>
+
+
+    <beans:bean id="userDetailsService"
+                class="org.springframework.security.userdetails.jdbc.JdbcDaoImpl">
+        <beans:property name="dataSource" ref="dataSource"/>
+
+        <!-- El USU_ESTADO enabled sabe dar problemas cuando se mueve a otra base
+            de datos dando como resultado un login failed -->
+        <beans:property name="usersByUsernameQuery">
+            <beans:value>
+                SELECT USU_LOGIN AS username, USU_PASSWORD AS password,
+                IF( STRCMP( USU_ESTADO, 'ACTIVO' ) , 0, 1 ) enabled
+                FROM
+                USUARIOS WHERE UPPER(USU_LOGIN)=UPPER(?)
+            </beans:value>
+        </beans:property>
+        <beans:property name="authoritiesByUsernameQuery">
+            <beans:value>
+                SELECT u.usu_login AS username, rol_function AS rolename
+                FROM ROLES r, USUARIOS u
+                WHERE r.rol_id = u.usu_rol AND u.usu_login = ?
+                AND ROL_ENABLED=1
+            </beans:value>
+        </beans:property>
+    </beans:bean>
+
+
+</beans:beans>
