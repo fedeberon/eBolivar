@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
- 
+<html>
+<head>
 <meta name="viewport" content="width=device-width"/>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
@@ -47,7 +48,7 @@
 <h1>${initParam['AppName']}</h1>
  <br/><br/>
  
- <p class="error"><b>En este momento no se puede ejecutar esta acción.</b>
+ <p class="error"><b>En este momento no se puede ejecutar esta acciï¿½n.</b>
  <br/>
  
 
