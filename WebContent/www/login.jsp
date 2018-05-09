@@ -11,7 +11,7 @@
 <title>Login</title>
 <script type="text/javascript" src="<c:url value='/js/jquery.js'/>"></script> 
 <script type="text/javascript" src="<c:url value='/js/bootstrap.js'/>"></script>
-<link rel="stylesheet" href="<c:url value='/css/login.css'/>" type="text/css" media="print, projection, screen"></link>
+<link rel="stylesheet" href="<c:url value='/css/login.css'/>" type="text/css" media="print, projection, screen"/>
 	<!-- Stylesheets -->
 <script type="text/javascript" src="<c:url value='/js/jquery.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/script.js'/>"></script>
@@ -68,11 +68,7 @@ $(document).ready(function() {
 				<h5>Ingrese de sus datos Personales.</h5>
 			
 			</div> <!-- login-intro -->
-			
-			<!-- Change this image to your own company's logo -->
-			<!-- The logo will automatically be resized to 39px height. -->
-<!-- 			<a href="#" id="company-branding" class="fr"><img src="images/company-logo.png" alt="Blue Hosting" /></a> -->
-			
+
 		</div> <!-- end full-width -->	
 
 	</div> <!-- end header -->
@@ -81,17 +77,16 @@ $(document).ready(function() {
 	
 	<!-- MAIN CONTENT -->
 	<div id="contentLog">
-        <c:url value="/j_spring_security_check" var="loginUrl" />
-		<form id="login-form" action="<c:url value='${loginUrl}'/>"  >
+		<form id="login-form" action="j_spring_security_check'/>"  >
 
 				<p>
 					<label for="login-username">USUARIO</label>
-					<input type="text" name="j_username" id="j_username"  class="round full-width-input"   /> 
+					<input type="text" name="username" id="username"  class="round full-width-input"   />
 				</p>
 
 				<p>
-					<label for="login-password">CONTRASEÑA</label>
-					<input type="password" name="j_password" id="j_password"  class="round full-width-input" /> 
+					<label for="login-password">CONTRASEï¿½A</label>
+					<input type="password" name="password" id="password"  class="round full-width-input" />
 				</p>
 				
 				<p class="form-error"> 

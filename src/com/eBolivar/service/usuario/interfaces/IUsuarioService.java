@@ -1,7 +1,10 @@
 package com.eBolivar.service.usuario.interfaces;
 
-/**
- * Created by Damian Gallego on 7/5/2018.
- */
-public interface IUsuarioService {
+
+import com.eBolivar.domain.usuario.Usuario;
+import org.springframework.security.core.userdetails.UserDetailsService;
+
+
+public interface IUsuarioService extends UserDetailsService {
+    Usuario save(Usuario usuario);
 }

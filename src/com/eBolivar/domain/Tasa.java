@@ -13,12 +13,16 @@ public class Tasa {
     @Id
     @Column(name = "TAS_ID")
     private Integer id;
+
     @Column(name = "TAS_CODIGO")
     private Long codigo;
+
     @Column(name = "TAS_CONSEPTO")
     private String concepto;
+
     @Column(name = "TAS_ALICUOTA")
     private Float alicuta;
+
     @Column(name = "TAS_IMPORTE")
     private Double importe = 0.0;
 
@@ -66,6 +70,6 @@ public class Tasa {
 
     @Override
     public String toString() {
-        return ( codigo == null ? "" : codigo + " - ") + concepto + ( alicuta != null ? " - " +  alicuta + "% por mil" : "");
+        return (codigo == null ? "" : codigo + " - ") + concepto + (alicuta != null ? " - " + alicuta + "% por mil" : "");
     }
 }

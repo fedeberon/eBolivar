@@ -1,16 +1,59 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Damian Gallego
-  Date: 8/5/2018
-  Time: 15:51
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<jsp:include page="../header.jsp"/>
 <html>
-<head>
-    <title>$Title$</title>
-</head>
+<header>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#usuario').addClass('active')
+
+        });
+
+    </script>
+
+</header>
+
+
 <body>
-$END$
+
+
+<div style="margin-left: 80px; margin-right: 80px; padding-top:10px; background-color: white; ">
+    <div class="page-header">
+        <hr>
+        <span class="titulo-descripcion" style="padding-left: 10px;">Nuevo Usuario</span>
+    </div>
+
+    <br><br>
+
+    <form:form name="form" method="post" commandName="usuario">
+
+
+        <p class="odd">
+            <label for="username" class="campo">Username:</label>
+            <form:input path="username" />
+        </p>
+        <p class="odd">
+            <label for="nombre" class="campo">Nombre:</label>
+            <form:input path="nombre" />
+        </p>
+        <p class="odd">
+            <label for="apellido" class="campo">Apellido:</label>
+            <form:input path="apellido" />
+        </p>
+
+        <p class="odd">
+            <label for="observaciones" class="campo">Observaciones:</label>
+            <form:input path="observaciones" />
+        </p>
+
+    </form:form>
+
+</div>
+
+<jsp:include page="../bottom.jsp"/>
+
+
 </body>
 </html>
+
