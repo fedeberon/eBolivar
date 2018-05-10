@@ -31,7 +31,7 @@ public class HomeController extends AbstractController {
 	@ResponseBody
 	public String accessDeniedPage(ModelMap model) {
 
-		return "Access Dennied";
+		return "Access Denied";
 	}
 
 	protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {

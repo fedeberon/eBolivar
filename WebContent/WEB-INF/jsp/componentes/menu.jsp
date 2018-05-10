@@ -110,7 +110,9 @@
                            <li><a style="color: #555" href="<c:url value='/webapp/ddjj/list'/>">DDJJ<label/> </a></li>
                            <li class="divider"></li>
                            <sec:authorize access="hasRole('ROLE_CARGAR_USUARIOS')">
-                               <li><a style="color: #555" href="<c:url value='webapp/usuario/create'/>">Crear Usuario<label/> </a></li>
+                               <li><a style="color: #555" href="<c:url value='/webapp/usuario/create'/>">Crear Usuario<label/> </a></li>
+                               <li class="divider"></li>
+                               <li><a style="color: #555" href="<c:url value='/webapp/usuario/list'/>">Lista de Usuarios<label/> </a></li>
                                <li class="divider"></li>
                            </sec:authorize>
                            <li><a href="<c:url value='/webapp/logout'/>"> Logout</a></li>

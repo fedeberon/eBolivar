@@ -12,7 +12,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -33,11 +32,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/webapp/rentas/menu", "/webapp/login").permitAll()
                 .antMatchers("/admin").authenticated()
+                .antMatchers("/usuario/*").hasRole("CARGAR_USUARIOS")
                 .and().formLogin().loginPage("/login")
                 .loginProcessingUrl("/login").usernameParameter("username").passwordParameter("password").and()
-                .csrf().and().exceptionHandling().accessDeniedPage("/Access_Denied");
+                .csrf().disable().exceptionHandling().accessDeniedPage("/Access_Denied");
     }
-
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
@@ -47,7 +46,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
     }
-
 
     @Bean
     public AuthenticationTrustResolver getAuthenticationTrustResolver() {

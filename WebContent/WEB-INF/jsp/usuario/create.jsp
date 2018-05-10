@@ -24,30 +24,37 @@
         <span class="titulo-descripcion" style="padding-left: 10px;">Nuevo Usuario</span>
     </div>
 
-    <br><br>
-
-    <form:form name="form" method="post" commandName="usuario">
 
 
-        <p class="odd">
-            <label for="username" class="campo">Username:</label>
-            <form:input path="username" />
-        </p>
-        <p class="odd">
-            <label for="nombre" class="campo">Nombre:</label>
-            <form:input path="nombre" />
-        </p>
-        <p class="odd">
-            <label for="apellido" class="campo">Apellido:</label>
-            <form:input path="apellido" />
-        </p>
+        <form:form action="save" modelAttribute="usuario" method="post">
 
-        <p class="odd">
-            <label for="observaciones" class="campo">Observaciones:</label>
-            <form:input path="observaciones" />
-        </p>
+            <p class="odd">
+                <label for="nombre" class="campo">Nombre:</label>
+                <form:input path="nombre" />
+            </p>
+            <p class="odd">
+                <label for="apellido" class="campo">Apellido:</label>
+                <form:input path="apellido" />
+            </p>
 
-    </form:form>
+            <p class="odd">
+                <label for="username" class="campo">Username:</label>
+                <form:input path="username" />
+            </p>
+
+            <p class="odd">
+                <label for="password" class="campo">Password:</label>
+                <form:input path="password" />
+            </p>
+
+            <button type="submit" class="btn btn-lg btn-primary btn-block">Crear</button>
+
+            <%--<p class="odd">--%>
+                <%--<label for="observaciones" class="campo">Observaciones:</label>--%>
+                <%--<form:input path="observaciones" />--%>
+            <%--</p>--%>
+
+        </form:form>
 
 </div>
 
