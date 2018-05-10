@@ -19,4 +19,9 @@ public class TasaService implements ITasaService {
         return dao.findAll();
     }
 
+    @Override
+    public List<Tasa> findAllAnio(String anio) {
+        return dao.findAllAnio(anio) ;
+    }
+
 }

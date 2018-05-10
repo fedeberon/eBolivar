@@ -64,6 +64,11 @@
                    <li><a href="<c:url value='/webapp/ddjj/create'/>">Nueva</a></li>
                    <li class="divider"></li>
                    <li><a href="<c:url value='/webapp//ddjj/formularioBuscar/'/>">Reimprimir</a></li>
+                   <li class="divider"></li>
+                   <li><a href="<c:url value='/webapp//ddjj/declaracionJuradaAnteriores?anio=2016'/>">DDJJ 2016</a></li>
+                   <li class="divider"></li>
+                   <li><a href="<c:url value='/webapp//ddjj/declaracionJuradaAnteriores?anio=2017'/>">DDJJ 2017</a></li>
+
                </ul>
            </li>
            <li id="padronAsociado" >

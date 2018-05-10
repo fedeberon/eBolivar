@@ -16,11 +16,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -45,20 +47,28 @@ public class DeclaracionJuradaController {
     @Autowired
     private IMailService mailService;
 
-    @RequestMapping("create")
+    @RequestMapping(value = "create", method = RequestMethod.GET)
     public String create(Model model) {
+        model.addAttribute("tasas", tasaService.findAllAnio("2018"));
+        model.addAttribute("anio", Arrays.asList("2018"));
         return "declaracionJurada/create";
     }
+
+
+    @RequestMapping(value = "declaracionJuradaAnteriores", method = RequestMethod.GET)
+    public String declaracionJuradaAnteriores(@RequestParam String anio, Model model) {
+        model.addAttribute("tasas", tasaService.findAllAnio(anio));
+        model.addAttribute("anio", Arrays.asList(anio));
+
+        return "declaracionJurada/create";
+    }
+
 
     @ModelAttribute("ddjj")
     public DeclaracionJurada getDclaracionJurada() {
         return new DeclaracionJurada();
     }
 
-    @ModelAttribute("tasas")
-    public List<Tasa> getTasas() {
-        return tasaService.findAll();
-    }
 
     @RequestMapping("save")
     public String save(@ModelAttribute("ddjj") DeclaracionJurada declaracionJurada, BindingResult result, RedirectAttributes redirectAttributes) {

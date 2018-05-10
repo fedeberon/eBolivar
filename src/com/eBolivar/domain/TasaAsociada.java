@@ -1,5 +1,6 @@
 package com.eBolivar.domain;
 
+
 import javax.persistence.*;
 
 @Entity

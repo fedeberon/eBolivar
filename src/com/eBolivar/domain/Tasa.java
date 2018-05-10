@@ -1,10 +1,7 @@
 package com.eBolivar.domain;
 
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "TASAS")
@@ -25,6 +22,9 @@ public class Tasa {
 
     @Column(name = "TAS_IMPORTE")
     private Double importe = 0.0;
+
+    @Column(name = "TAS_ANIO")
+    private String anio;
 
     public static Integer SIN_DATOS = -1;
 
@@ -66,6 +66,14 @@ public class Tasa {
 
     public void setImporte(Double importe) {
         this.importe = importe;
+    }
+
+    public String getAnio() {
+        return anio;
+    }
+
+    public void setAnio(String anio) {
+        this.anio = anio;
     }
 
     @Override

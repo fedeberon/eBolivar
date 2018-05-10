@@ -1,5 +1,6 @@
 package com.eBolivar.domain;
 
+import com.eBolivar.enumeradores.AnioEnum;
 import com.eBolivar.enumeradores.EstadoDeDeclaracionJurada;
 import com.eBolivar.enumeradores.PeriodoEnum;
 
@@ -34,6 +35,10 @@ public class DeclaracionJurada {
     @Column(name = "DEC_PERIODO")
     private PeriodoEnum periodo;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "DEC_ANIO")
+    private AnioEnum anio;
+
     @Column(name = "DEC_OBSERVACIONES")
     private String observaciones;
 
@@ -46,6 +51,14 @@ public class DeclaracionJurada {
     @Enumerated(EnumType.STRING)
     @Column(name = "DEC_ESTADO")
     private EstadoDeDeclaracionJurada estadoDeDeclaracionJurada;
+
+    public AnioEnum getAnio() {
+        return anio;
+    }
+
+    public void setAnio(AnioEnum anio) {
+        this.anio = anio;
+    }
 
     public Long getId() {
         return Id;

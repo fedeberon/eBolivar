@@ -9,4 +9,6 @@ import java.util.List;
  */
 public interface ITasaService {
     List<Tasa> findAll();
+
+    List<Tasa> findAllAnio(String anio);
 }

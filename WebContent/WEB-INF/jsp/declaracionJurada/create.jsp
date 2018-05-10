@@ -9,7 +9,33 @@
 <script>
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip();
+
+
+
+        $( "#anio" ).change(function() {
+            var idTasa = $("#tasa").val();
+            var anio = $(this).val();
+        });
+
     });
+
+    $(function(ready){
+        $('.tasa').change(function() {
+            var idTasa = $(this).val();
+            var anio = $("#anio").val();
+//            actualizarAlicuota(idTasa, anio);
+        });
+    });
+
+    function actualizarAlicuota(idTasa, anio){
+        $.getJSON( "../alicuota/byTasaAndAnio/" + idTasa + "/" + anio, function( data ) {
+            $.each( data, function( key, val ) {
+                console.log( "<li id='" + key + "'>" + val + "</li>" );
+            });
+        });
+    }
+
+
 </script>
 
 <head>
@@ -49,14 +75,6 @@
 
     </style>
 
-
-    <script>
-
-
-
-
-    </script>
-
 </head>
 <body>
 <div class="page-header">
@@ -76,6 +94,12 @@
                         <form:input path="persona.idPersona" cssClass="form-control" placeholder="Ingrese numero de CUIT sin guiones" maxlength="11"/>
                         <form:errors cssClass="form-text text-muted red" path="persona.idPersona"/>
                     </div>
+
+                    <div class="form-group">
+                        <label>A&ntilde;o:</label>
+                        <form:select path="anio" cssClass="form-control" items="${anio}"/>
+                    </div>
+
 
                     <div class="form-group">
                         <label>Periodo:</label>
@@ -104,7 +128,7 @@
                         </td>
 
                         <td colspan="3">
-                            <form:select items="${tasas}" path="tasas[0].tasa.id" itemValue="id"/>
+                            <form:select items="${tasas}" class="tasa" path="tasas[0].tasa.id" itemValue="id"/>
                             <form:errors cssClass="form-text text-muted red" path="tasas[0].tasa.id"/>
                         </td>
                     </tr>
@@ -141,7 +165,7 @@
                             <span class="nro-registro-tasa">2</span>
                         </td>
                         <td colspan="3">
-                            <form:select items="${tasas}" path="tasas[1].tasa.id" itemValue="id"/>
+                            <form:select items="${tasas}" class="tasa"  path="tasas[1].tasa.id" itemValue="id"/>
                             <form:errors cssClass="form-text text-muted red" path="tasas[1].tasa.id"/>
                         </td>
                     </tr>
@@ -177,7 +201,7 @@
                             <span class="nro-registro-tasa">3</span>
                         </td>
                         <td colspan="3">
-                            <form:select items="${tasas}" path="tasas[2].tasa.id" itemValue="id"/>
+                            <form:select items="${tasas}" class="tasa"  path="tasas[2].tasa.id" itemValue="id"/>
                             <form:errors cssClass="form-text text-muted red" path="tasas[2].tasa.id"/>
                         </td>
                     </tr>
@@ -206,9 +230,7 @@
                         </td>
                     </tr>
 
-
                     <tr><td colspan="2"><form:errors cssClass="form-text text-muted red" path="baseImponible"/></td></tr>
-
 
                 </table>
             </div>
@@ -218,10 +240,6 @@
                     Siguiente
                 </button>
             </div>
-
-
-
-
 
         </form:form>
     </div>
