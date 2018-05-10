@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 
 
 @Repository
@@ -45,11 +46,16 @@ public class UsuarioRepository implements IUsuarioRepository {
             tx.rollback();
             throw e;
         }
+    }
 
-
-
-
-
-
+    @Override
+    public List<Usuario> findAll() {
+        try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
+            return session.delegate().createQuery("from Usuario").list();
+        }
+        catch (HibernateException e){
+            e.printStackTrace();
+            throw e;
+        }
     }
 }

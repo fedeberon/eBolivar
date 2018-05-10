@@ -7,9 +7,9 @@
 <head>
     <title>${initParam['AppName']}</title>
     <link rel="shortcut icon" type="image/x-icon" href="<c:url value='/img/icons/logo.ico'/>">
-    <link rel="stylesheet" href="<c:url value='/css/base.css'/>" type="text/css"/>
     <link rel="stylesheet" href="<c:url value='/css/bootstrap.css'/>" type="text/css"/>
     <link rel="stylesheet" href="<c:url value='/css/shadowbox.css'/>" type="text/css"/>
+    <link rel="stylesheet" href="<c:url value='/css/base.css'/>" type="text/css"/>
 
     <script type="text/javascript" src="<c:url value='/webapp/webjarslocator/jquery/jquery.min.js'/>"></script>
 

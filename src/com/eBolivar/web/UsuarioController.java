@@ -1,11 +1,13 @@
 package com.eBolivar.web;
 
 import com.eBolivar.domain.usuario.Usuario;
-import com.eBolivar.service.usuario.UsuarioService;
+import com.eBolivar.service.usuario.interfaces.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
@@ -13,20 +15,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UsuarioController {
 
     @Autowired
-    private UsuarioService usuarioService;
+    private IUsuarioService usuarioService;
 
     @RequestMapping("create")
-    public String create(@ModelAttribute Usuario usuario) {
+    public String create() {
         return "usuario/create";
     }
 
-    @RequestMapping("save")
+    @RequestMapping(value = "save", method = RequestMethod.POST)
     public String save(@ModelAttribute Usuario usuario) {
         usuarioService.save(usuario);
 
-        return "webapp/";
+        return "redirect:list";
     }
 
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    public String save(Model model) {
+        model.addAttribute("usuarios", usuarioService.findAll());
+
+        return "usuario/list";
+    }
 
 
     @ModelAttribute("usuario")
