@@ -1,13 +1,12 @@
 package com.eBolivar.domain.usuario;
 
-import com.eBolivar.domain.permiso.Permiso;
 import com.eBolivar.domain.rol.Rol;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.Collection;
 import java.util.stream.Collectors;
 
 
@@ -19,6 +18,12 @@ public class Usuario implements UserDetails {
     @Id
     @Column(name = "USU_USERNAME")
     private String username;
+
+    @Column(name = "USU_NOMBRE")
+    private String nombre;
+
+    @Column(name = "USU_APELLIDO")
+    private String apellido;
 
     @Column(name = "USU_PASSWORD")
     private String password;
@@ -76,6 +81,22 @@ public class Usuario implements UserDetails {
 
     public void setRol(Rol rol) {
         this.rol = rol;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     @Override
