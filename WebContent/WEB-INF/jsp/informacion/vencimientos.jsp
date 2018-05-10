@@ -47,49 +47,49 @@
         <tbody>
         <tr>
             <th>Servicios Retributivos</th>
-            <td>20-01</td>
+            <td>18-01</td>
             <td>15-02</td>
             <td>15-03</td>
-            <td>14-04</td>
+            <td>16-04</td>
             <td>15-05</td>
             <td>15-06</td>
-            <td>14-07</td>
+            <td>16-07</td>
             <td>15-08</td>
-            <td>15-09</td>
+            <td>14-09</td>
             <td>16-10</td>
-            <td>16-11</td>
-            <td>15-12</td>
+            <td>15-11</td>
+            <td>13-12</td>
         </tr>
 
         <tr>
             <th>Servicios Sanitarios</th>
-            <td>20-01</td>
+            <td>18-01</td>
             <td>15-02</td>
             <td>15-03</td>
-            <td>14-04</td>
+            <td>16-04</td>
             <td>15-05</td>
             <td>15-06</td>
-            <td>14-07</td>
+            <td>16-07</td>
             <td>15-08</td>
-            <td>15-09</td>
+            <td>14-09</td>
             <td>16-10</td>
-            <td>16-11</td>
-            <td>15-12</td>
+            <td>15-11</td>
+            <td>13-12</td>
         </tr>
 
         <tr>
             <th>Red Vial</th>
-            <td>20-01</td>
+            <td>18-01</td>
             <td>-</td>
             <td>15-03</td>
             <td>-</td>
             <td>15-05</td>
             <td>-</td>
-            <td>14-07</td>
+            <td>16-07</td>
             <td>-</td>
-            <td>15-09</td>
+            <td>14-09</td>
             <td>-</td>
-            <td>16-11</td>
+            <td>15-11</td>
             <td>-</td>
         </tr>
         <tr>
@@ -98,7 +98,7 @@
             <td>-</td>
             <td>20-03</td>
             <td>-</td>
-            <td>20-05</td>
+            <td>21-05</td>
             <td>-</td>
             <td>20-07</td>
             <td>-</td>
@@ -114,7 +114,7 @@
             <td>-</td>
             <td>20-03</td>
             <td>-</td>
-            <td>22-05</td>
+            <td>21-05</td>
             <td>-</td>
             <td>20-07</td>
             <td>-</td>
@@ -134,22 +134,22 @@
             <td>15-06</td>
             <td>-</td>
             <td>-</td>
-            <td>15-09</td>
+            <td>14-09</td>
             <td>-</td>
             <td>-</td>
-            <td>15-12</td>
+            <td>13-12</td>
         </tr>
         <tr>
             <th>Patenete Motos</th>
+            <td>18-01</td>
             <td>-</td>
             <td>-</td>
             <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>15-06</td>
+            <td>15-05</td>
             <td>-</td>
             <td>-</td>
             <td>-</td>
+            <td>14-09</td>
             <td>-</td>
             <td>-</td>
             <td>-</td>
@@ -183,33 +183,33 @@
         <tbody>
             <tr>
                 <th>Inmuebles Urbanos</th>
-                <td>20-01</td>
+                <td>18-01</td>
                 <td>15-02</td>
                 <td>15-03</td>
-                <td>14-04</td>
+                <td>16-04</td>
                 <td>15-05</td>
                 <td>15-06</td>
-                <td>14-07</td>
+                <td>16-07</td>
                 <td>15-08</td>
-                <td>15-09</td>
+                <td>14-09</td>
                 <td>16-10</td>
-                <td>16-11</td>
-                <td>15-12</td>
+                <td>15-11</td>
+                <td>13-12</td>
             </tr>
 
             <tr>
                 <th>Inmuebles Rurales</th>
-                <td>25-01</td>
+                <td>18-01</td>
                 <td>-</td>
                 <td>15-03</td>
                 <td>-</td>
-                <td>16-05</td>
+                <td>15-05</td>
                 <td>-</td>
-                <td>14-07</td>
+                <td>16-07</td>
                 <td>-</td>
-                <td>15-09</td>
+                <td>14-09</td>
                 <td>-</td>
-                <td>16-11</td>
+                <td>15-11</td>
                 <td>-</td>
             </tr>
         </tbody>
@@ -241,15 +241,15 @@
             <td>-</td>
             <td>15-02</td>
             <td>-</td>
-            <td>14-04</td>
+            <td>16-04</td>
             <td>-</td>
             <td>15-06</td>
             <td>-</td>
             <td>15-08</td>
             <td>-</td>
-            <td>16-12</td>
+            <td>16-10</td>
             <td>-</td>
-            <td>15-12</td>
+            <td>13-12</td>
         </tr>
 
         <tr>
@@ -257,15 +257,15 @@
             <td>-</td>
             <td>15-02</td>
             <td>-</td>
-            <td>14-04</td>
+            <td>16-04</td>
             <td>-</td>
             <td>15-06</td>
             <td>-</td>
             <td>15-08</td>
             <td>-</td>
-            <td>16-12</td>
+            <td>16-10</td>
             <td>-</td>
-            <td>15-12</td>
+            <td>13-12</td>
         </tr>
         </tbody>
     </table>
