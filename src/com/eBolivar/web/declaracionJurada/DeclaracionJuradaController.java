@@ -63,19 +63,27 @@ public class DeclaracionJuradaController {
         return "declaracionJurada/create";
     }
 
+    @RequestMapping(value = "anual", method = RequestMethod.GET)
+    public String anual(Model model){
+        model.addAttribute("tasas", tasaService.findAllAnio("2018"));
+        model.addAttribute("anio", Arrays.asList("2018"));
+        return "declaracionJurada/anual";
+    }
 
     @ModelAttribute("ddjj")
     public DeclaracionJurada getDclaracionJurada() {
         return new DeclaracionJurada();
     }
 
+    @ModelAttribute("tasas")
+    public List<Tasa> getTasas(){return tasaService.findAll();}
 
     @RequestMapping("save")
-    public String save(@ModelAttribute("ddjj") DeclaracionJurada declaracionJurada, BindingResult result, RedirectAttributes redirectAttributes) {
+    public String save(@ModelAttribute("ddjj") DeclaracionJurada declaracionJurada, @RequestParam String tipo, BindingResult result, RedirectAttributes redirectAttributes) {
         declaracionJurada.getTasas().removeIf(tasaAsociada -> tasaAsociada.getTasa().getId() == Tasa.SIN_DATOS);
         declaracionJurada.setEstadoDeDeclaracionJurada(EstadoDeDeclaracionJurada.EN_PROCESO);
         this.validator.validate(declaracionJurada, result);
-        if (result.hasErrors()) return "declaracionJurada/create";
+        if (result.hasErrors()) return "declaracionJurada/" + tipo;
         DeclaracionJurada ddjj = declaracionJuradaService.save(declaracionJurada);
         redirectAttributes.addAttribute("id", ddjj.getId());
         try {
@@ -235,6 +243,15 @@ public class DeclaracionJuradaController {
         declaracionJurada.setEstadoDeDeclaracionJurada(EstadoDeDeclaracionJurada.RECHAZADA);
         redirectAttributes.addAttribute("id" , declaracionJurada.getId());
         declaracionJuradaService.save(declaracionJurada);
+
+        return "redirect:show";
+    }
+
+    @RequestMapping("imprimirAcuseDeRecibo")
+    public String imprimirAcuseDeRecibo(@RequestParam Long id, HttpServletResponse response,  RedirectAttributes redirectAttributes) throws IOException {
+        DeclaracionJurada declaracionJurada = declaracionJuradaService.get(id);
+        redirectAttributes.addAttribute("id" , declaracionJurada.getId());
+        declaracionJuradaService.imprimirAcuseDeRecibo(declaracionJurada, response.getOutputStream());
 
         return "redirect:show";
     }

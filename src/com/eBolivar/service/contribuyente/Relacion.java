@@ -7,45 +7,57 @@
 
 package com.eBolivar.service.contribuyente;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Relacion  implements java.io.Serializable {
+
+    @XmlElement
     private java.lang.String apellidoPersonaAsociada;
 
+    @XmlElement
     private java.util.Calendar ffRelacion;
 
+    @XmlElement
     private java.util.Calendar ffVencimiento;
 
+    @XmlElement
     private java.lang.Long idPersonaAsociada;
 
+    @XmlElement
     private java.lang.String nombrePersonaAsociada;
 
+    @XmlElement
     private java.lang.String razonSocialPersonaAsociada;
 
+    @XmlElement
     private java.lang.String tipoComponente;
 
     public Relacion() {
     }
 
     public Relacion(
-           java.lang.String apellidoPersonaAsociada,
-           java.util.Calendar ffRelacion,
-           java.util.Calendar ffVencimiento,
-           java.lang.Long idPersonaAsociada,
-           java.lang.String nombrePersonaAsociada,
-           java.lang.String razonSocialPersonaAsociada,
-           java.lang.String tipoComponente) {
-           this.apellidoPersonaAsociada = apellidoPersonaAsociada;
-           this.ffRelacion = ffRelacion;
-           this.ffVencimiento = ffVencimiento;
-           this.idPersonaAsociada = idPersonaAsociada;
-           this.nombrePersonaAsociada = nombrePersonaAsociada;
-           this.razonSocialPersonaAsociada = razonSocialPersonaAsociada;
-           this.tipoComponente = tipoComponente;
+            java.lang.String apellidoPersonaAsociada,
+            java.util.Calendar ffRelacion,
+            java.util.Calendar ffVencimiento,
+            java.lang.Long idPersonaAsociada,
+            java.lang.String nombrePersonaAsociada,
+            java.lang.String razonSocialPersonaAsociada,
+            java.lang.String tipoComponente) {
+        this.apellidoPersonaAsociada = apellidoPersonaAsociada;
+        this.ffRelacion = ffRelacion;
+        this.ffVencimiento = ffVencimiento;
+        this.idPersonaAsociada = idPersonaAsociada;
+        this.nombrePersonaAsociada = nombrePersonaAsociada;
+        this.razonSocialPersonaAsociada = razonSocialPersonaAsociada;
+        this.tipoComponente = tipoComponente;
     }
 
 
     /**
      * Gets the apellidoPersonaAsociada value for this Relacion.
-     * 
+     *
      * @return apellidoPersonaAsociada
      */
     public java.lang.String getApellidoPersonaAsociada() {
@@ -55,7 +67,7 @@ public class Relacion  implements java.io.Serializable {
 
     /**
      * Sets the apellidoPersonaAsociada value for this Relacion.
-     * 
+     *
      * @param apellidoPersonaAsociada
      */
     public void setApellidoPersonaAsociada(java.lang.String apellidoPersonaAsociada) {
@@ -65,7 +77,7 @@ public class Relacion  implements java.io.Serializable {
 
     /**
      * Gets the ffRelacion value for this Relacion.
-     * 
+     *
      * @return ffRelacion
      */
     public java.util.Calendar getFfRelacion() {
@@ -75,7 +87,7 @@ public class Relacion  implements java.io.Serializable {
 
     /**
      * Sets the ffRelacion value for this Relacion.
-     * 
+     *
      * @param ffRelacion
      */
     public void setFfRelacion(java.util.Calendar ffRelacion) {
@@ -85,7 +97,7 @@ public class Relacion  implements java.io.Serializable {
 
     /**
      * Gets the ffVencimiento value for this Relacion.
-     * 
+     *
      * @return ffVencimiento
      */
     public java.util.Calendar getFfVencimiento() {
@@ -95,7 +107,7 @@ public class Relacion  implements java.io.Serializable {
 
     /**
      * Sets the ffVencimiento value for this Relacion.
-     * 
+     *
      * @param ffVencimiento
      */
     public void setFfVencimiento(java.util.Calendar ffVencimiento) {
@@ -105,7 +117,7 @@ public class Relacion  implements java.io.Serializable {
 
     /**
      * Gets the idPersonaAsociada value for this Relacion.
-     * 
+     *
      * @return idPersonaAsociada
      */
     public java.lang.Long getIdPersonaAsociada() {
@@ -115,7 +127,7 @@ public class Relacion  implements java.io.Serializable {
 
     /**
      * Sets the idPersonaAsociada value for this Relacion.
-     * 
+     *
      * @param idPersonaAsociada
      */
     public void setIdPersonaAsociada(java.lang.Long idPersonaAsociada) {
@@ -125,7 +137,7 @@ public class Relacion  implements java.io.Serializable {
 
     /**
      * Gets the nombrePersonaAsociada value for this Relacion.
-     * 
+     *
      * @return nombrePersonaAsociada
      */
     public java.lang.String getNombrePersonaAsociada() {
@@ -135,7 +147,7 @@ public class Relacion  implements java.io.Serializable {
 
     /**
      * Sets the nombrePersonaAsociada value for this Relacion.
-     * 
+     *
      * @param nombrePersonaAsociada
      */
     public void setNombrePersonaAsociada(java.lang.String nombrePersonaAsociada) {
@@ -145,7 +157,7 @@ public class Relacion  implements java.io.Serializable {
 
     /**
      * Gets the razonSocialPersonaAsociada value for this Relacion.
-     * 
+     *
      * @return razonSocialPersonaAsociada
      */
     public java.lang.String getRazonSocialPersonaAsociada() {
@@ -155,7 +167,7 @@ public class Relacion  implements java.io.Serializable {
 
     /**
      * Sets the razonSocialPersonaAsociada value for this Relacion.
-     * 
+     *
      * @param razonSocialPersonaAsociada
      */
     public void setRazonSocialPersonaAsociada(java.lang.String razonSocialPersonaAsociada) {
@@ -165,7 +177,7 @@ public class Relacion  implements java.io.Serializable {
 
     /**
      * Gets the tipoComponente value for this Relacion.
-     * 
+     *
      * @return tipoComponente
      */
     public java.lang.String getTipoComponente() {
@@ -175,7 +187,7 @@ public class Relacion  implements java.io.Serializable {
 
     /**
      * Sets the tipoComponente value for this Relacion.
-     * 
+     *
      * @param tipoComponente
      */
     public void setTipoComponente(java.lang.String tipoComponente) {
@@ -193,28 +205,28 @@ public class Relacion  implements java.io.Serializable {
         }
         __equalsCalc = obj;
         boolean _equals;
-        _equals = true && 
-            ((this.apellidoPersonaAsociada==null && other.getApellidoPersonaAsociada()==null) || 
-             (this.apellidoPersonaAsociada!=null &&
-              this.apellidoPersonaAsociada.equals(other.getApellidoPersonaAsociada()))) &&
-            ((this.ffRelacion==null && other.getFfRelacion()==null) || 
-             (this.ffRelacion!=null &&
-              this.ffRelacion.equals(other.getFfRelacion()))) &&
-            ((this.ffVencimiento==null && other.getFfVencimiento()==null) || 
-             (this.ffVencimiento!=null &&
-              this.ffVencimiento.equals(other.getFfVencimiento()))) &&
-            ((this.idPersonaAsociada==null && other.getIdPersonaAsociada()==null) || 
-             (this.idPersonaAsociada!=null &&
-              this.idPersonaAsociada.equals(other.getIdPersonaAsociada()))) &&
-            ((this.nombrePersonaAsociada==null && other.getNombrePersonaAsociada()==null) || 
-             (this.nombrePersonaAsociada!=null &&
-              this.nombrePersonaAsociada.equals(other.getNombrePersonaAsociada()))) &&
-            ((this.razonSocialPersonaAsociada==null && other.getRazonSocialPersonaAsociada()==null) || 
-             (this.razonSocialPersonaAsociada!=null &&
-              this.razonSocialPersonaAsociada.equals(other.getRazonSocialPersonaAsociada()))) &&
-            ((this.tipoComponente==null && other.getTipoComponente()==null) || 
-             (this.tipoComponente!=null &&
-              this.tipoComponente.equals(other.getTipoComponente())));
+        _equals = true &&
+                ((this.apellidoPersonaAsociada==null && other.getApellidoPersonaAsociada()==null) ||
+                        (this.apellidoPersonaAsociada!=null &&
+                                this.apellidoPersonaAsociada.equals(other.getApellidoPersonaAsociada()))) &&
+                ((this.ffRelacion==null && other.getFfRelacion()==null) ||
+                        (this.ffRelacion!=null &&
+                                this.ffRelacion.equals(other.getFfRelacion()))) &&
+                ((this.ffVencimiento==null && other.getFfVencimiento()==null) ||
+                        (this.ffVencimiento!=null &&
+                                this.ffVencimiento.equals(other.getFfVencimiento()))) &&
+                ((this.idPersonaAsociada==null && other.getIdPersonaAsociada()==null) ||
+                        (this.idPersonaAsociada!=null &&
+                                this.idPersonaAsociada.equals(other.getIdPersonaAsociada()))) &&
+                ((this.nombrePersonaAsociada==null && other.getNombrePersonaAsociada()==null) ||
+                        (this.nombrePersonaAsociada!=null &&
+                                this.nombrePersonaAsociada.equals(other.getNombrePersonaAsociada()))) &&
+                ((this.razonSocialPersonaAsociada==null && other.getRazonSocialPersonaAsociada()==null) ||
+                        (this.razonSocialPersonaAsociada!=null &&
+                                this.razonSocialPersonaAsociada.equals(other.getRazonSocialPersonaAsociada()))) &&
+                ((this.tipoComponente==null && other.getTipoComponente()==null) ||
+                        (this.tipoComponente!=null &&
+                                this.tipoComponente.equals(other.getTipoComponente())));
         __equalsCalc = null;
         return _equals;
     }
@@ -253,7 +265,7 @@ public class Relacion  implements java.io.Serializable {
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(Relacion.class, true);
+            new org.apache.axis.description.TypeDesc(Relacion.class, true);
 
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("http://a5.soap.ws.server.puc.sr/", "relacion"));
@@ -319,24 +331,24 @@ public class Relacion  implements java.io.Serializable {
      * Get Custom Serializer
      */
     public static org.apache.axis.encoding.Serializer getSerializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanSerializer(
-            _javaType, _xmlType, typeDesc);
+            java.lang.String mechType,
+            java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return
+                new  org.apache.axis.encoding.ser.BeanSerializer(
+                        _javaType, _xmlType, typeDesc);
     }
 
     /**
      * Get Custom Deserializer
      */
     public static org.apache.axis.encoding.Deserializer getDeserializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanDeserializer(
-            _javaType, _xmlType, typeDesc);
+            java.lang.String mechType,
+            java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return
+                new  org.apache.axis.encoding.ser.BeanDeserializer(
+                        _javaType, _xmlType, typeDesc);
     }
 
 }

@@ -103,6 +103,11 @@ public class DeclaracionJuradaService implements IDeclaracionJuradaService{
         return dao.find(valor);
     }
 
+    @Override
+    public void imprimirAcuseDeRecibo(DeclaracionJurada declaracionJurada, ServletOutputStream outputStream) {
+        dao.imprimirAcuseDeRecibo(declaracionJurada, outputStream);
+    }
+
     private void descontarDeduccionesSobreBaseImponible(DeclaracionJurada declaracionJurada){
         declaracionJurada.getTasas().forEach(o -> o.setBaseImponible(o.getBaseImponible() - o.getDeduccionArticulo90() - o.getDeduccionArticulo89()));
     }

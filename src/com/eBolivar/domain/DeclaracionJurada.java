@@ -52,6 +52,18 @@ public class DeclaracionJurada {
     @Column(name = "DEC_ESTADO")
     private EstadoDeDeclaracionJurada estadoDeDeclaracionJurada;
 
+    @Column(name = "DEC_SALDO_A_FAVOR")
+    private Double saldoAFavor = 0.0;
+
+    @Column(name = "DEC_A_FAVOR_CONTRIBUYENTE")
+    private Double saldoAFavorDelContribuyente = 0.0;
+
+    @Column(name = "DEC_TOTAL_ANTICIPO")
+    private Double totalAnticipo = 0.0;
+
+    @Column(name = "DEC_TASA_ANUAL")
+    private Double totalAnual = 0.0;
+
     public AnioEnum getAnio() {
         return anio;
     }
@@ -138,6 +150,38 @@ public class DeclaracionJurada {
 
     public void setEstadoDeDeclaracionJurada(EstadoDeDeclaracionJurada estadoDeDeclaracionJurada) {
         this.estadoDeDeclaracionJurada = estadoDeDeclaracionJurada;
+    }
+
+    public Double getSaldoAFavor() {
+        return saldoAFavor;
+    }
+
+    public void setSaldoAFavor(Double saldoAFavor) {
+        this.saldoAFavor = saldoAFavor;
+    }
+
+    public Double getSaldoAFavorDelContribuyente() {
+        return saldoAFavorDelContribuyente;
+    }
+
+    public void setSaldoAFavorDelContribuyente(Double saldoAFavorDelContribuyente) {
+        this.saldoAFavorDelContribuyente = saldoAFavorDelContribuyente;
+    }
+
+    public Double getTotalAnticipo() {
+        return totalAnticipo;
+    }
+
+    public void setTotalAnticipo(Double totalAnticipo) {
+        this.totalAnticipo = totalAnticipo;
+    }
+
+    public Double getTotalAnual() {
+        return totalAnual;
+    }
+
+    public void setTotalAnual(Double totalAnual) {
+        this.totalAnual = totalAnual;
     }
 
     @Override

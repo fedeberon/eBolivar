@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%--<%@ page import="org.springframework.security.context.SecurityContextHolder" %>--%>
 
-<!-- <div class="container"> -->
+        <!-- <div class="container"> -->
 
 
 <jsp:include page="mensajes.jsp" />
@@ -61,9 +62,9 @@
            <li id="ddjj" >
                <a href="#" class="dropdown-toggle" data-toggle="dropdown">DECLARACION JURADA&nbsp;<span class="caret"></span></a>
                <ul class="dropdown-menu" role="menu">
-                   <li><a href="<c:url value='/webapp/ddjj/create'/>">Nueva</a></li>
+                   <li><a href="<c:url value='/webapp/ddjj/create'/>">Bimestral</a></li>
                    <li class="divider"></li>
-                   <li><a href="<c:url value='/webapp//ddjj/formularioBuscar/'/>">Reimprimir</a></li>
+                   <li><a href="<c:url value='/webapp/ddjj/anual'/>">Nueva Anual</a></li>
                    <li class="divider"></li>
                    <li><a href="<c:url value='/webapp//ddjj/declaracionJuradaAnteriores?anio=2016'/>">DDJJ 2016</a></li>
                    <li class="divider"></li>
