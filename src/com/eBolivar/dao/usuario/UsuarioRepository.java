@@ -2,8 +2,11 @@ package com.eBolivar.dao.usuario;
 
 import com.eBolivar.dao.CloseableSession;
 import com.eBolivar.dao.usuario.interfaces.IUsuarioRepository;
+import com.eBolivar.domain.administradorCuenta.AdministradorCuenta;
+import com.eBolivar.domain.usuario.User;
 import com.eBolivar.domain.usuario.Usuario;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +19,17 @@ import java.util.List;
 @Repository
 public class UsuarioRepository implements IUsuarioRepository {
 
-
     @Autowired
     @Qualifier("sessionFactoryJpa")
     private SessionFactory sessionFactory;
 
     @Override
-    public Usuario get(String username){
+    public User get(String username){
         try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
-            return (Usuario) session.delegate().get(Usuario.class, username);
+            Query query = session.delegate().createQuery("from User where username = :username");
+            query.setParameter("username", username);
+
+            return (User) query.uniqueResult();
         }
         catch (HibernateException e){
             e.printStackTrace();
@@ -49,12 +54,39 @@ public class UsuarioRepository implements IUsuarioRepository {
     }
 
     @Override
-    public List<Usuario> findAll() {
+    public List<User> findAll() {
         try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
-            return session.delegate().createQuery("from Usuario").list();
+            return session.delegate().createQuery("from User").list();
         }
         catch (HibernateException e){
             e.printStackTrace();
+            throw e;
+        }
+    }
+
+    @Override
+    public List<AdministradorCuenta> findAllAdministradoresDeCuenta() {
+        try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
+            return session.delegate().createQuery("from AdministradorCuenta").list();
+        }
+        catch (HibernateException e){
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    @Override
+    public void updateLikeAdministradorDeCuenta(String username) {
+        Transaction tx = null;
+        try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
+            tx = session.delegate().beginTransaction();
+            Query query = session.delegate().createSQLQuery("UPDATE USUARIOS SET TIPO_USUARIO = 'ADMINISTRADOR_DE_CUENTA' WHERE USU_USERNAME = :username");
+            query.setString("username", username);
+            tx.commit();
+            session.delegate().flush();
+        }
+        catch (HibernateException e){
+            tx.rollback();
             throw e;
         }
     }

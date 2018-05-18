@@ -29,30 +29,27 @@
         <form:form action="save" modelAttribute="usuario" method="post">
 
             <p class="odd">
+                <label for="username" class="campo">Username:</label>
+                <form:input path="username" />
+            </p>
+            <br>
+            <p class="odd">
                 <label for="nombre" class="campo">Nombre:</label>
                 <form:input path="nombre" />
             </p>
+            <br>
             <p class="odd">
                 <label for="apellido" class="campo">Apellido:</label>
                 <form:input path="apellido" />
             </p>
-
-            <p class="odd">
-                <label for="username" class="campo">Username:</label>
-                <form:input path="username" />
-            </p>
-
+            <br>
             <p class="odd">
                 <label for="password" class="campo">Password:</label>
                 <form:input path="password" />
             </p>
-
+            <br>
             <button type="submit" class="btn btn-lg btn-primary btn-block">Crear</button>
 
-            <%--<p class="odd">--%>
-                <%--<label for="observaciones" class="campo">Observaciones:</label>--%>
-                <%--<form:input path="observaciones" />--%>
-            <%--</p>--%>
 
         </form:form>
 

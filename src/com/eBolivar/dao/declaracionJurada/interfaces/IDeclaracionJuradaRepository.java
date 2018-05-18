@@ -23,4 +23,6 @@ public interface IDeclaracionJuradaRepository {
     List<DeclaracionJurada> findAllPageable(Integer page);
 
     List<DeclaracionJurada> find(String valor);
+
+    List<DeclaracionJurada> getByPersona(Persona persona);
 }

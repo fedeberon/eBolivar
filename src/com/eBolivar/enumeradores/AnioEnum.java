@@ -18,4 +18,13 @@ public enum AnioEnum{
     public String getDescripcion() {
         return descripcion;
     }
+
+    public static AnioEnum fromString(String text) {
+        for (AnioEnum anio : AnioEnum.values()) {
+            if (anio.descripcion.equalsIgnoreCase(text)) {
+                return anio;
+            }
+        }
+        return null;
+    }
 }

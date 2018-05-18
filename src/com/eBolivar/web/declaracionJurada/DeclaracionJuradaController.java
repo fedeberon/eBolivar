@@ -1,8 +1,10 @@
 package com.eBolivar.web.declaracionJurada;
 
+import com.eBolivar.bean.AnioTypeEditor;
 import com.eBolivar.domain.DeclaracionJurada;
 import com.eBolivar.domain.Persona;
 import com.eBolivar.domain.Tasa;
+import com.eBolivar.enumeradores.AnioEnum;
 import com.eBolivar.enumeradores.EstadoDeDeclaracionJurada;
 import com.eBolivar.service.declaracionJurada.interfaces.IDeclaracionJuradaService;
 import com.eBolivar.service.mail.interfaces.IMailService;
@@ -14,10 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletResponse;
@@ -54,7 +54,6 @@ public class DeclaracionJuradaController {
         return "declaracionJurada/create";
     }
 
-
     @RequestMapping(value = "declaracionJuradaAnteriores", method = RequestMethod.GET)
     public String declaracionJuradaAnteriores(@RequestParam String anio, Model model) {
         model.addAttribute("tasas", tasaService.findAllAnio(anio));
@@ -63,12 +62,10 @@ public class DeclaracionJuradaController {
         return "declaracionJurada/create";
     }
 
-
     @ModelAttribute("ddjj")
-    public DeclaracionJurada getDclaracionJurada() {
+    public DeclaracionJurada getDeclaracionJurada() {
         return new DeclaracionJurada();
     }
-
 
     @RequestMapping("save")
     public String save(@ModelAttribute("ddjj") DeclaracionJurada declaracionJurada, BindingResult result, RedirectAttributes redirectAttributes) {
@@ -193,7 +190,6 @@ public class DeclaracionJuradaController {
         model.addAttribute("page", page);
 
         return "declaracionJurada/list";
-
     }
 
     @RequestMapping("buscar")
@@ -238,5 +234,33 @@ public class DeclaracionJuradaController {
 
         return "redirect:show";
     }
+
+    @RequestMapping("declaracionJurada/byPersona")
+    public String getDeclaracionesJuradas(Model model , @RequestParam String cuit){
+        Persona persona = personaService.getByCUIT(cuit);
+        model.addAttribute("ddjjs", declaracionJuradaService.getByPersona(persona));
+        model.addAttribute("persona", persona);
+
+        return "declaracionJurada/list";
+    }
+
+
+    @RequestMapping("declaracionJurada/create/byPersona")
+    public String createByPersonaAsociada(Model model , @RequestParam String idPersona, @RequestParam AnioEnum anio){
+        if(idPersona == null || idPersona.isEmpty()) return "redirect:/webapp/ddjj/create";
+
+        Persona persona = personaService.getByCUIT(idPersona);
+        DeclaracionJurada declaracionJurada = new DeclaracionJurada(persona, anio);
+        model.addAttribute("declaracionJurada", declaracionJurada);
+
+        return "declaracionJurada/create-por-personaAsociada";
+    }
+
+    @InitBinder("anio")
+    public void initBinder(WebDataBinder dataBinder) {
+        dataBinder.registerCustomEditor(AnioEnum.class, new AnioTypeEditor());
+    }
+
+
 
 }

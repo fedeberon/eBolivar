@@ -7,7 +7,7 @@
 <jsp:include page="../header.jsp"/>
 <html>
 <head>
-    <title>Lista de Usuarios</title>
+    <title>Personas asociadas</title>
 
     <style>
 
@@ -25,7 +25,7 @@
 </head>
 <body>
 <div class="page-header">
-    <span class="titulo-descripcion" style="text-align: center"><h2>Lista de Usuarios</h2></span>
+    <span class="titulo-descripcion" style="text-align: center"><h2>Lista de Personas Asociadas</h2></span>
 </div>
 
 <div id="formulario">
@@ -38,27 +38,28 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Username</th>
+                    <th>CUIT</th>
                     <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Rol</th>
-                    <th></th>
-                    <th></th>
+                    <th>DDJJ</th>
                 </tr>
                 </thead>
 
                 <tbody>
-                    <c:forEach items="${usuarios}" var="bo">
+                <c:if test='${empty personasAsociadas}'>
+                    <tr>
+                        <td colspan="3"><br>
+                            <br>
+                            <h3>No se encontraron CUITs Asociados</h3>
+                        </td>
+                    </tr>
+                </c:if>
+                    <c:forEach items="${personasAsociadas}" var="bo">
                         <tr>
-                            <td>${bo.username}</td>
-                            <td>${bo.nombre}</td>
-                            <td>${bo.apellido}</td>
-                            <td>${bo.rol.nombre}</td>
-                            <td><a class="btn btn-success" href="<c:url value='/webapp/usuario/saveAdministradorCuenta?username=${bo.username}'/>"/>Pasar como Administrador de Cuenta</td>
+                            <td>${bo.persona.idPersona}</td>
+                            <td>${bo.persona.nombre} ${bo.persona.apellido}</td>
+                            <td><a href="<c:url value='/webapp/ddjj/declaracionJurada/byPersona?cuit=${bo.persona.idPersona}'/>">Ver</a></td>
                         </tr>
                     </c:forEach>
-
-
                 </tbody>
 
             </table>

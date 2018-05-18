@@ -157,6 +157,8 @@ public class PersonaService implements IPersonaService {
 
     @Override
     public Persona getByCUIT(String cuit){
+        if(cuit == null || cuit.isEmpty()) return null;
+
         Persona persona = dao.getByCUIT(cuit);
         if(persona == null){
             LoginTicketResponse credencial = autenticacionAFIPService.obtenerCredenciales();

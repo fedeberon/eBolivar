@@ -1,7 +1,9 @@
 package com.eBolivar.service.usuario;
 
 import com.eBolivar.dao.usuario.interfaces.IUsuarioRepository;
+import com.eBolivar.domain.administradorCuenta.AdministradorCuenta;
 import com.eBolivar.domain.rol.Rol;
+import com.eBolivar.domain.usuario.User;
 import com.eBolivar.domain.usuario.Usuario;
 import com.eBolivar.service.usuario.interfaces.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +33,22 @@ public class UsuarioService implements IUsuarioService {
     }
 
     @Override
-    public List<Usuario> findAll() {
+    public List<User> findAll() {
         return dao.findAll();
+    }
+
+    @Override
+    public User get(String username) {
+        return dao.get(username);
+    }
+
+    @Override
+    public List<AdministradorCuenta> findAllAdministradoresDeCuenta() {
+        return dao.findAllAdministradoresDeCuenta();
+    }
+
+    @Override
+    public void updateLikeAdministradorDeCuenta(String username) {
+        dao.updateLikeAdministradorDeCuenta(username);
     }
 }

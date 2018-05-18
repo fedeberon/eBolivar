@@ -4,6 +4,7 @@
 
 <!-- <div class="container"> -->
 
+<sec:authentication var="user" property="principal" />
 
 <jsp:include page="mensajes.jsp" />
 
@@ -96,7 +97,7 @@
                <sec:authorize access="hasRole('ROLE_MODULO_RENTAS')">
                     <li class="dropdown">
                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                           <sec:authentication property="principal" />
+                           ${user.username}
                            <span class="caret"></span>
                        </a>
                        <ul class="dropdown-menu" role="menu">
@@ -119,8 +120,12 @@
                                <li class="divider"></li>
                                <li><a style="color: #555" href="<c:url value='/webapp/usuario/list'/>">Lista de Usuarios<label/> </a></li>
                                <li class="divider"></li>
+                               <li><a style="color: #555" href="<c:url value='/webapp/usuario/list/administradorDeCuenta'/>">Administradores Cuenta<label/> </a></li>
+                               <li class="divider"></li>
                            </sec:authorize>
                            <li><a href="<c:url value='/webapp/logout'/>"> Logout</a></li>
+                           <li class="divider"></li>
+                           <li><a href="#"> <sec:authentication property="principal" /></a></li>
                        </ul>
                     </li>
                </sec:authorize>
@@ -134,7 +139,9 @@
                        </a>
                        <ul class="dropdown-menu" role="menu">
                            <li class="divider"></li>
-                           <li><a href="<c:url value='/webapp/logout'/>"> Logout</a></li>
+                           <li><a href="<c:url value='/webapp/personaAsociada/list?username=${user.username}'/>">Declaraciones Juradas</a></li>
+                           <li class="divider"></li>
+                           <li><a href="<c:url value='/webapp/logout'/>">Logout</a></li>
                        </ul>
                    </li>
                </sec:authorize>

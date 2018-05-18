@@ -153,6 +153,19 @@ public class DeclaracionJuradaRepository implements IDeclaracionJuradaRepository
         }
     }
 
+    @Override
+    public List<DeclaracionJurada> getByPersona(Persona persona) {
+        try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
+            Query query = session.delegate().createQuery("from DeclaracionJurada where persona = :persona order by id desc");
+            query.setParameter("persona", persona);
+
+            return query.list();
+        }
+        catch (HibernateException e){
+            throw e;
+        }
+    }
+
 
     private JasperPrint crearPrint(JasperReport jr, Map<String , Object> mapa) {
         try (CloseableSession session = new CloseableSession(sessionFactory.openSession())) {

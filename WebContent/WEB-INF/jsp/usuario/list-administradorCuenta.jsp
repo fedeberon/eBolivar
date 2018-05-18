@@ -25,7 +25,7 @@
 </head>
 <body>
 <div class="page-header">
-    <span class="titulo-descripcion" style="text-align: center"><h2>Lista de Usuarios</h2></span>
+    <span class="titulo-descripcion" style="text-align: center"><h2>Administradores de Cuentas</h2></span>
 </div>
 
 <div id="formulario">
@@ -54,7 +54,8 @@
                             <td>${bo.nombre}</td>
                             <td>${bo.apellido}</td>
                             <td>${bo.rol.nombre}</td>
-                            <td><a class="btn btn-success" href="<c:url value='/webapp/usuario/saveAdministradorCuenta?username=${bo.username}'/>"/>Pasar como Administrador de Cuenta</td>
+                            <td><a class="btn btn-info" href="<c:url value='/webapp/personaAsociada/create?username=${bo.username}'/>"/>Asociar CUIT</td>
+                            <td><a class="btn btn-success" href="<c:url value='/webapp/personaAsociada/list?username=${bo.username}'/>"/>Ver DDJJs</td>
                         </tr>
                     </c:forEach>
 

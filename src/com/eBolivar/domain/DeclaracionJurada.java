@@ -52,6 +52,15 @@ public class DeclaracionJurada {
     @Column(name = "DEC_ESTADO")
     private EstadoDeDeclaracionJurada estadoDeDeclaracionJurada;
 
+    public DeclaracionJurada() {
+    }
+
+    public DeclaracionJurada(Persona persona, AnioEnum anio) {
+        this.persona = persona;
+        this.anio = anio;
+    }
+
+
     public AnioEnum getAnio() {
         return anio;
     }

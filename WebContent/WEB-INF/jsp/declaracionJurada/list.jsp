@@ -11,6 +11,13 @@
     <span class="titulo-descripcion" style="text-align: center"><h2>Declaraciones Juradas Presentadas</h2></span>
 </div>
 
+<div class="panel panel-default">
+    <div class="panel-body">
+        CUIT: ${persona.idPersona} - Titular ${persona.nombre}  ${persona.apellido}
+    </div>
+</div>
+
+
 <div id="formulario">
 
     <div class="row">
@@ -47,16 +54,16 @@
             </thead>
 
             <tbody>
-            <c:forEach items="${ddjj}" var="bo">
-                <tr>
-                    <td><a href="<c:url value='/webapp/ddjj/show?id=${bo.id}'/>">${bo.id}</a></td>
-                    <td>${bo.persona.nombre} ${bo.persona.apellido}</td>
-                    <td>${bo.padron.numero}</td>
-                    <td>${bo.padron.tipoImpuesto.nombre}</td>
-                    <td>${bo.fecha}</td>
-                    <td>${bo.periodo}</td>
-                </tr>
-            </c:forEach>
+                <c:forEach items="${ddjjs}" var="bo">
+                    <tr>
+                        <td><a href="<c:url value='/webapp/ddjj/show?id=${bo.id}'/>">${bo.id}</a></td>
+                        <td>${bo.persona.nombre} ${bo.persona.apellido}</td>
+                        <td>${bo.padron.numero}</td>
+                        <td>${bo.padron.tipoImpuesto.nombre}</td>
+                        <td>${bo.fecha}</td>
+                        <td>${bo.periodo}</td>
+                    </tr>
+                </c:forEach>
             </tbody>
 
         </table>
@@ -69,6 +76,29 @@
             </div>
             <div class="col-xs-2">
                 <a href="<c:url value='/webapp/ddjj/list?page=${page + 1}'/>" class="btn btn-block btn-primary">Siguiente</a>
+            </div>
+
+
+            <div class="col-xs-2">
+                <!-- Single button -->
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Nueva Declaraci&oacute;n Jurada <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li> <a href="<c:url value='/webapp/declaracionJurada/create/byPersona?idPersona=${persona.idPersona}'/>">Bimestral</a></li>
+                        <li role="separator" class="divider"></li>
+
+                        <li> <a href="<c:url value='/webapp/declaracionJurada/create/byPersona?idPersona=${persona.idPersona}'/>">Anual</a></li>
+                        <li role="separator" class="divider"></li>
+
+                        <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/create/byPersona?idPersona=${persona.idPersona}&anio=2017'/>">Anual 2017</a></li>
+                        <li role="separator" class="divider"></li>
+
+                        <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/create/byPersona?idPersona=${persona.idPersona}&anio=2016'/>">Anual 2016</a></li>
+                        <li role="separator" class="divider"></li>
+                    </ul>
+                </div>
             </div>
 
         </div>
