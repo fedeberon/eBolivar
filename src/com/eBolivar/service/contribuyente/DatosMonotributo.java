@@ -7,33 +7,42 @@
 
 package com.eBolivar.service.contribuyente;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement( name = "datosMonotributo" )
 public class DatosMonotributo  implements java.io.Serializable {
+
+    @XmlElement
     private com.eBolivar.service.contribuyente.Actividad actividadMonotributista;
 
+    @XmlElement
     private com.eBolivar.service.contribuyente.Categoria categoriaMonotributo;
 
+    @XmlElement
     private com.eBolivar.service.contribuyente.Relacion[] componenteDeSociedad;
 
+    @XmlElement
     private com.eBolivar.service.contribuyente.Impuesto[] impuesto;
 
     public DatosMonotributo() {
     }
 
     public DatosMonotributo(
-           com.eBolivar.service.contribuyente.Actividad actividadMonotributista,
-           com.eBolivar.service.contribuyente.Categoria categoriaMonotributo,
-           com.eBolivar.service.contribuyente.Relacion[] componenteDeSociedad,
-           com.eBolivar.service.contribuyente.Impuesto[] impuesto) {
-           this.actividadMonotributista = actividadMonotributista;
-           this.categoriaMonotributo = categoriaMonotributo;
-           this.componenteDeSociedad = componenteDeSociedad;
-           this.impuesto = impuesto;
+            com.eBolivar.service.contribuyente.Actividad actividadMonotributista,
+            com.eBolivar.service.contribuyente.Categoria categoriaMonotributo,
+            com.eBolivar.service.contribuyente.Relacion[] componenteDeSociedad,
+            com.eBolivar.service.contribuyente.Impuesto[] impuesto) {
+        this.actividadMonotributista = actividadMonotributista;
+        this.categoriaMonotributo = categoriaMonotributo;
+        this.componenteDeSociedad = componenteDeSociedad;
+        this.impuesto = impuesto;
     }
 
 
     /**
      * Gets the actividadMonotributista value for this DatosMonotributo.
-     * 
+     *
      * @return actividadMonotributista
      */
     public com.eBolivar.service.contribuyente.Actividad getActividadMonotributista() {
@@ -43,7 +52,7 @@ public class DatosMonotributo  implements java.io.Serializable {
 
     /**
      * Sets the actividadMonotributista value for this DatosMonotributo.
-     * 
+     *
      * @param actividadMonotributista
      */
     public void setActividadMonotributista(com.eBolivar.service.contribuyente.Actividad actividadMonotributista) {
@@ -53,7 +62,7 @@ public class DatosMonotributo  implements java.io.Serializable {
 
     /**
      * Gets the categoriaMonotributo value for this DatosMonotributo.
-     * 
+     *
      * @return categoriaMonotributo
      */
     public com.eBolivar.service.contribuyente.Categoria getCategoriaMonotributo() {
@@ -63,7 +72,7 @@ public class DatosMonotributo  implements java.io.Serializable {
 
     /**
      * Sets the categoriaMonotributo value for this DatosMonotributo.
-     * 
+     *
      * @param categoriaMonotributo
      */
     public void setCategoriaMonotributo(com.eBolivar.service.contribuyente.Categoria categoriaMonotributo) {
@@ -73,7 +82,7 @@ public class DatosMonotributo  implements java.io.Serializable {
 
     /**
      * Gets the componenteDeSociedad value for this DatosMonotributo.
-     * 
+     *
      * @return componenteDeSociedad
      */
     public com.eBolivar.service.contribuyente.Relacion[] getComponenteDeSociedad() {
@@ -83,7 +92,7 @@ public class DatosMonotributo  implements java.io.Serializable {
 
     /**
      * Sets the componenteDeSociedad value for this DatosMonotributo.
-     * 
+     *
      * @param componenteDeSociedad
      */
     public void setComponenteDeSociedad(com.eBolivar.service.contribuyente.Relacion[] componenteDeSociedad) {
@@ -101,7 +110,7 @@ public class DatosMonotributo  implements java.io.Serializable {
 
     /**
      * Gets the impuesto value for this DatosMonotributo.
-     * 
+     *
      * @return impuesto
      */
     public com.eBolivar.service.contribuyente.Impuesto[] getImpuesto() {
@@ -111,7 +120,7 @@ public class DatosMonotributo  implements java.io.Serializable {
 
     /**
      * Sets the impuesto value for this DatosMonotributo.
-     * 
+     *
      * @param impuesto
      */
     public void setImpuesto(com.eBolivar.service.contribuyente.Impuesto[] impuesto) {
@@ -137,19 +146,19 @@ public class DatosMonotributo  implements java.io.Serializable {
         }
         __equalsCalc = obj;
         boolean _equals;
-        _equals = true && 
-            ((this.actividadMonotributista==null && other.getActividadMonotributista()==null) || 
-             (this.actividadMonotributista!=null &&
-              this.actividadMonotributista.equals(other.getActividadMonotributista()))) &&
-            ((this.categoriaMonotributo==null && other.getCategoriaMonotributo()==null) || 
-             (this.categoriaMonotributo!=null &&
-              this.categoriaMonotributo.equals(other.getCategoriaMonotributo()))) &&
-            ((this.componenteDeSociedad==null && other.getComponenteDeSociedad()==null) || 
-             (this.componenteDeSociedad!=null &&
-              java.util.Arrays.equals(this.componenteDeSociedad, other.getComponenteDeSociedad()))) &&
-            ((this.impuesto==null && other.getImpuesto()==null) || 
-             (this.impuesto!=null &&
-              java.util.Arrays.equals(this.impuesto, other.getImpuesto())));
+        _equals = true &&
+                ((this.actividadMonotributista==null && other.getActividadMonotributista()==null) ||
+                        (this.actividadMonotributista!=null &&
+                                this.actividadMonotributista.equals(other.getActividadMonotributista()))) &&
+                ((this.categoriaMonotributo==null && other.getCategoriaMonotributo()==null) ||
+                        (this.categoriaMonotributo!=null &&
+                                this.categoriaMonotributo.equals(other.getCategoriaMonotributo()))) &&
+                ((this.componenteDeSociedad==null && other.getComponenteDeSociedad()==null) ||
+                        (this.componenteDeSociedad!=null &&
+                                java.util.Arrays.equals(this.componenteDeSociedad, other.getComponenteDeSociedad()))) &&
+                ((this.impuesto==null && other.getImpuesto()==null) ||
+                        (this.impuesto!=null &&
+                                java.util.Arrays.equals(this.impuesto, other.getImpuesto())));
         __equalsCalc = null;
         return _equals;
     }
@@ -173,7 +182,7 @@ public class DatosMonotributo  implements java.io.Serializable {
                  i++) {
                 java.lang.Object obj = java.lang.reflect.Array.get(getComponenteDeSociedad(), i);
                 if (obj != null &&
-                    !obj.getClass().isArray()) {
+                        !obj.getClass().isArray()) {
                     _hashCode += obj.hashCode();
                 }
             }
@@ -184,7 +193,7 @@ public class DatosMonotributo  implements java.io.Serializable {
                  i++) {
                 java.lang.Object obj = java.lang.reflect.Array.get(getImpuesto(), i);
                 if (obj != null &&
-                    !obj.getClass().isArray()) {
+                        !obj.getClass().isArray()) {
                     _hashCode += obj.hashCode();
                 }
             }
@@ -195,7 +204,7 @@ public class DatosMonotributo  implements java.io.Serializable {
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(DatosMonotributo.class, true);
+            new org.apache.axis.description.TypeDesc(DatosMonotributo.class, true);
 
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("http://a5.soap.ws.server.puc.sr/", "datosMonotributo"));
@@ -242,24 +251,24 @@ public class DatosMonotributo  implements java.io.Serializable {
      * Get Custom Serializer
      */
     public static org.apache.axis.encoding.Serializer getSerializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanSerializer(
-            _javaType, _xmlType, typeDesc);
+            java.lang.String mechType,
+            java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return
+                new  org.apache.axis.encoding.ser.BeanSerializer(
+                        _javaType, _xmlType, typeDesc);
     }
 
     /**
      * Get Custom Deserializer
      */
     public static org.apache.axis.encoding.Deserializer getDeserializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanDeserializer(
-            _javaType, _xmlType, typeDesc);
+            java.lang.String mechType,
+            java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return
+                new  org.apache.axis.encoding.ser.BeanDeserializer(
+                        _javaType, _xmlType, typeDesc);
     }
 
 }

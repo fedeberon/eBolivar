@@ -22,7 +22,7 @@ public class ImpuestoRepository implements IImpuestoRepository {
         Session session = null;
         try{
             session = sessionFactory.openSession();
-            Query query = session.createSQLQuery("select count(*) from Impuestos i  where i.IMP_NUMERO_PADRON = :padron");
+            Query query = session.createSQLQuery("select count(*) from IMPUESTOS i  where i.IMP_NUMERO_PADRON = :padron");
             query.setString("padron", padron);
             int result = ((Number) query.uniqueResult()).intValue();
 

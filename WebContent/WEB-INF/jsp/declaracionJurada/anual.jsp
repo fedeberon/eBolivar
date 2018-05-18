@@ -9,33 +9,7 @@
 <script>
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip();
-
-
-
-        $( "#anio" ).change(function() {
-            var idTasa = $("#tasa").val();
-            var anio = $(this).val();
-        });
-
     });
-
-    $(function(ready){
-        $('.tasa').change(function() {
-            var idTasa = $(this).val();
-            var anio = $("#anio").val();
-//            actualizarAlicuota(idTasa, anio);
-        });
-    });
-
-    function actualizarAlicuota(idTasa, anio){
-        $.getJSON( "../alicuota/byTasaAndAnio/" + idTasa + "/" + anio, function( data ) {
-            $.each( data, function( key, val ) {
-                console.log( "<li id='" + key + "'>" + val + "</li>" );
-            });
-        });
-    }
-
-
 </script>
 
 <head>
@@ -75,6 +49,14 @@
 
     </style>
 
+
+    <script>
+
+
+
+
+    </script>
+
 </head>
 <body>
 <div class="page-header">
@@ -89,46 +71,33 @@
         <form:form action="/rentas/webapp/ddjj/save" modelAttribute="ddjj" method="post">
 
             <div class="col-md-4">
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">CUIT</div>
-                    <div class="panel-body">
-                            ${declaracionJurada.persona.idPersona}
-                    </div>
-                    <form:hidden path="persona.idPersona"/>
+                <div class="form-group">
+                    <label>CUIT:</label>
+                    <form:input path="persona.idPersona" cssClass="form-control" placeholder="Ingrese numero de CUIT sin guiones" maxlength="11"/>
+                    <form:errors cssClass="form-text text-muted red" path="persona.idPersona"/>
                 </div>
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">A&ntilde;o:</div>
-                    <div class="panel-body">
-                            ${declaracionJurada.anio.descripcion}
-                    </div>
-                    <form:hidden path="anio"/>
-                </div>
-
 
                 <div class="form-group">
                     <label>Periodo:</label>
-                    <form:select path="periodo" cssClass="form-control" items="${periodoEnum}" itemLabel="descripcion"/>
+                    <form:select path="periodo" cssClass="form-control" >
+                        <form:option value="ANUAL" label="ANUAL"/>
+                    </form:select>
                 </div>
 
-                <div class="panel panel-default">
-                    <div class="panel-heading">Padron</div>
-                    <div class="panel-body">
-                            ${declaracionJurada.padron.numero}
-                    </div>
-                    <form:hidden path="padron.numero"/>
+                <div class="form-group">
+                    <label>Padron:</label>
+                    <form:input path="padron.numero" cssClass="form-control" placeholder="Ingrese numero de padron completando 8 digitos"/>
+                    <form:errors cssClass="form-text text-muted red" path="padron.numero"/>
                 </div>
-
             </div>
 
 
             <div class="col-md-8">
                 <table class="table table-bordered">
                     <thead>
-                        <tr>
-                            <th colspan="4">Tasa de alicuota a calcular</th>
-                        </tr>
+                    <tr>
+                        <th colspan="4">Tasa de alicuota a calcular</th>
+                    </tr>
                     </thead>
 
                     <tr>
@@ -137,7 +106,7 @@
                         </td>
 
                         <td colspan="3">
-                            <form:select items="${tasas}" class="tasa" path="tasas[0].tasa.id" itemValue="id"/>
+                            <form:select items="${tasas}" path="tasas[0].tasa.id" itemValue="id"/>
                             <form:errors cssClass="form-text text-muted red" path="tasas[0].tasa.id"/>
                         </td>
                     </tr>
@@ -174,7 +143,7 @@
                             <span class="nro-registro-tasa">2</span>
                         </td>
                         <td colspan="3">
-                            <form:select items="${tasas}" class="tasa"  path="tasas[1].tasa.id" itemValue="id"/>
+                            <form:select items="${tasas}" path="tasas[1].tasa.id" itemValue="id"/>
                             <form:errors cssClass="form-text text-muted red" path="tasas[1].tasa.id"/>
                         </td>
                     </tr>
@@ -210,7 +179,7 @@
                             <span class="nro-registro-tasa">3</span>
                         </td>
                         <td colspan="3">
-                            <form:select items="${tasas}" class="tasa"  path="tasas[2].tasa.id" itemValue="id"/>
+                            <form:select items="${tasas}" path="tasas[2].tasa.id" itemValue="id"/>
                             <form:errors cssClass="form-text text-muted red" path="tasas[2].tasa.id"/>
                         </td>
                     </tr>
@@ -239,16 +208,66 @@
                         </td>
                     </tr>
 
-                    <tr><td colspan="2"><form:errors cssClass="form-text text-muted red" path="baseImponible"/></td></tr>
+
+                    <tr><td colspan="4"><form:errors cssClass="form-text text-muted red" path="baseImponible"/></td></tr>
+
+                    <tr>
+                        <td></td>
+                        <td><span>Saldo a  Favor (a&ntilde;o anterior)</span></td>
+                        <td colspan="2">
+                            <div class="input-group">
+                                <span class="input-group-addon">$</span>
+                                <form:input cssClass="form-text text-muted red" path="saldoAFavor"/>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td><span>Total ANTICIPOS (1 a 6)</span></td>
+                        <td colspan="2">
+                            <div class="input-group">
+                                <span class="input-group-addon">$</span>
+                                <form:input cssClass="form-text text-muted red" path="totalAnticipo"/>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td><span>Saldo a favor del Contribuyente</span></td>
+                        <td colspan="2">
+                            <div class="input-group">
+                                <span class="input-group-addon">$</span>
+                                <form:input cssClass="form-text text-muted red" path="saldoAFavorDelContribuyente"/>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td><span>Tasa a Ingresar anual</span></td>
+                        <td colspan="2">
+                            <div class="input-group">
+                                <span class="input-group-addon">$</span>
+                                <form:input cssClass="form-text text-muted red" path="totalAnual"/>
+                            </div>
+                        </td>
+                    </tr>
+
 
                 </table>
             </div>
 
             <div class="col-md-12">
-                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-right"></span>
+                <button type="submit" name="tipo" value="anual"  class="btn btn-primary"><span class="glyphicon glyphicon-arrow-right"></span>
                     Siguiente
                 </button>
             </div>
+
+
+
+
 
         </form:form>
     </div>

@@ -151,6 +151,10 @@
             <a href="/rentas/webapp/ddjj/presentarDeclaracionJurada?id=${declaracionJurada.id}" class="btn btn-primary">Presentar</a>
         </c:if>
 
+        <c:if test="${declaracionJurada.estadoDeDeclaracionJurada == 'ACEPTADA' || declaracionJurada.estadoDeDeclaracionJurada == 'PRESENTADA'}">
+            <a href="/rentas/webapp/ddjj/imprimirAcuseDeRecibo?id=${declaracionJurada.id}" target="_blank" class="btn btn-primary">Imprimir Acuse Recibo</a>
+        </c:if>
+
         <sec:authorize ifAllGranted="ROLE_WRITE_DDJJ">
             <a href="/rentas/webapp/ddjj/editar?id=${declaracionJurada.id}" class="btn btn-primary">Editar(Administrador)</a>
 

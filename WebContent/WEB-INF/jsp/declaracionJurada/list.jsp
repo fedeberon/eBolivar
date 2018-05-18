@@ -71,9 +71,11 @@
         </div>
 
         <div class="col-xs-12">
+
             <div class="col-xs-2">
                 <a href="<c:url value='/webapp/ddjj/list?page=${page - 1}'/>" class="btn btn-block btn-primary">Atras</a>
             </div>
+
             <div class="col-xs-2">
                 <a href="<c:url value='/webapp/ddjj/list?page=${page + 1}'/>" class="btn btn-block btn-primary">Siguiente</a>
             </div>
@@ -83,24 +85,30 @@
                 <!-- Single button -->
                 <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Nueva Declaraci&oacute;n Jurada <span class="caret"></span>
+                        DDJJ Anteriores<span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li> <a href="<c:url value='/webapp/declaracionJurada/create/byPersona?idPersona=${persona.idPersona}'/>">Bimestral</a></li>
+                        <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/create/byPersona?idPersona=${persona.idPersona}&anio=2017&idPadron=${ddjjs[0].padron.id}'/>">Anual 2017</a></li>
                         <li role="separator" class="divider"></li>
 
-                        <li> <a href="<c:url value='/webapp/declaracionJurada/create/byPersona?idPersona=${persona.idPersona}'/>">Anual</a></li>
-                        <li role="separator" class="divider"></li>
-
-                        <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/create/byPersona?idPersona=${persona.idPersona}&anio=2017'/>">Anual 2017</a></li>
-                        <li role="separator" class="divider"></li>
-
-                        <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/create/byPersona?idPersona=${persona.idPersona}&anio=2016'/>">Anual 2016</a></li>
-                        <li role="separator" class="divider"></li>
+                        <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/create/byPersona?idPersona=${persona.idPersona}&anio=2016&idPadron=${ddjjs[0].padron.id}'/>">Anual 2016</a></li>
                     </ul>
                 </div>
             </div>
 
+            <div class="col-xs-2">
+                <!-- Single button -->
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Nueva Declaraci&oacute;n<span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/bimestral?idDDJJ=${ddjjs[0].id}'/>">Bimiestral</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/anual?idDDJJ=${ddjjs[0].id}'/>">Anual</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
     </div>

@@ -52,12 +52,37 @@ public class DeclaracionJurada {
     @Column(name = "DEC_ESTADO")
     private EstadoDeDeclaracionJurada estadoDeDeclaracionJurada;
 
+    @Column(name = "DEC_SALDO_A_FAVOR")
+    private Double saldoAFavor = 0.0;
+
+    @Column(name = "DEC_A_FAVOR_CONTRIBUYENTE")
+    private Double saldoAFavorDelContribuyente = 0.0;
+
+    @Column(name = "DEC_TOTAL_ANTICIPO")
+    private Double totalAnticipo = 0.0;
+
+    @Column(name = "DEC_TASA_ANUAL")
+    private Double totalAnual = 0.0;
+
     public DeclaracionJurada() {
     }
 
     public DeclaracionJurada(Persona persona, AnioEnum anio) {
         this.persona = persona;
         this.anio = anio;
+    }
+
+    public DeclaracionJurada(Persona persona, AnioEnum anio, Padron padron) {
+        this.persona = persona;
+        this.anio = anio;
+        this.padron = padron;
+    }
+
+    public DeclaracionJurada(Persona persona, AnioEnum anio, Padron padron, PeriodoEnum periodo) {
+        this.persona = persona;
+        this.anio = anio;
+        this.padron = padron;
+        this.periodo = periodo;
     }
 
 

@@ -25,4 +25,6 @@ public interface IDeclaracionJuradaRepository {
     List<DeclaracionJurada> find(String valor);
 
     List<DeclaracionJurada> getByPersona(Persona persona);
+
+    void imprimirAcuseDeRecibo(DeclaracionJurada declaracionJurada, ServletOutputStream outputStream);
 }

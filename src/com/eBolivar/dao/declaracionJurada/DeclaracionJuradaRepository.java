@@ -5,6 +5,7 @@ import com.eBolivar.dao.CloseableSession;
 import com.eBolivar.dao.declaracionJurada.interfaces.IDeclaracionJuradaRepository;
 import com.eBolivar.domain.DeclaracionJurada;
 import com.eBolivar.domain.Persona;
+import com.eBolivar.enumeradores.PeriodoEnum;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
@@ -84,7 +85,8 @@ public class DeclaracionJuradaRepository implements IDeclaracionJuradaRepository
         map.put("idDeclaracionJurada", declaracionJurada.getId());
         JasperReport reporte ;
         try {
-            reporte = (JasperReport) JRLoader.loadObject(new File("/actualizaciones/ddjj.jasper"));
+            String file = declaracionJurada.getPeriodo().equals(PeriodoEnum.ANUAL) ? "ddjj-anual.jasper" : "ddjj,jasper";
+            reporte = (JasperReport) JRLoader.loadObject(new File("/actualizaciones" + file));
             JasperPrint jp = this.crearPrint(reporte, map);
             JRPdfExporter pdfExporter = new JRPdfExporter();
             pdfExporter.setParameter(JRExporterParameter.JASPER_PRINT, jp);
@@ -150,6 +152,23 @@ public class DeclaracionJuradaRepository implements IDeclaracionJuradaRepository
 
         } catch (HibernateException e) {
             throw e;
+        }
+    }
+
+    @Override
+    public void imprimirAcuseDeRecibo(DeclaracionJurada declaracionJurada, ServletOutputStream outputStream) {
+        Map<String, Object> map = new HashMap();
+        map.put("idDeclaracionJurada", declaracionJurada.getId());
+        JasperReport reporte;
+        try {
+            reporte = (JasperReport) JRLoader.loadObject(new File("/actualizaciones/acuseReciboDDJJ.jasper"));
+            JasperPrint jp = this.crearPrint(reporte, map);
+            JRPdfExporter pdfExporter = new JRPdfExporter();
+            pdfExporter.setParameter(JRExporterParameter.JASPER_PRINT, jp);
+            pdfExporter.setParameter(JRExporterParameter.OUTPUT_STREAM, outputStream);
+            pdfExporter.exportReport();
+        } catch (JRException e) {
+            e.printStackTrace();
         }
     }
 
