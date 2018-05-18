@@ -55,6 +55,7 @@ public class DeclaracionJuradaController {
     }
 
 
+
     @RequestMapping(value = "declaracionJuradaAnteriores", method = RequestMethod.GET)
     public String declaracionJuradaAnteriores(@RequestParam String anio, Model model) {
         model.addAttribute("tasas", tasaService.findAllAnio(anio));
