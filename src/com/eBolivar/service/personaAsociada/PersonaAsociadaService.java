@@ -25,6 +25,4 @@ public class PersonaAsociadaService implements IPersonaAsociadaService{
     public List<PersonaAsociada> findAll(String username) {
         return dao.findAll(username);
     }
-
-
 }

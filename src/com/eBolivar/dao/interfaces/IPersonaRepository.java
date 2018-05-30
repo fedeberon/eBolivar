@@ -1,5 +1,6 @@
 package com.eBolivar.dao.interfaces;
 
+import com.eBolivar.domain.Padron;
 import com.eBolivar.domain.PadronAsociado;
 import com.eBolivar.domain.Persona;
 
@@ -17,5 +18,5 @@ public interface IPersonaRepository {
 
     List<Persona> getByNombreYApellido(String nombre, String apellido);
 
-    List<PadronAsociado> getByPadron(String padron);
+    List<PadronAsociado> getByPadron(Padron padron);
 }

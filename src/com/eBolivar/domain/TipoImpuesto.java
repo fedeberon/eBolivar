@@ -1,6 +1,5 @@
 package com.eBolivar.domain;
 
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.io.Serializable;

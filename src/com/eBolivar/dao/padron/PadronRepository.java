@@ -27,7 +27,7 @@ public class PadronRepository implements IPadronRepository {
         try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
             tx = session.delegate().getTransaction();
             tx.begin();
-            session.delegate().save(padron);
+            session.delegate().saveOrUpdate(padron);
             tx.commit();
 
             return padron;

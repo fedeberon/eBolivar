@@ -19,4 +19,6 @@ public interface IUsuarioService extends UserDetailsService {
     List<AdministradorCuenta> findAllAdministradoresDeCuenta();
 
     void updateLikeAdministradorDeCuenta(String username);
+
+    User getAutenticate();
 }

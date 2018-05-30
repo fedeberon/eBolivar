@@ -8,6 +8,6 @@ import java.util.List;
 public interface IPersonaAsociadaService {
     PersonaAsociada save(PersonaAsociada personaAsociada);
 
-
     List<PersonaAsociada> findAll(String username);
+
 }

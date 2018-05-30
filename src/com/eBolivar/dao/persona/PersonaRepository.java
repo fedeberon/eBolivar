@@ -2,11 +2,13 @@ package com.eBolivar.dao.persona;
 
 import com.eBolivar.dao.interfaces.IPersonaRepository;
 import com.eBolivar.domain.Domicilio;
+import com.eBolivar.domain.Padron;
 import com.eBolivar.domain.PadronAsociado;
 import com.eBolivar.domain.Persona;
 import org.hibernate.*;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,6 +17,7 @@ import java.util.List;
 public class PersonaRepository implements IPersonaRepository {
 
     @Autowired
+    @Qualifier("sessionFactoryJpa")
     private SessionFactory sessionFactory;
 
     @Override
@@ -22,7 +25,6 @@ public class PersonaRepository implements IPersonaRepository {
         for(Domicilio domicilio : persona.getDomicilio()){
             domicilio.setPersona(persona);
         }
-
         Session session  = null;
         Transaction tx = null;
 
@@ -37,7 +39,6 @@ public class PersonaRepository implements IPersonaRepository {
         }
         catch (Exception e){
             tx.rollback();
-            System.out.print("===================>" + e);
             throw e;
         }
         finally {
@@ -74,8 +75,13 @@ public class PersonaRepository implements IPersonaRepository {
             session = sessionFactory.openSession();
             Query query = session.createQuery("from Persona where idPersona =:cuit");
             query.setString("cuit" , cuit);
+            Persona persona = (Persona) query.uniqueResult();
+            if (persona.getDomicilio() != null){
+                Hibernate.initialize(persona.getDomicilio());
+            }
 
-            return (Persona) query.uniqueResult();
+
+            return persona;
         }
         catch (HibernateException e){
             throw e;
@@ -116,12 +122,12 @@ public class PersonaRepository implements IPersonaRepository {
     }
 
     @Override
-    public List<PadronAsociado> getByPadron(String padron){
+    public List<PadronAsociado> getByPadron(Padron padron){
         Session session = null;
         try{
             session = sessionFactory.openSession();
             Query query = session.createQuery("from PadronAsociado where padron = :padron ");
-            query.setString("padron", padron);
+            query.setParameter("padron", padron);
 
             return query.list();
         }

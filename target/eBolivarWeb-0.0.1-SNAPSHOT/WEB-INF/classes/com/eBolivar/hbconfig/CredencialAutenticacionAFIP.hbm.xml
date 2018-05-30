@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- /** @author FedeBeron * @version 1.0 */ -->
+<hibernate-mapping>
+    <class name="com.eBolivar.domain.LoginTicketResponse" table="CREDENCIAL_AUTENTICACION_AFIP">
+        <id name="uniqueId" column="uniqueId" type="java.lang.String" />
+        <property name="token"  column="token"  type="java.lang.String" />
+        <property name="sign"  column="sign"  type="java.lang.String" />
+        <property name="generationTime"  column="fechaDePedido"  type="timestamp" />
+        <property name="expirationTime"  column="fechaDeCaducacion"  type="timestamp" />
+    </class>
+</hibernate-mapping>

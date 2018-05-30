@@ -12,6 +12,8 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -56,7 +58,7 @@ public class UsuarioRepository implements IUsuarioRepository {
     @Override
     public List<User> findAll() {
         try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
-            return session.delegate().createQuery("from User").list();
+            return session.delegate().createQuery("from Usuario").list();
         }
         catch (HibernateException e){
             e.printStackTrace();
@@ -82,8 +84,9 @@ public class UsuarioRepository implements IUsuarioRepository {
             tx = session.delegate().beginTransaction();
             Query query = session.delegate().createSQLQuery("UPDATE USUARIOS SET TIPO_USUARIO = 'ADMINISTRADOR_DE_CUENTA' WHERE USU_USERNAME = :username");
             query.setString("username", username);
+            query.executeUpdate();
+
             tx.commit();
-            session.delegate().flush();
         }
         catch (HibernateException e){
             tx.rollback();

@@ -2,9 +2,12 @@ package com.eBolivar.service.cuitPorTasa;
 
 import com.eBolivar.dao.interfaces.ICuitPorTasaRepository;
 import com.eBolivar.domain.PadronAsociado;
+import com.eBolivar.domain.Persona;
 import com.eBolivar.service.cuitPorTasa.interfaces.ICuitPorTasaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CuitPorTasaService implements ICuitPorTasaService {
@@ -30,6 +33,11 @@ public class CuitPorTasaService implements ICuitPorTasaService {
     @Override
     public PadronAsociado get(Integer id) {
         return dao.get(id);
+    }
+
+    @Override
+    public List<PadronAsociado> byPersona(Persona persona) {
+        return dao.byPersona(persona);
     }
 
 }

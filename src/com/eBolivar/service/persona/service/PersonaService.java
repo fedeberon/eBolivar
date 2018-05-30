@@ -1,10 +1,7 @@
 package com.eBolivar.service.persona.service;
 
 import com.eBolivar.dao.interfaces.IPersonaRepository;
-import com.eBolivar.domain.LoginTicketResponse;
-import com.eBolivar.domain.PadronAsociado;
-import com.eBolivar.domain.Persona;
-import com.eBolivar.domain.PersonaReturn;
+import com.eBolivar.domain.*;
 import com.eBolivar.service.autenticacion.interfaces.IAutenticacionAFIPService;
 import com.eBolivar.service.persona.interfaces.IPersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -174,7 +171,13 @@ public class PersonaService implements IPersonaService {
     }
 
     @Override
-    public List<PadronAsociado> getByPadron(String padron){
-        return dao.getByPadron(padron);
+    public List<PadronAsociado> getByPadron(Padron padron){
+        List<PadronAsociado> padronesAsociados = dao.getByPadron(padron);
+        for (PadronAsociado p : padronesAsociados) {
+            Persona persona = this.get(p.getId());
+            p.setPersona(persona);
+        }
+
+        return padronesAsociados;
     }
 }

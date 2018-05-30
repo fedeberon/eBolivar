@@ -1,6 +1,7 @@
 package com.eBolivar.dao.declaracionJurada.interfaces;
 
 import com.eBolivar.domain.DeclaracionJurada;
+import com.eBolivar.domain.PadronAsociado;
 import com.eBolivar.domain.Persona;
 
 import javax.servlet.ServletOutputStream;
@@ -27,4 +28,6 @@ public interface IDeclaracionJuradaRepository {
     List<DeclaracionJurada> getByPersona(Persona persona);
 
     void imprimirAcuseDeRecibo(DeclaracionJurada declaracionJurada, ServletOutputStream outputStream);
+
+    List<DeclaracionJurada> getByPadronAsociado(PadronAsociado padronAsociado);
 }

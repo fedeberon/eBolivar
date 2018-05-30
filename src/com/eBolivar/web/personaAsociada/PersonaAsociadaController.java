@@ -1,8 +1,12 @@
 package com.eBolivar.web.personaAsociada;
 
+import com.eBolivar.domain.PadronAsociado;
 import com.eBolivar.domain.Persona;
 import com.eBolivar.domain.administradorCuenta.PersonaAsociada;
-import com.eBolivar.domain.usuario.Usuario;
+import com.eBolivar.domain.rol.Rol;
+import com.eBolivar.domain.usuario.User;
+import com.eBolivar.service.cuitPorTasa.CuitPorTasaService;
+import com.eBolivar.service.cuitPorTasa.interfaces.ICuitPorTasaService;
 import com.eBolivar.service.persona.interfaces.IPersonaService;
 import com.eBolivar.service.personaAsociada.interfaces.IPersonaAsociadaService;
 import com.eBolivar.service.usuario.interfaces.IUsuarioService;
@@ -36,6 +40,9 @@ public class PersonaAsociadaController {
     @Autowired
     private PersonaAsociadaValidator validator;
 
+    @Autowired
+    private ICuitPorTasaService cuitPorTasaService;
+
 
     @RequestMapping("save")
     public String save(@ModelAttribute PersonaAsociada personaAsociada, BindingResult result, RedirectAttributes redirectAttributes){
@@ -57,17 +64,10 @@ public class PersonaAsociadaController {
     }
 
     @RequestMapping("list")
-    public String list(Model model, @RequestParam String username, RedirectAttributes redirectAttributes) {
-        List<PersonaAsociada> personas = personaAsociadaService.findAll(username);
+    public String list(Model model, @RequestParam String username) {
+        model.addAttribute("personasAsociadas", personaAsociadaService.findAll(username));
 
-        if(personas.size() == 1){
-            redirectAttributes.addAttribute("cuit", personas.get(0).getPersona().getIdPersona());
-            return "redirect:/webapp/ddjj/declaracionJurada/byPersona";
-        }
-        else {
-            model.addAttribute("personasAsociadas", personaAsociadaService.findAll(username));
-            return "personaAsociada/list";
-        }
+        return "personaAsociada/list";
     }
 
 
@@ -75,6 +75,5 @@ public class PersonaAsociadaController {
     public PersonaAsociada getPersonaAsociada(){
         return new PersonaAsociada();
     }
-
 
 }

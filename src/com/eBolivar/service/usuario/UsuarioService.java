@@ -8,6 +8,7 @@ import com.eBolivar.domain.usuario.Usuario;
 import com.eBolivar.service.usuario.interfaces.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -50,5 +51,11 @@ public class UsuarioService implements IUsuarioService {
     @Override
     public void updateLikeAdministradorDeCuenta(String username) {
         dao.updateLikeAdministradorDeCuenta(username);
+    }
+
+
+    @Override
+    public User getAutenticate(){
+        return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 }

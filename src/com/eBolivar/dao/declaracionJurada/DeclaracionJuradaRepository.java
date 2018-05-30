@@ -4,6 +4,7 @@ import com.eBolivar.bean.Pagination;
 import com.eBolivar.dao.CloseableSession;
 import com.eBolivar.dao.declaracionJurada.interfaces.IDeclaracionJuradaRepository;
 import com.eBolivar.domain.DeclaracionJurada;
+import com.eBolivar.domain.PadronAsociado;
 import com.eBolivar.domain.Persona;
 import com.eBolivar.enumeradores.PeriodoEnum;
 import net.sf.jasperreports.engine.*;
@@ -169,6 +170,20 @@ public class DeclaracionJuradaRepository implements IDeclaracionJuradaRepository
             pdfExporter.exportReport();
         } catch (JRException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public List<DeclaracionJurada> getByPadronAsociado(PadronAsociado padronAsociado) {
+        try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
+            Query query = session.delegate().createQuery("from DeclaracionJurada where padron = :padron and persona = :persona order by id desc");
+            query.setParameter("padron", padronAsociado.getPadron());
+            query.setParameter("persona", padronAsociado.getPersona());
+
+            return query.list();
+        }
+        catch (HibernateException e){
+            throw e;
         }
     }
 

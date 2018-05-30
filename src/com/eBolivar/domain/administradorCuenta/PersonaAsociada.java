@@ -1,8 +1,11 @@
 package com.eBolivar.domain.administradorCuenta;
 
+import com.eBolivar.domain.Padron;
+import com.eBolivar.domain.PadronAsociado;
 import com.eBolivar.domain.Persona;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity

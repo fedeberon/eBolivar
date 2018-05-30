@@ -174,6 +174,38 @@ public class DeclaracionJurada {
         this.estadoDeDeclaracionJurada = estadoDeDeclaracionJurada;
     }
 
+    public Double getSaldoAFavor() {
+        return saldoAFavor;
+    }
+
+    public void setSaldoAFavor(Double saldoAFavor) {
+        this.saldoAFavor = saldoAFavor;
+    }
+
+    public Double getSaldoAFavorDelContribuyente() {
+        return saldoAFavorDelContribuyente;
+    }
+
+    public void setSaldoAFavorDelContribuyente(Double saldoAFavorDelContribuyente) {
+        this.saldoAFavorDelContribuyente = saldoAFavorDelContribuyente;
+    }
+
+    public Double getTotalAnticipo() {
+        return totalAnticipo;
+    }
+
+    public void setTotalAnticipo(Double totalAnticipo) {
+        this.totalAnticipo = totalAnticipo;
+    }
+
+    public Double getTotalAnual() {
+        return totalAnual;
+    }
+
+    public void setTotalAnual(Double totalAnual) {
+        this.totalAnual = totalAnual;
+    }
+
     @Override
     public String toString() {
         return "DeclaracionJurada: Id = " + Id  + " Persona: [ " + persona + " ]" + "Padron: [ " + padron + " ]";
