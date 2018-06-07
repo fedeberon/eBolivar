@@ -9,7 +9,9 @@ import org.hibernate.exception.ConstraintViolationException;
 import com.eBolivar.common.SearchObject;
 import com.eBolivar.dao.TipoImpuestoDaoHibernateImpl;
 import com.eBolivar.domain.TipoImpuesto;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TipoImpuestoServiceImpl {
 
 	private TipoImpuestoDaoHibernateImpl dao = null;

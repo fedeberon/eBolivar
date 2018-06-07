@@ -21,6 +21,7 @@ public class Domicilio  implements java.io.Serializable {
 
     @Id
     @Column(name = "DOM_ID")
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
 
     @XmlElement

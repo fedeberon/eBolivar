@@ -7,6 +7,7 @@ package com.eBolivar.dao;
 import com.eBolivar.common.SearchObject;
 import com.eBolivar.domain.EstadoDeTasa;
 import com.eBolivar.domain.Impuesto;
+import com.eBolivar.domain.Padron;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -17,6 +18,7 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import java.util.List;
@@ -26,6 +28,10 @@ public class ImpuestoDaoHibernateImpl extends HibernateDaoSupport {
 
     @Autowired
     private SessionFactory sessionFactory;
+
+    @Autowired
+    @Qualifier("sessionFactoryJpa")
+    private SessionFactory sessionFactoryJpa;
 
     public Impuesto getObject(String id) {
         return (Impuesto) getHibernateTemplate().get(Impuesto.class, id);
@@ -170,7 +176,18 @@ public class ImpuestoDaoHibernateImpl extends HibernateDaoSupport {
     }
 
     public List<Impuesto> getByPadron(String nroPadron) {
-        return getHibernateTemplate().find("from Impuesto where numeroDePadron =  '" + nroPadron + "' ");
+//        return getHibernateTemplate().find("from Impuesto where numeroDePadron =  '" + nroPadron + "' ");
+
+        try(CloseableSession session = new CloseableSession(sessionFactoryJpa.openSession())){
+            Query query = session.delegate().createQuery("from Impuesto where numeroDePadron = :nroPadron");
+            query.setParameter("nroPadron", nroPadron);
+            return query.list();
+
+        }
+        catch (HibernateException e){
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     public List<Impuesto> getActivosByPadron(String nroPadron) {

@@ -1,6 +1,9 @@
 package com.eBolivar.dao.interfaces;
 
 import com.eBolivar.domain.PadronAsociado;
+import com.eBolivar.domain.Persona;
+
+import java.util.List;
 
 public interface ICuitPorTasaRepository {
     boolean isCuitAsociadoAPadron(String padron);
@@ -10,4 +13,6 @@ public interface ICuitPorTasaRepository {
     boolean exist(PadronAsociado padronAsociado);
 
     PadronAsociado get(Integer id);
+
+    List<PadronAsociado> byPersona(Persona persona);
 }

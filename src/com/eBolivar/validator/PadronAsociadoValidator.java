@@ -32,7 +32,7 @@ public class PadronAsociadoValidator implements Validator {
     public void validate(Object target, Errors errors) {
         PadronAsociado padronAsociado = (PadronAsociado) target;
 
-        if(!impuestoService.isUnPadron(padronAsociado.getPadron())){
+        if(!impuestoService.isUnPadron(padronAsociado.getPadron().getId().toString())){
             errors.rejectValue("padron", "Padron.numero.noEncontrado","Error verifique nuevamente");
         }
 

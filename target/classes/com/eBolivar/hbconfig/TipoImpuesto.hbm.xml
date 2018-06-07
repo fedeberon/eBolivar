@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- /** @author FedeBeron * @version 1.0 */ -->
+
+<hibernate-mapping>
+    <class name="com.eBolivar.domain.TipoImpuesto" table="TIPO_IMPUESTO">
+	
+          <id name="codigo" column="TI_ID" type="java.lang.Integer" >
+			
+		  </id>
+          <property name="nombre"  column="TI_NOMBRE"  type="java.lang.String" />
+          <property name="patronBusqueda"  column="TI_PATRON_BUSQUEDA"  type="java.lang.String" />
+          <property name="estado"  column="TI_ESTADO"  type="java.lang.String" />
+          <property name="comentarios"  column="TI_COMENTARIOS"  type="java.lang.String" />
+          <property name="color"  column="TI_COLOR"  type="java.lang.String" />
+          <property name="urlImg"  column="TI_URL_IMG"  type="java.lang.String" />
+		  
+    </class>
+</hibernate-mapping>

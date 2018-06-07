@@ -145,4 +145,11 @@ public class Persona  implements java.io.Serializable {
     public void setNumeroDocumento(String numeroDocumento) {
         this.numeroDocumento = numeroDocumento;
     }
+
+    public boolean equals(Persona p) {
+        if (p == null) return false;
+
+        return (p.id == id);
+    }
+
 }

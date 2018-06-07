@@ -22,7 +22,7 @@ public class HomeController extends AbstractController {
  	public ModelAndView handleRequestInternal(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
 		ModelAndView mav;
-		mav = new ModelAndView("redirect:impuesto/homeWeb");
+		mav = new ModelAndView("redirect:tasas/homeWeb");
  	
 		return mav;
 

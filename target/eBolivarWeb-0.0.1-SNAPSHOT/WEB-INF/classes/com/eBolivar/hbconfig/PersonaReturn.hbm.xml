@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.eBolivar.domain.PersonaReturn" table="PERSONAS_RETURN">
+
+        <id name="id" column="PR_ID" type="java.lang.Integer" >
+            <generator class="increment"/>
+        </id>
+        <one-to-one name="metadata" class="com.eBolivar.domain.Metadata"/>
+        <one-to-one name="persona" class="com.eBolivar.domain.Persona"/>
+    </class>
+</hibernate-mapping>

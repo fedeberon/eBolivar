@@ -1,10 +1,12 @@
 package com.eBolivar.web.persona;
 
 import com.eBolivar.domain.Impuesto;
+import com.eBolivar.domain.Padron;
 import com.eBolivar.domain.PadronAsociado;
 import com.eBolivar.domain.Persona;
 import com.eBolivar.service.cuitPorTasa.CuitPorTasaService;
 import com.eBolivar.service.impuesto.interfaces.IImpuestoService;
+import com.eBolivar.service.padron.interfaces.IPadronService;
 import com.eBolivar.service.persona.interfaces.IPersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,12 +30,16 @@ public class PersonaController {
     @Autowired
     private CuitPorTasaService cuitPorTasaService;
 
+    @Autowired
+    private IPadronService padronService;
+
 
     @RequestMapping(value = "/busquedaPorCuit", method =  { RequestMethod.GET , RequestMethod.POST } )
-    public String obtenerPersonaPor(@RequestParam String cuit,
-                                    Model model) throws Exception {
+    public String obtenerPersonaPor(@RequestParam String cuit, Model model) throws Exception {
         Persona persona = personaService.getByCUIT(cuit);
+        List<PadronAsociado> padronesAsociados = cuitPorTasaService.byPersona(persona);
         model.addAttribute("persona", persona);
+        model.addAttribute("padronesAsociados", padronesAsociados);
 
         return "persona/show";
     }
@@ -50,7 +56,8 @@ public class PersonaController {
 
 
     @RequestMapping(value = "/busquedaPorPadron")
-    public String obtenerPadrones(@RequestParam String padron, Model model){
+    public String obtenerPadrones(@RequestParam Integer idPadron, Model model){
+        Padron padron = padronService.get(idPadron);
         List<PadronAsociado> padrones = personaService.getByPadron(padron);
         model.addAttribute("padrones", padrones);
 
@@ -67,14 +74,25 @@ public class PersonaController {
     }
 
     @RequestMapping(value = "/agregarPadronAPersona")
-    public String agregarPadron(@RequestParam String padron, @RequestParam Integer idPersona, Model model){
+    public String agregarPadron(@RequestParam String idPadron, @RequestParam Integer idPersona, Model model){
         Persona persona = personaService.get(idPersona);
-        Impuesto impuesto = impuestoService.getByPadron(padron).get(0);
-        PadronAsociado padronAsociado = new PadronAsociado(persona, impuesto.getNumeroDePadron(), impuesto.getLeyendaTributo());
+
+        Padron padron = padronService.getByNumero(idPadron);
+
+        if(padron == null){
+            List<Impuesto> impuestos = impuestoService.getByPadron(idPadron);
+            if(impuestos != null && impuestos.size() >=1 ){
+                Impuesto impuesto = impuestos.get(0);
+                padron = new Padron(impuesto.getNumeroDePadron(), impuesto.getTipoImpuesto());
+                padronService.save(padron);
+            }
+            else return "";
+        }
+
+        PadronAsociado padronAsociado = new PadronAsociado(persona, padron);
         cuitPorTasaService.save(padronAsociado);
-        model.addAttribute("padron" , padron);
+        model.addAttribute("cuit" , persona.getIdPersona());
 
-        return "redirect:busquedaPorPadron";
+        return "redirect:busquedaPorCuit";
     }
-
 }

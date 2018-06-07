@@ -2,11 +2,7 @@ package com.eBolivar.service.declaracionJurada;
 
 import com.eBolivar.bean.FormatoUtil;
 import com.eBolivar.dao.declaracionJurada.interfaces.IDeclaracionJuradaRepository;
-import com.eBolivar.domain.DeclaracionJurada;
-import com.eBolivar.domain.Padron;
-import com.eBolivar.domain.Persona;
-import com.eBolivar.domain.TasaAsociada;
-import com.eBolivar.enumeradores.EstadoDeDeclaracionJurada;
+import com.eBolivar.domain.*;
 import com.eBolivar.service.declaracionJurada.interfaces.IDeclaracionJuradaService;
 import com.eBolivar.service.padron.interfaces.IPadronService;
 import com.eBolivar.service.persona.interfaces.IPersonaService;
@@ -104,8 +100,18 @@ public class DeclaracionJuradaService implements IDeclaracionJuradaService{
     }
 
     @Override
+    public List<DeclaracionJurada> getByPersona(Persona persona) {
+        return dao.getByPersona(persona);
+    }
+
+    @Override
     public void imprimirAcuseDeRecibo(DeclaracionJurada declaracionJurada, ServletOutputStream outputStream) {
         dao.imprimirAcuseDeRecibo(declaracionJurada, outputStream);
+    }
+
+    @Override
+    public List<DeclaracionJurada> getByPadronAsociado(PadronAsociado padronAsociado, Integer page) {
+        return dao.getByPadronAsociado(padronAsociado, page);
     }
 
     private void descontarDeduccionesSobreBaseImponible(DeclaracionJurada declaracionJurada){

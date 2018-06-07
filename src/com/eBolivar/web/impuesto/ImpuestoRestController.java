@@ -7,6 +7,7 @@ import com.eBolivar.service.NotificacionPorBienServiceImpl;
 import com.eBolivar.service.autenticacion.interfaces.IAutenticacionAFIPService;
 import com.eBolivar.service.cuitPorTasa.interfaces.ICuitPorTasaService;
 import com.eBolivar.service.impuesto.interfaces.IImpuestoService;
+import com.eBolivar.service.padron.interfaces.IPadronService;
 import com.eBolivar.service.persona.interfaces.IPersonaService;
 import com.eBolivar.service.reporte.ReporteService;
 import net.sf.jasperreports.engine.JRException;
@@ -47,6 +48,9 @@ public class ImpuestoRestController {
     private IAutenticacionAFIPService autenticacionAFIPService;
     @Autowired
     private IPersonaService personaService;
+
+    @Autowired
+    private IPadronService padronService;
 
     @RequestMapping(value = "/{padron}", method = RequestMethod.GET)
     public @ResponseBody  List<Impuesto> getTasa(@PathVariable String padron) {
@@ -92,18 +96,19 @@ public class ImpuestoRestController {
         return cuitPorTasaService.isCuitAsociadoAPadron(padron);
     }
 
-    @RequestMapping(value = "/guardarCuitAsociadoAlUsuario/{padron}/{cuit}/{leyenda}", method = RequestMethod.GET)
-    public ResponseEntity guardarCuitAsociadoAlUsuario(@PathVariable String padron, @PathVariable String cuit, @PathVariable String leyenda) {
+    @RequestMapping(value = "/guardarCuitAsociadoAlUsuario/{idPadron}/{cuit}/{leyenda}", method = RequestMethod.GET)
+    public ResponseEntity guardarCuitAsociadoAlUsuario(@PathVariable Integer idPadron, @PathVariable String cuit, @PathVariable String leyenda) {
         try {
 
             Persona persona = personaService.getByCUIT(cuit);
+            Padron padron = padronService.get(idPadron);
 
             if(persona == null){
                 LoginTicketResponse credencial = autenticacionAFIPService.obtenerCredenciales();
                 persona = personaService.create_PersonaRequest(credencial.getToken(), credencial.getSign(), Persona.CUIT_REPRESENTADA_MUNICIPALIDAD_BOLIVAR, cuit);
             }
 
-            PadronAsociado padronAsociado = new PadronAsociado(persona, padron, leyenda);
+            PadronAsociado padronAsociado = new PadronAsociado(persona, padron);
             cuitPorTasaService.save(padronAsociado);
 
             return new ResponseEntity(HttpStatus.OK);

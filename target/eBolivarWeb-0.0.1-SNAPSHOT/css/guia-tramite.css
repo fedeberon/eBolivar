@@ -1,0 +1,44 @@
+.spanClass {
+	width: 200px;
+	font-weight: normal;
+	float: left;
+	color: #555;
+}
+
+.odd {
+	padding-bottom: 10px;
+	border-bottom: 1px solid #DDD;
+}
+
+.formulario-tramite-show{
+	padding: 10px;
+	background-color: #fff;
+	border: 5px solid #ddd;
+	margin-top: 100px;
+	margin-bottom: 80px;
+	height: 400px;
+	margin-left: 80px;
+	margin-right: 80px;
+	}
+.titulo-paso {
+	font-size: 32px;
+	color: #FFF;
+	font-weight: normal;
+	text-transform: capitalize;
+	text-align: center;
+	background-color: #62A7BD;
+	margin-top: 20px;
+}
+.div-descripcion-paso {
+	float: left;
+	width: 69%;
+	height: 75%;
+	margin-top: 20px;
+}
+.descripcion-paso {
+	font-size: 14px;
+	color: #555;
+	font-weight: normal;
+	margin-right: 80px;
+	text-align: justify;
+}

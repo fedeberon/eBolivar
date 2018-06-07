@@ -4,9 +4,7 @@ import com.eBolivar.domain.rol.Rol;
 
 import javax.persistence.*;
 
-/**
- * Created by Damian Gallego on 8/5/2018.
- */
+
 @Entity
 @Table(name = "PERMISOS")
 public class Permiso {

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -29,11 +30,27 @@ public class UsuarioController {
         return "redirect:list";
     }
 
+
+    @RequestMapping(value = "saveAdministradorCuenta", method = RequestMethod.GET)
+    public String saveAdministradorCuenta(@RequestParam String username) {
+        usuarioService.updateLikeAdministradorDeCuenta(username);
+
+        return "redirect:list/administradorDeCuenta";
+    }
+
+
     @RequestMapping(value = "list", method = RequestMethod.GET)
-    public String save(Model model) {
+    public String list(Model model) {
         model.addAttribute("usuarios", usuarioService.findAll());
 
         return "usuario/list";
+    }
+
+    @RequestMapping(value = "list/administradorDeCuenta", method = RequestMethod.GET)
+    public String listAdministradorDeCuenta(Model model) {
+        model.addAttribute("usuarios", usuarioService.findAllAdministradoresDeCuenta());
+
+        return "usuario/list-administradorCuenta";
     }
 
 
