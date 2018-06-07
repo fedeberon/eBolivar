@@ -12,10 +12,6 @@ import java.beans.PropertyEditorSupport;
 public class AnioTypeEditor extends PropertyEditorSupport {
 
     public void setAsText(String text) {
-        try {
-            setValue(AnioEnum.fromString(text.toUpperCase()));
-        } catch (Exception ex) {
-            setValue(null);
-        }
+        setValue(AnioEnum.fromString(text.toUpperCase()));
     }
 }

@@ -87,7 +87,7 @@
     <div class="row">
 
         <form:form action="save" modelAttribute="ddjj" method="post">
-
+            <input type="hidden" name="tipo" value="bimestral">
             <div class="col-md-4">
                     <div class="form-group">
                         <label>CUIT:</label>
@@ -97,7 +97,7 @@
 
                     <div class="form-group">
                         <label>A&ntilde;o:</label>
-                        <form:select path="anio" cssClass="form-control" items="${anio}"/>
+                        <form:select path="anio" cssClass="form-control" items="${anio}" />
                     </div>
 
 
@@ -236,7 +236,8 @@
             </div>
 
             <div class="col-md-12">
-                <button type="submit" name="tipo" value="bimestral"  class="btn btn-primary"><span class="glyphicon glyphicon-arrow-right"></span>
+                <button type="submit" name="nueva" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-arrow-right"></span>
                     Siguiente
                 </button>
             </div>

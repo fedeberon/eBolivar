@@ -86,7 +86,7 @@ public class DeclaracionJuradaRepository implements IDeclaracionJuradaRepository
         map.put("idDeclaracionJurada", declaracionJurada.getId());
         JasperReport reporte ;
         try {
-            String file = declaracionJurada.getPeriodo().equals(PeriodoEnum.ANUAL) ? "ddjj-anual.jasper" : "ddjj,jasper";
+            String file = declaracionJurada.getPeriodo().equals(PeriodoEnum.ANUAL) ? "/ddjj-anual.jasper" : "/ddjj.jasper";
             reporte = (JasperReport) JRLoader.loadObject(new File("/actualizaciones" + file));
             JasperPrint jp = this.crearPrint(reporte, map);
             JRPdfExporter pdfExporter = new JRPdfExporter();
@@ -174,11 +174,13 @@ public class DeclaracionJuradaRepository implements IDeclaracionJuradaRepository
     }
 
     @Override
-    public List<DeclaracionJurada> getByPadronAsociado(PadronAsociado padronAsociado) {
+    public List<DeclaracionJurada> getByPadronAsociado(PadronAsociado padronAsociado, Integer pageNumber) {
         try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
             Query query = session.delegate().createQuery("from DeclaracionJurada where padron = :padron and persona = :persona order by id desc");
             query.setParameter("padron", padronAsociado.getPadron());
             query.setParameter("persona", padronAsociado.getPersona());
+            query.setFirstResult((pageNumber - 1) * Pagination.MAX_PAGE );
+            query.setMaxResults(Pagination.MAX_PAGE);
 
             return query.list();
         }

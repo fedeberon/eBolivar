@@ -45,57 +45,67 @@
 
         <div class="col-md-12">
 
-                <table class="table">
-            <thead>
-            <tr>
-                <th>Codigo Interno</th>
-                <th>Nombre y Apellido</th>
-                <th>Padron</th>
-                <th>Tasa</th>
-                <th>Fecha</th>
-                <th>Periodo</th>
-
-            </tr>
-            </thead>
-
-            <tbody>
-
-            <c:if test='${empty ddjjs}'>
+            <table class="table">
+                <thead>
                 <tr>
-                    <td colspan="6"><br>
-                        <br>
-                        <h3>No se encontraron Declaraciones Juradas</h3>
-                    </td>
+                    <th>Codigo Interno</th>
+                    <th>Nombre y Apellido</th>
+                    <th>Padron</th>
+                    <th>Tasa</th>
+                    <th>Fecha</th>
+                    <th>Periodo</th>
+
                 </tr>
-            </c:if>
+                </thead>
 
-                <c:forEach items="${ddjjs}" var="bo">
+                <tbody>
+
+                <c:if test='${empty ddjjs}'>
                     <tr>
-                        <td><a href="<c:url value='/webapp/ddjj/show?id=${bo.id}'/>">${bo.id}</a></td>
-                        <td>${bo.persona.nombre} ${bo.persona.apellido}</td>
-                        <td>${bo.padron.numero}</td>
-                        <td>${bo.padron.tipoImpuesto.nombre}</td>
-                        <td>${bo.fecha}</td>
-                        <td>${bo.periodo}</td>
+                        <td colspan="6"><br>
+                            <br>
+                            <h3>No se encontraron Declaraciones Juradas</h3>
+                        </td>
                     </tr>
-                </c:forEach>
-            </tbody>
+                </c:if>
 
-        </table>
+                    <c:forEach items="${ddjjs}" var="bo">
+                        <tr>
+                            <td><a href="<c:url value='/webapp/ddjj/show?id=${bo.id}'/>">${bo.id}</a></td>
+                            <td>${bo.persona.nombre} ${bo.persona.apellido}</td>
+                            <td>${bo.padron.numero}</td>
+                            <td>${bo.padron.tipoImpuesto.nombre}</td>
+                            <td>${bo.fecha}</td>
+                            <td>${bo.periodo}</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+
+            </table>
 
         </div>
 
         <div class="col-xs-12">
 
-            <div class="col-xs-2">
-                <a href="<c:url value='/webapp/ddjj/list?page=${page - 1}'/>" class="btn btn-block btn-primary">Atras</a>
-            </div>
+            <sec:authorize access="hasRole('ROLE_MODULO_RENTAS')">
+                <div class="col-xs-2">
+                    <a href="<c:url value='/webapp/ddjj/list?page=${page - 1}'/>" class="btn btn-block btn-primary">Atras</a>
+                </div>
 
-            <div class="col-xs-2">
-                <a href="<c:url value='/webapp/ddjj/list?page=${page + 1}'/>" class="btn btn-block btn-primary">Siguiente</a>
-            </div>
+                <div class="col-xs-2">
+                    <a href="<c:url value='/webapp/ddjj/list?page=${page + 1}'/>" class="btn btn-block btn-primary">Siguiente</a>
+                </div>
+            </sec:authorize>
 
+            <sec:authorize access="hasRole('ROLE_MODULO_CONTRIBUYENTE')">
+                <div class="col-xs-2">
+                    <a href="<c:url value='/webapp/ddjj/declaracionJurada/byPadronAsociado?idPadronAsociado=${padronAsociado.id}&page=${page - 1}'/>" class="btn btn-block btn-primary">Atras</a>
+                </div>
 
+                <div class="col-xs-2">
+                    <a href="<c:url value='/webapp/ddjj/declaracionJurada/byPadronAsociado?idPadronAsociado=${padronAsociado.id}&page=${page + 1}'/>" class="btn btn-block btn-primary">Siguiente</a>
+                </div>
+            </sec:authorize>
 
                 <c:if test='${not empty ddjjs}'>
                     <div class="col-xs-2">
@@ -105,9 +115,9 @@
                                 DDJJ Anteriores<span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/create/byPersona?idPersona=${ddjjs[0].persona.idPersona}&anio=2017&idPadron=${ddjjs[0].padron.id}'/>">Anual 2017</a></li>
+                                <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/create/byPersona?idPersona=${ddjjs[0].persona.idPersona}&anio=2017&idPadron=${ddjjs[0].padron.id}'/>">DDJJ 2017</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/create/byPersona?idPersona=${ddjjs[0].persona.idPersona}&anio=2016&idPadron=${ddjjs[0].padron.id}'/>">Anual 2016</a></li>
+                                <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/create/byPersona?idPersona=${ddjjs[0].persona.idPersona}&anio=2016&idPadron=${ddjjs[0].padron.id}'/>">DDJJ 2016</a></li>
                             </ul>
                         </div>
                     </div>

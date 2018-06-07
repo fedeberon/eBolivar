@@ -29,5 +29,5 @@ public interface IDeclaracionJuradaRepository {
 
     void imprimirAcuseDeRecibo(DeclaracionJurada declaracionJurada, ServletOutputStream outputStream);
 
-    List<DeclaracionJurada> getByPadronAsociado(PadronAsociado padronAsociado);
+    List<DeclaracionJurada> getByPadronAsociado(PadronAsociado padronAsociado, Integer page);
 }

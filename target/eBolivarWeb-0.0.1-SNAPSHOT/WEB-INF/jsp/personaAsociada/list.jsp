@@ -69,6 +69,11 @@
 
     </div>
 </div>
+
+<div id='botonera'>
+    <a href="javascript:history.back()" class="btn btn-default">Volver</a>
+</div>
+
 <jsp:include page="../bottom.jsp"/>
 </body>
 </html>

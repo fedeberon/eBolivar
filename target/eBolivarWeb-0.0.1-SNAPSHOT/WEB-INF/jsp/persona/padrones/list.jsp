@@ -54,8 +54,7 @@
 
                 <c:if test="${bo.padron.tipoImpuesto.codigo == 15}">
                     <td>
-                        <a class="btn btn-success"
-                           href="<c:url value='/webapp/ddjj/declaracionJurada/byPadronAsociado?idPadronAsociado=${bo.id}'/>">DDJJs</a>
+                        <a class="btn btn-success" href="<c:url value='/webapp/ddjj/declaracionJurada/byPadronAsociado?idPadronAsociado=${bo.id}'/>">DDJJs</a>
                     </td>
                     <td>
                         <div class="btn-group">
@@ -64,13 +63,13 @@
                                 Nueva Declaraci&oacute;n<span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li>
-                                    <a href="<c:url value='/webapp/ddjj/declaracionJurada/bimestralByPadronAsociado?idPadron=${bo.padron.id}&idPersona=${bo.persona.id}'/>">Bimestral</a>
-                                </li>
+                                <li><a href="<c:url value='/webapp/ddjj/declaracionJurada/bimestralByPadronAsociado?idPadron=${bo.padron.id}&idPersona=${bo.persona.id}'/>">Bimestral</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li>
-                                    <a href="<c:url value='/webapp/ddjj/declaracionJurada/anualByPadronAsociado?idPadron=${bo.padron.id}&idPersona=${bo.persona.id}'/>">Anual</a>
-                                </li>
+                                <li><a href="<c:url value='/webapp/ddjj/declaracionJurada/anualByPadronAsociado?idPadron=${bo.padron.id}&idPersona=${bo.persona.id}'/>">Anual</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/anteriorByPadronAsociado?idPersona=${bo.persona.id}&anio=2017&idPadron=${bo.padron.id}'/>">DDJJ 2017</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/anteriorByPadronAsociado?idPersona=${bo.persona.id}&anio=2016&idPadron=${bo.padron.id}'/>">DDJJ 2016</a></li>
                             </ul>
                         </div>
                     </td>

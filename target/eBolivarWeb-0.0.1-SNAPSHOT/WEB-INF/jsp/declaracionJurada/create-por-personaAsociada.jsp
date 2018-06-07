@@ -299,7 +299,7 @@
             </div>
 
             <div class="col-md-12">
-                <button type="submit" name="personaAsociada" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-right"></span>
+                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-right"></span>
                     Siguiente
                 </button>
             </div>

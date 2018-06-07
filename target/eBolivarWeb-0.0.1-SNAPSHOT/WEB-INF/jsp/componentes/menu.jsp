@@ -151,6 +151,8 @@
                        </a>
                        <ul class="dropdown-menu" role="menu">
                            <li class="divider"></li>
+                           <li><a href="<c:url value='/webapp/personaAsociada/list?username=${user.username}'/>">CUIT's ASOCIADOS</a></li>
+                           <li class="divider"></li>
                            <li><a href="<c:url value='/webapp/logout'/>">Logout</a></li>
                            <li class="divider"></li>
                            <li><a href="#"> <sec:authentication property="principal" /></a></li>

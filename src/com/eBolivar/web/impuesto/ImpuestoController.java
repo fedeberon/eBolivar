@@ -4,6 +4,7 @@ package com.eBolivar.web.impuesto;
 
 import com.eBolivar.domain.Impuesto;
 import com.eBolivar.domain.Padron;
+import com.eBolivar.domain.TipoImpuesto;
 import com.eBolivar.service.BannerServiceImpl;
 import com.eBolivar.service.TipoImpuestoServiceImpl;
 import com.eBolivar.service.impuesto.interfaces.IImpuestoService;
@@ -14,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -56,8 +59,8 @@ public class ImpuestoController {
 		return "impuesto/homeWeb";
 	}
 
-
-
-
-
+	@RequestMapping("impuestos")
+	public String impuestos() {
+		return "impuesto/impuestos";
+	}
 }

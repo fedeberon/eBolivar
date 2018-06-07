@@ -76,7 +76,7 @@ public class PersonaRepository implements IPersonaRepository {
             Query query = session.createQuery("from Persona where idPersona =:cuit");
             query.setString("cuit" , cuit);
             Persona persona = (Persona) query.uniqueResult();
-            if (persona.getDomicilio() != null){
+            if (persona != null && persona.getDomicilio() != null){
                 Hibernate.initialize(persona.getDomicilio());
             }
 

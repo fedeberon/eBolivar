@@ -110,8 +110,8 @@ public class DeclaracionJuradaService implements IDeclaracionJuradaService{
     }
 
     @Override
-    public List<DeclaracionJurada> getByPadronAsociado(PadronAsociado padronAsociado) {
-        return dao.getByPadronAsociado(padronAsociado);
+    public List<DeclaracionJurada> getByPadronAsociado(PadronAsociado padronAsociado, Integer page) {
+        return dao.getByPadronAsociado(padronAsociado, page);
     }
 
     private void descontarDeduccionesSobreBaseImponible(DeclaracionJurada declaracionJurada){
