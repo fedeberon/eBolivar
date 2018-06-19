@@ -33,15 +33,15 @@ public class TasaService implements ITasaService {
     public List<Tasa> findByTasaPersonaPadron(List<TasaPersonaPadron> tasasPorPadronPorPesona, AnioEnum anio) {
         List<Long> codigos = tasasPorPadronPorPesona.stream().map(TasaPersonaPadron::getCodigo).collect(Collectors.toList());
         codigos.add(1l);
+
         if(tasasPorPadronPorPesona != null && tasasPorPadronPorPesona.size() == 0){
-            return this.findAll();
+            return this.findAllAnio(anio.toString());
         }
+
         else {
-
             List<Tasa> tasas = dao.findByTasaPersonaPadron(codigos, anio);
-
             if(tasas.size() == 0 && tasas != null){
-                return this.findAll();
+                return this.findAllAnio(anio.toString());
             }
             else{
                 return tasas;

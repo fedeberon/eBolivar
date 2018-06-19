@@ -56,6 +56,10 @@
                     <td>${declaracionJurada.periodo.descripcion}</td>
                 </tr>
                 <tr>
+                    <th>A&ntilde;o</th>
+                    <td>${declaracionJurada.anio.descripcion}</td>
+                </tr>
+                <tr>
                     <th>Padron</th>
                     <td>${declaracionJurada.padron.numero}</td>
                 </tr>

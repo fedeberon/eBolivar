@@ -10,13 +10,12 @@
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip();
 
-
-
         $( "#anio" ).change(function() {
             var idTasa = $("#tasa").val();
             var anio = $(this).val();
         });
 
+        $('#exampleModal').modal('show')
     });
 
     $(function(ready){
@@ -244,7 +243,7 @@
 
                     <c:forEach items="${periodoEnum}" var="bo">
 
-                        <c:if test="${bo == 'ANUAL'}"> <!--Cuando se crea ddjj 2016-17, me muestra esto, no deberia por si se crea una bimestral-->
+                        <c:if test="${bo == 'ANUAL'}">
 
 
                             <tr>
@@ -307,6 +306,27 @@
         </form:form>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <strong class="modal-title" id="exampleModalLabel">AVISO</strong>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Se&ntilde;or contribuyente recuerde que debe proceder a reempadronarse en la oficina de habilitaciones comerciales de acuerdo a la ordenanza fiscal 2457/17.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <jsp:include page="../bottom.jsp"/>
 </body>
 </html>

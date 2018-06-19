@@ -4,6 +4,9 @@
 <html>
 <head>
     <title>${initParam['AppName']} - Personas</title>
+    <script type="text/javascript" src="<c:url value='/webapp/webjarslocator/jquery-ui/jquery-ui.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/js/impuesto/impuesto.js'/>"></script>
+    <link rel="stylesheet" href="<c:url value='/webapp/webjarslocator/jquery-ui/jquery-ui.css'/>" type="text/css"/>
 </head>
 <body>
 <div class="titulo-general">
@@ -41,7 +44,9 @@
                 <td>${bo.padron.numero}</td>
                 <td>${bo.padron.tipoImpuesto.nombre}</td>
                 <td>
-                    <a href="<c:url value='/webapp/personas/get?id=${bo.id}'/>">${bo.persona.idPersona}</a>
+                    <%--<a href="<c:url value='/webapp/personas/get?id=${bo.persona.id}'/>">--%>
+                    ${bo.persona.idPersona}
+                    <%--</a>--%>
                 </td>
                 <td>${bo.persona.nombre}</td>
                 <td>${bo.persona.apellido}</td>
@@ -83,7 +88,15 @@
 
 <div id='botonera'>
     <a class="btn btn-default" href="javascript:history.back()">Volver </a>
+    <%--<a href="#" class="verificarPadron btn btn-default">Agregar Padron</a>--%>
 </div>
+
+<%--<div id="modal-verificar-numero-padron" title="Ingrese el numero de Padron.">--%>
+    <%--<form action="../personas/agregarPadronAPersona" id="form-asociar-padron-persona">--%>
+        <%--<input type="hidden" name="idPersona" value="${persona.id}">--%>
+        <%--<input type="text" name="idPadron" placeholder="Ingrese el Padron">--%>
+    <%--</form>--%>
+<%--</div>--%>
 
 <br clear="all">
 <br>

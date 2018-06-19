@@ -9,6 +9,8 @@
 <script>
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip();
+
+        $('#exampleModal').modal('show')
     });
 </script>
 
@@ -270,13 +272,34 @@
                 </button>
             </div>
 
-
-
-
-
         </form:form>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <strong class="modal-title" id="exampleModalLabel">AVISO</strong>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Solicite su usuario y clave para presentar su Declaraci&oacute;n Jurada. Ya que a partir del 3er anticipo bimestral 2018, cuyo vencimiento tiene lugar el 20/7 sera obligatorio su utilizaci&oacute;n.</p>
+                <br>
+                <strong>CONTACTOS</strong>
+                <p>2314-415093</p>
+                <p>cnavarro@bolivar.gob.ar</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <jsp:include page="../bottom.jsp"/>
 </body>
 </html>
