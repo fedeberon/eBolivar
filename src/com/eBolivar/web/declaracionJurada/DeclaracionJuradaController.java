@@ -62,7 +62,7 @@ public class DeclaracionJuradaController {
     @RequestMapping(value = "create", method = RequestMethod.GET)
     public String create(Model model) {
         model.addAttribute("tasas", tasaService.findAllAnio("2018"));
-        model.addAttribute("anio", Arrays.asList(AnioEnum.A_2018.getDescripcion()));
+        model.addAttribute("anio", Arrays.asList(AnioEnum.A_2018));
 
         return "declaracionJurada/create";
     }
@@ -70,16 +70,28 @@ public class DeclaracionJuradaController {
     @RequestMapping(value = "declaracionJuradaAnteriores", method = RequestMethod.GET)
     public String declaracionJuradaAnteriores(@RequestParam String anio, Model model) {
         model.addAttribute("tasas", tasaService.findAllAnio(anio));
-        model.addAttribute("anio", Arrays.asList(anio));
+        model.addAttribute("anio", Arrays.asList(getAnio(anio)));
         model.addAttribute("periodoEnum", PeriodoEnum.values());
 
         return "declaracionJurada/create";
     }
 
+
+    private AnioEnum getAnio(String anio){
+        switch (anio){
+            case "2016":
+                return AnioEnum.A_2016;
+            case "2017":
+                return AnioEnum.A_2017;
+            default:
+                return AnioEnum.A_2018;
+        }
+    }
+
     @RequestMapping(value = "anual", method = RequestMethod.GET)
     public String anual(Model model){
         model.addAttribute("tasas", tasaService.findAllAnio("2018"));
-        model.addAttribute("anio", Arrays.asList(AnioEnum.A_2018.getDescripcion()));
+        model.addAttribute("anio", Arrays.asList(AnioEnum.A_2018));
         return "declaracionJurada/anual";
     }
 

@@ -96,7 +96,7 @@
 
                     <div class="form-group">
                         <label>A&ntilde;o:</label>
-                        <form:select path="anio" cssClass="form-control" items="${anio}" />
+                        <form:select path="anio" cssClass="form-control" items="${anio}" itemLabel="descripcion"/>
                     </div>
 
 

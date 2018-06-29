@@ -61,9 +61,13 @@
         <!--<property name="user" value="os000353_fberon"/>-->
         <!--<property name="password" value="B0livar01"/>-->
 
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/rentas"/>
-        <property name="user" value="rentas"/>
-        <property name="password" value="rentas"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/os000353_rentas"/>
+        <property name="user" value="root"/>
+        <property name="password" value="F3d3ric0!"/>
+
+        <!--<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/rentas"/>-->
+        <!--<property name="user" value="rentas"/>-->
+        <!--<property name="password" value="rentas"/>-->
     </bean>
 
     <bean id="sessionFactoryJpa" class="org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean">
