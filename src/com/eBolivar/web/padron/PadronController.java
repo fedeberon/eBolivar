@@ -1,9 +1,7 @@
 package com.eBolivar.web.padron;
 
-import com.eBolivar.domain.Padron;
-import com.eBolivar.domain.PadronAsociado;
-import com.eBolivar.domain.Persona;
-import com.eBolivar.domain.Tasa;
+import com.eBolivar.domain.*;
+import com.eBolivar.service.TipoImpuestoServiceImpl;
 import com.eBolivar.service.cuitPorTasa.interfaces.ICuitPorTasaService;
 import com.eBolivar.service.padron.interfaces.IPadronService;
 import com.eBolivar.service.persona.interfaces.IPersonaService;
@@ -15,8 +13,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 
 @Controller
@@ -38,21 +39,24 @@ public class PadronController {
     @Autowired
     private ITasaService tasaService;
 
+    @Autowired
+    private TipoImpuestoServiceImpl tipoImpuestoService;
+
 
     @RequestMapping("asociarPadronACUIT")
     private String asociarPadronACUIT(){
         return "padron/asociarCUIT";
     }
 
-    @RequestMapping("save")
-    private String save(@ModelAttribute PadronAsociado padronAsociado, BindingResult result, RedirectAttributes redirectAttributes){
-        this.validator.validate(padronAsociado, result);
-        if(result.hasErrors()) return "padron/asociarCUIT";
-        cuitPorTasaService.save(padronAsociado);
-        redirectAttributes.addAttribute("id", padronAsociado.getId());
-
-        return "redirect:show";
-    }
+//    @RequestMapping("save")
+//    private String save(@ModelAttribute PadronAsociado padronAsociado, BindingResult result, RedirectAttributes redirectAttributes){
+//        this.validator.validate(padronAsociado, result);
+//        if(result.hasErrors()) return "padron/asociarCUIT";
+//        cuitPorTasaService.save(padronAsociado);
+//        redirectAttributes.addAttribute("id", padronAsociado.getId());
+//
+//        return "redirect:show";
+//    }
 
     @RequestMapping("show")
     private String show(@RequestParam Integer id, Model model){
@@ -69,6 +73,21 @@ public class PadronController {
         return "persona/padrones/list";
     }
 
+
+    @RequestMapping("create")
+    public String create(@ModelAttribute Padron padron, Model model) {
+       model.addAttribute("tipoImpuesto", tipoImpuestoService.getObjects());
+
+        return "padron/create";
+    }
+
+    @RequestMapping("save")
+    public String save(@ModelAttribute Padron padron){
+
+        padronService.save(padron);
+
+        return "redirect:create";
+    }
 
     @ModelAttribute("padronAsociado")
     public PadronAsociado getPadronAsociado(){
