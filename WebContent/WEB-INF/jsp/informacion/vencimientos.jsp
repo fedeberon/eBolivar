@@ -3,6 +3,12 @@
 <html>
 <header>
 
+    <style>
+        .table-fechas{
+            text-align: center;
+        }
+    </style>
+
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -21,7 +27,7 @@
 <div style="margin-left: 80px; margin-right: 80px; padding-top:10px; background-color: white; ">
     <div class="page-header">
         <hr>
-        <span class="titulo-descripcion" style="padding-left: 10px;">Calendario Impositivo > 2017</span>
+        <span class="titulo-descripcion" style="padding-left: 10px;">Calendario Impositivo > 2019</span>
     </div>
 
     <table class="table table-bordered" style="font-size: 12px;">
@@ -45,111 +51,111 @@
         </thead>
 
         <tbody>
-        <tr>
+        <tr class="table-fechas">
             <th>Servicios Retributivos</th>
-            <td>18-01</td>
-            <td>15-02</td>
-            <td>15-03</td>
-            <td>16-04</td>
-            <td>15-05</td>
-            <td>15-06</td>
-            <td>16-07</td>
-            <td>15-08</td>
-            <td>14-09</td>
-            <td>16-10</td>
-            <td>15-11</td>
-            <td>13-12</td>
+            <td>Vie 18</td>
+            <td>Jue 14</td>
+            <td>Jue 14</td>
+            <td>Lun 15</td>
+            <td>Mi&eacute; 15</td>
+            <td>Vie 14</td>
+            <td>Lun 15</td>
+            <td>Jue 15</td>
+            <td>Lun 16</td>
+            <td>Mar 15</td>
+            <td>Jue 14</td>
+            <td>Lun 16</td>
         </tr>
 
-        <tr>
+        <tr class="table-fechas">
             <th>Servicios Sanitarios</th>
-            <td>18-01</td>
-            <td>15-02</td>
-            <td>15-03</td>
-            <td>16-04</td>
-            <td>15-05</td>
-            <td>15-06</td>
-            <td>16-07</td>
-            <td>15-08</td>
-            <td>14-09</td>
-            <td>16-10</td>
-            <td>15-11</td>
-            <td>13-12</td>
+            <td>Vie 18</td>
+            <td>Jue 14</td>
+            <td>Jue 14</td>
+            <td>Lun 15</td>
+            <td>Mi&eacute; 15</td>
+            <td>Vie 14</td>
+            <td>Lun 15</td>
+            <td>Jue 15</td>
+            <td>Lun 16</td>
+            <td>Mar 15</td>
+            <td>Jue 14</td>
+            <td>Lun 16</td>
         </tr>
 
-        <tr>
+        <tr class="table-fechas">
             <th>Red Vial</th>
-            <td>18-01</td>
+            <td>Vie 18</td>
             <td>-</td>
-            <td>15-03</td>
+            <td>Jue 14</td>
             <td>-</td>
-            <td>15-05</td>
+            <td>Mi&eacute; 15</td>
             <td>-</td>
-            <td>16-07</td>
+            <td>Lun 15</td>
             <td>-</td>
-            <td>14-09</td>
+            <td>Lun 16</td>
             <td>-</td>
-            <td>15-11</td>
+            <td>Jue 14</td>
             <td>-</td>
         </tr>
-        <tr>
+        <tr class="table-fechas">
             <th>Seguridad e Higiene</th>
             <td>-</td>
             <td>-</td>
-            <td>20-03</td>
+            <td>Mi&eacute; 20</td>
             <td>-</td>
-            <td>21-05</td>
+            <td>Lun 20</td>
             <td>-</td>
-            <td>20-07</td>
+            <td>Vie 19</td>
             <td>-</td>
-            <td>20-09</td>
+            <td>Vie 20</td>
             <td>-</td>
-            <td>20-11</td>
+            <td>Mi&eacute; 20</td>
             <td>-</td>
         </tr>
 
-        <tr>
+        <tr class="table-fechas">
             <th>Seguridad e Higiene - DDJJ</th>
             <td>-</td>
             <td>-</td>
-            <td>20-03</td>
+            <td>Mi&eacute; 20</td>
             <td>-</td>
-            <td>21-05</td>
+            <td>Lun 20</td>
             <td>-</td>
-            <td>20-07</td>
+            <td>Vie 19</td>
             <td>-</td>
-            <td>20-09</td>
+            <td>Vie 20</td>
             <td>-</td>
-            <td>20-11</td>
+            <td>Mi&eacute; 20</td>
             <td>-</td>
         </tr>
 
-        <tr>
+        <tr class="table-fechas">
             <th>Patente Automotor</th>
             <td>-</td>
             <td>-</td>
             <td>-</td>
             <td>-</td>
             <td>-</td>
-            <td>15-06</td>
+            <td>Vie 14</td>
             <td>-</td>
             <td>-</td>
-            <td>14-09</td>
+            <td>Lun 16</td>
             <td>-</td>
             <td>-</td>
-            <td>13-12</td>
+            <td>Lun 16</td>
         </tr>
-        <tr>
-            <th>Patenete Motos</th>
-            <td>18-01</td>
+        <tr class="table-fechas">
+            <th>Patente Motos</th>
+            <td>Vie 18</td>
             <td>-</td>
             <td>-</td>
             <td>-</td>
-            <td>15-05</td>
+            <td>Mi&eacute; 15</td>
             <td>-</td>
             <td>-</td>
             <td>-</td>
-            <td>14-09</td>
+            <td>Lun 16</td>
             <td>-</td>
             <td>-</td>
             <td>-</td>
@@ -181,35 +187,35 @@
         </thead>
 
         <tbody>
-            <tr>
+            <tr class="table-fechas">
                 <th>Inmuebles Urbanos</th>
-                <td>18-01</td>
-                <td>15-02</td>
-                <td>15-03</td>
-                <td>16-04</td>
-                <td>15-05</td>
-                <td>15-06</td>
-                <td>16-07</td>
-                <td>15-08</td>
-                <td>14-09</td>
-                <td>16-10</td>
-                <td>15-11</td>
-                <td>13-12</td>
+                <td>Vie 18</td>
+                <td>Jue 14</td>
+                <td>Jue 14</td>
+                <td>Lun 15</td>
+                <td>Mi&eacute; 15</td>
+                <td>Vie 14</td>
+                <td>Lun 15</td>
+                <td>Jue 15</td>
+                <td>Lun 16</td>
+                <td>Mar 15</td>
+                <td>Jue 14</td>
+                <td>Lun 16</td>
             </tr>
 
-            <tr>
+            <tr class="table-fechas">
                 <th>Inmuebles Rurales</th>
-                <td>18-01</td>
+                <td>Vie 18</td>
                 <td>-</td>
-                <td>15-03</td>
+                <td>Jue 14</td>
                 <td>-</td>
-                <td>15-05</td>
+                <td>Mi&eacute; 15</td>
                 <td>-</td>
-                <td>16-07</td>
+                <td>Lun 15</td>
                 <td>-</td>
-                <td>14-09</td>
+                <td>Lun 16</td>
                 <td>-</td>
-                <td>15-11</td>
+                <td>Jue 14</td>
                 <td>-</td>
             </tr>
         </tbody>
@@ -236,36 +242,52 @@
         </thead>
 
         <tbody>
-        <tr>
+        <tr class="table-fechas">
             <th>Derecho de Uso y Ocupaci&oacute;n</th>
             <td>-</td>
-            <td>15-02</td>
+            <td>Jue 14</td>
             <td>-</td>
-            <td>16-04</td>
+            <td>Lun 15</td>
             <td>-</td>
-            <td>15-06</td>
+            <td>Vie 14</td>
             <td>-</td>
-            <td>15-08</td>
+            <td>Jue 15</td>
             <td>-</td>
-            <td>16-10</td>
+            <td>Mar 15</td>
             <td>-</td>
-            <td>13-12</td>
+            <td>Lun 16</td>
         </tr>
 
-        <tr>
+        <tr class="table-fechas">
             <th>Derecho de Mantenimiento</th>
             <td>-</td>
-            <td>15-02</td>
+            <td>Jue 14</td>
             <td>-</td>
-            <td>16-04</td>
+            <td>Lun 15</td>
             <td>-</td>
-            <td>15-06</td>
+            <td>Vie 14</td>
             <td>-</td>
-            <td>15-08</td>
+            <td>Jue 15</td>
             <td>-</td>
-            <td>16-10</td>
+            <td>Mar 15</td>
             <td>-</td>
-            <td>13-12</td>
+            <td>Lun 16</td>
+        </tr>
+
+        <tr class="table-fechas">
+            <th>Uti. Espacios A&eacute;reos</th>
+            <td>Vie 18</td>
+            <td>Jue 14</td>
+            <td>Jue 14</td>
+            <td>Lun 15</td>
+            <td>Mi&eacute; 15</td>
+            <td>Vie 14</td>
+            <td>Lun 15</td>
+            <td>Jue 15</td>
+            <td>Lun 16</td>
+            <td>Mar 15</td>
+            <td>Jue 14</td>
+            <td>Lun 16</td>
         </tr>
         </tbody>
     </table>
