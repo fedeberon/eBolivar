@@ -27,17 +27,15 @@
 
     <div class="row">
 
-        <form action="/rentas/webapp/ddjj/buscar" method="post">
+            <form:form action="../ddjj/buscar" modelAttribute="ddjj" method="post">
+                <div class="col-md-6">
+                    <input name="valor" class="form-control" placeholder="Ingrese el valor a buscar"/>
+                </div>
 
-            <div class="col-md-6">
-                <input name="valor" class="form-control" placeholder="Ingrese el valor a buscar"/>
-            </div>
-
-            <div class="col-md-3">
-                <button type="submit" class="btn btn-block btn-primary">Buscar</button>
-            </div>
-
-        </form>
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-block btn-primary">Buscar</button>
+                </div>
+            </form:form>
 
         <br/>
         <hr>

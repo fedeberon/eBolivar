@@ -235,9 +235,9 @@ public class DeclaracionJuradaController {
 
     }
 
-    @RequestMapping("buscar")
+    @RequestMapping(value = "buscar", method = RequestMethod.POST)
     public String list(@RequestParam String valor, Model model) {
-        model.addAttribute("ddjj", declaracionJuradaService.find(valor));
+        model.addAttribute("ddjjs", declaracionJuradaService.find(valor));
 
         return "declaracionJurada/list";
 
