@@ -25,6 +25,15 @@
             width: 45%
         }
 
+        .acuse-info {
+        	border-bottom: 0px !important;
+                border-radius: 4px !important;
+                background-color: #73a9d8 !important;
+                font-weight: normal !important;
+                color: #ffffff;
+                margin-bottom: 5px;
+        }
+
     </style>
 </head>
 <body>
@@ -147,6 +156,11 @@
     </table>
 
     <div class="col-lg-12">
+
+        <c:if test="${!acuseIsPrintable}">
+            <p class="acuse-info">El Acuse de Recibo estar&aacute; disponible a partir de ${currentDate} a las ${acuseAvailableDate}hs</p>
+        </c:if>
+
         <a href="/rentas/webapp/ddjj/exportar?idDeclaracionJurada=${declaracionJurada.id}" target="_blank" class="btn btn-primary">Imprimir</a>
 
         <c:if test="${declaracionJurada.estadoDeDeclaracionJurada == 'EN_PROCESO' || declaracionJurada.estadoDeDeclaracionJurada == 'MODIFICADA' || declaracionJurada.estadoDeDeclaracionJurada == 'RECHAZADA'}">
@@ -155,7 +169,7 @@
             <a href="/rentas/webapp/ddjj/presentarDeclaracionJurada?id=${declaracionJurada.id}" class="btn btn-primary">Presentar</a>
         </c:if>
 
-        <c:if test="${declaracionJurada.estadoDeDeclaracionJurada == 'ACEPTADA' || declaracionJurada.estadoDeDeclaracionJurada == 'PRESENTADA'}">
+        <c:if test="${declaracionJurada.estadoDeDeclaracionJurada == 'ACEPTADA' || declaracionJurada.estadoDeDeclaracionJurada == 'PRESENTADA' || acuseIsPrintable}">
             <a href="/rentas/webapp/ddjj/imprimirAcuseDeRecibo?id=${declaracionJurada.id}" target="_blank" class="btn btn-primary">Imprimir Acuse Recibo</a>
         </c:if>
 
