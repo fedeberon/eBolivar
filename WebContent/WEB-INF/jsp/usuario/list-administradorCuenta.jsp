@@ -20,15 +20,37 @@
             text-align:center;
         }
 
+        .col-md-6 {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .col-md-3 {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
     </style>
 
 </head>
 <body>
+
 <div class="page-header">
     <span class="titulo-descripcion" style="text-align: center"><h2>Administradores de Cuentas</h2></span>
 </div>
 
 <div id="formulario">
+
+    <form>
+        <div class="col-md-6">
+            <input class="form-control" placeholder="Ingrese el nombre a buscar"/>
+        </div>
+
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-block btn-primary">Buscar</button>
+        </div>
+    </form>
+
 
     <div class="row">
 
