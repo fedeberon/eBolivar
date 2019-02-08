@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- /** @author FedeBeron * @version 1.0 */ -->
+
+<hibernate-mapping>
+	<class name="com.eBolivar.domain.GuiaTramite" table="GUIAS_TRAMITES">
+		<id name="codigo" column="GT_ID" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+		<property name="titulo" column="GT_NOMBRE" type="java.lang.String" />
+		<property name="descripcion" column="GT_DESCRIPCION" type="java.lang.String" />
+		<property name="detalle" column="GT_DETALLE" type="java.lang.String" />
+		<many-to-one name="tipo" lazy="false" fetch="join"
+			cascade="none" column="TG_ID" class="com.eBolivar.domain.TipoGuiaTramite" />
+		
+		
+		<bag name="pasos" fetch="select"  cascade="save-update" lazy="false" table="PASOS_GUIA_TRAMITES">
+			<key><column name="GT_ID" not-null="true" /></key>
+			<composite-element class="com.eBolivar.domain.PasoGuiaTramite">
+				<property name="nombre" column="PG_NOMBRE" type="java.lang.String" />
+				<property name="descripcion" column="PG_DESCRIPCION" type="java.lang.String" />
+				<property name="urlImg" column="PG_URL_IMG" type="java.lang.String" />
+			</composite-element>
+		</bag>
+	</class>
+</hibernate-mapping>
