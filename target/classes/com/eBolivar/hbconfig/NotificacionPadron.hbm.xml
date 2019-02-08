@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- /** @author FedeBeron * @version 1.0 */ -->
+
+<hibernate-mapping>
+    <class name="com.eBolivar.domain.NotificacionPadron" table="NOTIFICACIONES_PADRONES">
+      
+      <id name="id" column="NP_ID" type="java.lang.Integer">
+     	 <generator class="identity"/>
+      	  </id>
+  	      <property name="padron"  column="NP_PADRON"  type="java.lang.String" />
+		  <property name="direccionEnvio"  column="NP_DIRECCION_ENVIO"  type="java.lang.String" />
+		  <property name="estado"  column="NP_ESTADO"  type="java.lang.String" />
+		  <property name="fechaAlta"  column="NP_FECHA_ALTA"  type="java.util.Date" />
+		  <property name="confirmado"  column="NP_CONFIRMADO"  type="java.lang.String" />
+		  <property name="tasa"  column="NP_TASA"  type="java.lang.String" />
+		  <property name="nombreApellido"  column="NP_NOMBRE_APELLIDO"  type="java.lang.String" />
+		  <property name="dni"  column="NP_DNI"  type="java.lang.String" />
+		  
+    </class>
+</hibernate-mapping>

@@ -1,5 +1,7 @@
 package com.eBolivar.domain;
 
+import com.eBolivar.domain.administradorCuenta.AdministradorCuenta;
+import com.eBolivar.domain.usuario.User;
 import com.eBolivar.enumeradores.AnioEnum;
 import com.eBolivar.enumeradores.EstadoDeDeclaracionJurada;
 import com.eBolivar.enumeradores.PeriodoEnum;
@@ -63,6 +65,10 @@ public class DeclaracionJurada {
 
     @Column(name = "DEC_TASA_ANUAL")
     private Double totalAnual = 0.0;
+
+    @OneToOne
+    @JoinColumn(name = "USU_USERNAME")
+    private User presentadaPor;
 
     public DeclaracionJurada() {
     }
@@ -204,6 +210,14 @@ public class DeclaracionJurada {
 
     public void setTotalAnual(Double totalAnual) {
         this.totalAnual = totalAnual;
+    }
+
+    public User getPresentadaPor() {
+        return presentadaPor;
+    }
+
+    public void setPresentadaPor(User presentadaPor) {
+        this.presentadaPor = presentadaPor;
     }
 
     @Override

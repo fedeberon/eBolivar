@@ -1,0 +1,204 @@
+<?xml version="1.0"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       						http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
+    <bean name="/" class="com.eBolivar.web.HomeController"/>
+
+    <bean name="/*" class="com.eBolivar.web.LoginController"/>
+
+    <bean id="ajaxService" class="com.eBolivar.service.AjaxCommonServiceImpl">
+
+        <property name="reclamoServices" ref="reclamoServices"/>
+        <property name="consultasService" ref="consultasService"/>
+        <property name="impuestoService" ref="impuestoService"/>
+        <property name="pathTemplateImpuesto" value="/actualizaciones/reporte.jasper"/>
+        <property name="pathOutputImpuesto" value="/IMPUESTOS/"/>
+        <property name="espacioService" ref="espacioService"/>
+        <property name="tipoEspacioService" ref="tipoEspacioService"/>
+
+    </bean>
+
+    <bean name="/banner/*"
+          class="com.eBolivar.web.banner.BannerController">
+        <property name="bannerService" ref="bannerService"/>
+    </bean>
+
+    <bean name="/banner/create"
+          class="com.eBolivar.web.banner.BannerFormController">
+        <property name="bannerService" ref="bannerService"/>
+    </bean>
+
+    <bean name="/banner/update"
+          class="com.eBolivar.web.banner.BannerUpdateFormController">
+        <property name="bannerService" ref="bannerService"/>
+    </bean>
+
+    <bean name="/espacio/*"
+          class="com.eBolivar.web.espacio.EspacioController">
+        <property name="espacioService" ref="espacioService"/>
+    </bean>
+
+    <bean name="/espacio/create"
+          class="com.eBolivar.web.espacio.EspacioFormController">
+        <property name="espacioService" ref="espacioService"/>
+        <property name="tipoEspacioService" ref="tipoEspacioService"/>
+    </bean>
+
+    <bean name="/espacio/update"
+          class="com.eBolivar.web.espacio.EspacioUpdateFormController">
+        <property name="espacioService" ref="espacioService"/>
+        <property name="tipoEspacioService" ref="tipoEspacioService"/>
+    </bean>
+
+
+    <bean name="/guiaTramite/*"
+          class="com.eBolivar.web.guiaTramite.GuiaTramiteController">
+        <property name="guiaTramiteService" ref="guiaTramiteService"/>
+    </bean>
+
+    <bean name="/guiaTramite/create"
+          class="com.eBolivar.web.guiaTramite.GuiaTramiteFormController">
+        <property name="guiaTramiteService" ref="guiaTramiteService"/>
+        <property name="tipoGuiaTramiteService" ref="tipoGuiaTramiteService"/>
+        <property name="tipoImpuestoService" ref="tipoImpuestoService"/>
+    </bean>
+
+    <bean name="/guiaTramite/update"
+          class="com.eBolivar.web.guiaTramite.GuiaTramiteUpdateFormController">
+        <property name="guiaTramiteService" ref="guiaTramiteService"/>
+    </bean>
+
+    <bean name="/impuesto/upload" class="com.eBolivar.web.impuesto.ImpuestoUploadFormController">
+        <property name="impuestoService" ref="impuestoService"/>
+    </bean>
+
+
+    <bean name="/notificacionPadron/*"
+          class="com.eBolivar.web.notificacionPadron.NotificacionPadronController">
+        <property name="notificacionPadronService" ref="notificacionPadronService"/>
+        <property name="tipoImpuestoService" ref="tipoImpuestoService"/>
+    </bean>
+
+    <bean name="/notificacionPadron/create"
+          class="com.eBolivar.web.notificacionPadron.NotificacionPadronFormController">
+        <property name="notificacionPadronService" ref="notificacionPadronService"/>
+        <property name="tipoImpuestoService" ref="tipoImpuestoService"/>
+    </bean>
+
+    <bean name="/notificacionPadron/update"
+          class="com.eBolivar.web.notificacionPadron.NotificacionPadronUpdateFormController">
+        <property name="notificacionPadronService" ref="notificacionPadronService"/>
+    </bean>
+
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <bean name="/pasoGuiaTramite/*"
+          class="com.eBolivar.web.pasoGuiaTramite.PasoGuiaTramiteController">
+        <property name="pasoGuiaTramiteService" ref="pasoGuiaTramiteService"/>
+    </bean>
+
+    <bean name="/pasoGuiaTramite/create"
+          class="com.eBolivar.web.pasoGuiaTramite.PasoGuiaTramiteFormController">
+        <property name="pasoGuiaTramiteService" ref="pasoGuiaTramiteService"/>
+    </bean>
+
+    <bean name="/pasoGuiaTramite/update"
+          class="com.eBolivar.web.pasoGuiaTramite.PasoGuiaTramiteUpdateFormController">
+        <property name="pasoGuiaTramiteService" ref="pasoGuiaTramiteService"/>
+    </bean>
+
+    <bean name="/tipoEspacio/*" class="com.eBolivar.web.tipoEspacio.TipoEspacioController">
+        <property name="tipoEspacioService" ref="tipoEspacioService"/>
+    </bean>
+
+    <bean name="/tipoEspacio/create" class="com.eBolivar.web.tipoEspacio.TipoEspacioFormController">
+        <property name="tipoEspacioService" ref="tipoEspacioService"/>
+    </bean>
+
+    <bean name="/tipoEspacio/update" class="com.eBolivar.web.tipoEspacio.TipoEspacioUpdateFormController">
+        <property name="tipoEspacioService" ref="tipoEspacioService"/>
+    </bean>
+
+    <bean name="/tipoGuiaTramite/*" class="com.eBolivar.web.tipoGuiaTramite.TipoGuiaTramiteController">
+        <property name="tipoGuiaTramiteService" ref="tipoGuiaTramiteService"/>
+    </bean>
+
+    <bean name="/tipoGuiaTramite/create"
+          class="com.eBolivar.web.tipoGuiaTramite.TipoGuiaTramiteFormController">
+        <property name="tipoGuiaTramiteService" ref="tipoGuiaTramiteService"/>
+    </bean>
+
+    <bean name="/tipoGuiaTramite/update" class="com.eBolivar.web.tipoGuiaTramite.TipoGuiaTramiteUpdateFormController">
+        <property name="tipoGuiaTramiteService" ref="tipoGuiaTramiteService"/>
+    </bean>
+
+
+    <bean name="/touch/nuevoReclamo"
+          class="com.eBolivar.web.reclamo.ReclamoFormController">
+        <property name="departamentosService" ref="departamentosService"/>
+        <property name="tipoImpuestoService" ref="tipoImpuestoService"/>
+        <property name="reclamoServices" ref="reclamoServices"/>
+
+    </bean>
+
+    <bean name="/touch/*" class="com.eBolivar.web.touchController.TouchController">
+        <property name="bannerService" ref="bannerService"/>
+        <property name="tipoImpuestoService" ref="tipoImpuestoService"/>
+        <property name="departamentosService" ref="departamentosService"/>
+        <property name="guiaTramiteService" ref="guiaTramiteService"/>
+    </bean>
+
+
+    <bean id="bannerService" class="com.eBolivar.service.BannerServiceImpl"/>
+
+    <bean id="barriosService" class="com.eBolivar.service.BarriosServiceImpl"/>
+
+    <bean id="consultasService" class="com.eBolivar.service.ConsultasServiceImpl"/>
+
+    <bean id="callesService" class="com.eBolivar.service.CallesServiceImpl"/>
+
+    <bean id="detalleFacturaService" class="com.eBolivar.service.DetalleFacturaServiceImpl"/>
+
+    <bean id="departamentosService" class="com.eBolivar.service.DepartamentosServiceImpl">
+        <property name="localidadesService" ref="localidadesService"/>
+        <property name="barriosService" ref="barriosService"/>
+        <property name="callesService" ref="callesService"/>
+    </bean>
+
+    <bean id="espacioService" class="com.eBolivar.service.EspacioServiceImpl"/>
+
+    <bean id="guiaTramiteService" class="com.eBolivar.service.GuiaTramiteServiceImpl"/>
+
+    <bean id="impuestoService" class="com.eBolivar.service.ImpuestoServiceImpl">
+        <property name="notificacionPorBienService" ref="notificacionPorBienService"/>
+        <property name="detalleFacturaService" ref="detalleFacturaService"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="localidadesService" class="com.eBolivar.service.LocalidadesServiceImpl"/>
+
+    <bean id="notificacionPadronService" class="com.eBolivar.service.NotificacionPadronServiceImpl"/>
+
+    <bean id="notificacionPorBienService" class="com.eBolivar.service.NotificacionPorBienServiceImpl"/>
+
+    <bean id="parametroService" class="com.eBolivar.service.ParametroServiceImpl"/>
+
+    <bean id="pasoGuiaTramiteService" class="com.eBolivar.service.PasoGuiaTramiteServiceImpl"/>
+
+    <bean id="reclamoServices" class="com.eBolivar.service.ReclamoServicesImpl"/>
+
+    <bean id="tipoEspacioService" class="com.eBolivar.service.TipoEspacioServiceImpl"/>
+
+    <bean id="tipoImpuestoService" class="com.eBolivar.service.TipoImpuestoServiceImpl"/>
+
+    <bean id="tipoGuiaTramiteService" class="com.eBolivar.service.TipoGuiaTramiteServiceImpl"/>
+
+</beans>

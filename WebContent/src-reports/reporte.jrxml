@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" pageWidth="595" pageHeight="368" orientation="Landscape" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="d3b5d22d-3010-4416-90f8-c1f8ef3489d4">
+	<property name="ireport.zoom" value="1.8150000000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="403"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="7f5a4ff6-423c-420c-8b9f-f4c6429b28a6"/>
+	<parameter name="idFactura" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/actualizaciones/backup/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="importe" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select I.IMP_ID_CLIENTE as CLIENTE , I.IMP_LEYENDA_TRIBUTO AS LEYENDA_TRIBUTO , I.IMP_LEYENDA_CONCEPTO AS CONSEPTO, I.IMP_LEYENDA_BIEN as LEYENDA_BIEN ,I.IMP_COD_ELECTR_PAGO as CODIGO_ELECTRONICO_PAGO,
+I.IMP_1ER_VENCIMIENTO AS VENCIMIENTO,
+I.IMP_IMPORTE_1ER_VENCIMIENTO AS IMPORTE,
+I.IMP_CODIGO_BARRA as CODIGO_BARRA,
+I.IMP_ID_FACTURA as FACTURA
+from IMPUESTOS I where I.IMP_ID_FACTURA = $P{idFactura}]]>
+	</queryString>
+	<field name="CLIENTE" class="java.lang.String"/>
+	<field name="LEYENDA_TRIBUTO" class="java.lang.String"/>
+	<field name="CONSEPTO" class="java.lang.String"/>
+	<field name="LEYENDA_BIEN" class="java.lang.String"/>
+	<field name="CODIGO_ELECTRONICO_PAGO" class="java.lang.String"/>
+	<field name="VENCIMIENTO" class="java.sql.Date"/>
+	<field name="IMPORTE" class="java.lang.String"/>
+	<field name="CODIGO_BARRA" class="java.lang.String"/>
+	<field name="FACTURA" class="java.lang.String"/>
+	<background>
+		<band height="368">
+			<rectangle>
+				<reportElement x="2" y="3" width="590" height="363" uuid="d5a1b3d9-4941-4011-8f44-eef4dcc1604b"/>
+			</rectangle>
+			<textField>
+				<reportElement x="398" y="265" width="56" height="11" uuid="3b3c5231-53b8-4828-9367-74a5b5ff356c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Nro Recibo"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="258" width="41" height="11" uuid="ac6bf8a6-78e1-433e-adcc-2cb2255f2d9f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Nro Recibo"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="57" y="257" width="57" height="11" uuid="efb0bdab-a487-432d-bf9b-f402a97938bf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Cuota  /  Año"]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="9" y="5" width="197" height="54" uuid="8956406a-8433-4058-8bf9-c80ef8661258"/>
+				<imageExpression><![CDATA["/actualizaciones/logo.png"]]></imageExpression>
+			</image>
+			<rectangle radius="3">
+				<reportElement x="6" y="60" width="212" height="87" uuid="557aa588-ed7e-4422-8c42-a5650ed1dca0"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="3">
+				<reportElement x="232" y="7" width="351" height="153" uuid="25aaf2c4-d435-4c77-9a22-6e4370320bb1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="3">
+				<reportElement x="10" y="210" width="125" height="111" uuid="f8029e0f-7fa5-4125-b374-2fd25f56e46b"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="3">
+				<reportElement x="232" y="160" width="177" height="40" uuid="9e4c506a-d0f6-4714-b06f-a35be65cffaf"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="3">
+				<reportElement x="394" y="295" width="189" height="40" uuid="f8eb2049-7f26-4574-a893-1aa4c076bfac"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="3">
+				<reportElement x="148" y="210" width="216" height="51" uuid="32650cdf-735b-4e35-bdf2-53d18817af9e"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="3">
+				<reportElement x="415" y="160" width="168" height="40" uuid="7c3c510c-a059-4d4c-ab1b-3ea7420cf444"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="3">
+				<reportElement x="148" y="269" width="216" height="52" uuid="234a20e4-e9ff-45e7-a556-7af4feca3c6e"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="3">
+				<reportElement x="394" y="337" width="189" height="25" uuid="7969ea18-509a-415c-b66f-d9c8bd1659c3"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="3">
+				<reportElement x="393" y="210" width="190" height="82" uuid="a9c71baa-d3d0-4fa1-959c-55826944fd9c"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<line>
+				<reportElement x="-1" y="206" width="595" height="1" uuid="420e5da8-d3d8-4376-9c11-e49e14fc437c"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="375" y="207" width="2" height="156" uuid="4fb61b69-719b-40dc-af1f-cb113058ace4"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="305" y="160" width="1" height="40" uuid="63680a69-6d66-4eb9-98e0-3b0c36a7b0fa"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="491" y="160" width="1" height="40" uuid="9f898a08-4949-4d83-bd17-6f65fa7003a0"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="232" y="184" width="176" height="1" uuid="222dd2be-0985-4cfc-b8e7-417940fe555f"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="415" y="184" width="168" height="1" uuid="c9285139-cfce-4690-9716-c5aae7b56ee3"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="393" y="230" width="190" height="1" uuid="dbe04d5e-b4c6-4850-a715-42c5a3f65f58"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="393" y="251" width="190" height="1" uuid="304d7734-e4b7-4c54-8728-f8e9aa0df65e"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="394" y="267" width="189" height="1" uuid="3bb4670d-c8e5-4e26-9850-ef36bdd82a48"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="10" y="254" width="125" height="1" uuid="207e8944-4c2e-4399-9030-82230c3d09c5"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="10" y="282" width="125" height="1" uuid="33448107-3358-4bce-8abe-c2a242f29e78"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="74" y="254" width="1" height="67" uuid="f77302f9-070e-4dff-b793-7d07f1c9fc07"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="491" y="252" width="1" height="40" uuid="8ea66a7d-f57f-4661-b4c4-e7d9ae61a4fb"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="306" y="160" width="102" height="24" uuid="f7d48f8b-304a-4f38-8d48-a5cab42a0cdf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CONSEPTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="492" y="269" width="91" height="23" uuid="73ef1629-f591-497b-b58e-485c38d123ac"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CONSEPTO}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="491" y="337" width="1" height="25" uuid="57498ea3-18b5-42a7-bf56-5baa97929dfc"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="394" y="337" width="97" height="25" uuid="563f5b44-3e22-44ba-abe5-4e4ffa2ef440"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{VENCIMIENTO})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="492" y="337" width="91" height="25" uuid="207a6401-cfdb-4876-94cc-77682cf7b649"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{importe}.toString()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="398" y="232" width="185" height="18" uuid="f517b7bf-3c20-4ce1-a299-2a32272ef557"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Padron: "+$F{CLIENTE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="394" y="210" width="189" height="20" uuid="60b47d6f-80ad-4f59-8fc3-a881d17d5265"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Municipalidad de Bolivar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="210" width="121" height="21" uuid="a8fbd88d-ab6c-49dc-a719-6ceb81698d76"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Municipalidad de Bolivar]]></text>
+			</staticText>
+			<line>
+				<reportElement x="255" y="269" width="1" height="52" uuid="2258c319-9e0e-4779-aab1-d658f9a2fe9c"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="257" y="269" width="107" height="23" uuid="4c9dfe2e-0ff8-442a-b9dd-7e94a73c7305"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{importe}.toString()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="148" y="270" width="107" height="22" uuid="565657a3-896f-4d45-9965-0047dc230fd0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{VENCIMIENTO})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="492" y="252" width="91" height="16" uuid="373a55d6-8ec7-4fc9-830e-7235d170047b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Cuota / Año]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="394" y="253" width="97" height="14" uuid="83e56d07-56a5-43b7-be9e-f620034b7117"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Nro Recibo]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="415" y="160" width="76" height="24" uuid="eaadbc37-c358-43f7-9f8a-c4466e74f04b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{VENCIMIENTO})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="492" y="160" width="91" height="24" uuid="5884af88-6a21-4388-8440-c83ba027b6df"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{importe}.toString()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="75" y="282" width="60" height="40" uuid="962b7a20-44fc-4563-a8c2-bc7c7f708db0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CONSEPTO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="415" y="185" width="75" height="18" uuid="1df0ca67-caf3-43ef-982e-9b625ec2c72c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Vencimiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="514" y="185" width="68" height="18" uuid="57d13e16-46f1-41cc-aefc-cc65f5f83e95"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Importe]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="75" y="258" width="60" height="25" uuid="6fdb24dc-3169-47ae-bc38-92dde0c28a68"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Cuota / Año]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="394" y="295" width="189" height="21" uuid="7b7ccfeb-c991-4d52-ac49-84dc33904cb4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Padron: "+ $F{CLIENTE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="232" y="185" width="71" height="18" uuid="c78b37b6-4793-46f9-8d0f-4826658f2016"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Nro Recibo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="319" y="182" width="78" height="18" uuid="cf18bb25-7582-4da7-ab8c-efd843fdbb8b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Cuota / Año]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="11" y="63" width="183" height="20" uuid="4234bb2a-7155-4025-8a39-84263ad7fd2e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10" isBold="true" isItalic="false" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LEYENDA_TRIBUTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11" y="232" width="124" height="20" uuid="ecc94a7d-49ae-410a-be3c-37ef3d9d4e6e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LEYENDA_TRIBUTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="394" y="316" width="189" height="19" uuid="a8481eac-41c2-42aa-b0b8-fc06f4d00f28"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LEYENDA_TRIBUTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11" y="283" width="63" height="37" uuid="7e687957-b783-4bc4-89bd-2bccaa5b2ad1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FACTURA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="231" y="160" width="73" height="24" uuid="15301b91-5b92-4660-a39c-48cc82a32b8c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FACTURA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="11" y="258" width="63" height="24" uuid="21f623c4-718d-4bd6-abf4-670eb380b247"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Nro Recibo]]></text>
+			</staticText>
+			<line>
+				<reportElement x="148" y="294" width="216" height="1" uuid="d3cd26ea-0b4c-4d01-99bd-145f9c457eac"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="148" y="295" width="107" height="26" uuid="ff9f4eb6-4f04-4b80-b27f-ab974c8d3e01"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Vencimiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="257" y="295" width="107" height="26" uuid="3116bb0f-6ff1-49b8-9140-d7dce60aa22c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Importe]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="148" y="221" width="216" height="33" uuid="c27df834-1e40-49a4-99b3-c65a782149a2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LEYENDA_TRIBUTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="84" width="183" height="32" uuid="4e3996d6-04d4-462c-8ab2-55deddff6872"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Vencimiento  " + new SimpleDateFormat("dd/MM/yyyy").format($F{VENCIMIENTO})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="393" y="269" width="98" height="24" uuid="fb6b3cab-8400-4895-a7db-2c1f1eff2499"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FACTURA}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="11" y="231" width="124" height="1" uuid="a50c4c7c-d7e8-44f3-9ba8-c096accf0e30"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<subreport>
+				<reportElement x="235" y="11" width="348" height="90" uuid="b33cdd20-9bcc-48a5-b0f1-84b863903afd"/>
+				<subreportParameter name="CODIGO_ELECTRONICO_PAGO">
+					<subreportParameterExpression><![CDATA[$F{CODIGO_ELECTRONICO_PAGO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subreport_notificaciones.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="235" y="101" width="348" height="57" uuid="313e8c4c-60ea-4fed-a211-f00668f1f981"/>
+				<subreportParameter name="ID_FACTURA">
+					<subreportParameterExpression><![CDATA[$P{idFactura}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subreport_detalle_factura.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement x="84" y="117" width="130" height="18" uuid="3a8ec005-5c46-4f4d-b212-b19b5c798357"/>
+				<textElement verticalAlignment="Middle">
+					<font size="5" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CODIGO_ELECTRONICO_PAGO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="117" width="64" height="19" uuid="c98ec51c-d4ac-418a-aad1-49b220fa05e8"/>
+				<textElement verticalAlignment="Middle">
+					<font size="5" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Codigo BANELCO:]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="9" y="324" width="355" height="25" uuid="0cfe0e02-83d3-4733-a784-644564c2a408"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="true" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{CODIGO_BARRA}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<textField>
+				<reportElement x="12" y="348" width="352" height="13" uuid="faee84dc-c08d-4418-bd97-750e9302992e"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{CODIGO_BARRA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</background>
+</jasperReport>

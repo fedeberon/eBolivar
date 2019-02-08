@@ -15,10 +15,12 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Repository;
 
 import javax.servlet.ServletOutputStream;
 import java.io.File;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -84,6 +86,8 @@ public class DeclaracionJuradaRepository implements IDeclaracionJuradaRepository
     public void export(DeclaracionJurada declaracionJurada, ServletOutputStream outputStream) {
         Map<String, Object> map = new HashMap();
         map.put("idDeclaracionJurada", declaracionJurada.getId());
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/YYYY HH:mm");
+        map.put("fecha", declaracionJurada.getFecha().format(dateTimeFormatter) + " hs.");
         JasperReport reporte ;
         try {
             String file = declaracionJurada.getPeriodo().equals(PeriodoEnum.ANUAL) ? "/ddjj-anual.jasper" : "/ddjj.jasper";
