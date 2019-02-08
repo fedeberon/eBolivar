@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- /** @author FedeBeron * @version 1.0 */ -->
+
+<hibernate-mapping>
+    <class name="com.eBolivar.domain.Espacio" table="ESPACIOS">
+	
+          <id name="id" column="ESP_ID" type="java.lang.Integer" >
+         <generator class="increment"/>
+		  </id>
+
+          <property name="titulo"  column="ESP_TITULO"  type="java.lang.String" />
+		  <property name="latitud"  column="ESP_LATITUD"  type="java.math.BigDecimal" />
+		  <property name="longitud"  column="ESP_LONGITUD"  type="java.math.BigDecimal" />
+		  <many-to-one name="tipoEspacio" fetch="join" lazy="false" cascade="none" column="TPO_ID" class="com.eBolivar.domain.TipoEspacio" />
+		  
+		  <property name="area"  column="ESP_AREA"  type="java.lang.String" />
+		  <property name="informacion"  column="ESP_INFORMACION"  type="java.lang.String" />
+		  <property name="monto"  column="ESP_MONTO"  type="java.lang.String" />
+		  <property name="fondos"  column="ESP_FONDOS"  type="java.lang.String" />
+		  <property name="dias"  column="ESP_DIAS"  type="java.lang.String" />
+		  <property name="horarios"  column="ESP_HORARIOS"  type="java.lang.String" />
+		  <property name="direccion"  column="ESP_DIRECCION"  type="java.lang.String" />
+		  
+		  
+		  <bag name="imagenes" fetch="select" lazy="false" table="IMAGENES">
+			<key>
+				<column name="ESP_ID" not-null="true" />
+			</key>
+			<composite-element class="com.eBolivar.domain.Imagen">
+				<property name="id" column="IMG_ID" type="java.lang.Integer" />
+				<property name="path" column="IMG_PATH" type="java.lang.String" />
+				<property name="extension" column="IMG_EXTENSION" type="java.lang.String" />
+			</composite-element>
+		  </bag>
+		  
+    </class>
+</hibernate-mapping>

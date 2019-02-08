@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.eBolivar.domain.Persona" table="PERSONAS">
+
+        <id name="id" column="PER_ID" type="java.lang.Integer" >
+            <generator class="increment"/>
+        </id>
+        <property name="nombre"  column="PER_NOMBRE"  type="java.lang.String" />
+        <property name="apellido"  column="PER_APELLIDO"  type="java.lang.String" />
+        <property name="descripcionActividadPrincipal"  column="PER_DESCRIPCION_ACTIVIDAD_PRINCIPAL"  type="java.lang.String" />
+        <property name="estadoClave"  column="PER_ESTADO_CLAVE"  type="java.lang.String" />
+        <property name="idPersona"  column="PER_ID_PERSONA"  type="java.lang.Long" />
+        <property name="numeroDocumento"  column="PER_NUMERO_DOCUMENTO"  type="java.lang.String" />
+        <many-to-one name="dependencia" class="com.eBolivar.domain.Dependencia" column="DEP_ID" cascade="save-update"/>
+
+        <set name="domicilio" inverse="true" fetch="select" cascade="all" lazy="false">
+            <key column="DOM_PER_ID"/>
+            <one-to-many class="com.eBolivar.domain.Domicilio" />
+        </set>
+
+
+    </class>
+</hibernate-mapping>

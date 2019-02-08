@@ -27,6 +27,9 @@ public interface IDeclaracionJuradaRepository {
 
     List<DeclaracionJurada> getByPersona(Persona persona);
 
+    @SuppressWarnings("Duplicates")
+    List<DeclaracionJurada> findAllPageable(String valor, Integer pageNumber);
+
     void imprimirAcuseDeRecibo(DeclaracionJurada declaracionJurada, ServletOutputStream outputStream);
 
     List<DeclaracionJurada> getByPadronAsociado(PadronAsociado padronAsociado, Integer page);
