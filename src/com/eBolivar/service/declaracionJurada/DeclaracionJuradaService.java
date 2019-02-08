@@ -13,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.ServletOutputStream;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -126,6 +128,29 @@ public class DeclaracionJuradaService implements IDeclaracionJuradaService{
         declaracionJurada.getTasas().forEach(o -> o.setBaseImponible(o.getBaseImponible() - o.getDeduccionArticulo90() - o.getDeduccionArticulo89()));
     }
 
+    /**
+     * Return boolen if DeclaracionJurada is before yesterday same time
+     * @param declaracionJurada
+     * @return
+     */
+    @Override
+    public Boolean isBeforeOneDaysAgo(DeclaracionJurada declaracionJurada){
+        return declaracionJurada.getFecha().isBefore(LocalDateTime.now().minusDays(1));
+    }
 
+    @Override
+    public String getDateFromDeclaracionJurada(DeclaracionJurada declaracionJurada){
+        DateTimeFormatter dTF = DateTimeFormatter.ofPattern("HH:mm");
+        return declaracionJurada.getFecha().plusDays(1).format(dTF);
+    }
+
+    @Override
+    public String checkCurrentDay(DeclaracionJurada declaracionJurada){
+        if(declaracionJurada.getFecha().getDayOfMonth() == LocalDateTime.now().getDayOfMonth()){
+            return "ma&ntilde;ana";
+        } else {
+            return "hoy";
+        }
+    }
 
 }

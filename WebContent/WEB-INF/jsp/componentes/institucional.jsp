@@ -10,7 +10,7 @@
             <br>
             <hr>
             <img align="left" style="width: 100px;"
-                 src="<c:url value='/img/institucional/logo-bolivar.png'/>"/>
+                 src="<c:url value='/img/institucional/logo-institucional-2019.png'/>"/>
             <p style="line-height: 1.6em; font-size: 13px;">
                 <font class="labelContainer">
                     Trabajamos para seguir siendo un Municipio transparente con opciones f&aacute;ciles, r&aacute;pidas y accesibles a
