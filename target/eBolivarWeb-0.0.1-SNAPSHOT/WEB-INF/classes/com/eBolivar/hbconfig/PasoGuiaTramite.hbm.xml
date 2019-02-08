@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- /** @author FedeBeron * @version 1.0 */ -->
+<hibernate-mapping>
+    <class name="com.eBolivar.domain.PasoGuiaTramite" table="PASOS_GUIA_TRAMITES">
+          <id name="codigo" column="PG_ID" type="java.lang.Integer" >
+			 <generator class="increment"/>
+		  </id>
+          <property name="nombre"  column="PG_NOMBRE"  type="java.lang.String" />
+          <property name="descripcion"  column="PG_DESCRIPCION"  type="java.lang.String" />
+		  <property name="urlImg"  column="PG_URL_IMG"  type="java.lang.String" />
+		   <many-to-one name="guiaTramite" lazy="false"  column="GT_ID" class="com.eBolivar.domain.GuiaTramite"/>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- /** @author JoseAlv * @version 1.0 */ -->
+
+<hibernate-mapping>
+	<class name="com.eBolivar.domain.Departamentos" table="DEPARTAMENTOS">
+
+		<id name="codigo" column="DEP_ID" type="java.lang.Integer"/>
+		<property name="nombre" column="DEP_NOMBRE" type="java.lang.String" />
+
+		<bag name="localidades" fetch="select" lazy="false" table="LOCALIDADES">
+			<key>
+				<column name="DEP_ID" not-null="true" />
+			</key>
+			<composite-element class="com.eBolivar.domain.Localidades">
+				<property name="codigo" column="LOC_ID" type="java.lang.Integer" />
+				<property name="nombre" column="LOC_NOMBRE" type="java.lang.String" />
+			</composite-element>
+		</bag>
+
+
+	</class>
+</hibernate-mapping>

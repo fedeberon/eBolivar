@@ -3,9 +3,12 @@ package com.eBolivar.service.declaracionJurada;
 import com.eBolivar.bean.FormatoUtil;
 import com.eBolivar.dao.declaracionJurada.interfaces.IDeclaracionJuradaRepository;
 import com.eBolivar.domain.*;
+import com.eBolivar.domain.administradorCuenta.AdministradorCuenta;
+import com.eBolivar.domain.usuario.User;
 import com.eBolivar.service.declaracionJurada.interfaces.IDeclaracionJuradaService;
 import com.eBolivar.service.padron.interfaces.IPadronService;
 import com.eBolivar.service.persona.interfaces.IPersonaService;
+import com.eBolivar.service.usuario.interfaces.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +31,9 @@ public class DeclaracionJuradaService implements IDeclaracionJuradaService{
     @Autowired
     private IPadronService padronService;
 
+    @Autowired
+    private IUsuarioService usuarioService;
+
     @Override
     public DeclaracionJurada get(Long id){
         return dao.get(id);
@@ -43,8 +49,10 @@ public class DeclaracionJuradaService implements IDeclaracionJuradaService{
         Persona persona = personaService.getByCUIT(declaracionJurada.getPersona().getIdPersona().toString());
         declaracionJurada.setPersona(persona);
         Padron padron = padronService.getByNumero(declaracionJurada.getPadron().getNumero());
+        User presentadaPor = usuarioService.getAutenticate();
         declaracionJurada.setPadron(padron);
         declaracionJurada.setFecha(LocalDateTime.now());
+        declaracionJurada.setPresentadaPor(presentadaPor);
 
         return dao.save(declaracionJurada);
     }

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.eBolivar.domain.Metadata" table="METADATA">
+
+        <id name="id" column="PR_ID" type="java.lang.Integer" >
+            <generator class="increment"/>
+        </id>
+        <property name="fechaHora"  column="MT_FECHA_HORA"  type="java.util.Calendar" />
+        <property name="servidor"  column="MT_SERVIDOR"  type="java.lang.String" />
+        <one-to-one name="personaReturn" constrained="true" class="com.eBolivar.domain.PersonaReturn" />
+    </class>
+</hibernate-mapping>
