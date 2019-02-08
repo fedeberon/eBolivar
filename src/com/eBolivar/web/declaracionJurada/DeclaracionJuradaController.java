@@ -154,6 +154,9 @@ public class DeclaracionJuradaController {
         final Persona persona = personaService.get(declaracionJurada.getPersona().getId());
         declaracionJurada.setPersona(persona);
         model.addAttribute("declaracionJurada", declaracionJurada);
+        model.addAttribute("acuseIsPrintable" , declaracionJuradaService.isBeforeOneDaysAgo(declaracionJurada));
+        model.addAttribute("acuseAvailableDate" , declaracionJuradaService.getDateFromDeclaracionJurada(declaracionJurada));
+        model.addAttribute("currentDate" , declaracionJuradaService.checkCurrentDay(declaracionJurada));
 
         return "declaracionJurada/formularioDeclaracionJurada";
     }
