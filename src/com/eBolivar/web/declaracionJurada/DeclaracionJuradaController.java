@@ -236,8 +236,10 @@ public class DeclaracionJuradaController {
     }
 
     @RequestMapping("buscar")
-    public String list(@RequestParam String valor, Model model) {
-        model.addAttribute("ddjj", declaracionJuradaService.find(valor));
+    public String list(@RequestParam String valor, @RequestParam(defaultValue = "1", required = false) Integer page, Model model) {
+        model.addAttribute("ddjjs", declaracionJuradaService.findAllPageable(valor, page));
+        model.addAttribute("valor", valor);
+        model.addAttribute("page", page);
 
         return "declaracionJurada/list";
 
