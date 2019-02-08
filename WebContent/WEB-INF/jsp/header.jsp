@@ -22,7 +22,7 @@
     <script type="text/javascript" src="<c:url value='/dwr/engine.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/dwr/util.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/js/dwrProyecto.js'/>"></script>
-    <script type="text/javascript" src="<c:url value='/webapp/webjarslocator/jquery-blockui/jquery.blockUI.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/js/jquery.blockUI.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/js/jquery.marquee.min.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/js/ayuda.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/js/shadowbox.js'/>"></script>
@@ -36,14 +36,13 @@
     <table class="table-header">
         <tbody>
         <tr valign="middle">
-            <td align="center">
-                <img src="<c:url value='/img/institucional/logo-institucional-2019.png'/>">
+            <td align="center"><img src="<c:url value='/img/institucional/logo-bolivar.png'/>">
             </td>
             <td height="20px" align="center" style="width: 30%;">
             </td>
             <td style="text-align: center;">
-                <!--<img class="imgHeaderRight" style="height: 90px;" src="<c:url value='/img/institucional/modernizacion.png'/>"/>-->
-                <h4 style="margin-top: -10;color: #fff;margin-left: 30px;"> Tr&aacute;mites on-line </h4>
+                <img class="imgHeaderRight" style="height: 90px;" src="<c:url value='/img/institucional/modernizacion.png'/>"/>
+                <h4 style="margin-top: -10px;color: #fff;margin-left: 30px;"> Tr&aacute;mites on-line </h4>
             </td>
         </tr>
         </tbody>
@@ -57,4 +56,5 @@
     </div>
 </div>
 <body>
-<div class="divPrincipal"> 
+<div class="divPrincipal">
+</body>
