@@ -1,18 +1,23 @@
 package com.eBolivar.dao.interfaces;
 
+import com.eBolivar.domain.Padron;
 import com.eBolivar.domain.PadronAsociado;
 import com.eBolivar.domain.Persona;
-
 import java.util.List;
 
-public interface ICuitPorTasaRepository {
-    boolean isCuitAsociadoAPadron(String padron);
+public abstract interface ICuitPorTasaRepository
+{
+    public abstract boolean isCuitAsociadoAPadron(String paramString);
 
-    PadronAsociado save(PadronAsociado padronAsociado);
+    public abstract PadronAsociado save(PadronAsociado paramPadronAsociado);
 
-    boolean exist(PadronAsociado padronAsociado);
+    public abstract boolean exist(PadronAsociado paramPadronAsociado);
 
-    PadronAsociado get(Integer id);
+    public abstract PadronAsociado get(Integer paramInteger);
 
-    List<PadronAsociado> byPersona(Persona persona);
+    public abstract Padron get(String paramString);
+
+    public abstract List<PadronAsociado> byPersona(Persona paramPersona);
+
+    public abstract void remove(Integer paramInteger);
 }

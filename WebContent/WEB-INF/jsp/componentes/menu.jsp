@@ -134,6 +134,10 @@
                                <li class="divider"></li>
                                <li><a style="color: #555" href="<c:url value='/webapp/usuario/list/administradorDeCuenta'/>">Administradores Cuenta<label/> </a></li>
                                <li class="divider"></li>
+                               <li><a style="color: #555" href="<c:url value='/webapp/personas/create'/>">Nueva Persona<label/> </a></li>
+                               <li class="divider"></li>
+                               <li><a style="color: #555" href="<c:url value='/webapp/personas/list'/>">Personas<label/> </a></li>
+                               <li class="divider"></li>
                                <li><a style="color: #555" href="<c:url value='/webapp/padron/create'/>">Cargar Padron<label/> </a></li>
                                <li class="divider"></li>
                            </sec:authorize>

@@ -22,30 +22,18 @@
         <table class="table-bordered">
             <tr>
                 <td>
-                    <label for="persona.nombre" style="margin-left: 5px;" class="col-sm-2 control-label">Nombre</label>
+                    <label for="padron.numero" style="margin-left: 5px;" class="col-sm-2 control-label">Nombre</label>
                 </td>
+
                 <td>
-                    <form:input path="persona.nombre" cssClass="form-control"/>
-                </td>
-                <td>
-                    <label for="persona.nombre" style="margin-left: 5px;"  class="col-sm-2 control-label">Apellido</label>
-                </td>
-                <td>
-                    <form:input path="persona.apellido" cssClass="form-control"/>
-                </td>
-                <td>
-                    <label for="persona.nombre" style="margin-left: 5px;"  class="col-sm-2 control-label">CUIT</label>
-                </td>
-                <td>
-                    <form:input path="persona.idPersona" cssClass="form-control"/>
+                    <form:input path="padron.numero" cssClass="form-control"/>
                 </td>
                 <td>
                     <button type="submit" class="btn btn-default">Buscar</button>
                 </td>
                 <td>
-                    <a href="<c:url value='/webapp/personas/list'/>" class="btn btn-default">TODOS</a>
+                    <a href="<c:url value='/webapp/padron/list'/>" class="btn btn-default">TODOS</a>
                 </td>
-
             </tr>
         </table>
 
@@ -60,18 +48,14 @@
     <table class="table table-striped" border="0" cellpadding="0" cellspacing="1" style="text-align: center">
         <thead>
         <tr>
-            <th scope="col">DNI</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Apellido</th>
-            <th scope="col">Actividad</th>
-            <%--<th scope="col">Tipo</th>--%>
-            <%--<th scope="col">Razon Social</th>--%>
+            <th scope="col">Padr&oacute;n</th>
+            <th scope="col">Tipo</th>
         </tr>
         </thead>
 
 
         <tbody>
-        <c:if test='${empty personas}'>
+        <c:if test='${empty padrones}'>
             <tr>
                 <td colspan="5"><br>
                     <br>
@@ -79,16 +63,12 @@
                 </td>
             </tr>
         </c:if>
-        <c:forEach items="${personas}" varStatus="status" var="bo">
+        <c:forEach items="${padrones}" varStatus="status" var="bo">
             <tr>
                 <td>
-                    <a href="<c:url value='/webapp/personas/get?id=${bo.id}'/>">${bo.idPersona}</a>
+                    <a href="<c:url value='/webapp/padron/showPadron?id=${bo.id}'/>">${bo.numero}</a>
                 </td>
-                <td>${bo.nombre}</td>
-                <td>${bo.apellido}</td>
-                <td>${bo.descripcionActividadPrincipal}</td>
-                    <%--<td>${bo.tipoPersona}</td>--%>
-                    <%--<td>${bo.razonSocial}</td>--%>
+                <td>${bo.tipoImpuesto.nombre}</td>
             </tr>
         </c:forEach>
         </tbody>
@@ -96,8 +76,14 @@
 </div>
 
 <div id='botonera'>
-    <a class="btn btn-default" href="javascript:history.back()">Volver </a>
 
+    <div class="col-xs-2">
+        <a class="btn btn-default" href="javascript:history.back()">Volver </a>
+    </div>
+
+    <div class="col-xs-2">
+        <a class="btn btn-default" href="<c:url value='/webapp/padron/create'/>">Nuevo </a>
+    </div>
 
     <div class="col-xs-2">
         <a onclick='pagAnterior();' href="#" class="btn btn-block btn-primary">Atras</a>

@@ -2,62 +2,64 @@ package com.eBolivar.dao.impuesto;
 
 import com.eBolivar.dao.interfaces.IImpuestoRepository;
 import com.eBolivar.domain.Impuesto;
+import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
-import org.hibernate.Session;
+import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
+import org.hibernate.classic.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
 public class ImpuestoRepository implements IImpuestoRepository {
-
     @Autowired
     private SessionFactory sessionFactory;
 
-    @Override
-    public boolean isUnPadron(String padron){
-        Session session = null;
-        try{
-            session = sessionFactory.openSession();
-            Query query = session.createSQLQuery("select count(*) from IMPUESTOS i  where i.IMP_NUMERO_PADRON = :padron");
-            query.setString("padron", padron);
-            int result = ((Number) query.uniqueResult()).intValue();
-
-            return result > 0;
-        }catch (HibernateException e){
-            e.printStackTrace();
-            throw e;
-        }
-        finally {
-            if(session != null || session.isOpen()){
-                session.close();
-            }
-        }
+    public ImpuestoRepository() {
     }
 
-    @Override
+    public boolean isUnPadron(String padron) {
+        Session session = null;
+
+        boolean var5;
+        try {
+            session = this.sessionFactory.openSession();
+            SQLQuery e = session.createSQLQuery("select count(*) from IMPUESTOS i  where i.IMP_NUMERO_PADRON = :padron");
+            e.setString("padron", padron);
+            int result = ((Number)e.uniqueResult()).intValue();
+            var5 = result > 0;
+        } catch (HibernateException var9) {
+            var9.printStackTrace();
+            throw var9;
+        } finally {
+            if(session != null || session.isOpen()) {
+                session.close();
+            }
+
+        }
+
+        return var5;
+    }
+
     public List<Impuesto> getByPadron(String numeroDePadron) {
         Session session = null;
-        try{
-            session = sessionFactory.openSession();
-            Query query = session.createQuery("from Impuesto where numeroDePadron = :numeroDePadron ");
-            query.setString("numeroDePadron", numeroDePadron);
 
-            return query.list();
-        }
-        catch (HibernateException e){
-            throw e;
-        }
-        finally {
-            if(session != null && session.isOpen()){
+        List var4;
+        try {
+            session = this.sessionFactory.openSession();
+            Query e = session.createQuery("from Impuesto where numeroDePadron = :numeroDePadron ");
+            e.setString("numeroDePadron", numeroDePadron);
+            var4 = e.list();
+        } catch (HibernateException var8) {
+            throw var8;
+        } finally {
+            if(session != null && session.isOpen()) {
                 session.close();
             }
+
         }
+
+        return var4;
     }
-
-
-
 }

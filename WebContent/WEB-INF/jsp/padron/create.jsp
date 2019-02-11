@@ -14,7 +14,7 @@
         <span class="titulo-descripcion" style="padding-left: 10px;">Nuevo Padron</span>
     </div>
 
-    <form:form action="save" modelAttribute="padron" method="post">
+    <form:form action="savePadron" modelAttribute="padron" method="post">
 
         <p class="odd">
             <label for="numero" class="campo">Numero Padron:</label>
