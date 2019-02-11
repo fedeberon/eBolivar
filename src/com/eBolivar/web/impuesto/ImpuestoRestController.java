@@ -156,7 +156,6 @@ public class ImpuestoRestController {
     @RequestMapping({"/verificarPadron/{padron}"})
     @ResponseBody
     public boolean verificarPadron(@PathVariable String padron) {
-        padron ="00000100";
             return this.impuestoServicio.isUnPadron(padron);
     }
 }
