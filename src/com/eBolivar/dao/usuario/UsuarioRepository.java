@@ -1,14 +1,15 @@
 package com.eBolivar.dao.usuario;
 
+import com.eBolivar.bean.Pagination;
 import com.eBolivar.dao.CloseableSession;
 import com.eBolivar.dao.usuario.interfaces.IUsuarioRepository;
+import com.eBolivar.domain.DeclaracionJurada;
 import com.eBolivar.domain.administradorCuenta.AdministradorCuenta;
 import com.eBolivar.domain.usuario.User;
 import com.eBolivar.domain.usuario.Usuario;
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
@@ -67,6 +68,26 @@ public class UsuarioRepository implements IUsuarioRepository {
     }
 
     @Override
+    public List<AdministradorCuenta> findAdministradorCuenta(String valor, Integer pageNumber){
+        try (CloseableSession session = new CloseableSession(sessionFactory.openSession())) {
+            Criteria criteria = session.delegate().createCriteria(AdministradorCuenta.class);
+            criteria.createAlias("rol" , "rol");
+            criteria.add(
+                          Restrictions.or(Restrictions.ilike("username", valor, MatchMode.ANYWHERE),
+                                Restrictions.or(Restrictions.ilike("nombre", valor, MatchMode.ANYWHERE),
+                                        Restrictions.or( Restrictions.ilike("apellido" , valor), Restrictions.eq("rol.nombre", valor)))));
+
+            criteria.setFirstResult((pageNumber - 1) * Pagination.MAX_PAGE );
+            criteria.setMaxResults(Pagination.MAX_PAGE);
+
+            return criteria.list();
+
+        } catch (HibernateException e) {
+            throw e;
+        }
+    }
+
+    @Override
     public List<AdministradorCuenta> findAllAdministradoresDeCuenta() {
         try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
             return session.delegate().createQuery("from AdministradorCuenta").list();
@@ -93,4 +114,5 @@ public class UsuarioRepository implements IUsuarioRepository {
             throw e;
         }
     }
+
 }

@@ -41,15 +41,16 @@
 
 <div id="formulario">
 
-    <form>
+    <form:form action="../buscar" method="get">
+        <input name="page" value="${page}" type="hidden">
         <div class="col-md-6">
-            <input class="form-control" placeholder="Ingrese el nombre a buscar"/>
+            <input class="form-control" name="valor" value="${valor}" placeholder="Ingrese su b&uacute;squeda"/>
         </div>
 
         <div class="col-md-3">
             <button type="submit" class="btn btn-block btn-primary">Buscar</button>
         </div>
-    </form>
+    </form:form>
 
 
     <div class="row">
@@ -89,6 +90,10 @@
         </div>
 
     </div>
+</div>
+
+<div id='botonera'>
+    <a href="javascript:history.back()" class="btn btn-default">Volver</a>
 </div>
 <jsp:include page="../bottom.jsp"/>
 </body>

@@ -14,7 +14,10 @@ public interface IUsuarioRepository {
 
     List<User> findAll();
 
+    List<AdministradorCuenta> findAdministradorCuenta(String valor, Integer pageNumber);
+
     List<AdministradorCuenta> findAllAdministradoresDeCuenta();
 
     void updateLikeAdministradorDeCuenta(String username);
+
 }

@@ -21,4 +21,6 @@ public interface IUsuarioService extends UserDetailsService {
     void updateLikeAdministradorDeCuenta(String username);
 
     User getAutenticate();
+
+    List<AdministradorCuenta> findAdministradorCuenta(String valor, Integer pageNumber);
 }

@@ -1,6 +1,8 @@
 package com.eBolivar.web;
 
+import com.eBolivar.domain.administradorCuenta.AdministradorCuenta;
 import com.eBolivar.domain.usuario.Usuario;
+import com.eBolivar.service.usuario.UsuarioService;
 import com.eBolivar.service.usuario.interfaces.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 
 @Controller
 @RequestMapping("usuario")
@@ -17,6 +21,16 @@ public class UsuarioController {
 
     @Autowired
     private IUsuarioService usuarioService;
+
+    @RequestMapping("buscar")
+    public String findAdministradorDeCuenta(@RequestParam String valor, @RequestParam(defaultValue = "1", required = false) Integer page, Model model){
+        List<AdministradorCuenta> results = usuarioService.findAdministradorCuenta(valor, page);
+        model.addAttribute("usuarios", results);
+        model.addAttribute("page", page);
+
+        return "usuario/list-administradorCuenta";
+    }
+
 
     @RequestMapping("create")
     public String create() {
