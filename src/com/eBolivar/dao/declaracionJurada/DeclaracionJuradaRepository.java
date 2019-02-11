@@ -15,10 +15,12 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Repository;
 
 import javax.servlet.ServletOutputStream;
 import java.io.File;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -84,6 +86,8 @@ public class DeclaracionJuradaRepository implements IDeclaracionJuradaRepository
     public void export(DeclaracionJurada declaracionJurada, ServletOutputStream outputStream) {
         Map<String, Object> map = new HashMap();
         map.put("idDeclaracionJurada", declaracionJurada.getId());
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/YYYY HH:mm");
+        map.put("fecha", declaracionJurada.getFecha().format(dateTimeFormatter) + " hs.");
         JasperReport reporte ;
         try {
             String file = declaracionJurada.getPeriodo().equals(PeriodoEnum.ANUAL) ? "/ddjj-anual.jasper" : "/ddjj.jasper";
@@ -128,6 +132,7 @@ public class DeclaracionJuradaRepository implements IDeclaracionJuradaRepository
         }
     }
 
+    @SuppressWarnings("Duplicates")
     @Override
     public List<DeclaracionJurada> find(String valor) {
         try (CloseableSession session = new CloseableSession(sessionFactory.openSession())) {
@@ -149,6 +154,40 @@ public class DeclaracionJuradaRepository implements IDeclaracionJuradaRepository
                                 Restrictions.or(Restrictions.ilike("persona.nombre", valor, MatchMode.ANYWHERE),
                                         Restrictions.or(Restrictions.ilike("persona.apellido" , valor), Restrictions.ilike("persona.numeroDocumento", valor, MatchMode.ANYWHERE)))));
             }
+
+            return criteria.list();
+
+        } catch (HibernateException e) {
+            throw e;
+        }
+    }
+
+    @Override
+    @SuppressWarnings("Duplicates")
+    public List<DeclaracionJurada> findAllPageable(String valor, Integer pageNumber) {
+        try (CloseableSession session = new CloseableSession(sessionFactory.openSession())) {
+            Criteria criteria = session.delegate().createCriteria(DeclaracionJurada.class);
+            criteria.createAlias("persona", "persona").createAlias("padron", "padron");
+            try{
+                Long id = Long.parseLong(valor);
+                criteria.add(
+                        Restrictions.or(
+                                Restrictions.ilike("padron.numero", valor, MatchMode.ANYWHERE),
+                                Restrictions.or(Restrictions.ilike("persona.nombre", valor, MatchMode.ANYWHERE),
+                                        Restrictions.or(Restrictions.ilike("persona.apellido" , valor),
+                                                Restrictions.or(Restrictions.eq("persona.idPersona", id), Restrictions.ilike("persona.numeroDocumento", valor, MatchMode.ANYWHERE))))));
+            }
+            catch (NumberFormatException e){
+                criteria.add(
+                        Restrictions.or(
+                                Restrictions.ilike("padron.numero", valor, MatchMode.ANYWHERE),
+                                Restrictions.or(Restrictions.ilike("persona.nombre", valor, MatchMode.ANYWHERE),
+                                        Restrictions.or(Restrictions.ilike("persona.apellido" , valor), Restrictions.ilike("persona.numeroDocumento", valor, MatchMode.ANYWHERE)))));
+            }
+
+            criteria.setFirstResult((pageNumber - 1) * Pagination.MAX_PAGE );
+            criteria.setMaxResults(Pagination.MAX_PAGE);
+
             return criteria.list();
 
         } catch (HibernateException e) {

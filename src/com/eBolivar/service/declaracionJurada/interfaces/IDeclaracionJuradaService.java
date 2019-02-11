@@ -32,4 +32,12 @@ public interface IDeclaracionJuradaService {
     void imprimirAcuseDeRecibo(DeclaracionJurada declaracionJurada, ServletOutputStream outputStream);
 
     List<DeclaracionJurada> getByPadronAsociado(PadronAsociado padronAsociado, Integer page);
+
+    Boolean isBeforeOneDaysAgo(DeclaracionJurada declaracionJurada);
+
+    String getDateFromDeclaracionJurada(DeclaracionJurada declaracionJurada);
+
+    String checkCurrentDay(DeclaracionJurada declaracionJurada);
+
+    List<DeclaracionJurada> findAllPageable(String valor, Integer pageNumber);
 }

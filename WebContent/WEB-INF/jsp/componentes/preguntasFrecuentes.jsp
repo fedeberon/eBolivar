@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<header>
+    <script type="text/javascript" src="<c:url value='/js/jquery.blockUI.js'/>"></script>
+</header>
 
 <div class="div-subcomponent"  style="border: 1px solid #C1C1C1;">
 <div class="titulo-component">
