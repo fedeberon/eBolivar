@@ -41,7 +41,7 @@
 
 <div id="formulario">
 
-    <form:form action="../buscar" method="get">
+    <form:form action="../buscar" method="post">
         <input name="page" value="${page}" type="hidden">
         <div class="col-md-6">
             <input class="form-control" name="valor" value="${valor}" placeholder="Ingrese su b&uacute;squeda"/>

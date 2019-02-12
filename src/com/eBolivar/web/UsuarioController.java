@@ -27,6 +27,7 @@ public class UsuarioController {
         List<AdministradorCuenta> results = usuarioService.findAdministradorCuenta(valor, page);
         model.addAttribute("usuarios", results);
         model.addAttribute("page", page);
+        model.addAttribute("valor", valor);
 
         return "usuario/list-administradorCuenta";
     }
