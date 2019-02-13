@@ -22,6 +22,7 @@ public class UsuarioService implements IUsuarioService {
     @Autowired
     private IUsuarioRepository dao;
 
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, DataAccessException {
         return dao.get(username);
@@ -36,6 +37,11 @@ public class UsuarioService implements IUsuarioService {
     @Override
     public List<User> findAll() {
         return dao.findAll();
+    }
+
+    @Override
+    public List<User> findPageable(Integer pageNumber){
+        return dao.findPageable(pageNumber);
     }
 
     @Override
@@ -58,4 +64,10 @@ public class UsuarioService implements IUsuarioService {
     public User getAutenticate(){
         return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
+
+    @Override
+    public List<AdministradorCuenta> findAdministradorCuenta(String valor, Integer pageNumber){
+        return dao.findAdministradorCuenta(valor, pageNumber);
+    }
+
 }

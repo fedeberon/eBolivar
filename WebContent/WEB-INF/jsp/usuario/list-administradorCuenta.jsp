@@ -20,15 +20,41 @@
             text-align:center;
         }
 
+        .col-md-6 {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .col-md-3 {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .col-xs-2 {
+            margin-bottom: 5px;
+        }
+
     </style>
 
 </head>
 <body>
+
 <div class="page-header">
     <span class="titulo-descripcion" style="text-align: center"><h2>Administradores de Cuentas</h2></span>
 </div>
 
 <div id="formulario">
+
+    <form:form action="../usuario/buscar" method="post">
+        <div class="col-md-6">
+            <input class="form-control" name="valor" value="${valor}" placeholder="Ingrese su b&uacute;squeda"/>
+        </div>
+
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-block btn-primary">Buscar</button>
+        </div>
+    </form:form>
+
 
     <div class="row">
 
@@ -59,14 +85,55 @@
                         </tr>
                     </c:forEach>
 
+                    <c:if test='${empty usuarios}'>
+                        <tr>
+                            <td colspan="6"><br>
+                                <h3>No se han encontrado usuarios</h3>
+                            </td>
+                        </tr>
+                    </c:if>
+
 
                 </tbody>
 
             </table>
 
+            <c:choose>
+                <c:when test="${page > 1}">
+                    <div class="col-xs-2">
+                        <a href="<c:url value='/webapp/usuario/buscar?&page=${page - 1}&valor=${valor}'/>" class="btn btn-block btn-primary">Atras</a>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="col-xs-2">
+                        <a class="btn btn-block btn-primary disabled" aria-disabled="true" >Atras</a>
+                    </div>
+                </c:otherwise>
+            </c:choose>
+
+            <c:choose>
+                <c:when test="${not empty usuarios && usuarios.size() == 5}">
+                    <div class="col-xs-2">
+                        <a href="<c:url value='/webapp//usuario/buscar?&page=${page + 1}&valor=${valor}'/>" class="btn btn-block btn-primary">Siguiente</a>
+                    </div>
+                </c:when>
+
+                <c:otherwise>
+                    <div class="col-xs-2">
+                        <a class="btn btn-block btn-primary disabled" aria-disabled="true">Siguiente</a>
+                    </div>
+                </c:otherwise>
+            </c:choose>
+
+
         </div>
 
     </div>
+
+</div>
+
+<div id='botonera'>
+    <a href="javascript:history.back()" class="btn btn-default">Volver</a>
 </div>
 <jsp:include page="../bottom.jsp"/>
 </body>

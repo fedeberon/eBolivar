@@ -29,7 +29,7 @@
 
             <form:form action="../ddjj/buscar" modelAttribute="ddjj" method="post">
                 <div class="col-md-6">
-                    <input name="valor" value="${valor}" class="form-control" placeholder="Ingrese el valor a buscar"/>
+                    <input name="valor" value="${valor}" class="form-control" placeholder="Ingrese su b&uacute;squeda"/>
                 </div>
 
                 <div class="col-md-3">
