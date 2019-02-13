@@ -68,6 +68,20 @@ public class UsuarioRepository implements IUsuarioRepository {
     }
 
     @Override
+    public List<User> findPageable(Integer pageNumber) {
+        try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
+            Query query = session.delegate().createQuery("from Usuario");
+            query.setFirstResult((pageNumber - 1) * Pagination.MAX_PAGE );
+            query.setMaxResults(Pagination.MAX_PAGE);
+
+            return query.list();
+        }
+        catch (HibernateException e){
+            throw e;
+        }
+    }
+
+    @Override
     public List<AdministradorCuenta> findAdministradorCuenta(String valor, Integer pageNumber){
         try (CloseableSession session = new CloseableSession(sessionFactory.openSession())) {
             Criteria criteria = session.delegate().createCriteria(AdministradorCuenta.class);

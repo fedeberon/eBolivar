@@ -23,9 +23,8 @@ public class UsuarioController {
     private IUsuarioService usuarioService;
 
     @RequestMapping("buscar")
-    public String findAdministradorDeCuenta(@RequestParam String valor, @RequestParam(defaultValue = "1", required = false) Integer page, Model model){
-        List<AdministradorCuenta> results = usuarioService.findAdministradorCuenta(valor, page);
-        model.addAttribute("usuarios", results);
+    public String findAdministradorCuenta(@RequestParam String valor, @RequestParam(defaultValue = "1", required = false) Integer page, Model model){
+        model.addAttribute("usuarios", usuarioService.findAdministradorCuenta(valor, page));
         model.addAttribute("page", page);
         model.addAttribute("valor", valor);
 
@@ -61,9 +60,10 @@ public class UsuarioController {
         return "usuario/list";
     }
 
-    @RequestMapping(value = "list/administradorDeCuenta", method = RequestMethod.GET)
-    public String listAdministradorDeCuenta(Model model) {
-        model.addAttribute("usuarios", usuarioService.findAllAdministradoresDeCuenta());
+    @RequestMapping("list/administradorDeCuenta")
+    public String listAdministradorDeCuenta(@RequestParam(defaultValue = "1", required = false) Integer page,Model model) {
+        model.addAttribute("usuarios", usuarioService.findPageable(page));
+        model.addAttribute("page", page);
 
         return "usuario/list-administradorCuenta";
     }

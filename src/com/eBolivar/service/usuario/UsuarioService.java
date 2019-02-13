@@ -40,6 +40,11 @@ public class UsuarioService implements IUsuarioService {
     }
 
     @Override
+    public List<User> findPageable(Integer pageNumber){
+        return dao.findPageable(pageNumber);
+    }
+
+    @Override
     public User get(String username) {
         return dao.get(username);
     }

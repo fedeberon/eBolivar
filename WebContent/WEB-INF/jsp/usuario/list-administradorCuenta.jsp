@@ -30,6 +30,10 @@
             margin-bottom: 5px;
         }
 
+        .col-xs-2 {
+            margin-bottom: 5px;
+        }
+
     </style>
 
 </head>
@@ -41,8 +45,7 @@
 
 <div id="formulario">
 
-    <form:form action="../buscar" method="post">
-        <input name="page" value="${page}" type="hidden">
+    <form:form action="../usuario/buscar" method="post">
         <div class="col-md-6">
             <input class="form-control" name="valor" value="${valor}" placeholder="Ingrese su b&uacute;squeda"/>
         </div>
@@ -82,14 +85,51 @@
                         </tr>
                     </c:forEach>
 
+                    <c:if test='${empty usuarios}'>
+                        <tr>
+                            <td colspan="6"><br>
+                                <h3>No se han encontrado usuarios</h3>
+                            </td>
+                        </tr>
+                    </c:if>
+
 
                 </tbody>
 
             </table>
 
+            <c:choose>
+                <c:when test="${page > 1}">
+                    <div class="col-xs-2">
+                        <a href="<c:url value='/webapp/usuario/buscar?&page=${page - 1}&valor=${valor}'/>" class="btn btn-block btn-primary">Atras</a>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="col-xs-2">
+                        <a class="btn btn-block btn-primary disabled" aria-disabled="true" >Atras</a>
+                    </div>
+                </c:otherwise>
+            </c:choose>
+
+            <c:choose>
+                <c:when test="${not empty usuarios && usuarios.size() == 5}">
+                    <div class="col-xs-2">
+                        <a href="<c:url value='/webapp//usuario/buscar?&page=${page + 1}&valor=${valor}'/>" class="btn btn-block btn-primary">Siguiente</a>
+                    </div>
+                </c:when>
+
+                <c:otherwise>
+                    <div class="col-xs-2">
+                        <a class="btn btn-block btn-primary disabled" aria-disabled="true">Siguiente</a>
+                    </div>
+                </c:otherwise>
+            </c:choose>
+
+
         </div>
 
     </div>
+
 </div>
 
 <div id='botonera'>

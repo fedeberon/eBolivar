@@ -14,6 +14,8 @@ public interface IUsuarioService extends UserDetailsService {
 
     List<User> findAll();
 
+    List<User> findPageable(Integer pageNumber);
+
     User get(String username);
 
     List<AdministradorCuenta> findAllAdministradoresDeCuenta();
