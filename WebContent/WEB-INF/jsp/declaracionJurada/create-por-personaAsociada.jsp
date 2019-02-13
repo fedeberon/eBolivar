@@ -71,6 +71,15 @@
             color: rgba(72, 151, 101, 0.34);
         }
 
+        .text-danger {
+            font-size: 14px !important;
+            color: red !important;
+        }
+
+        .text-secondary {
+            color: red !important;
+        }
+
 
     </style>
 
@@ -137,7 +146,7 @@
 
                         <td colspan="3">
                             <form:select items="${tasas}" class="tasa" path="tasas[0].tasa.id" itemValue="id"/>
-                            <form:errors cssClass="form-text text-muted red" path="tasas[0].tasa.id"/>
+                            <form:errors cssClass="text-danger bg-secondary" path="tasas[0].tasa.id"/>
                         </td>
                     </tr>
 
@@ -147,7 +156,7 @@
                                 <span>Base Imponible</span>
                                 <span class="input-group-addon">$</span>
                                 <form:input path="tasas[0].baseImponible" cssClass="inp-importes" data-toggle="tooltip" title="Base Imponible sobre la que se aplicara la alicuota"/>
-                                <form:errors cssClass="form-text text-muted red" path="tasas[0].baseImponible"/>
+                                <form:errors cssClass="text-danger bg-secondary" path="tasas[0].baseImponible"/>
                             </div>
                         </td>
 
@@ -174,7 +183,7 @@
                         </td>
                         <td colspan="3">
                             <form:select items="${tasas}" class="tasa"  path="tasas[1].tasa.id" itemValue="id"/>
-                            <form:errors cssClass="form-text text-muted red" path="tasas[1].tasa.id"/>
+                            <form:errors cssClass="text-danger bg-secondary" path="tasas[1].tasa.id"/>
                         </td>
                     </tr>
 
@@ -210,7 +219,7 @@
                         </td>
                         <td colspan="3">
                             <form:select items="${tasas}" class="tasa"  path="tasas[2].tasa.id" itemValue="id"/>
-                            <form:errors cssClass="form-text text-muted red" path="tasas[2].tasa.id"/>
+                            <form:errors cssClass="text-danger bg-secondary" path="tasas[2].tasa.id"/>
                         </td>
                     </tr>
 
@@ -238,7 +247,7 @@
                         </td>
                     </tr>
 
-                    <tr><td colspan="4"><form:errors cssClass="form-text text-muted red" path="baseImponible"/></td></tr>
+                    <tr><td colspan="4"><form:errors cssClass="text-danger bg-secondary" path="baseImponible"/></td></tr>
 
 
                     <c:forEach items="${periodoEnum}" var="bo">
