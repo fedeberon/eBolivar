@@ -36,7 +36,8 @@
     <table class="table-header">
         <tbody>
         <tr valign="middle">
-            <td align="center"><img src="<c:url value='/img/institucional/logo-bolivar.png'/>">
+            <td align="center"><img style="width: 45%; float: left;" src="<c:url value='/img/institucional/logo-con-degradado.png'/>">
+
             </td>
             <td height="20px" align="center" style="width: 30%;">
             </td>
@@ -54,7 +55,7 @@
         <p style="transition: 1s; display: none;" id="subTituloDescripcion"> Gesti&oacute;n de tr&aacute;mites
             on-line</p>
     </div>
-</div>
+</div>git
 <body>
 <div class="divPrincipal">
 </body>

@@ -4,10 +4,7 @@ package com.eBolivar.dao.personaAsociada;
 import com.eBolivar.dao.CloseableSession;
 import com.eBolivar.dao.personaAsociada.interfaces.IPersonaAsociadaRepository;
 import com.eBolivar.domain.administradorCuenta.PersonaAsociada;
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
@@ -42,6 +39,8 @@ public class PersonaAsociadaRepository implements IPersonaAsociadaRepository{
         try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
             Query query = session.delegate().createQuery("from PersonaAsociada where administradorCuenta.username = :username");
             query.setParameter("username", username);
+            List<PersonaAsociada> personas = query.list();
+            personas.forEach(personaAsociada -> Hibernate.initialize(personaAsociada.getPersona().getDomicilio()));
 
             return query.list();
         }
