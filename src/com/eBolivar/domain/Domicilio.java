@@ -137,4 +137,9 @@ public class Domicilio  implements java.io.Serializable {
     public void setPersona(Persona persona) {
         this.persona = persona;
     }
+
+    @Override
+    public String toString() {
+        return direccion;
+    }
 }

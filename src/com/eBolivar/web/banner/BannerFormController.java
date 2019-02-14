@@ -42,7 +42,7 @@ public class BannerFormController extends SimpleFormController {
 		Banner banner = (Banner) command;
 
 		  MultipartFile file = banner.getFile();
-		  String destinationFolder = "C://documentos//banners//";
+		  String destinationFolder = "/documentos/banners/";
 	      File destination = new File(destinationFolder);
 	        
 	        if (!destination.exists()){
