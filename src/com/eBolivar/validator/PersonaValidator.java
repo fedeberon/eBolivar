@@ -25,10 +25,11 @@ public class PersonaValidator implements Validator {
     {
         Persona persona = (Persona)target;
 
-        if ((persona.getIdPersona() != null) && (personaService.getByIdPersona(persona.getIdPersona().toString()) != null)) {
-            errors.rejectValue("idPersona", "Persona.idPersona", "el numero de CUIT ya existe.");
+        if(persona.getId() == null){
+            if ((persona.getIdPersona() != null) && (personaService.getByIdPersona(persona.getIdPersona().toString()) != null)) {
+                errors.rejectValue("idPersona", "Persona.idPersona", "el numero de CUIT ya existe.");
+            }
         }
-
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombre", "Persona.nombre", "Ingrese un nombre");
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "apellido", "Persona.apellido", "Ingrese un apellido");

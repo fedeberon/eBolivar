@@ -64,6 +64,7 @@
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
             <th scope="col">Actividad</th>
+            <th scope="col">Editar</th>
             <%--<th scope="col">Tipo</th>--%>
             <%--<th scope="col">Razon Social</th>--%>
         </tr>
@@ -89,6 +90,9 @@
                 <td>${bo.descripcionActividadPrincipal}</td>
                     <%--<td>${bo.tipoPersona}</td>--%>
                     <%--<td>${bo.razonSocial}</td>--%>
+                <td>
+                    <a href="<c:url value='/webapp/personas/update?id=${bo.id}'/>"><img src="<c:url value='/img/icons/icon-edit-persona.png'/>"/></a>
+                </td>
             </tr>
         </c:forEach>
         </tbody>

@@ -58,6 +58,10 @@ public class Domicilio  implements java.io.Serializable {
 
     public Domicilio() {}
 
+    public Domicilio(Persona persona) {
+        this.persona = persona;
+    }
+
     public Integer getId() {
         return id;
     }

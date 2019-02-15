@@ -39,7 +39,7 @@ public class PersonaRepository implements com.eBolivar.dao.interfaces.IPersonaRe
             session = sessionFactory.openSession();
             tx = ((Session)session).getTransaction();
             tx.begin();
-            ((Session)session).save(persona);
+            ((Session)session).saveOrUpdate(persona);
             tx.commit();
 
             return persona;
