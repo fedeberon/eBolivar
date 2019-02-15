@@ -128,7 +128,6 @@ public class PersonaController
     @RequestMapping({"list"})
     public String search(Model model) {
         SearchObject searchObject = new SearchObject();
-        searchObject.setPage(1);
         model.addAttribute("personas", personaService.search(searchObject));
 
         return "persona/list";
