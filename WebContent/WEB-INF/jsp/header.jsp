@@ -30,7 +30,7 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDPNopTNnEV9_TcXFjNgsnMTfQB2JviFY&sensor=false"></script>
     <script type="text/javascript" src="http://dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
 
-
+    <script src="//www.socialintents.com/api/socialintents.1.3.js#2c9fa56368e8519b0168f10b06450372" async="async"></script>
 </head>
 <div class="divHeader" id="divHeader">
     <table class="table-header">
