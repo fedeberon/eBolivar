@@ -31,7 +31,6 @@ public class UsuarioController {
         return "usuario/list-administradorCuenta";
     }
 
-
     @RequestMapping("create")
     public String create() {
         return "usuario/create";
@@ -44,14 +43,12 @@ public class UsuarioController {
         return "redirect:list";
     }
 
-
     @RequestMapping(value = "saveAdministradorCuenta", method = RequestMethod.GET)
     public String saveAdministradorCuenta(@RequestParam String username) {
         usuarioService.updateLikeAdministradorDeCuenta(username);
 
         return "redirect:list/administradorDeCuenta";
     }
-
 
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public String list(Model model) {
@@ -67,7 +64,6 @@ public class UsuarioController {
 
         return "usuario/list-administradorCuenta";
     }
-
 
     @ModelAttribute("usuario")
     public Usuario getUsuario(){

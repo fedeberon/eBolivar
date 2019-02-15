@@ -25,7 +25,9 @@ public class UsuarioService implements IUsuarioService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, DataAccessException {
-        return dao.get(username);
+        User user = dao.get(username);
+
+        return user.clasificar(administradorCuenta -> this.getAdministrador(username), usuario -> user);
     }
 
     @Override
@@ -59,7 +61,6 @@ public class UsuarioService implements IUsuarioService {
         dao.updateLikeAdministradorDeCuenta(username);
     }
 
-
     @Override
     public User getAutenticate(){
         return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -70,4 +71,8 @@ public class UsuarioService implements IUsuarioService {
         return dao.findAdministradorCuenta(valor, pageNumber);
     }
 
+
+    public AdministradorCuenta getAdministrador(String username){
+        return dao.getAdministradorDeCuenta(username);
+    }
 }

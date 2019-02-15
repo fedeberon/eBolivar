@@ -129,4 +129,22 @@ public class UsuarioRepository implements IUsuarioRepository {
         }
     }
 
+
+    @Override
+    public AdministradorCuenta getAdministradorDeCuenta(String username){
+        try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
+            Query query = session.delegate().createQuery("from AdministradorCuenta where username = :username");
+            query.setParameter("username", username);
+            AdministradorCuenta administradorCuenta = (AdministradorCuenta) query.uniqueResult();
+
+            Hibernate.initialize(administradorCuenta.getUsuarioLocalidad());
+
+            return administradorCuenta;
+        }
+        catch (HibernateException e){
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
 }

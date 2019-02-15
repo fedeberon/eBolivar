@@ -16,6 +16,7 @@ import javax.servlet.ServletOutputStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -153,10 +154,24 @@ public class DeclaracionJuradaService implements IDeclaracionJuradaService{
         }
     }
 
-
     @Override
     public List<DeclaracionJurada> findAllPageable(String valor, Integer pageNumber){
-        return dao.findAllPageable(valor, pageNumber);
+        User user = usuarioService.getAutenticate();
+
+        List<DeclaracionJurada> declaracionJuradas =
+                user.clasificar(
+                        Usuario -> dao.findAllPageable(valor, pageNumber),
+
+                        AdministradorCuenta -> {
+                            AdministradorCuenta administradorCuenta = (AdministradorCuenta) user;
+                            List<Localidad> localidades = new ArrayList<>();
+                            administradorCuenta.getUsuarioLocalidad().forEach(usuarioLocalidad -> localidades.add(usuarioLocalidad.getLocalidad()));
+                            return dao.findAllPageablePorLocalidad(valor, pageNumber, localidades);
+                        });
+
+        return declaracionJuradas;
+
     }
+
 
 }

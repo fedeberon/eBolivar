@@ -23,4 +23,5 @@ public interface IUsuarioRepository {
 
     void updateLikeAdministradorDeCuenta(String username);
 
+    AdministradorCuenta getAdministradorDeCuenta(String username);
 }

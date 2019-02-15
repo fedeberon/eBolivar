@@ -3,9 +3,7 @@ package com.eBolivar.dao.declaracionJurada;
 import com.eBolivar.bean.Pagination;
 import com.eBolivar.dao.CloseableSession;
 import com.eBolivar.dao.declaracionJurada.interfaces.IDeclaracionJuradaRepository;
-import com.eBolivar.domain.DeclaracionJurada;
-import com.eBolivar.domain.PadronAsociado;
-import com.eBolivar.domain.Persona;
+import com.eBolivar.domain.*;
 import com.eBolivar.enumeradores.PeriodoEnum;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
@@ -15,7 +13,6 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Repository;
 
 import javax.servlet.ServletOutputStream;
@@ -224,6 +221,42 @@ public class DeclaracionJuradaRepository implements IDeclaracionJuradaRepository
             return query.list();
         }
         catch (HibernateException e){
+            throw e;
+        }
+    }
+
+    @SuppressWarnings("Duplicates")
+    @Override
+    public List<DeclaracionJurada> findAllPageablePorLocalidad(String valor, Integer pageNumber, List<Localidad> localidades) {
+
+
+        try (CloseableSession session = new CloseableSession(sessionFactory.openSession())) {
+            Criteria criteria = session.delegate().createCriteria(DeclaracionJurada.class);
+            criteria.createAlias("persona", "persona").createAlias("padron", "padron");
+            try{
+                Long id = Long.parseLong(valor);
+                criteria.add(
+                        Restrictions.or(
+                                Restrictions.ilike("padron.numero", valor, MatchMode.ANYWHERE),
+                                Restrictions.or(Restrictions.ilike("persona.nombre", valor, MatchMode.ANYWHERE),
+                                        Restrictions.or(Restrictions.ilike("persona.apellido" , valor),
+                                                Restrictions.or(Restrictions.eq("persona.idPersona", id),
+                                                        Restrictions.or(Restrictions.in("", localidades) ,Restrictions.ilike("persona.numeroDocumento", valor, MatchMode.ANYWHERE))))));
+            }
+            catch (NumberFormatException e){
+                criteria.add(
+                        Restrictions.or(
+                                Restrictions.ilike("padron.numero", valor, MatchMode.ANYWHERE),
+                                Restrictions.or(Restrictions.ilike("persona.nombre", valor, MatchMode.ANYWHERE),
+                                        Restrictions.or(Restrictions.ilike("persona.apellido" , valor), Restrictions.ilike("persona.numeroDocumento", valor, MatchMode.ANYWHERE)))));
+            }
+
+            criteria.setFirstResult((pageNumber - 1) * Pagination.MAX_PAGE );
+            criteria.setMaxResults(Pagination.MAX_PAGE);
+
+            return criteria.list();
+
+        } catch (HibernateException e) {
             throw e;
         }
     }
