@@ -7,7 +7,7 @@
 <html>
 <head>
 
-<link rel="shortcut icon" type="image/x-icon" href="<c:url value='/images/icons/logo.ico'/>">
+<link rel="shortcut icon" type="image/x-icon" href="<c:url value='/img/icons/logo.ico'/>">
 <title>Login</title>
 <script type="text/javascript" src="<c:url value='/js/jquery.js'/>"></script> 
 <script type="text/javascript" src="<c:url value='/js/bootstrap.js'/>"></script>
@@ -49,7 +49,7 @@ $(document).ready(function() {
 	
 </tbody>
 </table>
-<img style="height:105px; " src="<c:url value='/img/institucional/logo-bolivar.png'/>/>
+<img style="height:105px; " src="<c:url value='/img/institucional/bolivar-vivir-mejor.png'/>/>
 </div>
 
 <hr>

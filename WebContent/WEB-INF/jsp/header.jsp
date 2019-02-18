@@ -36,15 +36,15 @@
     <table class="table-header">
         <tbody>
         <tr valign="middle">
-            <td align="center"><img style="width: 45%; float: left;" src="<c:url value='/img/institucional/logo-con-degradado.png'/>">
+            <td align="center"><img style="float: left;" src="<c:url value='/img/institucional/logo-degradado-header.png'/>">
 
             </td>
             <td height="20px" align="center" style="width: 30%;">
             </td>
-            <td style="text-align: center;">
-                <img class="imgHeaderRight" style="height: 90px;" src="<c:url value='/img/institucional/modernizacion.png'/>"/>
-                <h4 style="margin-top: -10px;color: #fff;margin-left: 30px;"> Tr&aacute;mites on-line </h4>
-            </td>
+            <%--<td style="text-align: center;">--%>
+                <%--<img class="imgHeaderRight" style="height: 90px;" src="<c:url value='/img/institucional/modernizacion.png'/>"/>--%>
+                <%--<h4 style="margin-top: -10px;color: #fff;margin-left: 30px;"> Tr&aacute;mites on-line </h4>--%>
+            <%--</td>--%>
         </tr>
         </tbody>
     </table>
