@@ -60,6 +60,7 @@
         <!--<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/os000353_rentas?autoReconnect=true"/>-->
         <!--<property name="user" value="os000353_fberon"/>-->
         <!--<property name="password" value="B0livar01"/>-->
+        <!--<property name="idleConnectionTestPeriod" value="1" />-->
 
         <!--<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/os000353_rentas?autoReconnect=true"/>-->
         <!--<property name="user" value="root"/>-->
