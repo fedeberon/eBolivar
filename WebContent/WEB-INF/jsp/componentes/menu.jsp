@@ -61,21 +61,21 @@
                    <%--GUIA DE TRAMITES</a>--%>
            <%--</li>--%>
 
-           <sec:authorize access="!isAuthenticated()">
-               <li id="ddjj" >
-                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">DECLARACION JURADA&nbsp;<span class="caret"></span></a>
-                   <ul class="dropdown-menu" role="menu">
-                       <li><a href="<c:url value='/webapp/ddjj/create'/>">Bimestral</a></li>
-                       <li class="divider"></li>
-                       <li><a href="<c:url value='/webapp/ddjj/anual'/>">Nueva Anual</a></li>
-                       <li class="divider"></li>
-                       <li><a href="<c:url value='/webapp//ddjj/declaracionJuradaAnteriores?anio=2016'/>">DDJJ 2016</a></li>
-                       <li class="divider"></li>
-                       <li><a href="<c:url value='/webapp//ddjj/declaracionJuradaAnteriores?anio=2017'/>">DDJJ 2017</a></li>
+           <%--<sec:authorize access="!isAuthenticated()">--%>
+               <%--<li id="ddjj" >--%>
+                   <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown">DECLARACION JURADA&nbsp;<span class="caret"></span></a>--%>
+                   <%--<ul class="dropdown-menu" role="menu">--%>
+                       <%--<li><a href="<c:url value='/webapp/ddjj/create'/>">Bimestral</a></li>--%>
+                       <%--<li class="divider"></li>--%>
+                       <%--<li><a href="<c:url value='/webapp/ddjj/anual'/>">Nueva Anual</a></li>--%>
+                       <%--<li class="divider"></li>--%>
+                       <%--<li><a href="<c:url value='/webapp//ddjj/declaracionJuradaAnteriores?anio=2016'/>">DDJJ 2016</a></li>--%>
+                       <%--<li class="divider"></li>--%>
+                       <%--<li><a href="<c:url value='/webapp//ddjj/declaracionJuradaAnteriores?anio=2017'/>">DDJJ 2017</a></li>--%>
 
-                   </ul>
-               </li>
-           </sec:authorize>
+                   <%--</ul>--%>
+               <%--</li>--%>
+           <%--</sec:authorize>--%>
 
            <sec:authorize access="isAuthenticated()">
                <sec:authorize access="hasRole('ROLE_MODULO_CONTRIBUYENTE')">
