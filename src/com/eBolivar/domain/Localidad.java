@@ -39,4 +39,17 @@ public class Localidad {
     public Long getDepId(){
         return depId;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        Localidad localidad = (Localidad) o;
+
+        return id != null ? id.equals(localidad.id) : localidad.id == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
 }

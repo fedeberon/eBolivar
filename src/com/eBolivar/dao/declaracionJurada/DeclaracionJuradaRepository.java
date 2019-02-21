@@ -10,6 +10,7 @@ import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
 import org.hibernate.*;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,6 +22,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Created by Fede Beron on 10/7/2017.
@@ -122,6 +124,7 @@ public class DeclaracionJuradaRepository implements IDeclaracionJuradaRepository
             query.setFirstResult((pageNumber - 1) * Pagination.MAX_PAGE );
             query.setMaxResults(Pagination.MAX_PAGE);
 
+
             return query.list();
         }
         catch (HibernateException e){
@@ -182,6 +185,7 @@ public class DeclaracionJuradaRepository implements IDeclaracionJuradaRepository
                                         Restrictions.or(Restrictions.ilike("persona.apellido" , valor), Restrictions.ilike("persona.numeroDocumento", valor, MatchMode.ANYWHERE)))));
             }
 
+            criteria.addOrder(Order.desc("id"));
             criteria.setFirstResult((pageNumber - 1) * Pagination.MAX_PAGE );
             criteria.setMaxResults(Pagination.MAX_PAGE);
 
@@ -228,8 +232,6 @@ public class DeclaracionJuradaRepository implements IDeclaracionJuradaRepository
     @SuppressWarnings("Duplicates")
     @Override
     public List<DeclaracionJurada> findAllPageablePorLocalidad(String valor, Integer pageNumber, List<Localidad> localidades) {
-
-
         try (CloseableSession session = new CloseableSession(sessionFactory.openSession())) {
             Criteria criteria = session.delegate().createCriteria(DeclaracionJurada.class);
             criteria.createAlias("persona", "persona").createAlias("padron", "padron");
@@ -241,16 +243,22 @@ public class DeclaracionJuradaRepository implements IDeclaracionJuradaRepository
                                 Restrictions.or(Restrictions.ilike("persona.nombre", valor, MatchMode.ANYWHERE),
                                         Restrictions.or(Restrictions.ilike("persona.apellido" , valor),
                                                 Restrictions.or(Restrictions.eq("persona.idPersona", id),
-                                                        Restrictions.or(Restrictions.in("", localidades) ,Restrictions.ilike("persona.numeroDocumento", valor, MatchMode.ANYWHERE))))));
+                                                                Restrictions.ilike("persona.numeroDocumento", valor, MatchMode.ANYWHERE))))));
             }
             catch (NumberFormatException e){
                 criteria.add(
                         Restrictions.or(
                                 Restrictions.ilike("padron.numero", valor, MatchMode.ANYWHERE),
                                 Restrictions.or(Restrictions.ilike("persona.nombre", valor, MatchMode.ANYWHERE),
-                                        Restrictions.or(Restrictions.ilike("persona.apellido" , valor), Restrictions.ilike("persona.numeroDocumento", valor, MatchMode.ANYWHERE)))));
+                                        Restrictions.or(Restrictions.ilike("persona.apellido" , valor),
+                                                Restrictions.ilike("persona.numeroDocumento", valor, MatchMode.ANYWHERE)))));
             }
 
+            if(Objects.nonNull(localidades) || !localidades.isEmpty()) {
+                criteria.add(Restrictions.in("padron.localidad", localidades));
+            }
+
+            criteria.addOrder(Order.desc("id"));
             criteria.setFirstResult((pageNumber - 1) * Pagination.MAX_PAGE );
             criteria.setMaxResults(Pagination.MAX_PAGE);
 

@@ -1,6 +1,7 @@
 package com.eBolivar.service.usuario;
 
 import com.eBolivar.dao.usuario.interfaces.IUsuarioRepository;
+import com.eBolivar.domain.Localidad;
 import com.eBolivar.domain.administradorCuenta.AdministradorCuenta;
 import com.eBolivar.domain.rol.Rol;
 import com.eBolivar.domain.usuario.User;
@@ -70,7 +71,6 @@ public class UsuarioService implements IUsuarioService {
     public List<AdministradorCuenta> findAdministradorCuenta(String valor, Integer pageNumber){
         return dao.findAdministradorCuenta(valor, pageNumber);
     }
-
 
     public AdministradorCuenta getAdministrador(String username){
         return dao.getAdministradorDeCuenta(username);

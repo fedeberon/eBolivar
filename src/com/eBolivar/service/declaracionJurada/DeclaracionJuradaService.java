@@ -10,6 +10,7 @@ import com.eBolivar.service.padron.interfaces.IPadronService;
 import com.eBolivar.service.persona.interfaces.IPersonaService;
 import com.eBolivar.service.usuario.interfaces.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.ServletOutputStream;
@@ -160,14 +161,18 @@ public class DeclaracionJuradaService implements IDeclaracionJuradaService{
 
         List<DeclaracionJurada> declaracionJuradas =
                 user.clasificar(
-                        Usuario -> dao.findAllPageable(valor, pageNumber),
-
                         AdministradorCuenta -> {
                             AdministradorCuenta administradorCuenta = (AdministradorCuenta) user;
                             List<Localidad> localidades = new ArrayList<>();
                             administradorCuenta.getUsuarioLocalidad().forEach(usuarioLocalidad -> localidades.add(usuarioLocalidad.getLocalidad()));
-                            return dao.findAllPageablePorLocalidad(valor, pageNumber, localidades);
-                        });
+                            if(!localidades.isEmpty()){
+                                return dao.findAllPageablePorLocalidad(valor, pageNumber, localidades);
+                            } else {
+                                return dao.findAllPageable("No se encontraron resultados", pageNumber);
+                            }
+                        },
+                        Usuario -> dao.findAllPageable(valor, pageNumber)
+                        );
 
         return declaracionJuradas;
 
