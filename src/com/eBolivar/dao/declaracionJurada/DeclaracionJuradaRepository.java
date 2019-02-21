@@ -12,6 +12,7 @@ import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
 import org.hibernate.*;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -185,6 +186,7 @@ public class DeclaracionJuradaRepository implements IDeclaracionJuradaRepository
                                         Restrictions.or(Restrictions.ilike("persona.apellido" , valor), Restrictions.ilike("persona.numeroDocumento", valor, MatchMode.ANYWHERE)))));
             }
 
+            criteria.addOrder(Order.desc("id"));
             criteria.setFirstResult((pageNumber - 1) * Pagination.MAX_PAGE );
             criteria.setMaxResults(Pagination.MAX_PAGE);
 
