@@ -70,6 +70,7 @@
                     <th>Rol</th>
                     <th></th>
                     <th></th>
+                    <th></th>
                 </tr>
                 </thead>
 
@@ -81,7 +82,7 @@
                             <td>${bo.apellido}</td>
                             <td>${bo.rol.nombre}</td>
                             <td><a class="btn btn-info" href="<c:url value='/webapp/personaAsociada/create?username=${bo.username}'/>"/>Asociar CUIT</td>
-                            <td><a class="btn btn-primary" href="<c:url value='/webapp/personaAsociada/add-location?username=${bo.username}'/>"/>Asociar Localidad</td>
+                            <td><a class="btn btn-primary" href="<c:url value='/webapp//personaAsociada/add-location?username=${bo.username}'/>"/>Asociar Localidad</td>
                             <td><a class="btn btn-success" href="<c:url value='/webapp/personaAsociada/list?username=${bo.username}'/>"/>CUIT's Asociados</td>
                         </tr>
                     </c:forEach>

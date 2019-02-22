@@ -30,9 +30,13 @@ import java.util.Objects;
 @Repository
 public class DeclaracionJuradaRepository implements IDeclaracionJuradaRepository{
 
-    @Autowired
-    @Qualifier("sessionFactoryJpa")
     private SessionFactory sessionFactory;
+
+    public DeclaracionJuradaRepository() { }
+
+    public DeclaracionJuradaRepository(@Qualifier("sessionFactoryJpa") SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public DeclaracionJurada get(Long id){

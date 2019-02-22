@@ -1,12 +1,15 @@
 package com.eBolivar.web.personaAsociada;
 
+import com.eBolivar.domain.Localidad;
 import com.eBolivar.domain.PadronAsociado;
 import com.eBolivar.domain.Persona;
 import com.eBolivar.domain.administradorCuenta.PersonaAsociada;
 import com.eBolivar.domain.rol.Rol;
 import com.eBolivar.domain.usuario.User;
+import com.eBolivar.domain.usuario.UsuarioLocalidad;
 import com.eBolivar.service.cuitPorTasa.CuitPorTasaService;
 import com.eBolivar.service.cuitPorTasa.interfaces.ICuitPorTasaService;
+import com.eBolivar.service.localidad.ILocalidadService;
 import com.eBolivar.service.persona.interfaces.IPersonaService;
 import com.eBolivar.service.personaAsociada.interfaces.IPersonaAsociadaService;
 import com.eBolivar.service.usuario.interfaces.IUsuarioService;
@@ -43,6 +46,9 @@ public class PersonaAsociadaController {
     @Autowired
     private ICuitPorTasaService cuitPorTasaService;
 
+    @Autowired
+    private ILocalidadService localidadService;
+
 
     @RequestMapping("save")
     public String save(@ModelAttribute PersonaAsociada personaAsociada, BindingResult result, RedirectAttributes redirectAttributes){
@@ -54,6 +60,13 @@ public class PersonaAsociadaController {
         redirectAttributes.addAttribute("username", personaAsociada.getAdministradorCuenta().getUsername());
 
         return "redirect:list";
+    }
+
+    @RequestMapping("add-location")
+    public String addLocation(@RequestParam String username, Model model){
+        model.addAttribute("usuario", usuarioService.get(username));
+
+        return "personaAsociada/add-location";
     }
 
     @RequestMapping("create")
@@ -70,10 +83,20 @@ public class PersonaAsociadaController {
         return "personaAsociada/list";
     }
 
-
     @ModelAttribute("personaAsociada")
     public PersonaAsociada getPersonaAsociada(){
         return new PersonaAsociada();
+    }
+
+    @ModelAttribute("usuarioLocalidad")
+    public UsuarioLocalidad getUsuarioLocalidad(){
+        return new UsuarioLocalidad();
+    }
+
+
+    @ModelAttribute("localidades")
+    public List<Localidad> getLocalidades(){
+        return localidadService.findAll();
     }
 
 }
