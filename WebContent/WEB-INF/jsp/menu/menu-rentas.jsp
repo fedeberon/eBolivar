@@ -36,7 +36,7 @@
 </head>
 <body>
 
-<div class="page-header">
+<div style="margin-bottom: 20px" class="page-header">
     <span>Administraci&oacute;n de padrones.</span>
 </div>
 
@@ -105,9 +105,25 @@
                 </div>
             </div>
         </div>
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img src="<c:url value='/img/notificaciones-logo.png'/>" class="mediana"/>
+                <div class="caption">
+                    <h3>Padrones Asociados a Email</h3>
+                    <button type="submit" class="btn btn-default" tabindex="6"><a href="<c:url value='/webapp/notificacionPadron/list'/>"/>
+                        <span class="glyphicon glyphicon-share-alt"></span>
+                        ir al listado
+                    </button>
+                    <button type="submit" class="btn btn-default" tabindex="6"><a href="<c:url value='/webapp/notificacionPadron/create'/>"/>
+                        <span class="glyphicon glyphicon-envelope"></span>
+                        nueva notificaci&oacute;n
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
+<%--webapp/notificacionPadron/search?mostrar=Padron:true,Nombre_Apellido:true,Email:true,Fecha_Alta:true,Tasa:true,Confirmado:true--%>
 </body>
 </html>
 

@@ -10,6 +10,8 @@ import java.util.StringTokenizer;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
@@ -18,13 +20,14 @@ import com.eBolivar.domain.NotificacionPadron;
 import com.eBolivar.service.NotificacionPadronServiceImpl;
 import com.eBolivar.service.TipoImpuestoServiceImpl;
 
+@Controller
 public class NotificacionPadronController  extends MultiActionController {
+
 
 	private NotificacionPadronServiceImpl notificacionPadronService;
 	private TipoImpuestoServiceImpl tipoImpuestoService;
-	
-	
-	
+
+
 	public void setTipoImpuestoService(TipoImpuestoServiceImpl tipoImpuestoService) {
 		this.tipoImpuestoService = tipoImpuestoService;
 	}
@@ -36,11 +39,7 @@ public class NotificacionPadronController  extends MultiActionController {
 	public void setNotificacionPadronService(NotificacionPadronServiceImpl notificacionPadronService) {
 		this.notificacionPadronService = notificacionPadronService;
 	}
-	
-	public ModelAndView list(HttpServletRequest req, HttpServletResponse res) {
-		ModelAndView mav = new ModelAndView("redirect:search?mostrar=Padron:true,Nombre_Apellido:true,Email:true,Fecha_Alta:true,Tasa:true,Confirmado:true");
-		return mav;
-	}
+
 	
 	public ModelAndView search(HttpServletRequest req, HttpServletResponse res) {
 		SearchObject search = new SearchObject();

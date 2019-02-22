@@ -83,10 +83,15 @@
         <property name="tipoImpuestoService" ref="tipoImpuestoService"/>
     </bean>
 
-    <bean name="/notificacionPadron/create"
-          class="com.eBolivar.web.notificacionPadron.NotificacionPadronFormController">
-        <property name="notificacionPadronService" ref="notificacionPadronService"/>
-        <property name="tipoImpuestoService" ref="tipoImpuestoService"/>
+    <!--<bean name="/notificacionPadron/create"-->
+          <!--class="com.eBolivar.web.notificacionPadron.NotificacionPadronFormController">-->
+        <!--<property name="notificacionPadronService" ref="notificacionPadronService"/>-->
+        <!--<property name="tipoImpuestoService" ref="tipoImpuestoService"/>-->
+        <!--<property name="validator" ref="validator"/>-->
+    <!--</bean>-->
+
+    <bean name="validator" class="com.eBolivar.validator.NotificacionPadronValidator">
+
     </bean>
 
     <bean name="/notificacionPadron/update"

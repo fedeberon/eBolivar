@@ -37,8 +37,8 @@
         <tbody>
         <tr valign="middle">
             <td align="center"><img style="float: left;" src="<c:url value='/img/institucional/logo-degradado-header.png'/>">
-
             </td>
+
             <td height="20px" align="center" style="width: 30%;">
             </td>
             <%--<td style="text-align: center;">--%>
