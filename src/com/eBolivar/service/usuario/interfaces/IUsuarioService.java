@@ -25,4 +25,5 @@ public interface IUsuarioService extends UserDetailsService {
     User getAutenticate();
 
     List<AdministradorCuenta> findAdministradorCuenta(String valor, Integer pageNumber);
+
 }
