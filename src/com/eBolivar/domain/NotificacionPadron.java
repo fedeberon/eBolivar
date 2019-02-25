@@ -4,21 +4,47 @@
 
 package com.eBolivar.domain;
 
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
+@Entity
+@Table(name = "NOTIFICACIONES_PADRONES")
 public class NotificacionPadron implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    @Id
+    @Column(name = "NP_ID")
     private Integer id;
+
+    @Column(name = "NP_PADRON")
     private String padron;
+
+    @Column(name = "NP_DIRECCION_ENVIO")
     private String direccionEnvio;
+
+    @Column(name = "NP_ESTADO")
     private String estado;
+
+    @Column(name = "NP_FECHA_ALTA")
     private Date fechaAlta;
+
+    @Column(name = "NP_CONFIRMADO")
     private String confirmado;
+
+    @Column(name = "NP_TASA")
     private String tasa;
+
+    @Column(name = "NP_NOMBRE_APELLIDO")
     private String nombreApellido;
+
+    @Column(name = "NP_DNI")
     private String dni;
+
+    @Column(name = "NP_TELEFONO")
     private String telefono;
 
 
@@ -124,8 +150,6 @@ public class NotificacionPadron implements Serializable {
         this.nombreApellido = nombreApellido;
     }
 
-    public static long getSerialversionuid() {
-        return serialVersionUID;
-    }
+
 
 }

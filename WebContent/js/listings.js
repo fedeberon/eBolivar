@@ -7,6 +7,10 @@ document.forms['formBuscar'].page.value=document.forms['formBuscar'].page.value*
 document.forms['formBuscar'].submit();
 }
 
+function cleanPageNumber(){
+    document.forms['formBuscar'].page.value=1;
+}
+
 function onlyNumber(evt)
 {
    var charCode = (evt.which) ? evt.which : event.keyCode

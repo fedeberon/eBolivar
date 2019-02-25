@@ -38,4 +38,6 @@ public interface IDeclaracionJuradaService {
     String getDateFromDeclaracionJurada(DeclaracionJurada declaracionJurada);
 
     String checkCurrentDay(DeclaracionJurada declaracionJurada);
+
+    List<DeclaracionJurada> findAllPageable(String valor, Integer pageNumber);
 }

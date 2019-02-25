@@ -1,5 +1,6 @@
 package com.eBolivar.dao.usuario.interfaces;
 
+import com.eBolivar.domain.DeclaracionJurada;
 import com.eBolivar.domain.administradorCuenta.AdministradorCuenta;
 import com.eBolivar.domain.usuario.User;
 import com.eBolivar.domain.usuario.Usuario;
@@ -14,7 +15,12 @@ public interface IUsuarioRepository {
 
     List<User> findAll();
 
+    List<User> findPageable(Integer pageNumber);
+
+    List<AdministradorCuenta> findAdministradorCuenta(String valor, Integer pageNumber);
+
     List<AdministradorCuenta> findAllAdministradoresDeCuenta();
 
     void updateLikeAdministradorDeCuenta(String username);
+
 }

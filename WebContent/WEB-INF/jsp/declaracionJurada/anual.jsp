@@ -48,6 +48,15 @@
             color: rgba(72, 151, 101, 0.34);
         }
 
+        .text-danger {
+            font-size: 14px !important;
+            color: red !important;
+        }
+
+        .text-secondary {
+            color: red !important;
+        }
+
 
     </style>
 
@@ -76,7 +85,7 @@
                 <div class="form-group">
                     <label>CUIT:</label>
                     <form:input path="persona.idPersona" cssClass="form-control" placeholder="Ingrese numero de CUIT sin guiones" maxlength="11"/>
-                    <form:errors cssClass="form-text text-muted red" path="persona.idPersona"/>
+                    <form:errors cssClass="text-secondary bg-danger" path="persona.idPersona"/>
                 </div>
 
                 <div class="form-group">
@@ -94,7 +103,7 @@
                 <div class="form-group">
                     <label>Padron:</label>
                     <form:input path="padron.numero" cssClass="form-control" placeholder="Ingrese numero de padron completando 8 digitos"/>
-                    <form:errors cssClass="form-text text-muted red" path="padron.numero"/>
+                    <form:errors cssClass="text-secondary bg-danger" path="padron.numero"/>
                 </div>
             </div>
 
@@ -114,7 +123,7 @@
 
                         <td colspan="3">
                             <form:select items="${tasas}" path="tasas[0].tasa.id" itemValue="id"/>
-                            <form:errors cssClass="form-text text-muted red" path="tasas[0].tasa.id"/>
+                            <form:errors cssClass="text-danger bg-danger" path="tasas[0].tasa.id"/>
                         </td>
                     </tr>
 
@@ -124,7 +133,7 @@
                                 <span>Base Imponible</span>
                                 <span class="input-group-addon">$</span>
                                 <form:input path="tasas[0].baseImponible" cssClass="inp-importes" data-toggle="tooltip" title="Base Imponible sobre la que se aplicara la alicuota"/>
-                                <form:errors cssClass="form-text text-muted red" path="tasas[0].baseImponible"/>
+                                <form:errors cssClass="text-danger bg-danger" path="tasas[0].baseImponible"/>
                             </div>
                         </td>
 
@@ -151,7 +160,7 @@
                         </td>
                         <td colspan="3">
                             <form:select items="${tasas}" path="tasas[1].tasa.id" itemValue="id"/>
-                            <form:errors cssClass="form-text text-muted red" path="tasas[1].tasa.id"/>
+                            <form:errors cssClass="text-danger bg-danger" path="tasas[1].tasa.id"/>
                         </td>
                     </tr>
 
@@ -187,7 +196,7 @@
                         </td>
                         <td colspan="3">
                             <form:select items="${tasas}" path="tasas[2].tasa.id" itemValue="id"/>
-                            <form:errors cssClass="form-text text-muted red" path="tasas[2].tasa.id"/>
+                            <form:errors cssClass="text-danger bg-danger" path="tasas[2].tasa.id"/>
                         </td>
                     </tr>
 
@@ -216,7 +225,7 @@
                     </tr>
 
 
-                    <tr><td colspan="4"><form:errors cssClass="form-text text-muted red" path="baseImponible"/></td></tr>
+                    <tr><td colspan="4"><form:errors cssClass="text-danger bg-danger" path="baseImponible"/></td></tr>
 
                     <tr>
                         <td></td>
@@ -277,28 +286,28 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <strong class="modal-title" id="exampleModalLabel">AVISO</strong>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Solicite su usuario y clave para presentar su Declaraci&oacute;n Jurada. Ya que a partir del 3er anticipo bimestral 2018, cuyo vencimiento tiene lugar el 20/7 sera obligatorio su utilizaci&oacute;n.</p>
-                <br>
-                <strong>CONTACTOS</strong>
-                <p>2314-415093</p>
-                <p>cnavarro@bolivar.gob.ar</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
-            </div>
-        </div>
-    </div>
-</div>
+<%--<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">--%>
+    <%--<div class="modal-dialog" role="document">--%>
+        <%--<div class="modal-content">--%>
+            <%--<div class="modal-header">--%>
+                <%--<strong class="modal-title" id="exampleModalLabel">AVISO</strong>--%>
+                <%--<button type="button" class="close" data-dismiss="modal" aria-label="Close">--%>
+                    <%--<span aria-hidden="true">&times;</span>--%>
+                <%--</button>--%>
+            <%--</div>--%>
+            <%--<div class="modal-body">--%>
+                <%--<p>Solicite su usuario y clave para presentar su Declaraci&oacute;n Jurada. Ya que a partir del 3er anticipo bimestral 2018, cuyo vencimiento tiene lugar el 20/7 sera obligatorio su utilizaci&oacute;n.</p>--%>
+                <%--<br>--%>
+                <%--<strong>CONTACTOS</strong>--%>
+                <%--<p>2314-415093</p>--%>
+                <%--<p>cnavarro@bolivar.gob.ar</p>--%>
+            <%--</div>--%>
+            <%--<div class="modal-footer">--%>
+                <%--<button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+    <%--</div>--%>
+<%--</div>--%>
 
 <jsp:include page="../bottom.jsp"/>
 </body>

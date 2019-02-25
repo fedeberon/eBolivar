@@ -14,6 +14,8 @@ public interface IUsuarioService extends UserDetailsService {
 
     List<User> findAll();
 
+    List<User> findPageable(Integer pageNumber);
+
     User get(String username);
 
     List<AdministradorCuenta> findAllAdministradoresDeCuenta();
@@ -21,4 +23,7 @@ public interface IUsuarioService extends UserDetailsService {
     void updateLikeAdministradorDeCuenta(String username);
 
     User getAutenticate();
+
+    List<AdministradorCuenta> findAdministradorCuenta(String valor, Integer pageNumber);
+
 }

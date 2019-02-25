@@ -12,6 +12,7 @@ import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
 import org.hibernate.*;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -132,6 +133,7 @@ public class DeclaracionJuradaRepository implements IDeclaracionJuradaRepository
         }
     }
 
+    @SuppressWarnings("Duplicates")
     @Override
     public List<DeclaracionJurada> find(String valor) {
         try (CloseableSession session = new CloseableSession(sessionFactory.openSession())) {
@@ -153,6 +155,41 @@ public class DeclaracionJuradaRepository implements IDeclaracionJuradaRepository
                                 Restrictions.or(Restrictions.ilike("persona.nombre", valor, MatchMode.ANYWHERE),
                                         Restrictions.or(Restrictions.ilike("persona.apellido" , valor), Restrictions.ilike("persona.numeroDocumento", valor, MatchMode.ANYWHERE)))));
             }
+
+            return criteria.list();
+
+        } catch (HibernateException e) {
+            throw e;
+        }
+    }
+
+    @Override
+    @SuppressWarnings("Duplicates")
+    public List<DeclaracionJurada> findAllPageable(String valor, Integer pageNumber) {
+        try (CloseableSession session = new CloseableSession(sessionFactory.openSession())) {
+            Criteria criteria = session.delegate().createCriteria(DeclaracionJurada.class);
+            criteria.createAlias("persona", "persona").createAlias("padron", "padron");
+            try{
+                Long id = Long.parseLong(valor);
+                criteria.add(
+                        Restrictions.or(
+                                Restrictions.ilike("padron.numero", valor, MatchMode.ANYWHERE),
+                                Restrictions.or(Restrictions.ilike("persona.nombre", valor, MatchMode.ANYWHERE),
+                                        Restrictions.or(Restrictions.ilike("persona.apellido" , valor),
+                                                Restrictions.or(Restrictions.eq("persona.idPersona", id), Restrictions.ilike("persona.numeroDocumento", valor, MatchMode.ANYWHERE))))));
+            }
+            catch (NumberFormatException e){
+                criteria.add(
+                        Restrictions.or(
+                                Restrictions.ilike("padron.numero", valor, MatchMode.ANYWHERE),
+                                Restrictions.or(Restrictions.ilike("persona.nombre", valor, MatchMode.ANYWHERE),
+                                        Restrictions.or(Restrictions.ilike("persona.apellido" , valor), Restrictions.ilike("persona.numeroDocumento", valor, MatchMode.ANYWHERE)))));
+            }
+
+            criteria.addOrder(Order.desc("id"));
+            criteria.setFirstResult((pageNumber - 1) * Pagination.MAX_PAGE );
+            criteria.setMaxResults(Pagination.MAX_PAGE);
+
             return criteria.list();
 
         } catch (HibernateException e) {

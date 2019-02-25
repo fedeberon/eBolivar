@@ -58,6 +58,10 @@ public class Domicilio  implements java.io.Serializable {
 
     public Domicilio() {}
 
+    public Domicilio(Persona persona) {
+        this.persona = persona;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -136,5 +140,10 @@ public class Domicilio  implements java.io.Serializable {
 
     public void setPersona(Persona persona) {
         this.persona = persona;
+    }
+
+    @Override
+    public String toString() {
+        return direccion;
     }
 }

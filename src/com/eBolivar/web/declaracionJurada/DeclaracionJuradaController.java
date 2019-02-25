@@ -104,11 +104,14 @@ public class DeclaracionJuradaController {
     public List<Tasa> getTasas(){return tasaService.findAll();}
 
     @RequestMapping(value = "save", method = RequestMethod.POST)
-    public String save(@ModelAttribute("ddjj") DeclaracionJurada declaracionJurada, BindingResult result, RedirectAttributes redirectAttributes) {
+    public String save(@ModelAttribute("ddjj") DeclaracionJurada declaracionJurada, BindingResult result, RedirectAttributes redirectAttributes, Model model) {
         declaracionJurada.getTasas().removeIf(tasaAsociada -> tasaAsociada.getTasa().getId() == Tasa.SIN_DATOS);
         declaracionJurada.setEstadoDeDeclaracionJurada(EstadoDeDeclaracionJurada.EN_PROCESO);
         this.validator.validate(declaracionJurada, result);
-        if (result.hasErrors()) return "declaracionJurada/create";
+        if (result.hasErrors()) {
+            model.addAttribute("anio", Arrays.asList(AnioEnum.A_2018));
+            return "declaracionJurada/create";
+        }
         DeclaracionJurada ddjj = declaracionJuradaService.save(declaracionJurada);
         redirectAttributes.addAttribute("id", ddjj.getId());
         try {
@@ -236,8 +239,10 @@ public class DeclaracionJuradaController {
     }
 
     @RequestMapping("buscar")
-    public String list(@RequestParam String valor, Model model) {
-        model.addAttribute("ddjj", declaracionJuradaService.find(valor));
+    public String list(@RequestParam String valor, @RequestParam(defaultValue = "1", required = false) Integer page, Model model) {
+        model.addAttribute("ddjjs", declaracionJuradaService.findAllPageable(valor, page));
+        model.addAttribute("valor", valor);
+        model.addAttribute("page", page);
 
         return "declaracionJurada/list";
 

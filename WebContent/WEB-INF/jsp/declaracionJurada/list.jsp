@@ -27,17 +27,15 @@
 
     <div class="row">
 
-        <form action="/rentas/webapp/ddjj/buscar" method="post">
+            <form:form action="../ddjj/buscar" modelAttribute="ddjj" method="post">
+                <div class="col-md-6">
+                    <input name="valor" value="${valor}" class="form-control" placeholder="Ingrese su b&uacute;squeda"/>
+                </div>
 
-            <div class="col-md-6">
-                <input name="valor" class="form-control" placeholder="Ingrese el valor a buscar"/>
-            </div>
-
-            <div class="col-md-3">
-                <button type="submit" class="btn btn-block btn-primary">Buscar</button>
-            </div>
-
-        </form>
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-block btn-primary">Buscar</button>
+                </div>
+            </form:form>
 
         <br/>
         <hr>
@@ -88,23 +86,66 @@
         <div class="col-xs-12">
 
             <sec:authorize access="hasRole('ROLE_MODULO_RENTAS')">
-                <div class="col-xs-2">
-                    <a href="<c:url value='/webapp/ddjj/list?page=${page - 1}'/>" class="btn btn-block btn-primary">Atras</a>
-                </div>
 
-                <div class="col-xs-2">
-                    <a href="<c:url value='/webapp/ddjj/list?page=${page + 1}'/>" class="btn btn-block btn-primary">Siguiente</a>
-                </div>
+                <c:choose>
+                    <c:when test="${page > 1}">
+                        <div class="col-xs-2">
+                            <a href="<c:url value='/webapp/ddjj/buscar?page=${page - 1}&valor=${valor}'/>" class="btn btn-block btn-primary">Atras</a>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="col-xs-2">
+                            <a class="btn btn-block btn-primary disabled" aria-disabled="true">Atras</a>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+
+                <c:choose>
+                    <c:when test="${not empty ddjjs && ddjjs.size() == 5}">
+                        <div class="col-xs-2">
+                            <a href="<c:url value='/webapp/ddjj/buscar?page=${page + 1}&valor=${valor}'/>" class="btn btn-block btn-primary">Siguiente</a>
+                        </div>
+                    </c:when>
+
+                    <c:otherwise>
+                        <div class="col-xs-2">
+                            <a class="btn btn-block btn-primary disabled" aria-disabled="true">Siguiente</a>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+
+
             </sec:authorize>
 
             <sec:authorize access="hasRole('ROLE_MODULO_CONTRIBUYENTE')">
-                <div class="col-xs-2">
-                    <a href="<c:url value='/webapp/ddjj/declaracionJurada/byPadronAsociado?idPadronAsociado=${padronAsociado.id}&page=${page - 1}'/>" class="btn btn-block btn-primary">Atras</a>
-                </div>
 
-                <div class="col-xs-2">
-                    <a href="<c:url value='/webapp/ddjj/declaracionJurada/byPadronAsociado?idPadronAsociado=${padronAsociado.id}&page=${page + 1}'/>" class="btn btn-block btn-primary">Siguiente</a>
-                </div>
+                <c:choose>
+                    <c:when test="${page > 1}">
+                        <div class="col-xs-2">
+                            <a href="<c:url value='/webapp/ddjj/declaracionJurada/byPadronAsociado?idPadronAsociado=${padronAsociado.id}&page=${page - 1}&valor=${valor}'/>" class="btn btn-block btn-primary">Atras</a>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="col-xs-2">
+                            <a class="btn btn-block btn-primary disabled" aria-disabled="true" >Atras</a>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+
+                <c:choose>
+                    <c:when test="${not empty ddjjs && ddjjs.size() == 5}">
+                        <div class="col-xs-2">
+                            <a href="<c:url value='/webapp/ddjj/declaracionJurada/byPadronAsociado?idPadronAsociado=${padronAsociado.id}&page=${page + 1}&valor=${valor}'/>" class="btn btn-block btn-primary">Siguiente</a>
+                        </div>
+                    </c:when>
+
+                    <c:otherwise>
+                        <div class="col-xs-2">
+                            <a class="btn btn-block btn-primary disabled" aria-disabled="true">Siguiente</a>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+
             </sec:authorize>
 
                 <c:if test='${not empty ddjjs}'>

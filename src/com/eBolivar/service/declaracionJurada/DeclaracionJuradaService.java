@@ -153,4 +153,10 @@ public class DeclaracionJuradaService implements IDeclaracionJuradaService{
         }
     }
 
+
+    @Override
+    public List<DeclaracionJurada> findAllPageable(String valor, Integer pageNumber){
+        return dao.findAllPageable(valor, pageNumber);
+    }
+
 }

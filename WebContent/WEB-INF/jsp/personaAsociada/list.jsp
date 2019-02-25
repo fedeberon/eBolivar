@@ -4,6 +4,8 @@
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib uri="http://localhost:8008/rentas/functions" prefix="f" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <jsp:include page="../header.jsp"/>
 <html>
 <head>
@@ -40,7 +42,8 @@
                 <tr>
                     <th>CUIT</th>
                     <th>Nombre</th>
-                    <th></th>
+                    <th>Direcci&oacute;n</th>
+                    <th>-</th>
                 </tr>
                 </thead>
 
@@ -57,6 +60,23 @@
                         <tr>
                             <td>${bo.persona.idPersona}</td>
                             <td>${bo.persona.nombre} ${bo.persona.apellido}</td>
+                            <td>
+
+                            <c:choose>
+
+                                <c:when test="${fn:length(bo.persona.domicilio) == 0 }">
+                                    Sin Domicilio
+                                </c:when>
+
+                                <c:otherwise>
+                                    ${bo.persona.domicilio}
+                                </c:otherwise>
+
+                            </c:choose>
+
+
+
+                            </td>
                             <%--<td><a href="<c:url value='/webapp/ddjj/declaracionJurada/byPersona?cuit=${bo.persona.idPersona}'/>">Ver</a></td>--%>
                             <td><a class="btn btn-info" href="<c:url value='/webapp/padron/byPersona?idPersona=${bo.persona.id}'/>">Padrones</a></td>
                         </tr>

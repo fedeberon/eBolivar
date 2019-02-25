@@ -1,5 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <jsp:include page="../header.jsp"/>
 <html>
 <head>
@@ -14,8 +16,16 @@
 
 <div class="container">
     <div class="row">
-
         <div class="col-md-12">
+
+            <spring:hasBindErrors name="padronAsociado">
+                <div class="errorBox">
+                        <c:forEach items="${errors.allErrors}" var="error">
+                            <b style="color: red">${error.defaultMessage}</b>
+                        </c:forEach>
+                </div>
+            </spring:hasBindErrors>
+
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#home">Datos del Contribuyente</a></li>
                 <li><a data-toggle="tab" href="#menu1">Padrones Asociados</a></li>
@@ -53,8 +63,6 @@
                             <th scope="row">D.N.I.</th>
                             <td>${persona.numeroDocumento}</td>
                         </tr>
-
-
                         </tbody>
                     </table>
 
@@ -65,23 +73,19 @@
                     <table class="table table-hover">
                         <thead>
                         <tr>
-                            <th colspan="2">Padrones Asociados</th>
-                        </tr>
-                        <tr>
                             <th>Numero</th>
                             <th>Tipo de Tasa</th>
+                            <th></th>
                         </tr>
-
-
                         </thead>
-
-
                         <tbody>
-
                         <c:forEach items="${padronesAsociados}" var="bo">
                             <tr>
                                 <td style="text-align: center">${bo.padron.numero}</td>
                                 <td style="text-align: center">${bo.padron.tipoImpuesto.nombre}</td>
+                                <td style="text-align: center">
+                                    <a href="<c:url value='/webapp/personas/desasociarPadron?id=${bo.id}'/>">desasociar</a>
+                                </td>
                             </tr>
 
                         </c:forEach>
@@ -121,7 +125,6 @@
                                 <th scope="row">Tipo de Domicilio</th>
                                 <td>${domicilio.tipoDomicilio}</td>
                             </tr>
-
                             <tr>
                                 <td colspan="2">
                                     <hr>
@@ -143,17 +146,19 @@
 
 </div>
 
+
+
 <div id='botonera'>
     <a href="javascript:history.back()" class="btn btn-default">Volver</a>
     <a href="#" class="verificarPadron btn btn-default">Agregar Padron</a>
 </div>
 
 
-<div id="modal-verificar-numero-padron" title="Ingrese el numero de Padron.">
-    <form action="../personas/agregarPadronAPersona" id="form-asociar-padron-persona">
-        <input type="hidden" name="idPersona" value="${persona.id}">
-        <input type="text" name="idPadron" placeholder="Ingrese el Padron">
-    </form>
+<div id="modal-verificar-numero-padron" title="Ingrese el numero de Padron">
+    <form:form action="asociarPadron" id="form-asociar-padron-persona" method="post" commandName="padronAsociado">
+        <input type="hidden" name="persona.id" value="${persona.id}"/>
+        <form:input path="padron.numero" placeholder="Ingrese el Padron"/>
+    </form:form>
 </div>
 
 <jsp:include page="../impuesto/alertas/alertas.jsp"/>
