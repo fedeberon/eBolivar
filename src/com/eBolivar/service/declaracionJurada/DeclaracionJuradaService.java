@@ -2,19 +2,20 @@ package com.eBolivar.service.declaracionJurada;
 
 import com.eBolivar.bean.FormatoUtil;
 import com.eBolivar.dao.declaracionJurada.interfaces.IDeclaracionJuradaRepository;
-import com.eBolivar.domain.DeclaracionJurada;
-import com.eBolivar.domain.Padron;
-import com.eBolivar.domain.Persona;
-import com.eBolivar.domain.TasaAsociada;
-import com.eBolivar.enumeradores.EstadoDeDeclaracionJurada;
+import com.eBolivar.domain.*;
+import com.eBolivar.domain.administradorCuenta.AdministradorCuenta;
+import com.eBolivar.domain.usuario.User;
 import com.eBolivar.service.declaracionJurada.interfaces.IDeclaracionJuradaService;
 import com.eBolivar.service.padron.interfaces.IPadronService;
 import com.eBolivar.service.persona.interfaces.IPersonaService;
+import com.eBolivar.service.usuario.interfaces.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.ServletOutputStream;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -32,6 +33,9 @@ public class DeclaracionJuradaService implements IDeclaracionJuradaService{
     @Autowired
     private IPadronService padronService;
 
+    @Autowired
+    private IUsuarioService usuarioService;
+
     @Override
     public DeclaracionJurada get(Long id){
         return dao.get(id);
@@ -47,8 +51,10 @@ public class DeclaracionJuradaService implements IDeclaracionJuradaService{
         Persona persona = personaService.getByCUIT(declaracionJurada.getPersona().getIdPersona().toString());
         declaracionJurada.setPersona(persona);
         Padron padron = padronService.getByNumero(declaracionJurada.getPadron().getNumero());
+        User presentadaPor = usuarioService.getAutenticate();
         declaracionJurada.setPadron(padron);
         declaracionJurada.setFecha(LocalDateTime.now());
+        declaracionJurada.setPresentadaPor(presentadaPor);
 
         return dao.save(declaracionJurada);
     }
@@ -103,10 +109,54 @@ public class DeclaracionJuradaService implements IDeclaracionJuradaService{
         return dao.find(valor);
     }
 
+    @Override
+    public List<DeclaracionJurada> getByPersona(Persona persona) {
+        return dao.getByPersona(persona);
+    }
+
+    @Override
+    public void imprimirAcuseDeRecibo(DeclaracionJurada declaracionJurada, ServletOutputStream outputStream) {
+        dao.imprimirAcuseDeRecibo(declaracionJurada, outputStream);
+    }
+
+    @Override
+    public List<DeclaracionJurada> getByPadronAsociado(PadronAsociado padronAsociado, Integer page) {
+        return dao.getByPadronAsociado(padronAsociado, page);
+    }
+
     private void descontarDeduccionesSobreBaseImponible(DeclaracionJurada declaracionJurada){
         declaracionJurada.getTasas().forEach(o -> o.setBaseImponible(o.getBaseImponible() - o.getDeduccionArticulo90() - o.getDeduccionArticulo89()));
     }
 
+    /**
+     * Return boolen if DeclaracionJurada is before yesterday same time
+     * @param declaracionJurada
+     * @return
+     */
+    @Override
+    public Boolean isBeforeOneDaysAgo(DeclaracionJurada declaracionJurada){
+        return declaracionJurada.getFecha().isBefore(LocalDateTime.now().minusDays(1));
+    }
 
+    @Override
+    public String getDateFromDeclaracionJurada(DeclaracionJurada declaracionJurada){
+        DateTimeFormatter dTF = DateTimeFormatter.ofPattern("HH:mm");
+        return declaracionJurada.getFecha().plusDays(1).format(dTF);
+    }
+
+    @Override
+    public String checkCurrentDay(DeclaracionJurada declaracionJurada){
+        if(declaracionJurada.getFecha().getDayOfMonth() == LocalDateTime.now().getDayOfMonth()){
+            return "ma&ntilde;ana";
+        } else {
+            return "hoy";
+        }
+    }
+
+
+    @Override
+    public List<DeclaracionJurada> findAllPageable(String valor, Integer pageNumber){
+        return dao.findAllPageable(valor, pageNumber);
+    }
 
 }

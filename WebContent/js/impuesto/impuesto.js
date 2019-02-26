@@ -128,7 +128,7 @@ $(document).ready(function () {
                 text: "Enviar",
                 click: function () {
                     $("#form-envio-mail").submit();
-                } 
+                }
             },
             3: {
                 id:'btn-asociar-tasa',
@@ -183,7 +183,7 @@ $(document).ready(function () {
                     var padron = formulario.find("input[name=padron]");
                     var numeroDeCuit = formulario.find("input[name=numeroCuit]");
                     var leyenda = formulario.find("input[name=leyenda]");
-                    $.get("/rentas/webapp/tasas/guardarCuitAsociadoAlUsuario/" + padron.val() + "/" + numeroDeCuit.val() + "/" + leyenda.val())
+                    $.get("../tasas/guardarCuitAsociadoAlUsuario/" + padron.val() + "/" + numeroDeCuit.val() + "/" + leyenda.val())
                         .done(function() {
                             var alertaMensajeExitoso = $('#alertaMensajeExitoso');
                             alertaMensajeExitoso.html("Gracias por actualizar sus datos.");
@@ -230,29 +230,7 @@ $(document).ready(function () {
                 id:'btn-verificar',
                 text:'Guardar',
                 click: function(){
-                    var formulario = $('form#form-asociar-padron-persona');
-                    var padron = formulario.find("input[name=padron]");
-                    $.get("/rentas/webapp/tasas/verificarPadron/" + padron.val())
-                        .done(function(data) {
-                            $('#alertaMensajeDeError').empty();
-                            if(data){
-                                console.log(data);
-                                formulario.submit();
-                            }
-                            else {
-                                var alertaMensajeDeError = $('#alertaMensajeDeError');
-                                alertaMensajeDeError.html("No se encontr&oacute; el Padr&oacute;n.<br/> Intente nuevamente.");
-                                alertaMensajeDeError.show();
-                                formulario.append(alertaMensajeDeError);
-                            }
-                            
-                        })
-                        .fail(function() {
-                            var alertaMensajeDeError = $('#alertaMensajeDeError');
-                            alertaMensajeDeError.html("Hubo un problema al intentar buscar el Padron. Intente nuevamente.");
-                            alertaMensajeDeError.show();
-                            formulario.append(alertaMensajeDeError);
-                        });
+                    $('form#form-asociar-padron-persona').submit();
                 },
             },
             2: {
@@ -301,8 +279,8 @@ $(document).keypress(function(e) {
 
 function verificarCuitDePadron(padron, leyendaDelTributo) {
     $.ajax({
-            url: "/rentas/webapp/tasas/verificarCuitAsociado/" + padron,
-        })
+        url: "../tasas/verificarCuitAsociado/" + padron,
+    })
         .done(function (data) {
             if (!data) {
                 var formulario = $('#form-carga-numero-cuit');
@@ -317,8 +295,8 @@ function verificarCuitDePadron(padron, leyendaDelTributo) {
 
 function verificarCuitDePadronPorFactura(idFactura){
     $.ajax({
-            url: "/rentas/webapp/tasas/verificarCuitAsociadoPorFactura/" + idFactura,
-        })
+        url: "../tasas/verificarCuitAsociadoPorFactura/" + idFactura,
+    })
         .done(function( data ) {
             if (!data) {
                 var formulario = $('#form-carga-numero-cuit');
@@ -334,7 +312,7 @@ function verificarCuitDePadronPorFactura(idFactura){
 function crearTablaDeTasas(padron){
     loading();
 
-    $.getJSON('/rentas/webapp/tasas/' + padron , function(data) {
+    $.getJSON('../tasas/' + padron , function(data) {
         var table = $("#tablaTasas");
 
         $.each(data, function(i) {
@@ -364,7 +342,7 @@ function crearTablaDeTasas(padron){
             var td = $("<td>");
             td.append(obtenerElementoParaDetalleDeTasas(data[i].idFactura));
             tr.append(td);
-            
+
             var td = $("<td>");
             td.append(obtenerElementoParaDescargarTasa(data[i].idFactura + '_' + data[i].leyendaTributo));
             tr.append(td);
@@ -409,21 +387,21 @@ function  mostrarDetalleDeTasa(id){
         $('#alertaMensajeInfo').show();
         return;
     }
-    
+
     div_info_tasas.empty();
-    $.getJSON('/rentas/webapp/tasas/notificaciones/' + id , function(data) {
+    $.getJSON('../tasas/notificaciones/' + id , function(data) {
         success : div_info_tasas.dialog( "open" ),
             div_info_tasas.append("<h4>Notificaciones de Padron</h4>");
-            $.each(data, function(i) {
-                var li = $("<li>");
-                li.append(data[i].notificacion);
-                div_info_tasas.append(li);
-            });
+        $.each(data, function(i) {
+            var li = $("<li>");
+            li.append(data[i].notificacion);
+            div_info_tasas.append(li);
+        });
     }).always(function() {
         div_info_tasas.append($('<hr>'));
     });
 
-    $.getJSON('/rentas/webapp/tasas/detalles/' + id , function(data) {
+    $.getJSON('../tasas/detalles/' + id , function(data) {
         div_info_tasas.append("<h4>Detalle de Tasa</h4>");
         $.each(data, function(i) {
             var li = $("<li>");
@@ -441,7 +419,7 @@ function crearDialogParaEnviarMail(id) {
     var input_id_factura = formulario.find("input[name=idFactura]");
     var input_padron = formulario.find("input[name=padron]");
     var leyenda_tributo = formulario.find("input[name=leyendaDelTributo]");
-    
+
     var idFactura = id.substring(0, id.indexOf("-"));
     var padron = id.substring(id.indexOf("-") + 1 , id.indexOf("_"));
     var leyendaDelTibuto = id.substring(id.indexOf("_") + 1 , id.length);
@@ -449,7 +427,7 @@ function crearDialogParaEnviarMail(id) {
     input_padron.attr('value', padron);
     input_id_factura.attr('value', idFactura);
     leyenda_tributo.attr('value', leyendaDelTibuto);
-    
+
     formulario.show();
     modal_envioDeMail.append(formulario);
     modal_envioDeMail.dialog("open");

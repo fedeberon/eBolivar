@@ -4,19 +4,24 @@ import com.eBolivar.bean.Pagination;
 import com.eBolivar.dao.CloseableSession;
 import com.eBolivar.dao.declaracionJurada.interfaces.IDeclaracionJuradaRepository;
 import com.eBolivar.domain.DeclaracionJurada;
+import com.eBolivar.domain.PadronAsociado;
 import com.eBolivar.domain.Persona;
+import com.eBolivar.enumeradores.PeriodoEnum;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
 import org.hibernate.*;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Repository;
 
 import javax.servlet.ServletOutputStream;
 import java.io.File;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -82,9 +87,12 @@ public class DeclaracionJuradaRepository implements IDeclaracionJuradaRepository
     public void export(DeclaracionJurada declaracionJurada, ServletOutputStream outputStream) {
         Map<String, Object> map = new HashMap();
         map.put("idDeclaracionJurada", declaracionJurada.getId());
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/YYYY HH:mm");
+        map.put("fecha", declaracionJurada.getFecha().format(dateTimeFormatter) + " hs.");
         JasperReport reporte ;
         try {
-            reporte = (JasperReport) JRLoader.loadObject(new File("/actualizaciones/ddjj.jasper"));
+            String file = declaracionJurada.getPeriodo().equals(PeriodoEnum.ANUAL) ? "/ddjj-anual.jasper" : "/ddjj.jasper";
+            reporte = (JasperReport) JRLoader.loadObject(new File("/actualizaciones" + file));
             JasperPrint jp = this.crearPrint(reporte, map);
             JRPdfExporter pdfExporter = new JRPdfExporter();
             pdfExporter.setParameter(JRExporterParameter.JASPER_PRINT, jp);
@@ -125,6 +133,7 @@ public class DeclaracionJuradaRepository implements IDeclaracionJuradaRepository
         }
     }
 
+    @SuppressWarnings("Duplicates")
     @Override
     public List<DeclaracionJurada> find(String valor) {
         try (CloseableSession session = new CloseableSession(sessionFactory.openSession())) {
@@ -146,9 +155,90 @@ public class DeclaracionJuradaRepository implements IDeclaracionJuradaRepository
                                 Restrictions.or(Restrictions.ilike("persona.nombre", valor, MatchMode.ANYWHERE),
                                         Restrictions.or(Restrictions.ilike("persona.apellido" , valor), Restrictions.ilike("persona.numeroDocumento", valor, MatchMode.ANYWHERE)))));
             }
+
             return criteria.list();
 
         } catch (HibernateException e) {
+            throw e;
+        }
+    }
+
+    @Override
+    @SuppressWarnings("Duplicates")
+    public List<DeclaracionJurada> findAllPageable(String valor, Integer pageNumber) {
+        try (CloseableSession session = new CloseableSession(sessionFactory.openSession())) {
+            Criteria criteria = session.delegate().createCriteria(DeclaracionJurada.class);
+            criteria.createAlias("persona", "persona").createAlias("padron", "padron");
+            try{
+                Long id = Long.parseLong(valor);
+                criteria.add(
+                        Restrictions.or(
+                                Restrictions.ilike("padron.numero", valor, MatchMode.ANYWHERE),
+                                Restrictions.or(Restrictions.ilike("persona.nombre", valor, MatchMode.ANYWHERE),
+                                        Restrictions.or(Restrictions.ilike("persona.apellido" , valor),
+                                                Restrictions.or(Restrictions.eq("persona.idPersona", id), Restrictions.ilike("persona.numeroDocumento", valor, MatchMode.ANYWHERE))))));
+            }
+            catch (NumberFormatException e){
+                criteria.add(
+                        Restrictions.or(
+                                Restrictions.ilike("padron.numero", valor, MatchMode.ANYWHERE),
+                                Restrictions.or(Restrictions.ilike("persona.nombre", valor, MatchMode.ANYWHERE),
+                                        Restrictions.or(Restrictions.ilike("persona.apellido" , valor), Restrictions.ilike("persona.numeroDocumento", valor, MatchMode.ANYWHERE)))));
+            }
+
+            criteria.addOrder(Order.desc("id"));
+            criteria.setFirstResult((pageNumber - 1) * Pagination.MAX_PAGE );
+            criteria.setMaxResults(Pagination.MAX_PAGE);
+
+            return criteria.list();
+
+        } catch (HibernateException e) {
+            throw e;
+        }
+    }
+
+    @Override
+    public void imprimirAcuseDeRecibo(DeclaracionJurada declaracionJurada, ServletOutputStream outputStream) {
+        Map<String, Object> map = new HashMap();
+        map.put("idDeclaracionJurada", declaracionJurada.getId());
+        JasperReport reporte;
+        try {
+            reporte = (JasperReport) JRLoader.loadObject(new File("/actualizaciones/acuseReciboDDJJ.jasper"));
+            JasperPrint jp = this.crearPrint(reporte, map);
+            JRPdfExporter pdfExporter = new JRPdfExporter();
+            pdfExporter.setParameter(JRExporterParameter.JASPER_PRINT, jp);
+            pdfExporter.setParameter(JRExporterParameter.OUTPUT_STREAM, outputStream);
+            pdfExporter.exportReport();
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public List<DeclaracionJurada> getByPadronAsociado(PadronAsociado padronAsociado, Integer pageNumber) {
+        try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
+            Query query = session.delegate().createQuery("from DeclaracionJurada where padron = :padron and persona = :persona order by id desc");
+            query.setParameter("padron", padronAsociado.getPadron());
+            query.setParameter("persona", padronAsociado.getPersona());
+            query.setFirstResult((pageNumber - 1) * Pagination.MAX_PAGE );
+            query.setMaxResults(Pagination.MAX_PAGE);
+
+            return query.list();
+        }
+        catch (HibernateException e){
+            throw e;
+        }
+    }
+
+    @Override
+    public List<DeclaracionJurada> getByPersona(Persona persona) {
+        try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
+            Query query = session.delegate().createQuery("from DeclaracionJurada where persona = :persona order by id desc");
+            query.setParameter("persona", persona);
+
+            return query.list();
+        }
+        catch (HibernateException e){
             throw e;
         }
     }

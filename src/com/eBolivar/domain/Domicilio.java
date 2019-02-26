@@ -21,6 +21,7 @@ public class Domicilio  implements java.io.Serializable {
 
     @Id
     @Column(name = "DOM_ID")
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
 
     @XmlElement
@@ -56,6 +57,10 @@ public class Domicilio  implements java.io.Serializable {
     private Persona persona;
 
     public Domicilio() {}
+
+    public Domicilio(Persona persona) {
+        this.persona = persona;
+    }
 
     public Integer getId() {
         return id;
@@ -135,5 +140,10 @@ public class Domicilio  implements java.io.Serializable {
 
     public void setPersona(Persona persona) {
         this.persona = persona;
+    }
+
+    @Override
+    public String toString() {
+        return direccion;
     }
 }

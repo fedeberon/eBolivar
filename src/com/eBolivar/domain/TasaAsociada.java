@@ -1,5 +1,6 @@
 package com.eBolivar.domain;
 
+
 import javax.persistence.*;
 
 @Entity
@@ -28,7 +29,7 @@ public class TasaAsociada {
     @Column(name = "TASA_DEDUC_ART_90")
     private Double deduccionArticulo90 = 0.0;
 
-    @Column(name = "TASA_BASE_IMPONIBLE")
+    @Column(name = "TASA_BASE_IMPONIBLE", precision = 10, scale = 2)
     private Double baseImponible = 0.0;
 
     public DeclaracionJurada getDeclaracionJurada() {

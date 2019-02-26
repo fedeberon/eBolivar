@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%@ page import="org.springframework.security.context.SecurityContextHolder" %>
+<%--<%@ page import="org.springframework.security.context.SecurityContextHolder" %>--%>
 
-<!-- <div class="container"> -->
+        <!-- <div class="container"> -->
 
+<sec:authentication var="user" property="principal" />
 
 <jsp:include page="mensajes.jsp" />
 
@@ -59,14 +60,31 @@
                <%--<a href="<c:url value='/webapp/guiaTramite/list'/>">--%>
                    <%--GUIA DE TRAMITES</a>--%>
            <%--</li>--%>
-           <li id="ddjj" >
-               <a href="#" class="dropdown-toggle" data-toggle="dropdown">DECLARACION JURADA&nbsp;<span class="caret"></span></a>
-               <ul class="dropdown-menu" role="menu">
-                   <li><a href="<c:url value='/webapp/ddjj/create'/>">Nueva</a></li>
-                   <li class="divider"></li>
-                   <li><a href="<c:url value='/webapp//ddjj/formularioBuscar/'/>">Reimprimir</a></li>
-               </ul>
-           </li>
+
+           <%--<sec:authorize access="!isAuthenticated()">--%>
+               <%--<li id="ddjj" >--%>
+                   <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown">DECLARACION JURADA&nbsp;<span class="caret"></span></a>--%>
+                   <%--<ul class="dropdown-menu" role="menu">--%>
+                       <%--<li><a href="<c:url value='/webapp/ddjj/create'/>">Bimestral</a></li>--%>
+                       <%--<li class="divider"></li>--%>
+                       <%--<li><a href="<c:url value='/webapp/ddjj/anual'/>">Nueva Anual</a></li>--%>
+                       <%--<li class="divider"></li>--%>
+                       <%--<li><a href="<c:url value='/webapp//ddjj/declaracionJuradaAnteriores?anio=2016'/>">DDJJ 2016</a></li>--%>
+                       <%--<li class="divider"></li>--%>
+                       <%--<li><a href="<c:url value='/webapp//ddjj/declaracionJuradaAnteriores?anio=2017'/>">DDJJ 2017</a></li>--%>
+
+                   <%--</ul>--%>
+               <%--</li>--%>
+           <%--</sec:authorize>--%>
+
+           <sec:authorize access="isAuthenticated()">
+               <sec:authorize access="hasRole('ROLE_MODULO_CONTRIBUYENTE')">
+
+                    <li id="cuit" ><a href="<c:url value='/webapp/personaAsociada/list?username=${user.username}'/>">CUIT's ASOCIADOS</a></li>
+
+               </sec:authorize>
+           </sec:authorize>
+
            <li id="padronAsociado" >
                <a href="<c:url value='/webapp//padron/asociarPadronACUIT'/>">
                     ASOCIAR CUIT  PADRON</a>
@@ -77,43 +95,80 @@
        </ul>
 
        <ul class="nav navbar-nav navbar-right">
-           <c:choose>
-           <c:when test="<%=SecurityContextHolder.getContext().getAuthentication().getName().equalsIgnoreCase(\"roleAnonymous\")%>">
-           <li>
-               <a href="<c:url value='/webapp/login'/>">
-                   <!-- 		        	<img width= "20px;" height="20px" src="/img/icons/1409252490_30.User-128.png"/> -->
-                   Ingresar</a>
-           </li>
-           </c:when>
-           <c:otherwise>
-           <li class="dropdown">
-               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                   <%=SecurityContextHolder.getContext().getAuthentication().getName()%>
-                   <span class="caret"></span>
-               </a>
-               <ul class="dropdown-menu" role="menu">
-                   <li><a href="../banner/list">Banners</a></li>
-                   <li class="divider"></li>
-                   <li><a href="<c:url value='/webapp/impuesto/actualizaciones'/>">Cargar Tasas</a></li>
-                   <li class="divider"></li>
-                   <li><a style="color: #555" href="<c:url value='/webapp/notificacionPadron/list'/>">Notificaciones por mail<label id="padronesParaActualiazar"/> </a></li>
-                   <li class="divider"></li>
-                   <li><a style="color: #555" href="<c:url value='/webapp/espacio/list'/>">Espacios <label id="espacios"/> </a></li>
-                   <li class="divider"></li>
-                   <li><a style="color: #555" href="<c:url value='/webapp/espacio/maps'/>">Mapa <label id="mapa"/> </a></li>
-                   <li class="divider"></li>
-                   <li> <a href="<c:url value='/webapp/rentas/menu'/>"> ADMINISTRACION</a> </li>
-                   <li class="divider"></li>
-                   <li><a style="color: #555" href="<c:url value='/webapp/ddjj/list'/>">DDJJ<label/> </a></li>
-                   <li class="divider"></li>
-                   <li><a href="<c:url value='/webapp/logout'/>"> Logout</a></li>
-               </ul>
-           </li>
-           </c:otherwise>
-           </c:choose>
 
 
-       </c:otherwise>
+           <sec:authorize access="!isAuthenticated()">
+                   <li>
+                       <a href="<c:url value='/webapp/login'/>">
+                           Ingresar</a>
+                   </li>
+           </sec:authorize>
+
+           <sec:authorize access="isAuthenticated()">
+
+               <sec:authorize access="hasRole('ROLE_MODULO_RENTAS')">
+                    <li class="dropdown">
+                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                           ${user.username}
+                           <span class="caret"></span>
+                       </a>
+                       <ul class="dropdown-menu" role="menu">
+                           <li><a href="../banner/list">Banners</a></li>
+                           <li class="divider"></li>
+                           <%--<li><a href="<c:url value='/webapp/impuesto/actualizaciones'/>">Cargar Tasas</a></li>--%>
+                           <%--<li class="divider"></li>--%>
+                           <%--<li><a style="color: #555" href="<c:url value='/webapp/notificacionPadron/list'/>">Notificaciones por mail<label id="padronesParaActualiazar"/> </a></li>--%>
+                           <%--<li class="divider"></li>--%>
+                           <%--<li><a style="color: #555" href="<c:url value='/webapp/espacio/list'/>">Espacios <label id="espacios"/> </a></li>--%>
+                           <%--<li class="divider"></li>--%>
+                           <%--<li><a style="color: #555" href="<c:url value='/webapp/espacio/maps'/>">Mapa <label id="mapa"/> </a></li>--%>
+                           <%--<li class="divider"></li>--%>
+                           <li> <a href="<c:url value='/webapp/rentas/menu'/>"> ADMINISTRACION</a> </li>
+                           <li class="divider"></li>
+                           <li><a style="color: #555" href="<c:url value='/webapp/ddjj/list'/>">DDJJ<label/> </a></li>
+                           <li class="divider"></li>
+                           <sec:authorize access="hasRole('ROLE_CARGAR_USUARIOS')">
+                               <li><a style="color: #555" href="<c:url value='/webapp/usuario/create'/>">Crear Usuario<label/> </a></li>
+                               <li class="divider"></li>
+                               <li><a style="color: #555" href="<c:url value='/webapp/usuario/list'/>">Lista de Usuarios<label/> </a></li>
+                               <li class="divider"></li>
+                               <li><a style="color: #555" href="<c:url value='/webapp/usuario/list/administradorDeCuenta'/>">Administradores Cuenta<label/> </a></li>
+                               <li class="divider"></li>
+                               <li><a style="color: #555" href="<c:url value='/webapp/personas/create'/>">Nueva Persona<label/> </a></li>
+                               <li class="divider"></li>
+                               <li><a style="color: #555" href="<c:url value='/webapp/personas/list'/>">Personas<label/> </a></li>
+                               <li class="divider"></li>
+                               <li><a style="color: #555" href="<c:url value='/webapp/padron/create'/>">Cargar Padron<label/> </a></li>
+                               <li class="divider"></li>
+                           </sec:authorize>
+                           <li><a href="<c:url value='/webapp/logout'/>"> Logout</a></li>
+                           <li class="divider"></li>
+                           <li><a href="#"> <sec:authentication property="principal" /></a></li>
+                       </ul>
+                    </li>
+               </sec:authorize>
+
+
+               <sec:authorize access="hasRole('ROLE_MODULO_CONTRIBUYENTE')">
+                   <li class="dropdown">
+                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            ${user.username}
+                           <span class="caret"></span>
+                       </a>
+                       <ul class="dropdown-menu" role="menu">
+                           <li class="divider"></li>
+                           <li><a href="<c:url value='/webapp/personaAsociada/list?username=${user.username}'/>">CUIT's ASOCIADOS</a></li>
+                           <li class="divider"></li>
+                           <li><a href="<c:url value='/webapp/logout'/>">Logout</a></li>
+                           <li class="divider"></li>
+                           <li><a href="#"> <sec:authentication property="principal" /></a></li>
+                       </ul>
+                   </li>
+               </sec:authorize>
+
+           </sec:authorize>
+        </ul>
+   </c:otherwise>
 
    		</c:choose>
 

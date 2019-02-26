@@ -1,16 +1,21 @@
 package com.eBolivar.service.cuitPorTasa.interfaces;
 
+import com.eBolivar.domain.Padron;
 import com.eBolivar.domain.PadronAsociado;
+import com.eBolivar.domain.Persona;
+import java.util.List;
 
-/**
- * Created by Fede Beron on 27/2/2017.
- */
-public interface ICuitPorTasaService {
-    boolean isCuitAsociadoAPadron(String padron);
+public abstract interface ICuitPorTasaService
+{
+    public abstract boolean isCuitAsociadoAPadron(String paramString);
 
-    PadronAsociado save(PadronAsociado padronAsociado);
+    public abstract PadronAsociado save(PadronAsociado paramPadronAsociado);
 
-    boolean exist(PadronAsociado padronAsociado);
+    public abstract boolean exist(PadronAsociado paramPadronAsociado);
 
-    PadronAsociado get(Integer id);
+    public abstract PadronAsociado get(Integer paramInteger);
+
+    public abstract Padron getByNumero(String paramString);
+
+    public abstract List<PadronAsociado> byPersona(Persona paramPersona);
 }

@@ -6,6 +6,9 @@ import javax.persistence.*;
 @Table(name = "PADRONES")
 public class Padron {
 
+
+    public static Integer SEGURIDAD_E_HIGIENE = 15;
+
     @Id
     @Column(name = "PAD_ID")
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -48,6 +51,13 @@ public class Padron {
     public void setTipoImpuesto(TipoImpuesto tipoImpuesto) {
         this.tipoImpuesto = tipoImpuesto;
     }
+
+    public boolean equals(Padron p) {
+        if (p == null) return false;
+
+        return (p.id == id);
+    }
+
 
     @Override
     public String toString() {

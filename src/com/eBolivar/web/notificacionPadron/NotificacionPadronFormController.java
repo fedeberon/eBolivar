@@ -1,77 +1,81 @@
-/** @author Fede Beron * @version 1.0 */ 
-
 package com.eBolivar.web.notificacionPadron;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.SimpleFormController;
-
+import com.eBolivar.common.SearchObject;
 import com.eBolivar.domain.NotificacionPadron;
 import com.eBolivar.service.NotificacionPadronServiceImpl;
 import com.eBolivar.service.TipoImpuestoServiceImpl;
+import com.eBolivar.service.notificacionPadron.interfaces.INotificacionService;
 import com.eBolivar.validator.NotificacionPadronValidator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-public class NotificacionPadronFormController extends SimpleFormController {
+import java.util.Date;
 
-	private NotificacionPadronServiceImpl notificacionPadronService;
-	private TipoImpuestoServiceImpl tipoImpuestoService;
-	
-	
+@Controller
+@RequestMapping("/notificacionPadron")
+public class NotificacionPadronFormController{
 
-	public void setTipoImpuestoService(TipoImpuestoServiceImpl tipoImpuestoService) {
-		this.tipoImpuestoService = tipoImpuestoService;
-	}
+    @Autowired
+    private NotificacionPadronServiceImpl notificacionPadronService;
 
-	public void setNotificacionPadronService(NotificacionPadronServiceImpl notificacionPadronService) {
-		this.notificacionPadronService = notificacionPadronService;
-	}
+    @Autowired
+    private INotificacionService notificacionService;
 
-	public NotificacionPadronFormController() {
-		setCommandName("notificacionPadron");
-		setCommandClass(NotificacionPadron.class);
-		setFormView("notificacionPadron/create");
-		setSuccessView("redirect:list");
-		setValidator(new  NotificacionPadronValidator());
-	}
+    @Autowired
+    private TipoImpuestoServiceImpl tipoImpuestoService;
 
-	@Override
-	protected Map referenceData(HttpServletRequest request) throws Exception {
-		Map  data = new HashMap();
-		if (request.getParameter("nroPadron")!=null && !request.getParameter("nroPadron").equalsIgnoreCase("0")){
-			data.put("nroPadron", request.getParameter("nroPadron"));
-		}
 
-		data.put("tipos", tipoImpuestoService.getObjects());
-		
-		return data;
-		
-	}
+    @Autowired
+    private NotificacionPadronValidator validator;
 
-	
-	@Override
-	protected ModelAndView onSubmit(Object command) throws Exception {
-		NotificacionPadron notificacionPadron = (NotificacionPadron) command;
-		ModelAndView mav = new ModelAndView();
-		try {
-			notificacionPadron.setFechaAlta(new Date());
-			notificacionPadronService.saveObject(notificacionPadron);
-			mav.addObject("mensaje", "Su solicitud ha sido procesada. Un operador se pondra en contacto con Ud y luego el tramite estara finalizado");
+    @RequestMapping("create")
+    public String create(Model model) {
+        model.addAttribute("tipos", this.tipoImpuestoService.getObjects());
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			mav.addObject("notificacionPadron",notificacionPadron);
-			mav.addObject("mensaje", "No se pudo guardar. Intente de nuevo.");
-			return mav;
-		}
-		mav.setViewName("notificacionPadron/notificaciones");
-		return mav ;
-	}
-	
-	 
+        return "notificacionPadron/create";
+    }
+
+
+
+    @RequestMapping("list")
+    public String list(@RequestParam(defaultValue = "", required = false) String value, @RequestParam(defaultValue = "1", required = false) Integer page, Model model) {
+        model.addAttribute("notificacionPadrons", notificacionService.find(value, page));
+        model.addAttribute("value", value);
+        model.addAttribute("page", page);
+
+        return "notificacionPadron/list";
+    }
+
+
+
+    @RequestMapping("save")
+    protected String save(@ModelAttribute NotificacionPadron notificacionPadron, BindingResult result){
+        this.validator.validate(notificacionPadron, result);
+        if (result.hasErrors()) {
+            return "notificacionPadron/create";
+        }
+        notificacionPadron.setFechaAlta(new Date());
+        this.notificacionPadronService.saveObject(notificacionPadron);
+
+        return "redirect:notificacionPadron/create";
+    }
+
+
+        @ModelAttribute("notificacionPadron")
+        public NotificacionPadron getNotificacionPadron(){
+
+            return  new NotificacionPadron();
+        }
+
+        @ModelAttribute("searchObject")
+            public SearchObject getSearchObject(){
+
+            return  new SearchObject();
+    }
 }
 

@@ -9,7 +9,9 @@ import org.hibernate.exception.ConstraintViolationException;
 import com.eBolivar.common.SearchObject;
 import com.eBolivar.dao.BannerDaoHibernateImpl;
 import com.eBolivar.domain.Banner;
+import org.springframework.stereotype.Service;
 
+@Service
 public class BannerServiceImpl {
 
 	private BannerDaoHibernateImpl dao = null;

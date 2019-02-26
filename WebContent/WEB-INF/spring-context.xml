@@ -50,16 +50,22 @@
         </property>
         <property name="jpaPropertyMap">
         <map>
-            <entry key="hibernate.hbm2ddl.auto" value="update"/>
+            <!--<entry key="hibernate.hbm2ddl.auto" value="update"/>-->
         </map>
         </property>
     </bean>
 
     <bean id="dataSourceJpa" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
-        <!--<property name="jdbcUrl" value="jdbc:mysql://200.42.62.140:3306/os000353_rentas"/>-->
+        <!--<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/os000353_rentas?autoReconnect=true"/>-->
         <!--<property name="user" value="os000353_fberon"/>-->
         <!--<property name="password" value="B0livar01"/>-->
+        <property name="idleConnectionTestPeriod" value="1" />
+
+        <!--<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/os000353_rentas?autoReconnect=true"/>-->
+        <!--<property name="user" value="root"/>-->
+        <!--<property name="password" value="F3d3ric0!"/>-->
+
         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/rentas"/>
         <property name="user" value="rentas"/>
         <property name="password" value="rentas"/>

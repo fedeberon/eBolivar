@@ -44,7 +44,7 @@
 
     function obtenerElementoParaDescargarTasa(idFactura) {
         idFactura = idFactura.substr(0, idFactura.indexOf("_"));
-        var url = "<c:url value='/webapp/tasas/descargar?idFactura='/>"
+        var url = "<c:url value='../tasas/descargar?idFactura='/>"
         var elementoIcono = $("#descargaDeTasa").clone();
         elementoIcono.find( "img" ).show();
         elementoIcono.attr("id", idFactura);
@@ -75,7 +75,7 @@
 
             $.ajax({
                 type: form.attr('method'),
-                url: '/rentas/webapp/mail' + '/' + idFactura + '/' + email.val() + '/',
+                url: '../mail' + '/' + idFactura + '/' + email.val() + '/',
                 beforeSend: function(){
                     verificarCuitDePadron(padron.val(), leyendaDelTributo.val());
                 }

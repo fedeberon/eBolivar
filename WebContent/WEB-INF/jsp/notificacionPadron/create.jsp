@@ -6,8 +6,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%@ page import="net.tanesha.recaptcha.ReCaptcha" %>
-<%@ page import="net.tanesha.recaptcha.ReCaptchaFactory" %>
+
 
 <html>
 <head>
@@ -28,12 +27,12 @@
 
  <style>
 .multiple_emails-container { 
-	border:1px #ccc solid; 
+	border:1px #ffffff solid;
 	border-radius: 4px; 
 	box-shadow: inset 0 1px 1px rgba(0,0,0,.075); 
-	padding:0; margin: 0; cursor:text; width:100%; 
-	width: 30%;
-    margin-left: 300px;
+	padding:0; margin: 0; cursor:text; width:100%;
+    margin-left: 162px;
+    display: unset;
 }
 
 .multiple_emails-container input { 
@@ -85,7 +84,7 @@
 		    	audio_challenge :      'Escuchar la clave de seguridad.',
 		    	refresh_btn :          'Volver a generar una clave de seguridad.',
 		    	help_btn :             'Ayuda',
-		    	incorrect_try_again :  'Incorrecto. Por favor, inténtelo de nuevo.'
+		    	incorrect_try_again :  'Incorrecto. Por favor, intï¿½ntelo de nuevo.'
 			},
 		    theme : 'clean'
 		};
@@ -131,25 +130,25 @@
     </c:forEach>
   </ul>
   </div>
-</spring:hasBindErrors> 
+</spring:hasBindErrors>
 
 <div id="formulario">
 
 
-<form:form name="form" method="post" commandName="notificacionPadron">
+<form:form name="form" action="save" method="post" commandName="notificacionPadron">
 
 	  <p class="odd">
 		<label for="padron" class="campo">Padron:</label>
-      	<input name ="padron" value="${ nroPadron }" placeholder="Nro Padron o Patente"/>
-      	 <img onclick="verInfo();" width="20" height="20" style="cursor: help;" src="<c:url value='/img/icons/information.png'/>"/>
+      	 <img onclick="verInfo();" width="20" height="20" style="cursor: help; float: right; margin-right: 40%;"
+              src="<c:url value='/img/icons/information.png'/>"/>
+          <form:input path="padron" />
       </p>
-      
-      
+
 	  <p class="odd">
 		<label for="direccionEnvio" class="campo">Direccion Envio:</label>
      	 <form:input path="direccionEnvio" id="emailAddress"/>
      </p>
-     
+
     	  <p class="odd">
 		<label for="nombreApellido" class="campo">Nombre Apellido:</label>
       <form:input path="nombreApellido" />
@@ -188,13 +187,14 @@
 
 </div>
         
-    <div id="botonera">
+    <div style="margin-left: 90px" id="botonera">
         <a class="button" href="javascript:history.back()">
             <img src="<c:url value='/img/icons/cancel.png'/>"/>Cancelar
         </a>
         <a class="button" onclick="document.form.submit();">
             <img src="<c:url value='/img/icons/database_save.png'/>"/>Guardar
         </a>
+        <a class="button" href="<c:url value='/webapp/notificacionPadron/list'/>">Volver</a>
     </div>
   <jsp:include page="../bottom.jsp" />
 </body>

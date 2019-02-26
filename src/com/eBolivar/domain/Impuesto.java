@@ -2,70 +2,187 @@
 
 package com.eBolivar.domain;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+
+@Entity
+@Table(name = "IMPUESTOS")
 public class Impuesto implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private Integer tipoRegistro0;
-    private String rotuloArchivo;
-    private Date fechaGeneracion;
-    private Integer modalidadArchivo;
-    private String separadorParrafo;
-    private String obervacion;
-    private Integer tipoRegistro1;
-    private String notificacionGeneral;
-    private Integer tipoRegistro_2;
+
+
+    @Id
+    @Column(name = "IMP_ID_FACTURA")
     private String idFactura;
+
+    @Column(name = "IMP_TIPO_REGISTRO_0")
+    private Integer tipoRegistro0;
+
+    @Column(name = "IMP_ROTULO_ARCHIVO")
+    private String rotuloArchivo;
+
+    @Column(name = "FECHA_GENERACION")
+    private Date fechaGeneracion;
+
+    @Column(name = "IMP_MODALIDAD_ARCHIVO")
+    private Integer modalidadArchivo;
+
+    @Column(name = "IMP_SEPARADOR_PARRAF")
+    private String separadorParrafo;
+
+    @Column(name = "IMP_OBSERVACION")
+    private String obervacion;
+
+    @Column(name = "IMP_TIPO_REGISTRO_1")
+    private Integer tipoRegistro1;
+
+    @Column(name = "IMP_NOTIFICACION_GENERAL")
+    private String notificacionGeneral;
+
+    @Column(name = "IMP_TIPO_REGISTRO_2")
+    private Integer tipoRegistro_2;
+
+    @Column(name = "IMP_NUM_CUIT_0")
     private String num_cuit_0;
+
+    @Column(name = "IMP_NRO_DOCUMENTO")
     private Integer nro_documento;
+
+    @Column(name = "IMP_TIPO_DOCUMENTO")
     private Integer tipoDocuento;
+
+    @Column(name = "IMP_COD_ELECTR_PAGO")
     private String codigoElectronicoPago;
+
+    @Column(name = "IMP_CODIGO_SEGURIDAD")
     private String codigoSeguridad;
+
+    @Column(name = "IMP_VENCIMIENTO_COD_SEG")
     private Date vencimientoCodigoSeg;
+
+    @Column(name = "IMP_ESTADO")
     private Integer estado;
+
+    @Column(name = "IMP_FILLER_0")
     private Integer filler_0;
+
+    @Column(name = "IMP_ULTIMO_DIA_PAGO")
     private Date ultimoDiaPago;
+
+    @Column(name = "IMP_LEYENDA_TRIBUTO")
     private String leyendaTributo;
+
+    @Column(name = "IMP_LEYENDA_BIEN")
     private String leyendaBien;
+
+    @Column(name = "IMP_LEYENDA_BIEN_ADICIONAL")
     private String leyendaBienAdicional;
+
+    @Column(name = "IMP_LEYENDA_CONCEPTO")
     private String leyendaConcepto;
+
+    @Column(name = "IMP_LEYENDA_ADICIONAL")
     private String leyendaAdicional;
+
+    @Column(name = "IMP_1ER_VENCIMIENTO")
     private Date primerVencimiento;
+
+    @Column(name = "IMP_IMPORTE_1ER_VENCIMIENTO")
     private String importe1reVencimiento;
+
+    @Column(name = "IMP_2DO_VENCIMIENTO")
     private Date segundoVencimiento;
+
+    @Column(name = "IMP_IMPORTE_2DO_VENCIMIENTO")
     private String importe2doVencimiento;
+
+    @Column(name = "IMP_3ER_VENCIMIENTO")
     private Date tercerVencimiento;
+
+    @Column(name = "IMP_IMPORTE_3ER_VENCIMIENTO")
     private String importe3erVencimiento;
+
+    @Column(name = "IMP_CODIGO_BARRA")
     private String codigoDeBarra;
+
+    @Column(name = "IMP_FILLER_1")
     private String filler_1;
+
+    @Column(name = "IMP_CTL")
     private String ctl;
+
+    @Column(name = "IMP_TIPO_REGISTRO_3")
     private Integer tipoRegistro_3;
+
+    @Column(name = "IMP_ID_FACTURA_CANCELADA")
     private String idFacturaCancelada;
+
+    @Column(name = "IMP_NUM_CUIT_1")
     private String num_cuit_1;
+
+    @Column(name = "IMP_FILLER_2")
     private Integer filler_2;
+
+    @Column(name = "IMP_TIPO_REGISTRO_4")
     private Integer tipoRegistro_4;
+
+    @Column(name = "IMP_NUM_CUIT_2")
     private String num_cuit_2;
+
+    @Column(name = "IMP_NOTIFICACION")
     private Integer notificacion;
+
+    @Column(name = "IMP_TIPO_REGISTRO_5")
     private Integer tipoRegistro_5;
+
+    @Column(name = "IMP_CODIGO_ELECTRONICO_PAGO")
     private Integer codigoElecPago;
+
+    @Column(name = "IMP_NOTIFICACION_1")
     private Integer notificacion_1;
+
+    @Column(name = "IMP_TIPO_REGISTRO_6")
     private Integer tipoRegistro_6;
+
+    @Column(name = "IMP_REGISTROS")
     private String registros;
+
+    @Column(name = "IMP_EOF")
     private String eof;
+
+    @Column(name = "IMP_CRC")
     private String crc;
+
+    @Column(name = "IMP_ID_CLIENTE")
     private String idCliente;
+
+    @Column(name = "IMP_NOTIFICADO_POR_MAIL")
     private String notificadoPorMail;
+
+    @ManyToOne
+    @JoinColumn(name = "TI_ID")
     private TipoImpuesto tipoImpuesto;
+
+    @Column(name = "IMP_NUMERO_PADRON")
     private String numeroDePadron;
+
+    @ManyToOne
+    @JoinColumn(name = "EST_ID")
     private EstadoDeTasa estadoDeTasa;
 
     //    auxiliares
+    @Column(name = "IMP_FECHA_VENCIMIENTO")
     private String fechaVencimiento;
+
+    @Column(name = "IMP_ESTADO_PAGO")
     private String estado_Pago;
+
+    @Column(name = "IMP_ESTADO_VENCIMIENTO")
     private String estado_Vencimiento;
+
 
     public Impuesto() {
     }

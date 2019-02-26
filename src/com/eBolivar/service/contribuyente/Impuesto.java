@@ -7,29 +7,37 @@
 
 package com.eBolivar.service.contribuyente;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Impuesto  implements java.io.Serializable {
+
+    @XmlElement
     private java.lang.String descripcionImpuesto;
 
+    @XmlElement
     private java.lang.Integer idImpuesto;
 
+    @XmlElement
     private java.lang.Integer periodo;
 
     public Impuesto() {
     }
 
     public Impuesto(
-           java.lang.String descripcionImpuesto,
-           java.lang.Integer idImpuesto,
-           java.lang.Integer periodo) {
-           this.descripcionImpuesto = descripcionImpuesto;
-           this.idImpuesto = idImpuesto;
-           this.periodo = periodo;
+            java.lang.String descripcionImpuesto,
+            java.lang.Integer idImpuesto,
+            java.lang.Integer periodo) {
+        this.descripcionImpuesto = descripcionImpuesto;
+        this.idImpuesto = idImpuesto;
+        this.periodo = periodo;
     }
 
 
     /**
      * Gets the descripcionImpuesto value for this Impuesto.
-     * 
+     *
      * @return descripcionImpuesto
      */
     public java.lang.String getDescripcionImpuesto() {
@@ -39,7 +47,7 @@ public class Impuesto  implements java.io.Serializable {
 
     /**
      * Sets the descripcionImpuesto value for this Impuesto.
-     * 
+     *
      * @param descripcionImpuesto
      */
     public void setDescripcionImpuesto(java.lang.String descripcionImpuesto) {
@@ -49,7 +57,7 @@ public class Impuesto  implements java.io.Serializable {
 
     /**
      * Gets the idImpuesto value for this Impuesto.
-     * 
+     *
      * @return idImpuesto
      */
     public java.lang.Integer getIdImpuesto() {
@@ -59,7 +67,7 @@ public class Impuesto  implements java.io.Serializable {
 
     /**
      * Sets the idImpuesto value for this Impuesto.
-     * 
+     *
      * @param idImpuesto
      */
     public void setIdImpuesto(java.lang.Integer idImpuesto) {
@@ -69,7 +77,7 @@ public class Impuesto  implements java.io.Serializable {
 
     /**
      * Gets the periodo value for this Impuesto.
-     * 
+     *
      * @return periodo
      */
     public java.lang.Integer getPeriodo() {
@@ -79,7 +87,7 @@ public class Impuesto  implements java.io.Serializable {
 
     /**
      * Sets the periodo value for this Impuesto.
-     * 
+     *
      * @param periodo
      */
     public void setPeriodo(java.lang.Integer periodo) {
@@ -97,16 +105,16 @@ public class Impuesto  implements java.io.Serializable {
         }
         __equalsCalc = obj;
         boolean _equals;
-        _equals = true && 
-            ((this.descripcionImpuesto==null && other.getDescripcionImpuesto()==null) || 
-             (this.descripcionImpuesto!=null &&
-              this.descripcionImpuesto.equals(other.getDescripcionImpuesto()))) &&
-            ((this.idImpuesto==null && other.getIdImpuesto()==null) || 
-             (this.idImpuesto!=null &&
-              this.idImpuesto.equals(other.getIdImpuesto()))) &&
-            ((this.periodo==null && other.getPeriodo()==null) || 
-             (this.periodo!=null &&
-              this.periodo.equals(other.getPeriodo())));
+        _equals = true &&
+                ((this.descripcionImpuesto==null && other.getDescripcionImpuesto()==null) ||
+                        (this.descripcionImpuesto!=null &&
+                                this.descripcionImpuesto.equals(other.getDescripcionImpuesto()))) &&
+                ((this.idImpuesto==null && other.getIdImpuesto()==null) ||
+                        (this.idImpuesto!=null &&
+                                this.idImpuesto.equals(other.getIdImpuesto()))) &&
+                ((this.periodo==null && other.getPeriodo()==null) ||
+                        (this.periodo!=null &&
+                                this.periodo.equals(other.getPeriodo())));
         __equalsCalc = null;
         return _equals;
     }
@@ -133,7 +141,7 @@ public class Impuesto  implements java.io.Serializable {
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(Impuesto.class, true);
+            new org.apache.axis.description.TypeDesc(Impuesto.class, true);
 
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("http://a5.soap.ws.server.puc.sr/", "impuesto"));
@@ -171,24 +179,24 @@ public class Impuesto  implements java.io.Serializable {
      * Get Custom Serializer
      */
     public static org.apache.axis.encoding.Serializer getSerializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanSerializer(
-            _javaType, _xmlType, typeDesc);
+            java.lang.String mechType,
+            java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return
+                new  org.apache.axis.encoding.ser.BeanSerializer(
+                        _javaType, _xmlType, typeDesc);
     }
 
     /**
      * Get Custom Deserializer
      */
     public static org.apache.axis.encoding.Deserializer getDeserializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanDeserializer(
-            _javaType, _xmlType, typeDesc);
+            java.lang.String mechType,
+            java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return
+                new  org.apache.axis.encoding.ser.BeanDeserializer(
+                        _javaType, _xmlType, typeDesc);
     }
 
 }

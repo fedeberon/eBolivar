@@ -21,7 +21,20 @@ public class ImpuestoService implements IImpuestoService {
 
     @Override
     public List<Impuesto> getByPadron(String padron) {
-        return dao.getByPadron(padron);
+        List<Impuesto> impuestos = dao.getByPadron(padron);
+        impuestos.forEach(this::parsearImporte);
+
+        return impuestos;
     }
 
+    public void parsearImporte(Impuesto i) {
+        int importe = Integer.parseInt(i.getImporte1reVencimiento());
+        String strImporte = String.valueOf(importe);
+        String entero = strImporte.substring(0, strImporte.length() - 2);
+        if (entero.length() > 3) {
+            entero = entero.substring(0, entero.length() - 3) + "," + entero.substring(entero.length() - 3, entero.length());
+        }
+        String decimal = strImporte.substring(strImporte.length() - 2, strImporte.length());
+        i.setImporte1reVencimiento("$ " + entero + "." + decimal);
+    }
 }

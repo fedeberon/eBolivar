@@ -1,16 +1,19 @@
 package com.eBolivar.service.padron.interfaces;
 
+import com.eBolivar.common.SearchObject;
 import com.eBolivar.domain.Padron;
+import java.util.List;
 
-/**
- * Created by Fede Beron on 11/7/2017.
- */
 public interface IPadronService {
-    Padron save(Padron padron);
+    Padron save(Padron var1);
 
-    Padron get(Integer id);
+    Padron get(Integer var1);
 
-    Padron getByNumero(String id);
+    Padron getByNumero(String var1);
 
-    Padron getPadron(String numero);
+    Padron getPadron(String var1);
+
+    List<Padron> search(SearchObject var1);
+
+    Padron getByNumeroYTipo(Padron var1);
 }
