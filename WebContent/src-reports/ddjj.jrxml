@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ddjj" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ea4d5472-7716-4884-af4c-1795a2380736">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="96"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -103,6 +103,270 @@
 			<pen lineWidth="0.5" lineColor="#000000"/>
 		</box>
 	</style>
+	<style name="table 5">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 14_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 14_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 14_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 14">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 8">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 8_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 8_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 8_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 9">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 9_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 9_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 9_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 10">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 10_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 10_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 10_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 11">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 11_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 11_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 11_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 12">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 12_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 12_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 12_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 13">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 13_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 13_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 13_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 15">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 15_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 15_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 15_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 16">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 16_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 16_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 16_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 17">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 17_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 17_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 17_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
 	<subDataset name="Rentas Dataset" uuid="c23f244c-3f5a-46bb-ad42-0f97ff0d3734">
 		<parameter name="idDecJur" class="java.lang.Long"/>
 		<parameter name="idTotalCalc" class="java.lang.Double"/>
@@ -169,10 +433,14 @@ where ddjj.dec_id = $P{idDecJur}]]>
 		</field>
 	</subDataset>
 	<subDataset name="Domicilio Dataset" uuid="5f72ba4e-59f5-4fbd-9770-eb868f82af51">
-		<queryString language="SQL">
+		<parameter name="idPersona" class="java.lang.Integer">
+			<property name="idPersona" value="$P{idPersona}"/>
+			<defaultValueExpression><![CDATA[$F{DOM_PER_ID}]]></defaultValueExpression>
+		</parameter>
+		<queryString>
 			<![CDATA[select *
 from domicilio
-where DOM_PER_ID = 2]]>
+where DOM_PER_ID = $P{idPersona}]]>
 		</queryString>
 		<field name="DOM_ID" class="java.lang.Integer">
 			<fieldDescription><![CDATA[]]></fieldDescription>
@@ -201,12 +469,6 @@ where DOM_PER_ID = 2]]>
 		<field name="DOM_TIPODOMICILIO" class="java.lang.String">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
-		<field name="PER_ID" class="java.lang.Integer">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="PER_DOM_ID" class="java.lang.Integer">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
 		<field name="DOM_PER_ID" class="java.lang.Integer">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
@@ -223,15 +485,20 @@ where DOM_PER_ID = 2]]>
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
 	</subDataset>
+	<subDataset name="Table Dataset 1" uuid="778a2ce4-472b-41c1-bbfe-45360c2b0c53"/>
+	<subDataset name="Table Dataset 2" uuid="0f739715-3cec-4ad2-a971-e830ce6305da"/>
 	<parameter name="idDeclaracionJurada" class="java.lang.Long"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\actualizaciones\\"]]></defaultValueExpression>
 	</parameter>
+	<parameter name="fecha" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[select *
 from DECLARACIONES_JURADAS D
 join PERSONAS P on D.PER_ID = P.PER_ID
 join PADRONES ON PADRONES.PAD_ID = D.PAD_ID
+join DOMICILIO ON DOMICILIO.DOM_ID = D.DOM_ID
+join USUARIOS on D.USU_USERNAME = USUARIOS.USU_USERNAME
 where dec_id = $P{idDeclaracionJurada}]]>
 	</queryString>
 	<field name="DEC_ID" class="java.lang.Long">
@@ -276,6 +543,12 @@ where dec_id = $P{idDeclaracionJurada}]]>
 	<field name="DEC_TASA_ANUAL" class="java.lang.Double">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="USU_USERNAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DOM_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="PER_APELLIDO" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
@@ -303,11 +576,65 @@ where dec_id = $P{idDeclaracionJurada}]]>
 	<field name="TI_ID" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="DOM_COD_POSTAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="datoAdicional" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descripcionProvincia" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DOM_DIRECCION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idProvincia" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DOM_LOCALIDAD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipoDatoAdicional" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DOM_TIPODOMICILIO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DOM_PER_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DOM_DATO_ADICIONAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DOM_DESCRIPCION_PROVINCIA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DOM_ID_PROVINCIA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DOM_TIPO_DATO_ADICIONAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="USU_PASSWORD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="USU_ROL_ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="USU_APELLIDO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="USU_NOMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TIPO_USUARIO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="142" splitType="Stretch">
+		<band height="139" splitType="Stretch">
 			<image>
 				<reportElement x="7" y="1" width="86" height="95" uuid="3507d78a-fa87-459f-ac7e-61a551994570"/>
 				<imageExpression><![CDATA["/actualizaciones/imagenes/Escudo-Bolivar.jpg"]]></imageExpression>
@@ -341,17 +668,14 @@ where dec_id = $P{idDeclaracionJurada}]]>
 				<reportElement x="370" y="28" width="185" height="1" uuid="71487940-cfbd-4269-9693-4707f565eece"/>
 			</line>
 			<staticText>
-				<reportElement x="369" y="31" width="185" height="13" uuid="39bac256-08b6-4723-a0db-fef89791e16a"/>
+				<reportElement x="370" y="31" width="184" height="13" uuid="39bac256-08b6-4723-a0db-fef89791e16a"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[Apellido y Nombre]]></text>
 			</staticText>
 			<line>
-				<reportElement x="370" y="58" width="185" height="1" uuid="36e2d1f2-0dcc-4b00-bebe-96e58df4e901"/>
-			</line>
-			<line>
-				<reportElement x="323" y="133" width="232" height="1" uuid="32d621af-132a-453c-8ff9-239d8da01362"/>
+				<reportElement mode="Opaque" x="370" y="58" width="185" height="1" uuid="36e2d1f2-0dcc-4b00-bebe-96e58df4e901"/>
 			</line>
 			<staticText>
 				<reportElement x="0" y="96" width="83" height="13" uuid="59a6160c-8391-44ac-9406-70955d55861c"/>
@@ -388,76 +712,152 @@ where dec_id = $P{idDeclaracionJurada}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{PER_ID_PERSONA}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="367" y="111" width="189" height="22" uuid="390e6ede-cd74-4d05-ba15-08af201c2a70"/>
-				<textElement textAlignment="Center" verticalAlignment="Bottom">
-					<font size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Padron: " + $F{PAD_NUMERO}]]></textFieldExpression>
-			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="403" y="44" width="153" height="14" uuid="f59c0941-1654-46d0-b203-f21a5a8e4a8e"/>
+				<reportElement mode="Opaque" x="401" y="44" width="153" height="14" uuid="f59c0941-1654-46d0-b203-f21a5a8e4a8e"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[(($F{PER_APELLIDO}!=null?$F{PER_APELLIDO}:""))+ " " + (($F{PER_NOMBRE}!=null?$F{PER_NOMBRE}:""))]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="204" y="13" width="64" height="13" uuid="262791a4-4364-4a1b-8cdf-02dde86a3a2e"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Presentado el]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="268" y="13" width="87" height="13" uuid="5e7b991f-9216-4285-aa36-41450b96d09c"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="204" y="31" width="151" height="13" uuid="30ecd92f-d290-4261-bc48-970ad4786b05"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Por el usuario]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="278" y="44" width="77" height="13" uuid="e3d12344-9fa1-4a67-95b4-fea50f03a12c"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{USU_NOMBRE} + " " +  $F{USU_APELLIDO}]]></textFieldExpression>
+			</textField>
 			<line>
-				<reportElement x="370" y="88" width="185" height="1" uuid="49f00ee7-6bbc-4199-8354-4b194f4807a1"/>
+				<reportElement x="204" y="28" width="151" height="1" uuid="7ae86f2c-b950-4b00-8806-9db64bc1eef9"/>
+			</line>
+			<line>
+				<reportElement mode="Opaque" x="204" y="58" width="151" height="1" uuid="87f8f855-a4f4-462e-8918-15e6b88e1079"/>
 			</line>
 			<staticText>
-				<reportElement x="369" y="59" width="187" height="13" uuid="548a343f-ed04-4bf6-b72a-39ced884bab3"/>
+				<reportElement mode="Transparent" x="204" y="59" width="151" height="13" uuid="def53ff4-4d9b-4344-b22d-d35ab5debeec"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[Año]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="403" y="72" width="151" height="16" uuid="78ad4b06-33c1-4229-8ad6-9b1149cecbcf"/>
-				<textFieldExpression><![CDATA[$F{DEC_ANIO}.replaceAll("A_", "")]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="370" y="89" width="184" height="13" uuid="95ea25a7-0987-455c-b26a-e37769085c2c"/>
-				<textElement>
-					<font size="8"/>
-				</textElement>
-				<text><![CDATA[Domicilio]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="403" y="102" width="151" height="18" uuid="ec98416f-ab74-40d6-a9c9-85432efa3c3c"/>
-				<textFieldExpression><![CDATA[$F{DEC_ANIO}.replaceAll("A_", "")]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="204" y="13" width="151" height="13" uuid="a5ac611c-53e8-448b-99c7-b49dab120e10"/>
-				<textElement>
-					<font size="8"/>
-				</textElement>
-				<text><![CDATA[PRESENTADO EL:]]></text>
-			</staticText>
-			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement x="204" y="29" width="151" height="18" uuid="b58b1d8e-3b2a-4fe7-b0a3-7baaad0ebf24"/>
-				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
-			<textField pattern="HH.mm">
-				<reportElement x="204" y="56" width="151" height="16" uuid="f17d1d2a-6f8c-4f35-b6be-62d7293cbdbe"/>
-				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="204" y="83" width="151" height="13" uuid="b30ad7bd-5c42-43dd-9bdd-94b7bc6fe684"/>
-				<textElement>
-					<font size="8"/>
-				</textElement>
-				<text><![CDATA[POR EL USUARIO]]></text>
-			</staticText>
-			<textField isBlankWhenNull="true">
-				<reportElement x="204" y="102" width="153" height="14" uuid="f413115f-4534-4493-b524-1ebe03e3f192"/>
-				<textElement textAlignment="Center" verticalAlignment="Bottom">
+				<reportElement x="278" y="71" width="77" height="17" uuid="2208569c-200e-4c77-b6bc-4c80cfc5511b"/>
+				<textElement textAlignment="Center" rotation="None">
 					<font size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[(($F{PER_APELLIDO}!=null?$F{PER_APELLIDO}:""))+ " " + (($F{PER_NOMBRE}!=null?$F{PER_NOMBRE}:""))]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{DEC_ANIO}.replaceAll("A_", "")]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="204" y="89" width="151" height="1" uuid="ec57d4ef-6388-4f0b-8b2a-a6eb8b0fb4a2"/>
+			</line>
+			<textField>
+				<reportElement x="203" y="113" width="151" height="20" uuid="ea16dc2f-7c77-4789-b999-5c5c4cef818c"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Padrón: " + $F{PAD_NUMERO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="370" y="59" width="184" height="13" uuid="89ed6a1a-120f-401c-a5be-29623d69910c"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Domicilio/s]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement key="table 17" style="table 17" x="370" y="72" width="184" height="59" uuid="54780ed8-0e9d-4b6d-8f0a-2c22fd86c6ff"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Domicilio Dataset" uuid="4dd0a9cc-1254-4f88-bb76-ec08ca2c5e3d">
+						<datasetParameter name="idPersona">
+							<datasetParameterExpression><![CDATA[$F{PER_ID}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="fed9a0b9-ae3a-4771-9f9f-b91308fcfaa0">
+						<jr:columnHeader style="table 17_CH" height="19" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="19" uuid="58a7d1fb-c7c1-49ae-82b4-da45e9364589"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<text><![CDATA[DIRECCION]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 17_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="444b7d1a-1462-4918-b649-d77ad1e027c9"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{DOM_DIRECCION}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="56" uuid="9bdab695-3dea-4689-96f2-e93a7fae0be9">
+						<jr:columnHeader style="table 17_CH" height="19" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="56" height="19" uuid="3a0d2b71-807e-4aa8-b082-c7f6d8e1d681"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<text><![CDATA[LOCALIDAD]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 17_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="56" height="20" uuid="ff03c4ae-b21f-4e8a-98e9-995e0650da9d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{DOM_LOCALIDAD}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="41" uuid="e32624a4-7d83-4efa-b1b8-254117698ae9">
+						<jr:columnHeader style="table 17_CH" height="19" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="41" height="19" uuid="65fabaea-abcc-4564-9dc2-fa6d35e803ea"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<text><![CDATA[C.P]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 17_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="41" height="20" uuid="62053a02-fec8-44c2-aff7-0ffe035134a8"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{DOM_COD_POSTAL}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<line>
+				<reportElement x="323" y="133" width="232" height="1" uuid="5159431c-557a-4b0e-b4a1-95d2f7ea867e"/>
+			</line>
 		</band>
 	</title>
 	<pageHeader>
@@ -477,7 +877,7 @@ where dec_id = $P{idDeclaracionJurada}]]>
 	<detail>
 		<band height="151">
 			<componentElement>
-				<reportElement key="table 4" style="table 4" x="0" y="0" width="554" height="151" uuid="ce8bef47-723b-43e6-867e-741e078732fc"/>
+				<reportElement key="table 4" style="table 4" x="7" y="0" width="554" height="151" uuid="ce8bef47-723b-43e6-867e-741e078732fc"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="Rentas Dataset" uuid="3108c5dd-2c73-47c9-9c6f-cada1c27c913">
 						<datasetParameter name="idDecJur">
@@ -666,38 +1066,19 @@ CALCULADO]]></text>
 				<textElement>
 					<font size="8"/>
 				</textElement>
-				<text><![CDATA[El que suscribe.............................................................. en su caracter de ............................................  Afirma bajo juramento
-que los datos consignados en esta Declaracion Jurada son correctos y que ha sido confeccionada sin falsear dato alguno, siendo fiel expresion de la verdad.
+				<text><![CDATA[El que suscribe.............................................................. en su caracter de titular. Afirma bajo juramento que los datos consignados en esta Declaracion Jurada son correctos y que ha sido confeccionada sin falsear dato alguno, siendo fiel expresion de la verdad.
 Quedando, la misma, sujeta a las comprobaciones y verificaciones que efectue la Municipalidad.]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="0" y="89" width="38" height="20" uuid="1f1672d5-432b-494b-8354-71c418e7e42e"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[FECHA:]]></text>
-			</staticText>
-			<line>
-				<reportElement x="38" y="102" width="176" height="1" uuid="202dea34-458c-4aec-8157-156a91838e30"/>
-			</line>
-			<staticText>
-				<reportElement x="370" y="102" width="141" height="11" uuid="a38cf515-e76f-482d-ac05-94884496cf24"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="72" y="0" width="116" height="11" uuid="7ecab054-826b-4196-9ab4-47a889c5392a"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="8"/>
 				</textElement>
-				<text><![CDATA[Firma del contribuyente o responsable]]></text>
-			</staticText>
-			<line>
-				<reportElement x="322" y="101" width="232" height="1" uuid="a7e44a09-c087-4549-bb5a-8ca3296ce180"/>
-			</line>
-			<textField pattern="dd/MM/yyyy HH.mm.ss">
-				<reportElement x="49" y="81" width="165" height="20" uuid="4a4510b2-3caa-4aa8-85e0-4a77896b98b1"/>
-				<textElement verticalAlignment="Bottom"/>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[(($F{PER_APELLIDO}!=null?$F{PER_APELLIDO}:""))+ " " + (($F{PER_NOMBRE}!=null?$F{PER_NOMBRE}:""))]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="370" y="125" width="186" height="58" uuid="abc6b1cc-1735-415f-b5ff-054d33d06578"/>
-				<imageExpression><![CDATA["/actualizaciones/imagenes/logo-bolivar.png"]]></imageExpression>
+				<reportElement x="354" y="126" width="200" height="76" uuid="199f15a6-8c00-4ae1-8639-11eaecd2ca54"/>
+				<imageExpression><![CDATA["d:\\Users\\erwin\\Downloads\\logonuevo.png"]]></imageExpression>
 			</image>
 		</band>
 	</pageFooter>

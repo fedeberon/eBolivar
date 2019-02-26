@@ -73,7 +73,7 @@
                             <td>${bo.persona.nombre} ${bo.persona.apellido}</td>
                             <td>${bo.padron.numero}</td>
                             <td>${bo.padron.tipoImpuesto.nombre}</td>
-                            <td>${bo.fecha}</td>
+                            <td>${f:formatLocalDateTime(bo.fecha, 'HH:mm:ss dd/MM/yyyy')}</td>
                             <td>${bo.periodo}</td>
                         </tr>
                     </c:forEach>
