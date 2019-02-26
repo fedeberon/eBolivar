@@ -53,7 +53,7 @@
 
                 <tr>
                     <th>Fecha de creaci&oacute;n</th>
-                    <td>${f:formatLocalDateTime(declaracionJurada.fecha, 'dd/MM/yyyy HH:mm:ss')}</td>
+                    <td>${f:formatLocalDateTime(declaracionJurada.fecha, 'HH:mm:ss dd/MM/yyyy')}</td>
                 </tr>
 
                 <tr>
@@ -92,7 +92,7 @@
 
                 <tr>
                     <th>Fecha de creaci&oacute;n</th>
-                    <td>${f:formatLocalDateTime(declaracionJurada.fecha, 'dd/MM/yyyy HH:mm:ss')}</td>
+                    <td>${f:formatLocalDateTime(declaracionJurada.fecha, 'HH:mm:ss dd/MM/yyyy')}</td>
                 </tr>
 
                 <tr>

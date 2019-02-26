@@ -42,7 +42,7 @@
     <form:form action="/rentas/webapp/ddjj/guardarCambios" modelAttribute="ddjj" method="post">
         <form:hidden path="id"/>
             <div class="row">
-            <div class="col-md-12"><span>Fecha de creaci&oacute;n: ${f:formatLocalDateTime(ddjj.fecha, 'dd/MM/yyyy HH:mm:ss')}</span></div>
+            <div class="col-md-12"><span>Fecha de creaci&oacute;n: ${f:formatLocalDateTime(ddjj.Zfecha, 'dd/MM/yyyy HH:mm:ss')}</span></div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label>CUIT:</label>

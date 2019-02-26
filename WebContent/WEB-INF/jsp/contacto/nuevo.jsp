@@ -46,7 +46,6 @@
         <form:errors cssClass="form-text text-muted red" path="email"/>
     </div>
 
-
     <div class="form-group">
         <label for="comentarios">Comentarios</label>
         <form:textarea path="comentarios" cssClass="form-control" rows="3"/>
@@ -57,7 +56,6 @@
     </form:form>
 
 </div>
-
 
 </div>
 <jsp:include page="../bottom.jsp" />
