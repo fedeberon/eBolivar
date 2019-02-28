@@ -1,21 +1,27 @@
 package com.eBolivar.service.persona.interfaces;
 
+import com.eBolivar.common.SearchObject;
+import com.eBolivar.domain.Padron;
 import com.eBolivar.domain.PadronAsociado;
 import com.eBolivar.domain.Persona;
-
 import java.util.List;
 
-/**
- * Created by Fede Beron on 30/3/2017.
- */
-public interface IPersonaService {
-    Persona create_PersonaRequest(String token, String sign, String cuitRepresentada, String idPersona) throws Exception;
+public abstract interface IPersonaService
+{
+    public abstract Persona create_PersonaRequest(String paramString1, String paramString2, String paramString3, String paramString4)
+            throws Exception;
 
-    Persona get(Integer id);
+    public abstract Persona get(Integer paramInteger);
 
-    Persona getByCUIT(String cuit);
+    public abstract Persona getByCUIT(String paramString);
 
-    List<Persona> getByNombreYApellido(String nombre, String apellido);
+    public abstract Persona getByIdPersona(String paramString);
 
-    List<PadronAsociado> getByPadron(String padron);
+    public abstract List<Persona> getByNombreYApellido(String paramString1, String paramString2);
+
+    public abstract List<PadronAsociado> getByPadron(Padron paramPadron);
+
+    public abstract Persona save(Persona paramPersona);
+
+    public abstract List<Persona> search(SearchObject paramSearchObject);
 }

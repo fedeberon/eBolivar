@@ -7,33 +7,42 @@
 
 package com.eBolivar.service.contribuyente;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Categoria  implements java.io.Serializable {
+
+    @XmlElement
     private java.lang.String descripcionCategoria;
 
+    @XmlElement
     private java.lang.Integer idCategoria;
 
+    @XmlElement
     private java.lang.Integer idImpuesto;
 
+    @XmlElement
     private java.lang.Integer periodo;
 
     public Categoria() {
     }
 
     public Categoria(
-           java.lang.String descripcionCategoria,
-           java.lang.Integer idCategoria,
-           java.lang.Integer idImpuesto,
-           java.lang.Integer periodo) {
-           this.descripcionCategoria = descripcionCategoria;
-           this.idCategoria = idCategoria;
-           this.idImpuesto = idImpuesto;
-           this.periodo = periodo;
+            java.lang.String descripcionCategoria,
+            java.lang.Integer idCategoria,
+            java.lang.Integer idImpuesto,
+            java.lang.Integer periodo) {
+        this.descripcionCategoria = descripcionCategoria;
+        this.idCategoria = idCategoria;
+        this.idImpuesto = idImpuesto;
+        this.periodo = periodo;
     }
 
 
     /**
      * Gets the descripcionCategoria value for this Categoria.
-     * 
+     *
      * @return descripcionCategoria
      */
     public java.lang.String getDescripcionCategoria() {
@@ -43,7 +52,7 @@ public class Categoria  implements java.io.Serializable {
 
     /**
      * Sets the descripcionCategoria value for this Categoria.
-     * 
+     *
      * @param descripcionCategoria
      */
     public void setDescripcionCategoria(java.lang.String descripcionCategoria) {
@@ -53,7 +62,7 @@ public class Categoria  implements java.io.Serializable {
 
     /**
      * Gets the idCategoria value for this Categoria.
-     * 
+     *
      * @return idCategoria
      */
     public java.lang.Integer getIdCategoria() {
@@ -63,7 +72,7 @@ public class Categoria  implements java.io.Serializable {
 
     /**
      * Sets the idCategoria value for this Categoria.
-     * 
+     *
      * @param idCategoria
      */
     public void setIdCategoria(java.lang.Integer idCategoria) {
@@ -73,7 +82,7 @@ public class Categoria  implements java.io.Serializable {
 
     /**
      * Gets the idImpuesto value for this Categoria.
-     * 
+     *
      * @return idImpuesto
      */
     public java.lang.Integer getIdImpuesto() {
@@ -83,7 +92,7 @@ public class Categoria  implements java.io.Serializable {
 
     /**
      * Sets the idImpuesto value for this Categoria.
-     * 
+     *
      * @param idImpuesto
      */
     public void setIdImpuesto(java.lang.Integer idImpuesto) {
@@ -93,7 +102,7 @@ public class Categoria  implements java.io.Serializable {
 
     /**
      * Gets the periodo value for this Categoria.
-     * 
+     *
      * @return periodo
      */
     public java.lang.Integer getPeriodo() {
@@ -103,7 +112,7 @@ public class Categoria  implements java.io.Serializable {
 
     /**
      * Sets the periodo value for this Categoria.
-     * 
+     *
      * @param periodo
      */
     public void setPeriodo(java.lang.Integer periodo) {
@@ -121,19 +130,19 @@ public class Categoria  implements java.io.Serializable {
         }
         __equalsCalc = obj;
         boolean _equals;
-        _equals = true && 
-            ((this.descripcionCategoria==null && other.getDescripcionCategoria()==null) || 
-             (this.descripcionCategoria!=null &&
-              this.descripcionCategoria.equals(other.getDescripcionCategoria()))) &&
-            ((this.idCategoria==null && other.getIdCategoria()==null) || 
-             (this.idCategoria!=null &&
-              this.idCategoria.equals(other.getIdCategoria()))) &&
-            ((this.idImpuesto==null && other.getIdImpuesto()==null) || 
-             (this.idImpuesto!=null &&
-              this.idImpuesto.equals(other.getIdImpuesto()))) &&
-            ((this.periodo==null && other.getPeriodo()==null) || 
-             (this.periodo!=null &&
-              this.periodo.equals(other.getPeriodo())));
+        _equals = true &&
+                ((this.descripcionCategoria==null && other.getDescripcionCategoria()==null) ||
+                        (this.descripcionCategoria!=null &&
+                                this.descripcionCategoria.equals(other.getDescripcionCategoria()))) &&
+                ((this.idCategoria==null && other.getIdCategoria()==null) ||
+                        (this.idCategoria!=null &&
+                                this.idCategoria.equals(other.getIdCategoria()))) &&
+                ((this.idImpuesto==null && other.getIdImpuesto()==null) ||
+                        (this.idImpuesto!=null &&
+                                this.idImpuesto.equals(other.getIdImpuesto()))) &&
+                ((this.periodo==null && other.getPeriodo()==null) ||
+                        (this.periodo!=null &&
+                                this.periodo.equals(other.getPeriodo())));
         __equalsCalc = null;
         return _equals;
     }
@@ -163,7 +172,7 @@ public class Categoria  implements java.io.Serializable {
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(Categoria.class, true);
+            new org.apache.axis.description.TypeDesc(Categoria.class, true);
 
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("http://a5.soap.ws.server.puc.sr/", "categoria"));
@@ -208,24 +217,24 @@ public class Categoria  implements java.io.Serializable {
      * Get Custom Serializer
      */
     public static org.apache.axis.encoding.Serializer getSerializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanSerializer(
-            _javaType, _xmlType, typeDesc);
+            java.lang.String mechType,
+            java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return
+                new  org.apache.axis.encoding.ser.BeanSerializer(
+                        _javaType, _xmlType, typeDesc);
     }
 
     /**
      * Get Custom Deserializer
      */
     public static org.apache.axis.encoding.Deserializer getDeserializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanDeserializer(
-            _javaType, _xmlType, typeDesc);
+            java.lang.String mechType,
+            java.lang.Class _javaType,
+            javax.xml.namespace.QName _xmlType) {
+        return
+                new  org.apache.axis.encoding.ser.BeanDeserializer(
+                        _javaType, _xmlType, typeDesc);
     }
 
 }

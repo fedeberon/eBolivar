@@ -1,21 +1,22 @@
 package com.eBolivar.dao.interfaces;
 
+import com.eBolivar.common.SearchObject;
+import com.eBolivar.domain.Padron;
 import com.eBolivar.domain.PadronAsociado;
 import com.eBolivar.domain.Persona;
-
 import java.util.List;
 
-/**
- * Created by Fede Beron on 31/3/2017.
- */
-public interface IPersonaRepository {
-    Persona save(Persona persona);
+public abstract interface IPersonaRepository
+{
+    public abstract Persona save(Persona paramPersona);
 
-    Persona get(Integer id);
+    public abstract Persona get(Integer paramInteger);
 
-    Persona getByCUIT(String cuit);
+    public abstract Persona getByCUIT(String paramString);
 
-    List<Persona> getByNombreYApellido(String nombre, String apellido);
+    public abstract List<Persona> getByNombreYApellido(String paramString1, String paramString2);
 
-    List<PadronAsociado> getByPadron(String padron);
+    public abstract List<PadronAsociado> getByPadron(Padron paramPadron);
+
+    public abstract List<Persona> search(SearchObject paramSearchObject);
 }

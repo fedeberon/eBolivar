@@ -1,73 +1,94 @@
-/**
- * Persona.java
- *
- * This file was auto-generated from WSDL
- * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
- */
-
 package com.eBolivar.domain;
 
-import javax.persistence.*;
+import com.eBolivar.domain.Dependencia;
+import com.eBolivar.domain.Domicilio;
+import java.io.Serializable;
+import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.List;
-import java.util.Set;
 
-@XmlRootElement( name = "datosGenerales" )
+@XmlRootElement(
+        name = "datosGenerales"
+)
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(name ="PERSONAS")
-public class Persona  implements java.io.Serializable {
-
+@Table(
+        name = "PERSONAS"
+)
+public class Persona implements Serializable {
     public static String CUIT_REPRESENTADA_FEDE_BERON = "20285640661";
-
     public static String CUIT_REPRESENTADA_MUNICIPALIDAD_BOLIVAR = "30999058392";
-
     @Id
-    @Column(name ="PER_ID")
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(
+            name = "PER_ID"
+    )
+    @GeneratedValue(
+            strategy = GenerationType.AUTO
+    )
     private Integer id;
-
     @XmlElement
-    @Column(name ="PER_NOMBRE")
-    private java.lang.String nombre;
-
+    @Column(
+            name = "PER_NOMBRE"
+    )
+    private String nombre;
     @XmlElement
-    @Column(name ="PER_APELLIDO")
-    private java.lang.String apellido;
-
+    @Column(
+            name = "PER_APELLIDO"
+    )
+    private String apellido;
     @XmlElement
     @Transient
-    private java.lang.Long[] claveInactivaAsociada;
-
-    @XmlElement(name="dependencia")
+    private Long[] claveInactivaAsociada;
+    @XmlElement(
+            name = "dependencia"
+    )
     @Transient
     private Dependencia dependencia;
-
     @XmlElement
-    @Column(name = "PER_DESCRIPCION_ACTIVIDAD_PRINCIPAL")
+    @Column(
+            name = "PER_DESCRIPCION_ACTIVIDAD_PRINCIPAL"
+    )
     private String descripcionActividadPrincipal;
-
-    @XmlElement(name="domicilioFiscal")
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "persona", fetch = FetchType.LAZY)
+    @XmlElement(
+            name = "domicilioFiscal"
+    )
+    @OneToMany(
+            cascade = {CascadeType.PERSIST},
+            mappedBy = "persona",
+            fetch = FetchType.LAZY
+    )
     private Set<Domicilio> domicilio;
-
     @XmlElement
     @Transient
-    private java.lang.String estadoClave;
-
+    private String estadoClave;
     @XmlElement
-    @Column(name = "PER_ID_PERSONA")
-    private java.lang.Long idPersona;
-
+    @Column(
+            name = "PER_ID_PERSONA"
+    )
+    private Long idPersona;
     @XmlElement
-    @Column(name = "PER_NUMERO_DOCUMENTO")
-    private java.lang.String numeroDocumento;
+    @Column(
+            name = "PER_NUMERO_DOCUMENTO"
+    )
+    private String numeroDocumento;
+
+    public Persona() {
+    }
 
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Integer id) {
@@ -75,7 +96,7 @@ public class Persona  implements java.io.Serializable {
     }
 
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
 
     public void setNombre(String nombre) {
@@ -83,7 +104,7 @@ public class Persona  implements java.io.Serializable {
     }
 
     public String getApellido() {
-        return apellido;
+        return this.apellido;
     }
 
     public void setApellido(String apellido) {
@@ -91,7 +112,7 @@ public class Persona  implements java.io.Serializable {
     }
 
     public Long[] getClaveInactivaAsociada() {
-        return claveInactivaAsociada;
+        return this.claveInactivaAsociada;
     }
 
     public void setClaveInactivaAsociada(Long[] claveInactivaAsociada) {
@@ -99,7 +120,7 @@ public class Persona  implements java.io.Serializable {
     }
 
     public Dependencia getDependencia() {
-        return dependencia;
+        return this.dependencia;
     }
 
     public void setDependencia(Dependencia dependencia) {
@@ -107,7 +128,7 @@ public class Persona  implements java.io.Serializable {
     }
 
     public String getDescripcionActividadPrincipal() {
-        return descripcionActividadPrincipal;
+        return this.descripcionActividadPrincipal;
     }
 
     public void setDescripcionActividadPrincipal(String descripcionActividadPrincipal) {
@@ -115,7 +136,7 @@ public class Persona  implements java.io.Serializable {
     }
 
     public Set<Domicilio> getDomicilio() {
-        return domicilio;
+        return this.domicilio;
     }
 
     public void setDomicilio(Set<Domicilio> domicilio) {
@@ -123,7 +144,7 @@ public class Persona  implements java.io.Serializable {
     }
 
     public String getEstadoClave() {
-        return estadoClave;
+        return this.estadoClave;
     }
 
     public void setEstadoClave(String estadoClave) {
@@ -131,7 +152,7 @@ public class Persona  implements java.io.Serializable {
     }
 
     public Long getIdPersona() {
-        return idPersona;
+        return this.idPersona;
     }
 
     public void setIdPersona(Long idPersona) {
@@ -139,10 +160,14 @@ public class Persona  implements java.io.Serializable {
     }
 
     public String getNumeroDocumento() {
-        return numeroDocumento;
+        return this.numeroDocumento;
     }
 
     public void setNumeroDocumento(String numeroDocumento) {
         this.numeroDocumento = numeroDocumento;
+    }
+
+    public boolean equals(Persona p) {
+        return p == null?false:p.id == this.id;
     }
 }

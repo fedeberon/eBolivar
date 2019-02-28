@@ -5,7 +5,6 @@
     <!-- 	<hr> -->
     <p>&copy; Copyright 2014 <a href="http://www.bolivar.gob.ar/">Municipalidad de Bolivar</a></p>
     <p><strong>Area Sistemas </strong> by <a href="#">Sistemas</a></p>
-
 </div>
 <!-- end footer -->
 

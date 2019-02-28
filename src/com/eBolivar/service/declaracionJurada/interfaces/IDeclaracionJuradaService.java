@@ -1,6 +1,7 @@
 package com.eBolivar.service.declaracionJurada.interfaces;
 
 import com.eBolivar.domain.DeclaracionJurada;
+import com.eBolivar.domain.PadronAsociado;
 import com.eBolivar.domain.Persona;
 
 import javax.servlet.ServletOutputStream;
@@ -25,4 +26,18 @@ public interface IDeclaracionJuradaService {
     List<DeclaracionJurada> findAllPageable(Integer page);
 
     List<DeclaracionJurada> find(String valor);
+
+    List<DeclaracionJurada> getByPersona(Persona persona);
+
+    void imprimirAcuseDeRecibo(DeclaracionJurada declaracionJurada, ServletOutputStream outputStream);
+
+    List<DeclaracionJurada> getByPadronAsociado(PadronAsociado padronAsociado, Integer page);
+
+    Boolean isBeforeOneDaysAgo(DeclaracionJurada declaracionJurada);
+
+    String getDateFromDeclaracionJurada(DeclaracionJurada declaracionJurada);
+
+    String checkCurrentDay(DeclaracionJurada declaracionJurada);
+
+    List<DeclaracionJurada> findAllPageable(String valor, Integer pageNumber);
 }

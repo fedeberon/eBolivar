@@ -1,8 +1,18 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
 package com.eBolivar.web.padron;
 
+import com.eBolivar.common.SearchObject;
+import com.eBolivar.domain.Padron;
 import com.eBolivar.domain.PadronAsociado;
+import com.eBolivar.domain.Persona;
+import com.eBolivar.service.TipoImpuestoServiceImpl;
 import com.eBolivar.service.cuitPorTasa.interfaces.ICuitPorTasaService;
 import com.eBolivar.service.padron.interfaces.IPadronService;
+import com.eBolivar.service.persona.interfaces.IPersonaService;
 import com.eBolivar.validator.PadronAsociadoValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,50 +20,101 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-/**
- * Created by Fede Beron on 18/7/2017.
- */
 @Controller
-@RequestMapping("padron")
+@RequestMapping({"padron"})
 public class PadronController {
-
     @Autowired
     private IPadronService padronService;
-
     @Autowired
     private ICuitPorTasaService cuitPorTasaService;
-
     @Autowired
     private PadronAsociadoValidator validator;
+    @Autowired
+    private IPersonaService personaService;
+    @Autowired
+    private TipoImpuestoServiceImpl tipoImpuestoService;
 
-    @RequestMapping("asociarPadronACUIT")
-    private String asociarPadronACUIT(){
+    public PadronController() {
+    }
+
+    @RequestMapping({"asociarPadronACUIT"})
+    private String asociarPadronACUIT() {
         return "padron/asociarCUIT";
     }
 
-    @RequestMapping("save")
-    private String save(@ModelAttribute PadronAsociado padronAsociado, BindingResult result, RedirectAttributes redirectAttributes){
+    @RequestMapping({"save"})
+    private String save(@ModelAttribute PadronAsociado padronAsociado, BindingResult result, RedirectAttributes redirectAttributes) {
         this.validator.validate(padronAsociado, result);
-        if(result.hasErrors()) return "padron/asociarCUIT";
-        cuitPorTasaService.save(padronAsociado);
-        redirectAttributes.addAttribute("id", padronAsociado.getId());
-
-        return "redirect:show";
+        if(result.hasErrors()) {
+            return "padron/asociarCUIT";
+        } else {
+            this.cuitPorTasaService.save(padronAsociado);
+            redirectAttributes.addAttribute("id", padronAsociado.getId());
+            return "redirect:show";
+        }
     }
 
-    @RequestMapping("show")
-    private String show(@RequestParam Integer id, Model model){
-        model.addAttribute("padronAsociado", cuitPorTasaService.get(id));
-
-        return "/padron/informacion";
+    @RequestMapping({"showPadron"})
+    private String showPadron(@RequestParam String id, Model model) {
+        model.addAttribute("padron", this.cuitPorTasaService.getByNumero(id));
+        return "/padron/show";
     }
 
+    @RequestMapping({"show"})
+    private String show(@RequestParam String id, Model model) {
+        model.addAttribute("padronAsociado", this.cuitPorTasaService.getByNumero(id));
+        return "/padron/show";
+    }
+
+    @RequestMapping({"byPersona"})
+    private String byPersona(@RequestParam Integer idPersona, Model model) {
+        Persona persona = this.personaService.get(idPersona);
+        model.addAttribute("padronAsociado", this.cuitPorTasaService.byPersona(persona));
+        return "persona/padrones/list";
+    }
+
+    @RequestMapping(
+            value = {"search"},
+            method = {RequestMethod.POST}
+    )
+    public String search(@ModelAttribute SearchObject searchObject, Model model) {
+        model.addAttribute("padrones", this.padronService.search(searchObject));
+        model.addAttribute("searchObject", searchObject);
+        return "padron/list";
+    }
+
+    @RequestMapping({"list"})
+    private String list(Model model) {
+        SearchObject searchObject = new SearchObject();
+        model.addAttribute("padrones", this.padronService.search(searchObject));
+        model.addAttribute("searchObject", searchObject);
+        return "padron/list";
+    }
+
+    @RequestMapping("create")
+    public String create(@ModelAttribute Padron padron, Model model) {
+        model.addAttribute("tipoImpuesto", tipoImpuestoService.getObjects());
+
+        return "padron/create";
+    }
+
+    @RequestMapping({"savePadron"})
+    public String create(@ModelAttribute Padron padron) {
+        this.padronService.save(padron);
+        return "redirect:list";
+    }
 
     @ModelAttribute("padronAsociado")
-    public PadronAsociado getPadronAsociado(){
+    public PadronAsociado getPadronAsociado() {
         return new PadronAsociado();
+    }
+
+    @ModelAttribute("padron")
+    public Padron getPadron() {
+        return new Padron();
     }
 }

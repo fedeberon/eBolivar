@@ -8,9 +8,9 @@
 <html>
 <head>
 <title>${initParam['AppName']} - Actualizaciones</title>
-<link rel="shortcut icon" type="image/x-icon" href="<c:url value='/images/icons/logo.ico'/>">
+<link rel="shortcut icon" type="image/x-icon" href="<c:url value='/img/icons/logo.ico'/>">
 
-<link rel="stylesheet" href="<c:url value='/css/style.css'/>" type="text/css" media="print, projection, screen" />
+<link rel="stylesheet" href="<c:url value='/css/base.css'/>" type="text/css" media="print, projection, screen" />
 <%-- <link rel="stylesheet" href="<c:url value='/css/base.css'/>" type="text/css" media="print, projection, screen" /> --%>
 
 
@@ -21,9 +21,9 @@
 <%-- <link rel="stylesheet" href="<c:url value='/css/bootstrap-theme.min.css'/>" type="text/css" media="print, projection, screen" /> --%>
 
 
-<script type="text/javascript" src="<c:url value='/js/jquery.js'/>"></script>  
-  <script type="text/javascript" src="<c:url value='/js/jquery.blockUI.js'/>"></script>
-<script type="text/javascript" src="<c:url value='/js/bootstrap.js'/>"></script>  
+<script type="text/javascript" src="<c:url value='/js/jquery.js'/>"></script>
+ <script type="text/javascript" src="<c:url value='/js/jquery.blockUI.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/js/bootstrap.js'/>"></script>
   
 
 
@@ -167,7 +167,7 @@ $('#openBtn').click(function(){
 	<div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">ï¿½</button>
           <h4 class="modal-title">Buscar Archivos Anteriores</h4>
         </div>
         <div class="modal-body">
@@ -206,7 +206,7 @@ $('#openBtn').click(function(){
 	<div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">ï¿½</button>
           <h4 class="modal-title">Actualizar Archivo</h4>
         </div>
         <div class="modal-body">

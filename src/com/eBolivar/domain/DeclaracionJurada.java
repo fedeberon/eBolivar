@@ -1,5 +1,8 @@
 package com.eBolivar.domain;
 
+import com.eBolivar.domain.administradorCuenta.AdministradorCuenta;
+import com.eBolivar.domain.usuario.User;
+import com.eBolivar.enumeradores.AnioEnum;
 import com.eBolivar.enumeradores.EstadoDeDeclaracionJurada;
 import com.eBolivar.enumeradores.PeriodoEnum;
 
@@ -34,6 +37,10 @@ public class DeclaracionJurada {
     @Column(name = "DEC_PERIODO")
     private PeriodoEnum periodo;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "DEC_ANIO")
+    private AnioEnum anio;
+
     @Column(name = "DEC_OBSERVACIONES")
     private String observaciones;
 
@@ -46,6 +53,52 @@ public class DeclaracionJurada {
     @Enumerated(EnumType.STRING)
     @Column(name = "DEC_ESTADO")
     private EstadoDeDeclaracionJurada estadoDeDeclaracionJurada;
+
+    @Column(name = "DEC_SALDO_A_FAVOR")
+    private Double saldoAFavor = 0.0;
+
+    @Column(name = "DEC_A_FAVOR_CONTRIBUYENTE")
+    private Double saldoAFavorDelContribuyente = 0.0;
+
+    @Column(name = "DEC_TOTAL_ANTICIPO")
+    private Double totalAnticipo = 0.0;
+
+    @Column(name = "DEC_TASA_ANUAL")
+    private Double totalAnual = 0.0;
+
+    @OneToOne
+    @JoinColumn(name = "USU_USERNAME")
+    private User presentadaPor;
+
+    public DeclaracionJurada() {
+    }
+
+    public DeclaracionJurada(Persona persona, AnioEnum anio) {
+        this.persona = persona;
+        this.anio = anio;
+    }
+
+    public DeclaracionJurada(Persona persona, AnioEnum anio, Padron padron) {
+        this.persona = persona;
+        this.anio = anio;
+        this.padron = padron;
+    }
+
+    public DeclaracionJurada(Persona persona, AnioEnum anio, Padron padron, PeriodoEnum periodo) {
+        this.persona = persona;
+        this.anio = anio;
+        this.padron = padron;
+        this.periodo = periodo;
+    }
+
+
+    public AnioEnum getAnio() {
+        return anio;
+    }
+
+    public void setAnio(AnioEnum anio) {
+        this.anio = anio;
+    }
 
     public Long getId() {
         return Id;
@@ -125,6 +178,46 @@ public class DeclaracionJurada {
 
     public void setEstadoDeDeclaracionJurada(EstadoDeDeclaracionJurada estadoDeDeclaracionJurada) {
         this.estadoDeDeclaracionJurada = estadoDeDeclaracionJurada;
+    }
+
+    public Double getSaldoAFavor() {
+        return saldoAFavor;
+    }
+
+    public void setSaldoAFavor(Double saldoAFavor) {
+        this.saldoAFavor = saldoAFavor;
+    }
+
+    public Double getSaldoAFavorDelContribuyente() {
+        return saldoAFavorDelContribuyente;
+    }
+
+    public void setSaldoAFavorDelContribuyente(Double saldoAFavorDelContribuyente) {
+        this.saldoAFavorDelContribuyente = saldoAFavorDelContribuyente;
+    }
+
+    public Double getTotalAnticipo() {
+        return totalAnticipo;
+    }
+
+    public void setTotalAnticipo(Double totalAnticipo) {
+        this.totalAnticipo = totalAnticipo;
+    }
+
+    public Double getTotalAnual() {
+        return totalAnual;
+    }
+
+    public void setTotalAnual(Double totalAnual) {
+        this.totalAnual = totalAnual;
+    }
+
+    public User getPresentadaPor() {
+        return presentadaPor;
+    }
+
+    public void setPresentadaPor(User presentadaPor) {
+        this.presentadaPor = presentadaPor;
     }
 
     @Override

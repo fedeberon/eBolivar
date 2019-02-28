@@ -7,10 +7,8 @@
     <div class="boxscroll">
         <div class="mush">
             <table class="table table-hover">
-                <tr><td><a href="http://200.42.62.140:8888/documentos/OrdenanzaFiscal.pdf" target="_blank" class="fontLeft">Ordenanza Fiscal 2018 - 2457-17</a></td></tr>
-                <tr><td><a href="http://200.42.62.140:8888/documentos/OrdenanzaImpositiva.pdf" target="_blank" class="fontLeft">Ordenanza Impositiva 2018 - 2458-17</a></td></tr>
-                <tr><td><a href="http://200.42.62.140:8888/documentos/DDJJ - TISH - anual.xls" class="fontLeft">DDJJ - TISH - anual</a></td></tr>
-                <tr><td><a href="http://200.42.62.140:8888/documentos/DDJJ contadores.xls" class="fontLeft">DDJJ contadores</a></td></tr>
+                <tr><td><a href="http://200.42.62.140:8888/documentos/OrdenanzaFiscal.pdf" target="_blank" class="fontLeft"> Ordenanza Fiscal 2019 - 2522-18</a></td></tr>
+                <tr><td><a href="http://200.42.62.140:8888/documentos/OrdenanzaImpositiva.pdf" target="_blank" class="fontLeft">Ordenanza Impositiva 2019 - 2523-18</a></td></tr>
             </table>
         </div>
     </div>

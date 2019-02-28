@@ -20,7 +20,6 @@
             /WEB-INF/spring-servlet.xml
             /WEB-INF/spring-context.xml
             classpath:persistence.xml
-            /WEB-INF/security.xml
             /WEB-INF/spring-mail.xml
         </param-value>
     </context-param>

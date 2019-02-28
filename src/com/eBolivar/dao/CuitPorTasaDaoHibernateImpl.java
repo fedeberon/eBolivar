@@ -1,92 +1,246 @@
 package com.eBolivar.dao;
 
+import com.eBolivar.dao.CloseableSession;
 import com.eBolivar.dao.interfaces.ICuitPorTasaRepository;
+import com.eBolivar.domain.Padron;
 import com.eBolivar.domain.PadronAsociado;
-import org.hibernate.*;
+import com.eBolivar.domain.Persona;
+import java.util.List;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.SQLQuery;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.classic.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-/**
- * Created by Fede Beron on 27/2/2017.
- */
 @Repository
 public class CuitPorTasaDaoHibernateImpl implements ICuitPorTasaRepository {
-
     @Autowired
+    @Qualifier("sessionFactoryJpa")
     private SessionFactory sessionFactory;
 
+    public CuitPorTasaDaoHibernateImpl() {
+    }
 
-    @Override
     public boolean isCuitAsociadoAPadron(String padron) {
-        Session session = null;
         try {
+            CloseableSession e = new CloseableSession(this.sessionFactory.openSession());
+            Throwable var3 = null;
 
-            String sql = "SELECT COUNT(*) FROM CUIT_POR_TASAS WHERE CPT_PADRON = :padron";
-            session = sessionFactory.openSession();
-            Query query = session.createSQLQuery(sql);
-            query.setString("padron", padron);
-            int result = ((Number) query.uniqueResult()).intValue();
+            boolean var6;
+            try {
+                Query query = e.delegate().createQuery("select count(p) from PadronAsociado p where p.padron.numero = :padron");
+                query.setParameter("padron", padron);
+                int result = ((Number)query.uniqueResult()).intValue();
+                var6 = result > 0;
+            } catch (Throwable var16) {
+                var3 = var16;
+                throw var16;
+            } finally {
+                if(e != null) {
+                    if(var3 != null) {
+                        try {
+                            e.close();
+                        } catch (Throwable var15) {
+                            var3.addSuppressed(var15);
+                        }
+                    } else {
+                        e.close();
+                    }
+                }
 
-
-            return result > 0;
-        } finally {
-            if (session != null || session.isOpen()) {
-                session.close();
             }
+
+            return var6;
+        } catch (HibernateException var18) {
+            var18.printStackTrace();
+            throw var18;
         }
     }
 
-    @Override
     public PadronAsociado save(PadronAsociado padronAsociado) {
         Session session = null;
         Transaction tx = null;
+
+        PadronAsociado e;
         try {
-            session = sessionFactory.openSession();
+            session = this.sessionFactory.openSession();
             tx = session.getTransaction();
             tx.begin();
             session.save(padronAsociado);
             tx.commit();
-
-            return padronAsociado;
-        }catch (HibernateException e){
+            e = padronAsociado;
+        } catch (HibernateException var8) {
             tx.rollback();
-            throw e;
-        }
-        finally {
-            if (session != null || session.isOpen()) {
+            throw var8;
+        } finally {
+            if(session != null || session.isOpen()) {
                 session.close();
             }
+
         }
+
+        return e;
     }
 
-    @Override
     public boolean exist(PadronAsociado padronAsociado) {
         Session session = null;
+
+        boolean var6;
         try {
             String sql = "SELECT COUNT(*) FROM CUIT_POR_TASAS WHERE CPT_PADRON = :padron AND PAD_PER_ID = :idPersona";
-            session = sessionFactory.openSession();
-            Query query = session.createSQLQuery(sql);
-            query.setString("padron", padronAsociado.getPadron());
-            query.setInteger("idPersona", padronAsociado.getPersona().getId());
-            int result = ((Number) query.uniqueResult()).intValue();
-
-            return result > 0;
-
+            session = this.sessionFactory.openSession();
+            SQLQuery query = session.createSQLQuery(sql);
+            query.setParameter("padron", padronAsociado.getPadron());
+            query.setInteger("idPersona", padronAsociado.getPersona().getId().intValue());
+            int result = ((Number)query.uniqueResult()).intValue();
+            var6 = result > 0;
         } finally {
-            if (session != null || session.isOpen()) {
+            if(session != null || session.isOpen()) {
                 session.close();
             }
+
+        }
+
+        return var6;
+    }
+
+    public PadronAsociado get(Integer id) {
+        try {
+            CloseableSession e = new CloseableSession(this.sessionFactory.openSession());
+            Throwable var3 = null;
+
+            PadronAsociado var4;
+            try {
+                var4 = (PadronAsociado)e.delegate().get(PadronAsociado.class, id);
+            } catch (Throwable var14) {
+                var3 = var14;
+                throw var14;
+            } finally {
+                if(e != null) {
+                    if(var3 != null) {
+                        try {
+                            e.close();
+                        } catch (Throwable var13) {
+                            var3.addSuppressed(var13);
+                        }
+                    } else {
+                        e.close();
+                    }
+                }
+
+            }
+
+            return var4;
+        } catch (HibernateException var16) {
+            var16.printStackTrace();
+            throw var16;
         }
     }
 
-    @Override
-    public PadronAsociado get(Integer id) {
-        try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
-            return (PadronAsociado) session.delegate().get(PadronAsociado.class, id);
+    public Padron get(String numero) {
+        try {
+            CloseableSession e = new CloseableSession(this.sessionFactory.openSession());
+            Throwable var3 = null;
+
+            Padron var5;
+            try {
+                Query query = e.delegate().createQuery("from Padron where numero = :numero");
+                query.setParameter("numero", numero);
+                var5 = (Padron)query.uniqueResult();
+            } catch (Throwable var15) {
+                var3 = var15;
+                throw var15;
+            } finally {
+                if(e != null) {
+                    if(var3 != null) {
+                        try {
+                            e.close();
+                        } catch (Throwable var14) {
+                            var3.addSuppressed(var14);
+                        }
+                    } else {
+                        e.close();
+                    }
+                }
+
+            }
+
+            return var5;
+        } catch (HibernateException var17) {
+            var17.printStackTrace();
+            throw var17;
         }
-        catch (HibernateException e){
-            e.printStackTrace();
-            throw e;
+    }
+
+    public List<PadronAsociado> byPersona(Persona persona) {
+        try {
+            CloseableSession e = new CloseableSession(this.sessionFactory.openSession());
+            Throwable var3 = null;
+
+            List var5;
+            try {
+                Query query = e.delegate().createQuery("from PadronAsociado where persona = :persona");
+                query.setParameter("persona", persona);
+                var5 = query.list();
+            } catch (Throwable var15) {
+                var3 = var15;
+                throw var15;
+            } finally {
+                if(e != null) {
+                    if(var3 != null) {
+                        try {
+                            e.close();
+                        } catch (Throwable var14) {
+                            var3.addSuppressed(var14);
+                        }
+                    } else {
+                        e.close();
+                    }
+                }
+
+            }
+
+            return var5;
+        } catch (HibernateException var17) {
+            var17.printStackTrace();
+            throw var17;
+        }
+    }
+
+    public void remove(Integer id) {
+        try {
+            CloseableSession e = new CloseableSession(this.sessionFactory.openSession());
+            Throwable var3 = null;
+
+            try {
+                Query query = e.delegate().createQuery("delete PadronAsociado where id = :id");
+                query.setParameter("id", id);
+                query.executeUpdate();
+            } catch (Throwable var13) {
+                var3 = var13;
+                throw var13;
+            } finally {
+                if(e != null) {
+                    if(var3 != null) {
+                        try {
+                            e.close();
+                        } catch (Throwable var12) {
+                            var3.addSuppressed(var12);
+                        }
+                    } else {
+                        e.close();
+                    }
+                }
+
+            }
+
+        } catch (HibernateException var15) {
+            var15.printStackTrace();
+            throw var15;
         }
     }
 }

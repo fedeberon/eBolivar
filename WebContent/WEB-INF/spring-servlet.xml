@@ -72,14 +72,6 @@
         <property name="guiaTramiteService" ref="guiaTramiteService"/>
     </bean>
 
-    <bean name="/impuesto/*" class="com.eBolivar.web.impuesto.ImpuestoController">
-        <property name="impuestoService" ref="impuestoService"/>
-        <property name="parametroService" ref="parametroService"/>
-        <property name="notificacionPadronService" ref="notificacionPadronService"/>
-        <property name="tipoImpuestoService" ref="tipoImpuestoService"/>
-    </bean>
-
-
     <bean name="/impuesto/upload" class="com.eBolivar.web.impuesto.ImpuestoUploadFormController">
         <property name="impuestoService" ref="impuestoService"/>
     </bean>
@@ -91,10 +83,15 @@
         <property name="tipoImpuestoService" ref="tipoImpuestoService"/>
     </bean>
 
-    <bean name="/notificacionPadron/create"
-          class="com.eBolivar.web.notificacionPadron.NotificacionPadronFormController">
-        <property name="notificacionPadronService" ref="notificacionPadronService"/>
-        <property name="tipoImpuestoService" ref="tipoImpuestoService"/>
+    <!--<bean name="/notificacionPadron/create"-->
+          <!--class="com.eBolivar.web.notificacionPadron.NotificacionPadronFormController">-->
+        <!--<property name="notificacionPadronService" ref="notificacionPadronService"/>-->
+        <!--<property name="tipoImpuestoService" ref="tipoImpuestoService"/>-->
+        <!--<property name="validator" ref="validator"/>-->
+    <!--</bean>-->
+
+    <bean name="validator" class="com.eBolivar.validator.NotificacionPadronValidator">
+
     </bean>
 
     <bean name="/notificacionPadron/update"

@@ -1,6 +1,7 @@
 package com.eBolivar.enumeradores;
 
-import org.springframework.stereotype.Component;
+import java.util.Arrays;
+import java.util.stream.Stream;
 
 /**
  * Created by Fede Beron on 12/7/2017.
@@ -12,7 +13,8 @@ public enum PeriodoEnum {
     TERCER_BIMESTRE("3er Bimestre"),
     CUARTO_BIMESTRE("4to Bimestre"),
     QUINTO_BIMESTRE("5to Bimestre"),
-    SEXTO_BIMESTRE("6to Bimestre");
+    SEXTO_BIMESTRE("6to Bimestre"),
+    ANUAL("Anual");
 
     private String descripcion;
 
@@ -23,5 +25,11 @@ public enum PeriodoEnum {
     public String getDescripcion() {
         return descripcion;
     }
+
+    public static Stream<PeriodoEnum> stream() {
+        return Arrays.stream(PeriodoEnum.values());
+    }
+
+
 
 }

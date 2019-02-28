@@ -1,194 +1,137 @@
-/**
- * DummyReturn.java
- *
- * This file was auto-generated from WSDL
- * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
- */
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
 
 package com.eBolivar.service.persona.domain;
 
-public class DummyReturn  implements java.io.Serializable {
-    private java.lang.String appserver;
+import java.io.Serializable;
+import javax.xml.namespace.QName;
+import org.apache.axis.description.ElementDesc;
+import org.apache.axis.description.TypeDesc;
+import org.apache.axis.encoding.Deserializer;
+import org.apache.axis.encoding.Serializer;
+import org.apache.axis.encoding.ser.BeanDeserializer;
+import org.apache.axis.encoding.ser.BeanSerializer;
 
-    private java.lang.String authserver;
-
-    private java.lang.String dbserver;
+public class DummyReturn implements Serializable {
+    private String appserver;
+    private String authserver;
+    private String dbserver;
+    private Object __equalsCalc = null;
+    private boolean __hashCodeCalc = false;
+    private static TypeDesc typeDesc = new TypeDesc(DummyReturn.class, true);
 
     public DummyReturn() {
     }
 
-    public DummyReturn(
-           java.lang.String appserver,
-           java.lang.String authserver,
-           java.lang.String dbserver) {
-           this.appserver = appserver;
-           this.authserver = authserver;
-           this.dbserver = dbserver;
-    }
-
-
-    /**
-     * Gets the appserver value for this DummyReturn.
-     * 
-     * @return appserver
-     */
-    public java.lang.String getAppserver() {
-        return appserver;
-    }
-
-
-    /**
-     * Sets the appserver value for this DummyReturn.
-     * 
-     * @param appserver
-     */
-    public void setAppserver(java.lang.String appserver) {
+    public DummyReturn(String appserver, String authserver, String dbserver) {
         this.appserver = appserver;
-    }
-
-
-    /**
-     * Gets the authserver value for this DummyReturn.
-     * 
-     * @return authserver
-     */
-    public java.lang.String getAuthserver() {
-        return authserver;
-    }
-
-
-    /**
-     * Sets the authserver value for this DummyReturn.
-     * 
-     * @param authserver
-     */
-    public void setAuthserver(java.lang.String authserver) {
         this.authserver = authserver;
-    }
-
-
-    /**
-     * Gets the dbserver value for this DummyReturn.
-     * 
-     * @return dbserver
-     */
-    public java.lang.String getDbserver() {
-        return dbserver;
-    }
-
-
-    /**
-     * Sets the dbserver value for this DummyReturn.
-     * 
-     * @param dbserver
-     */
-    public void setDbserver(java.lang.String dbserver) {
         this.dbserver = dbserver;
     }
 
-    private java.lang.Object __equalsCalc = null;
-    public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof DummyReturn)) return false;
-        DummyReturn other = (DummyReturn) obj;
-        if (obj == null) return false;
-        if (this == obj) return true;
-        if (__equalsCalc != null) {
-            return (__equalsCalc == obj);
-        }
-        __equalsCalc = obj;
-        boolean _equals;
-        _equals = true && 
-            ((this.appserver==null && other.getAppserver()==null) || 
-             (this.appserver!=null &&
-              this.appserver.equals(other.getAppserver()))) &&
-            ((this.authserver==null && other.getAuthserver()==null) || 
-             (this.authserver!=null &&
-              this.authserver.equals(other.getAuthserver()))) &&
-            ((this.dbserver==null && other.getDbserver()==null) || 
-             (this.dbserver!=null &&
-              this.dbserver.equals(other.getDbserver())));
-        __equalsCalc = null;
-        return _equals;
+    public String getAppserver() {
+        return this.appserver;
     }
 
-    private boolean __hashCodeCalc = false;
+    public void setAppserver(String appserver) {
+        this.appserver = appserver;
+    }
+
+    public String getAuthserver() {
+        return this.authserver;
+    }
+
+    public void setAuthserver(String authserver) {
+        this.authserver = authserver;
+    }
+
+    public String getDbserver() {
+        return this.dbserver;
+    }
+
+    public void setDbserver(String dbserver) {
+        this.dbserver = dbserver;
+    }
+
+    public synchronized boolean equals(Object obj) {
+        if(!(obj instanceof DummyReturn)) {
+            return false;
+        } else {
+            DummyReturn other = (DummyReturn)obj;
+            if(obj == null) {
+                return false;
+            } else if(this == obj) {
+                return true;
+            } else if(this.__equalsCalc != null) {
+                return this.__equalsCalc == obj;
+            } else {
+                this.__equalsCalc = obj;
+                boolean _equals = (this.appserver == null && other.getAppserver() == null || this.appserver != null && this.appserver.equals(other.getAppserver())) && (this.authserver == null && other.getAuthserver() == null || this.authserver != null && this.authserver.equals(other.getAuthserver())) && (this.dbserver == null && other.getDbserver() == null || this.dbserver != null && this.dbserver.equals(other.getDbserver()));
+                this.__equalsCalc = null;
+                return _equals;
+            }
+        }
+    }
+
     public synchronized int hashCode() {
-        if (__hashCodeCalc) {
+        if(this.__hashCodeCalc) {
             return 0;
+        } else {
+            this.__hashCodeCalc = true;
+            int _hashCode = 1;
+            if(this.getAppserver() != null) {
+                _hashCode += this.getAppserver().hashCode();
+            }
+
+            if(this.getAuthserver() != null) {
+                _hashCode += this.getAuthserver().hashCode();
+            }
+
+            if(this.getDbserver() != null) {
+                _hashCode += this.getDbserver().hashCode();
+            }
+
+            this.__hashCodeCalc = false;
+            return _hashCode;
         }
-        __hashCodeCalc = true;
-        int _hashCode = 1;
-        if (getAppserver() != null) {
-            _hashCode += getAppserver().hashCode();
-        }
-        if (getAuthserver() != null) {
-            _hashCode += getAuthserver().hashCode();
-        }
-        if (getDbserver() != null) {
-            _hashCode += getDbserver().hashCode();
-        }
-        __hashCodeCalc = false;
-        return _hashCode;
     }
 
-    // Type metadata
-    private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(DummyReturn.class, true);
-
-    static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://a10.soap.ws.server.puc.sr/", "dummyReturn"));
-        org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("appserver");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "appserver"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("authserver");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "authserver"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("dbserver");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "dbserver"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-    }
-
-    /**
-     * Return type metadata object
-     */
-    public static org.apache.axis.description.TypeDesc getTypeDesc() {
+    public static TypeDesc getTypeDesc() {
         return typeDesc;
     }
 
-    /**
-     * Get Custom Serializer
-     */
-    public static org.apache.axis.encoding.Serializer getSerializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanSerializer(
-            _javaType, _xmlType, typeDesc);
+    public static Serializer getSerializer(String mechType, Class _javaType, QName _xmlType) {
+        return new BeanSerializer(_javaType, _xmlType, typeDesc);
     }
 
-    /**
-     * Get Custom Deserializer
-     */
-    public static org.apache.axis.encoding.Deserializer getDeserializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanDeserializer(
-            _javaType, _xmlType, typeDesc);
+    public static Deserializer getDeserializer(String mechType, Class _javaType, QName _xmlType) {
+        return new BeanDeserializer(_javaType, _xmlType, typeDesc);
     }
 
+    static {
+        typeDesc.setXmlType(new QName("http://a10.soap.ws.server.puc.sr/", "dummyReturn"));
+        ElementDesc elemField = new ElementDesc();
+        elemField.setFieldName("appserver");
+        elemField.setXmlName(new QName("", "appserver"));
+        elemField.setXmlType(new QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new ElementDesc();
+        elemField.setFieldName("authserver");
+        elemField.setXmlName(new QName("", "authserver"));
+        elemField.setXmlType(new QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new ElementDesc();
+        elemField.setFieldName("dbserver");
+        elemField.setXmlName(new QName("", "dbserver"));
+        elemField.setXmlType(new QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+    }
 }
