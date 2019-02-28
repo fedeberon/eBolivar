@@ -10,8 +10,6 @@
 <div class="titulo-general">
     <span>Personas</span>
 </div>
-
-
 <div id="scrollable">
 
 <form:form name="form" method="post" commandName="persona" action="save">
@@ -29,11 +27,10 @@
     </p>
 
     <p>
-        <label for="idPersona" class="campo">C.U.I.T.:</label>
-        <form:input path="idPersona" />
+        <label for="idPersona" class="campo" id="cuit">C.U.I.T.:</label>
+        <form:input  path="idPersona"/>
         <form:errors cssClass="form-text text-muted red" path="idPersona"/>
     </p>
-
 </form:form>
 
 </div>
