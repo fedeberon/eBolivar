@@ -1,10 +1,12 @@
 package com.eBolivar.service.usuario;
 
 import com.eBolivar.dao.usuario.interfaces.IUsuarioRepository;
+import com.eBolivar.domain.Localidad;
 import com.eBolivar.domain.administradorCuenta.AdministradorCuenta;
 import com.eBolivar.domain.rol.Rol;
 import com.eBolivar.domain.usuario.User;
 import com.eBolivar.domain.usuario.Usuario;
+import com.eBolivar.domain.usuario.UsuarioLocalidad;
 import com.eBolivar.service.usuario.interfaces.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -25,7 +27,9 @@ public class UsuarioService implements IUsuarioService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, DataAccessException {
-        return dao.get(username);
+        User user = dao.get(username);
+
+        return user.clasificar(administradorCuenta -> this.getAdministrador(username), usuario -> user);
     }
 
     @Override
@@ -35,7 +39,13 @@ public class UsuarioService implements IUsuarioService {
     }
 
     @Override
-    public List<User> findAll() {
+    public UsuarioLocalidad save(UsuarioLocalidad usuario){
+        return dao.save(usuario);
+    }
+
+
+    @Override
+    public List<Usuario> findAll() {
         return dao.findAll();
     }
 
@@ -59,7 +69,6 @@ public class UsuarioService implements IUsuarioService {
         dao.updateLikeAdministradorDeCuenta(username);
     }
 
-
     @Override
     public User getAutenticate(){
         return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -70,4 +79,12 @@ public class UsuarioService implements IUsuarioService {
         return dao.findAdministradorCuenta(valor, pageNumber);
     }
 
+    public AdministradorCuenta getAdministrador(String username){
+        return dao.getAdministradorDeCuenta(username);
+    }
+
+    @Override
+    public List<UsuarioLocalidad> getLocalidades(Usuario usuario) {
+        return dao.getLocalidades(usuario);
+    }
 }

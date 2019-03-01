@@ -5,6 +5,7 @@ import com.eBolivar.dao.declaracionJurada.interfaces.IDeclaracionJuradaRepositor
 import com.eBolivar.domain.*;
 import com.eBolivar.domain.administradorCuenta.AdministradorCuenta;
 import com.eBolivar.domain.usuario.User;
+import com.eBolivar.domain.usuario.Usuario;
 import com.eBolivar.service.declaracionJurada.interfaces.IDeclaracionJuradaService;
 import com.eBolivar.service.padron.interfaces.IPadronService;
 import com.eBolivar.service.persona.interfaces.IPersonaService;
@@ -13,9 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.ServletOutputStream;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -153,10 +154,31 @@ public class DeclaracionJuradaService implements IDeclaracionJuradaService{
         }
     }
 
-
     @Override
     public List<DeclaracionJurada> findAllPageable(String valor, Integer pageNumber){
-        return dao.findAllPageable(valor, pageNumber);
+        User user = usuarioService.getAutenticate();
+
+        List<DeclaracionJurada> declaracionJuradas =
+                user.clasificar(
+
+                        AdministradorCuenta -> dao.findAllPageable(valor, pageNumber),
+
+                        Usuario -> {
+                            Usuario usuario = (Usuario) user;
+                            List<Localidad> localidades = new ArrayList<>();
+                            usuarioService.getLocalidades(usuario).forEach(usuarioLocalidad -> localidades.add(usuarioLocalidad.getLocalidadAsociada()));
+                            if(!localidades.isEmpty()){
+                                return dao.findAllPageablePorLocalidad(valor, pageNumber, localidades);
+                            } else {
+                                return dao.findAllPageable(valor, pageNumber);
+                            }
+                        }
+
+                        );
+
+        return declaracionJuradas;
+
     }
+
 
 }
