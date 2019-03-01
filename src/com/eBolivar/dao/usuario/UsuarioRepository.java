@@ -86,10 +86,11 @@ public class UsuarioRepository implements IUsuarioRepository {
         try (CloseableSession session = new CloseableSession(sessionFactory.openSession())) {
             Criteria criteria = session.delegate().createCriteria(AdministradorCuenta.class);
             criteria.createAlias("rol" , "rol");
+           //hacer if de vacio
             criteria.add(
                           Restrictions.or(Restrictions.ilike("username", valor, MatchMode.ANYWHERE),
                                 Restrictions.or(Restrictions.ilike("nombre", valor, MatchMode.ANYWHERE),
-                                        Restrictions.or( Restrictions.ilike("apellido" , valor), Restrictions.eq("rol.nombre", valor)))));
+                                        Restrictions.or( Restrictions.ilike("apellido" , valor), Restrictions.ilike("rol.nombre", valor)))));
 
             criteria.setFirstResult((pageNumber - 1) * Pagination.MAX_PAGE );
             criteria.setMaxResults(Pagination.MAX_PAGE);

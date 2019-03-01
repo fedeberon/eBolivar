@@ -1,6 +1,7 @@
 package com.eBolivar.web.persona;
 
 import com.eBolivar.common.SearchObject;
+import com.eBolivar.domain.Domicilio;
 import com.eBolivar.domain.Padron;
 import com.eBolivar.domain.PadronAsociado;
 import com.eBolivar.domain.Persona;
@@ -128,7 +129,6 @@ public class PersonaController
     @RequestMapping({"list"})
     public String search(Model model) {
         SearchObject searchObject = new SearchObject();
-        searchObject.setPage(1);
         model.addAttribute("personas", personaService.search(searchObject));
 
         return "persona/list";
@@ -149,4 +149,26 @@ public class PersonaController
     public SearchObject getSearchObject() {
         return new SearchObject();
     }
+
+    @RequestMapping(value={"update"})
+    public String update(@RequestParam Integer id, Model model) {
+        Persona persona = personaService.get(id);
+        model.addAttribute("persona", persona);
+
+        return "persona/update";
+    }
+
+
+    public String asociarDomicilio(@RequestParam Integer id, Model model){
+        Persona persona = personaService.get(id);
+        model.addAttribute("domicilio", new Domicilio(persona));
+
+        return "domicilio/create";
+    }
+
+
+//    public String saveDomicilio(@ModelAttribute Domicilio domicilio){
+//         Persona persona = personaService.get(domicilio.getPersona().getId());
+//        personaService.save(persona);
+//    }
 }

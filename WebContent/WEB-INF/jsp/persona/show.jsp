@@ -63,8 +63,6 @@
                             <th scope="row">D.N.I.</th>
                             <td>${persona.numeroDocumento}</td>
                         </tr>
-
-
                         </tbody>
                     </table>
 
@@ -127,7 +125,6 @@
                                 <th scope="row">Tipo de Domicilio</th>
                                 <td>${domicilio.tipoDomicilio}</td>
                             </tr>
-
                             <tr>
                                 <td colspan="2">
                                     <hr>

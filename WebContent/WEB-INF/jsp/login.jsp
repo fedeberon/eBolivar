@@ -6,7 +6,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
-    <link rel="shortcut icon" type="image/x-icon" href="<c:url value='/images/icons/logo.ico'/>">
+    <link rel="shortcut icon" type="image/x-icon" href="<c:url value='/img/icons/logo.ico'/>">
     <title>Login</title>
 
     <link rel="stylesheet" href="<c:url value='/css/login.css'/>" type="text/css"
@@ -39,8 +39,8 @@
         <div class="col-sm-6 col-md-4 col-md-offset-4">
             <!--             <h1 class="text-center login-title">Sign in to continue to Bootsnipp</h1> -->
             <div class="account-wall">
-                <img style="height:105px; " src="<c:url value='/img/institucional/logo-bolivar.png'/>"/>
-                <div align="right">
+                <img style="height:105px; " src="<c:url value='/img/institucional/logo-institucional.png'/>"/>
+                <div style="padding-top: 8px" align="right">
                     <font class="logoNombre1">Rentas</font><font class="logoNombre2"> Web</font></div>
                 <hr class="separador">
                 <img class="profile-img" src="<c:url value='/img/user.png'/>" alt="Ingreso">

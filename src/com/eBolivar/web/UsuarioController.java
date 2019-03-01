@@ -58,8 +58,8 @@ public class UsuarioController {
     }
 
     @RequestMapping("list/administradorDeCuenta")
-    public String listAdministradorDeCuenta(@RequestParam(defaultValue = "1", required = false) Integer page,Model model) {
-        model.addAttribute("usuarios", usuarioService.findPageable(page));
+    public String listAdministradorDeCuenta(@RequestParam(defaultValue = "1", required = false) Integer page,@RequestParam(defaultValue = "", required = false) String valor, Model model) {
+        model.addAttribute("usuarios", usuarioService.findAdministradorCuenta(valor, page));
         model.addAttribute("page", page);
 
         return "usuario/list-administradorCuenta";

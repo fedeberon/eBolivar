@@ -9,8 +9,8 @@
             </font>
             <br>
             <hr>
-            <img align="left" style="width: 100px;"
-                 src="<c:url value='/img/institucional/logo-institucional-2019.png'/>"/>
+            <img align="left" style="width: 100px; margin-top: 8px;"
+                 src="<c:url value='/img/institucional/logo-institucional.png'/>"/>
             <p style="line-height: 1.6em; font-size: 13px;">
                 <font class="labelContainer">
                     Trabajamos para seguir siendo un Municipio transparente con opciones f&aacute;ciles, r&aacute;pidas y accesibles a
@@ -21,9 +21,9 @@
                     Proyecto municipal Gobierno Digital Abierto. Porque queremos estar m&aacute;s cerca y ser un Municipio
                     eficiente para todos los vecinos de Bol&iacute;var.
                 </font>
-                <br>
-                <img align="right" style="width: 180px;" src="<c:url value='/img/institucional/LogoBolivarEscudo.jpg'/>"/>
-                <br>
+                <%--<br>--%>
+                <%--&lt;%&ndash;<img align="right" style="width: 180px;" src="<c:url value='/img/institucional/bucca-intendente-escudo.jpg'/>"/>&ndash;%&gt;--%>
+                <%--<br>--%>
                 <br>
         </div>
     </div>

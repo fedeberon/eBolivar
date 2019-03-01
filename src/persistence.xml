@@ -17,6 +17,9 @@
         <property name="url" value="jdbc:mysql://localhost:3306/rentas?autoReconnect=true"/>
         <property name="username" value="rentas"/>
         <property name="password" value="rentas"/>
+        <!--<property name="url" value="jdbc:mysql://localhost:3306/rentas?autoReconnect=true"/>-->
+        <!--<property name="username" value="rentas"/>-->
+        <!--<property name="password" value="rentas"/>-->
     </bean>
 
 

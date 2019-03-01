@@ -64,6 +64,7 @@
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
             <th scope="col">Actividad</th>
+            <th scope="col">Editar</th>
             <%--<th scope="col">Tipo</th>--%>
             <%--<th scope="col">Razon Social</th>--%>
         </tr>
@@ -89,6 +90,9 @@
                 <td>${bo.descripcionActividadPrincipal}</td>
                     <%--<td>${bo.tipoPersona}</td>--%>
                     <%--<td>${bo.razonSocial}</td>--%>
+                <td>
+                    <a href="<c:url value='/webapp/personas/update?id=${bo.id}'/>"><img src="<c:url value='/img/icons/icon-edit-persona.png'/>"/></a>
+                </td>
             </tr>
         </c:forEach>
         </tbody>
@@ -98,14 +102,33 @@
 <div id='botonera'>
     <a class="btn btn-default" href="javascript:history.back()">Volver </a>
 
+    <c:choose>
+        <c:when test="${searchObject.page > 1}">
+            <div class="col-xs-2">
+                <a onclick='pagAnterior();' href="#" class="btn btn-block btn-primary">Atras</a>
+            </div>
+        </c:when>
+        <c:otherwise>
+            <div class="col-xs-2">
+                <a class="btn btn-block btn-primary disabled" aria-disabled="true" >Atras</a>
+            </div>
+        </c:otherwise>
+    </c:choose>
 
-    <div class="col-xs-2">
-        <a onclick='pagAnterior();' href="#" class="btn btn-block btn-primary">Atras</a>
-    </div>
+    <c:choose>
+        <c:when test="${not empty personas && personas.size() == 5}">
+            <div class="col-xs-2">
+                <a onclick="pagSiguiente()" href="#" class="btn btn-block btn-primary">Siguiente</a>
+            </div>
+        </c:when>
 
-    <div class="col-xs-2">
-        <a onclick="pagSiguiente()" href="#" class="btn btn-block btn-primary">Siguiente</a>
-    </div>
+        <c:otherwise>
+            <div class="col-xs-2">
+                <a class="btn btn-block btn-primary disabled" aria-disabled="true">Siguiente</a>
+            </div>
+        </c:otherwise>
+    </c:choose>
+
 
 </div>
 
