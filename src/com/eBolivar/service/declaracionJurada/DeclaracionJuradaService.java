@@ -5,16 +5,15 @@ import com.eBolivar.dao.declaracionJurada.interfaces.IDeclaracionJuradaRepositor
 import com.eBolivar.domain.*;
 import com.eBolivar.domain.administradorCuenta.AdministradorCuenta;
 import com.eBolivar.domain.usuario.User;
+import com.eBolivar.domain.usuario.Usuario;
 import com.eBolivar.service.declaracionJurada.interfaces.IDeclaracionJuradaService;
 import com.eBolivar.service.padron.interfaces.IPadronService;
 import com.eBolivar.service.persona.interfaces.IPersonaService;
 import com.eBolivar.service.usuario.interfaces.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.ServletOutputStream;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -161,17 +160,20 @@ public class DeclaracionJuradaService implements IDeclaracionJuradaService{
 
         List<DeclaracionJurada> declaracionJuradas =
                 user.clasificar(
-                        AdministradorCuenta -> {
-                            AdministradorCuenta administradorCuenta = (AdministradorCuenta) user;
+
+                        AdministradorCuenta -> dao.findAllPageable(valor, pageNumber),
+
+                        Usuario -> {
+                            Usuario usuario = (Usuario) user;
                             List<Localidad> localidades = new ArrayList<>();
-                            administradorCuenta.getUsuarioLocalidad().forEach(usuarioLocalidad -> localidades.add(usuarioLocalidad.getLocalidad()));
+                            usuarioService.getLocalidades(usuario).forEach(usuarioLocalidad -> localidades.add(usuarioLocalidad.getLocalidadAsociada()));
                             if(!localidades.isEmpty()){
                                 return dao.findAllPageablePorLocalidad(valor, pageNumber, localidades);
                             } else {
-                                return dao.findAllPageable("No se encontraron resultados", pageNumber);
+                                return dao.findAllPageable(valor, pageNumber);
                             }
-                        },
-                        Usuario -> dao.findAllPageable(valor, pageNumber)
+                        }
+
                         );
 
         return declaracionJuradas;

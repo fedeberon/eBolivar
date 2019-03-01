@@ -6,6 +6,7 @@ import com.eBolivar.domain.usuario.UsuarioLocalidad;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.util.List;
 import java.util.function.Function;
@@ -16,17 +17,6 @@ public class AdministradorCuenta extends User {
 
     @OneToMany(mappedBy = "administradorCuenta")
     private List<PersonaAsociada> personasAsociadas;
-
-    @OneToMany(mappedBy = "administradorCuenta")
-    private List<UsuarioLocalidad> usuarioLocalidad;
-
-    public List<UsuarioLocalidad> getUsuarioLocalidad() {
-        return usuarioLocalidad;
-    }
-
-    public void setUsuarioLocalidad(List<UsuarioLocalidad> usuarioLocalidad) {
-        this.usuarioLocalidad = usuarioLocalidad;
-    }
 
     public List<PersonaAsociada> getPersonasAsociadas() {
         return personasAsociadas;

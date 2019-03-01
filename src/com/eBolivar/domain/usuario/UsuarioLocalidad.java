@@ -20,12 +20,11 @@ public class UsuarioLocalidad {
 
     @OneToOne
     @JoinColumn(name = "USL_USU_USERNAME")
-    private AdministradorCuenta administradorCuenta;
+    private Usuario usuario;
 
     @OneToOne
     @JoinColumn(name = "USL_LOC_ID")
-    private Localidad localidad;
-
+    private Localidad localidadAsociada;
 
     public Long getId() {
         return id;
@@ -35,19 +34,19 @@ public class UsuarioLocalidad {
         this.id = id;
     }
 
-    public AdministradorCuenta getAdministradorCuenta() {
-        return administradorCuenta;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setAdministradorCuenta(AdministradorCuenta administradorCuenta) {
-        this.administradorCuenta = administradorCuenta;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public Localidad getLocalidad() {
-        return localidad;
+    public Localidad getLocalidadAsociada() {
+        return localidadAsociada;
     }
 
-    public void setLocalidad(Localidad localidad) {
-        this.localidad = localidad;
+    public void setLocalidadAsociada(Localidad localidadAsociada) {
+        this.localidadAsociada = localidadAsociada;
     }
 }

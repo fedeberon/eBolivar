@@ -1,14 +1,30 @@
 package com.eBolivar.domain.usuario;
 
 import com.eBolivar.domain.administradorCuenta.AdministradorCuenta;
+import com.eBolivar.web.UsuarioController;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.util.List;
 import java.util.function.Function;
 
 @Entity
 @DiscriminatorValue(value="USUARIO_DE_SISTEMA")
 public class Usuario extends User{
+
+
+    @OneToMany(mappedBy = "usuario")
+    private List<UsuarioLocalidad> usuarioLocalidad;
+
+
+    public List<UsuarioLocalidad> getUsuarioLocalidad() {
+        return usuarioLocalidad;
+    }
+
+    public void setUsuarioLocalidad(List<UsuarioLocalidad> usuarioLocalidad) {
+        this.usuarioLocalidad = usuarioLocalidad;
+    }
 
     @Override
     public String toString() {

@@ -4,6 +4,7 @@
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib uri="http://localhost:8008/rentas/functions" prefix="f" %>
+<%--<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>--%>
 <jsp:include page="../header.jsp"/>
 <html>
 <head>
@@ -45,7 +46,7 @@
 
 <div id="formulario">
 
-    <form:form action="../usuario/buscar" method="post">
+    <form:form action="/eBolivar/webapp/usuario/administrador/buscar" method="post">
         <div class="col-md-6">
             <input class="form-control" name="valor" value="${valor}" placeholder="Ingrese su b&uacute;squeda"/>
         </div>
@@ -70,7 +71,6 @@
                     <th>Rol</th>
                     <th></th>
                     <th></th>
-                    <th></th>
                 </tr>
                 </thead>
 
@@ -81,8 +81,7 @@
                             <td>${bo.nombre}</td>
                             <td>${bo.apellido}</td>
                             <td>${bo.rol.nombre}</td>
-                            <td><a class="btn btn-info" href="<c:url value='/webapp/personaAsociada/create?username=${bo.username}'/>"/>Asociar CUIT</td>
-                            <td><a class="btn btn-primary" href="<c:url value='/webapp//personaAsociada/add-location?username=${bo.username}'/>"/>Asociar Localidad</td>
+                            <td><a class="btn btn-secondary" href="<c:url value='/webapp/personaAsociada/create?username=${bo.username}'/>"/>Asociar CUIT</td>
                             <td><a class="btn btn-success" href="<c:url value='/webapp/personaAsociada/list?username=${bo.username}'/>"/>CUIT's Asociados</td>
                         </tr>
                     </c:forEach>
@@ -103,7 +102,7 @@
             <c:choose>
                 <c:when test="${page > 1}">
                     <div class="col-xs-2">
-                        <a href="<c:url value='/webapp/usuario/buscar?&page=${page - 1}&valor=${valor}'/>" class="btn btn-block btn-primary">Atras</a>
+                        <a href="<c:url value='/webapp//usuario/administrador/buscar?&page=${page - 1}&valor=${valor}'/>" class="btn btn-block btn-primary">Atras</a>
                     </div>
                 </c:when>
                 <c:otherwise>
@@ -116,7 +115,7 @@
             <c:choose>
                 <c:when test="${not empty usuarios && usuarios.size() == 5}">
                     <div class="col-xs-2">
-                        <a href="<c:url value='/webapp//usuario/buscar?&page=${page + 1}&valor=${valor}'/>" class="btn btn-block btn-primary">Siguiente</a>
+                        <a href="<c:url value='/webapp//usuario/administrador/buscar?&page=${page + 1}&valor=${valor}'/>" class="btn btn-block btn-primary">Siguiente</a>
                     </div>
                 </c:when>
 
@@ -135,8 +134,9 @@
 </div>
 
 <div id='botonera'>
-    <a href="javascript:history.back()" class="btn btn-default">Volver</a>
+    <a href="/eBolivar/webapp/usuario/list/administradorDeCuenta" class="btn btn-default">Volver</a>
 </div>
+
 <jsp:include page="../bottom.jsp"/>
 </body>
 </html>

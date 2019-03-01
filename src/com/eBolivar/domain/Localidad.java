@@ -32,6 +32,18 @@ public class Localidad {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setDepId(Long depId) {
+        this.depId = depId;
+    }
+
     public String getNombre(){
         return nombre;
     }

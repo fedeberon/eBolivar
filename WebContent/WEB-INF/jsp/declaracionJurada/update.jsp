@@ -81,7 +81,7 @@
                     <c:forEach items="${ddjj.persona.domicilio}" var="domicilio">
                         <div class="form-group">
                             <label>Domicilio ${domicilio.tipoDomicilio}:</label>
-                            <input type="text" class="form-control" value="${domicilio.direccion} - ${domicilio.localidad}" disabled="disabled">
+                            <input type="text" class="form-control" value="${domicilio.direccion} - ${domicilio.localidadAsociada}" disabled="disabled">
                         </div>
                     </c:forEach>
             </div>

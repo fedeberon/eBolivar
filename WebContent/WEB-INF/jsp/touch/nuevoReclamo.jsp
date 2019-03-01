@@ -125,11 +125,11 @@
 		<ul id="selectUbicacion" style="display: none;">
 			<c:forEach items="${departamentos}" var="departamento">
 			
-			<c:forEach items="${departamento.localidades}" var="localidad">
+			<c:forEach items="${departamento.localidades}" var="localidadAsociada">
 			
-			    <li data-val="${ localidad.nombre }">${ localidad.nombre }<ul>
+			    <li data-val="${ localidadAsociada.nombre }">${ localidadAsociada.nombre }<ul>
 			        
-					<c:forEach items="${localidad.barrios }" var="barrio">
+					<c:forEach items="${localidadAsociada.barrios }" var="barrio">
 			            <li data-val="${ barrio.nombre } ">${ barrio.nombre } 
 			                <ul>
 			                    
