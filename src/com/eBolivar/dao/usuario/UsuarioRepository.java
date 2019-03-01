@@ -7,6 +7,7 @@ import com.eBolivar.domain.DeclaracionJurada;
 import com.eBolivar.domain.administradorCuenta.AdministradorCuenta;
 import com.eBolivar.domain.usuario.User;
 import com.eBolivar.domain.usuario.Usuario;
+import com.eBolivar.domain.usuario.UsuarioLocalidad;
 import org.hibernate.*;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
@@ -40,11 +41,12 @@ public class UsuarioRepository implements IUsuarioRepository {
         }
     }
 
-    @Override
+    @SuppressWarnings("Duplicates")
     public Usuario save(Usuario usuario) {
         Transaction tx = null;
         try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
-            tx = session.delegate().beginTransaction();
+            tx = session.delegate().getTransaction();
+            tx.begin();
             session.delegate().saveOrUpdate(usuario);
             tx.commit();
 
@@ -56,10 +58,31 @@ public class UsuarioRepository implements IUsuarioRepository {
         }
     }
 
-    @Override
-    public List<User> findAll() {
+    @SuppressWarnings("Duplicates")
+    public UsuarioLocalidad save(UsuarioLocalidad usuarioLocalidad) {
+        Transaction tx = null;
         try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
-            return session.delegate().createQuery("from Usuario").list();
+            tx = session.delegate().getTransaction();
+            tx.begin();
+            session.delegate().saveOrUpdate(usuarioLocalidad);
+            tx.commit();
+
+            return usuarioLocalidad;
+        }
+        catch (HibernateException e){
+            tx.rollback();
+            throw e;
+        }
+    }
+
+    @Override
+    public List<Usuario> findAll() {
+        try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
+            List<Usuario> usuarios = session.delegate().createQuery("from Usuario").list();
+
+            usuarios.forEach(usuario -> Hibernate.initialize(usuario.getUsuarioLocalidad()));
+
+            return usuarios;
         }
         catch (HibernateException e){
             e.printStackTrace();
@@ -81,6 +104,8 @@ public class UsuarioRepository implements IUsuarioRepository {
         }
     }
 
+
+
     @Override
     public List<AdministradorCuenta> findAdministradorCuenta(String valor, Integer pageNumber){
         try (CloseableSession session = new CloseableSession(sessionFactory.openSession())) {
@@ -95,7 +120,9 @@ public class UsuarioRepository implements IUsuarioRepository {
             criteria.setFirstResult((pageNumber - 1) * Pagination.MAX_PAGE );
             criteria.setMaxResults(Pagination.MAX_PAGE);
 
-            return criteria.list();
+            List<AdministradorCuenta> administradorCuentas =  criteria.list();
+
+            return administradorCuentas;
 
         } catch (HibernateException e) {
             throw e;
@@ -126,6 +153,41 @@ public class UsuarioRepository implements IUsuarioRepository {
         }
         catch (HibernateException e){
             tx.rollback();
+            throw e;
+        }
+    }
+
+
+    @Override
+    public AdministradorCuenta getAdministradorDeCuenta(String username){
+        try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
+            Query query = session.delegate().createQuery("from AdministradorCuenta where username = :username");
+            query.setParameter("username", username);
+            AdministradorCuenta administradorCuenta = (AdministradorCuenta) query.uniqueResult();
+//            Hibernate.initialize(administradorCuenta.getUsuarioLocalidad());
+
+            return administradorCuenta;
+        }
+        catch (HibernateException e){
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+
+
+    @Override
+    public List<UsuarioLocalidad> getLocalidades(Usuario usuario){
+        try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
+            Query query = session.delegate().createQuery("from Usuario where username = :username");
+            query.setParameter("username", usuario.getUsername());
+            Usuario usuarioConLocalidades = (Usuario) query.uniqueResult();
+            Hibernate.initialize(usuarioConLocalidades.getUsuarioLocalidad());
+
+            return usuarioConLocalidades.getUsuarioLocalidad();
+        }
+        catch (HibernateException e){
+            e.printStackTrace();
             throw e;
         }
     }

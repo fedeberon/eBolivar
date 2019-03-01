@@ -5,6 +5,7 @@ package com.eBolivar.enumeradores;
  */
 public enum AnioEnum{
 
+    A_2019("2019"),
     A_2018("2018"),
     A_2017("2017"),
     A_2016("2016");

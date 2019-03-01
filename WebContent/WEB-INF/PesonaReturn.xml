@@ -29,7 +29,7 @@
                         <descripcionProvincia>BUENOS AIRES</descripcionProvincia>
                         <direccion>ZAPIOLA 326</direccion>
                         <idProvincia>1</idProvincia>
-                        <localidad>BOLIVAR</localidad>
+                        <localidadAsociada>BOLIVAR</localidadAsociada>
                         <tipoDomicilio>LEGAL/REAL</tipoDomicilio>
                     </domicilio>
                     <estadoClave>ACTIVO</estadoClave>

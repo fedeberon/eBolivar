@@ -1,6 +1,7 @@
 package com.eBolivar.dao.declaracionJurada.interfaces;
 
 import com.eBolivar.domain.DeclaracionJurada;
+import com.eBolivar.domain.Localidad;
 import com.eBolivar.domain.PadronAsociado;
 import com.eBolivar.domain.Persona;
 
@@ -33,4 +34,6 @@ public interface IDeclaracionJuradaRepository {
     void imprimirAcuseDeRecibo(DeclaracionJurada declaracionJurada, ServletOutputStream outputStream);
 
     List<DeclaracionJurada> getByPadronAsociado(PadronAsociado padronAsociado, Integer page);
+
+    List<DeclaracionJurada> findAllPageablePorLocalidad(String valor, Integer pageNumber, List<Localidad> personasAsociadas);
 }
