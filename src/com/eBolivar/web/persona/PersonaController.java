@@ -10,8 +10,11 @@ import com.eBolivar.service.padron.interfaces.IPadronService;
 import com.eBolivar.service.persona.interfaces.IPersonaService;
 import com.eBolivar.validator.PadronAsociadoValidator;
 import com.eBolivar.validator.PersonaValidator;
+
+import java.io.IOException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +23,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping({"/personas"})
@@ -39,23 +47,26 @@ public class PersonaController
     public PersonaController() {}
 
     @RequestMapping(value={"/busquedaPorCuit"}, method={RequestMethod.GET, RequestMethod.POST})
-    public String obtenerPersonaPor(@RequestParam String cuit, Model model)
-            throws Exception
-    {
+    public String obtenerPersonaPor(@RequestParam String cuit, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+
         Persona persona = personaService.getByCUIT(cuit);
-        model.addAttribute("persona", persona);
-        model.addAttribute("padronesAsociados", cuitPorTasaService.byPersona(persona));
 
-        return "persona/show";
+        if (persona == null) {
+            model.addAttribute("cuitError","El cuit no esta registrado en la base de datos, desea ingresar un nuevo cuit?");
+            return "menu/menu-rentas";
+         }
+         else{
+            model.addAttribute("persona", persona);
+            model.addAttribute("padronesAsociados", cuitPorTasaService.byPersona(persona));
+            return "persona/show";
+        }
     }
-
 
     @RequestMapping(value={"/busquedaPorNombreYApellido"}, method={RequestMethod.GET, RequestMethod.POST})
     public String obtenerPersonasPor(@RequestParam(value="nombre", required=false) String nombre, @RequestParam(value="apellido", required=false) String apellido, Model model)
     {
         List<Persona> personas = personaService.getByNombreYApellido(nombre, apellido);
         model.addAttribute("personas", personas);
-
         return "persona/list";
     }
 
@@ -105,6 +116,7 @@ public class PersonaController
 
     @RequestMapping({"create"})
     public String create() {
+
         return "persona/create";
     }
 
