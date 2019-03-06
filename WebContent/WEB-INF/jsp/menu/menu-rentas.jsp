@@ -10,7 +10,7 @@
         });
         function ocultarCuitErrorRedireccionar() {
             document.getElementById('errorCuit').style.display = 'none';
-            document.location.replace("/eBolivar/webapp/personas/create");
+            document.location.replace("/webapp/personas/create");
         }
     </script>
     <style>
@@ -66,7 +66,7 @@
                                     Buscar
                                 </button>
                             </div>
-                            <input id="inputCuit" type="text" name="cuit" class="form-control tool process" placeholder="Ingrese numero de CUIT" tabindex="1" value="${cuit}"/>
+                            <input id="inputCuit" onclick="this.select()" type="text" name="cuit" class="form-control tool process" placeholder="Ingrese numero de CUIT" tabindex="1" value="${cuit}"/>
                         </div><!-- /input-group -->
                     </form>
                 </div>

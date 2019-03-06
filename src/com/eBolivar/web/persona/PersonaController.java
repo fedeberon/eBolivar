@@ -47,7 +47,7 @@ public class PersonaController
     public PersonaController() {}
 
     @RequestMapping(value={"/busquedaPorCuit"}, method={RequestMethod.GET, RequestMethod.POST})
-    public String obtenerPersonaPor(@RequestParam String cuit, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String obtenerPersonaPor(@RequestParam String cuit, Model model) throws Exception {
 
         Persona persona = personaService.getByCUIT(cuit);
 

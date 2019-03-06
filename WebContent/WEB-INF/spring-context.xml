@@ -64,7 +64,7 @@
     <jee:jndi-lookup jndi-name="java:comp/env/password" id="passwordJndi"/>
 
     <bean id="dataSourceJpa" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-        <property name="driverClass" value="oracle.jdbc.OracleDriver"/>
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
         <property name="jdbcUrl" ref="urlJndi"/>
         <property name="user" ref="usernameJndi"/>
         <property name="password" ref="passwordJndi"/>

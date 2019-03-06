@@ -11,20 +11,12 @@
     <jee:jndi-lookup jndi-name="java:comp/env/username" id="usernameJndi"/>
     <jee:jndi-lookup jndi-name="java:comp/env/password" id="passwordJndi"/>
 
-    <bean id="dataSourceJpa" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-        <property name="driverClass" value="oracle.jdbc.OracleDriver"/>
-        <property name="jdbcUrl" ref="urlJndi"/>
-        <property name="user" ref="usernameJndi"/>
-        <property name="password" ref="passwordJndi"/>
-    </bean>
-
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" ref="urlJndi"/>
         <property name="username" ref="usernameJndi"/>
         <property name="password" ref="passwordJndi"/>
     </bean>
-
 
     <!-- Hibernate SessionFactory -->
     <bean id="sessionFactory" class=" org.springframework.orm.hibernate3.LocalSessionFactoryBean">
