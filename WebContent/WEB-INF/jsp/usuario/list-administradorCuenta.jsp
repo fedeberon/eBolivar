@@ -46,7 +46,7 @@
 
 <div id="formulario">
 
-    <form:form action="/eBolivar/webapp/usuario/administrador/buscar" method="post">
+    <form:form action="../administrador/buscar" method="post">
         <div class="col-md-6">
             <input class="form-control" name="valor" value="${valor}" placeholder="Ingrese su b&uacute;squeda"/>
         </div>
@@ -102,7 +102,7 @@
             <c:choose>
                 <c:when test="${page > 1}">
                     <div class="col-xs-2">
-                        <a href="<c:url value='/webapp//usuario/administrador/buscar?&page=${page - 1}&valor=${valor}'/>" class="btn btn-block btn-primary">Atras</a>
+                        <a href="<c:url value='/webapp/usuario/administrador/buscar?&page=${page - 1}&valor=${valor}'/>" class="btn btn-block btn-primary">Atras</a>
                     </div>
                 </c:when>
                 <c:otherwise>
@@ -115,7 +115,7 @@
             <c:choose>
                 <c:when test="${not empty usuarios && usuarios.size() == 5}">
                     <div class="col-xs-2">
-                        <a href="<c:url value='/webapp//usuario/administrador/buscar?&page=${page + 1}&valor=${valor}'/>" class="btn btn-block btn-primary">Siguiente</a>
+                        <a href="<c:url value='/webapp/usuario/administrador/buscar?&page=${page + 1}&valor=${valor}'/>" class="btn btn-block btn-primary">Siguiente</a>
                     </div>
                 </c:when>
 
@@ -134,7 +134,7 @@
 </div>
 
 <div id='botonera'>
-    <a href="/eBolivar/webapp/usuario/list/administradorDeCuenta" class="btn btn-default">Volver</a>
+    <a href="../list/administradorDeCuenta" class="btn btn-default">Volver</a>
 </div>
 
 <jsp:include page="../bottom.jsp"/>

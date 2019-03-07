@@ -59,7 +59,7 @@
 </div>
 
 <div id='botonera'>
-    <a dronhref="/eBolivar/webapp/usuario/list" class="btn btn-default">Volver</a>
+    <a href="../usuario/list" class="btn btn-default">Volver</a>
 </div>
 
 <jsp:include page="../bottom.jsp"/>
