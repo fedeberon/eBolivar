@@ -331,11 +331,11 @@ public class DeclaracionJuradaController {
     @RequestMapping("declaracionJurada/bimestral") //Metodo en ddjj/list
     public String createBimestral(Model model , @RequestParam Long idDDJJ){
         DeclaracionJurada declaracionJurada = declaracionJuradaService.get(idDDJJ);
-        DeclaracionJurada declaracionJuradaACrear = new DeclaracionJurada(declaracionJurada.getPersona(), AnioEnum.A_2018, declaracionJurada.getPadron());
+        DeclaracionJurada declaracionJuradaACrear = new DeclaracionJurada(declaracionJurada.getPersona(), AnioEnum.A_2019, declaracionJurada.getPadron());
         model.addAttribute("ddjj", declaracionJuradaACrear);
         model.addAttribute("periodoEnum", PeriodoEnum.stream().filter(periodo -> !periodo.getDescripcion().equalsIgnoreCase(PeriodoEnum.ANUAL.getDescripcion())).collect(Collectors.toList()));
         List<TasaPersonaPadron> tasaPersonaPadron = tasaPersonaPadronService.findByPersonaPadron(declaracionJurada.getPersona(), declaracionJurada.getPadron());
-        List<Tasa> tasas = tasaService.findByTasaPersonaPadron(tasaPersonaPadron, AnioEnum.A_2018);
+        List<Tasa> tasas = tasaService.findByTasaPersonaPadron(tasaPersonaPadron, AnioEnum.A_2019);
         model.addAttribute("tasas", tasas);
 
         return "declaracionJurada/create-por-personaAsociada";

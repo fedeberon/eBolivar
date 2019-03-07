@@ -68,6 +68,7 @@
         <property name="jdbcUrl" ref="urlJndi"/>
         <property name="user" ref="usernameJndi"/>
         <property name="password" ref="passwordJndi"/>
+        <property name="idleConnectionTestPeriod" value="1" />
     </bean>
 
     <bean id="sessionFactoryJpa" class="org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean">
