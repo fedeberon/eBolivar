@@ -10,7 +10,7 @@
         });
         function ocultarCuitErrorRedireccionar() {
             document.getElementById('errorCuit').style.display = 'none';
-            document.location.replace("/eBolivar/webapp/personas/create");
+            document.location.replace("../../webapp/personas/create");
         }
     </script>
     <style>
