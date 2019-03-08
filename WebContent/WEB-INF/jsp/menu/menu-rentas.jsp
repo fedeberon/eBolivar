@@ -11,6 +11,7 @@
         function ocultarCuitErrorRedireccionar() {
             document.getElementById('errorCuit').style.display = 'none';
             document.location.replace("/rentas/webapp/personas/create");
+
         }
     </script>
     <style>
