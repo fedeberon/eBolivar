@@ -21,6 +21,10 @@ public class Padron {
     @JoinColumn(name = "TI_ID")
     private TipoImpuesto tipoImpuesto;
 
+    @OneToOne
+    @JoinColumn(name = "PAD_LOC_ID")
+    private Localidad localidad;
+
     public Padron() { }
 
     public Padron(String numeroDePadron, TipoImpuesto tipoImpuesto) {
@@ -50,6 +54,14 @@ public class Padron {
 
     public void setTipoImpuesto(TipoImpuesto tipoImpuesto) {
         this.tipoImpuesto = tipoImpuesto;
+    }
+
+    public Localidad getLocalidad() {
+        return localidad;
+    }
+
+    public void setLocalidad(Localidad localidad) {
+        this.localidad = localidad;
     }
 
     public boolean equals(Padron p) {

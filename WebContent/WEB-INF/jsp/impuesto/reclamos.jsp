@@ -32,7 +32,7 @@
 		    	audio_challenge :      'Escuchar la clave de seguridad.',
 		    	refresh_btn :          'Volver a generar una clave de seguridad.',
 		    	help_btn :             'Ayuda',
-		    	incorrect_try_again :  'Incorrecto. Por favor, inténtelo de nuevo.'
+		    	incorrect_try_again :  'Incorrecto. Por favor, intï¿½ntelo de nuevo.'
 			},
 		    theme : 'clean'
 		};
@@ -64,7 +64,7 @@
     </div>
   <span>Seleccione el tipo de tramite o consulta que desea realizar.</span>
 <p class="sub-titulo">Una gu&iacute;a paso a paso de los procedimientos administrativos en Bolivar</p>
-<p class="descripcion-titulo"> es una base de datos en línea concebida para aportar una total transparencia en los procedimientos administrativos en Bolivar</p>
+<p class="descripcion-titulo"> es una base de datos en lï¿½nea concebida para aportar una total transparencia en los procedimientos administrativos en Bolivar</p>
 
  
 <div style="clear:both;">
@@ -101,7 +101,7 @@
       <span class="input-group-btn">
         <button class="btn btn-default"  onclick="obtenerReclamo();" type="button">Buscar !</button>
       </span>
-      <input id="idReclamo" type="text" class="form-control" placeholder="Ingrese número de Reclamo">
+      <input id="idReclamo" type="text" class="form-control" placeholder="Ingrese nï¿½mero de Reclamo">
     </div><!-- /input-group -->
   </div><!-- /.col-lg-6 -->
 </div><!-- /.row -->
@@ -236,7 +236,7 @@
   
    <div class="form-group">
     <label for="exampleInputEmail1">Localidad</label>
-    <input type="text" name="localidad" value="${localidad}" class="form-control" id="exampleInputEmail1" placeholder="Ingrese la Localidad">
+    <input type="text" name="localidadAsociada" value="${localidadAsociada}" class="form-control" id="exampleInputEmail1" placeholder="Ingrese la Localidad">
   </div>
   
    <div class="form-group">

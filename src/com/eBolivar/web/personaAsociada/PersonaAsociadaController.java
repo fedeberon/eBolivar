@@ -1,12 +1,17 @@
 package com.eBolivar.web.personaAsociada;
 
+import com.eBolivar.domain.Localidad;
 import com.eBolivar.domain.PadronAsociado;
 import com.eBolivar.domain.Persona;
 import com.eBolivar.domain.administradorCuenta.PersonaAsociada;
 import com.eBolivar.domain.rol.Rol;
 import com.eBolivar.domain.usuario.User;
+import com.eBolivar.domain.usuario.Usuario;
+import com.eBolivar.domain.usuario.UsuarioLocalidad;
+import com.eBolivar.service.administradorCuenta.AdministradorCuentaService;
 import com.eBolivar.service.cuitPorTasa.CuitPorTasaService;
 import com.eBolivar.service.cuitPorTasa.interfaces.ICuitPorTasaService;
+import com.eBolivar.service.localidad.ILocalidadService;
 import com.eBolivar.service.persona.interfaces.IPersonaService;
 import com.eBolivar.service.personaAsociada.interfaces.IPersonaAsociadaService;
 import com.eBolivar.service.usuario.interfaces.IUsuarioService;
@@ -17,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -43,7 +49,6 @@ public class PersonaAsociadaController {
     @Autowired
     private ICuitPorTasaService cuitPorTasaService;
 
-
     @RequestMapping("save")
     public String save(@ModelAttribute PersonaAsociada personaAsociada, BindingResult result, RedirectAttributes redirectAttributes){
         this.validator.validate(personaAsociada, result);
@@ -69,7 +74,6 @@ public class PersonaAsociadaController {
 
         return "personaAsociada/list";
     }
-
 
     @ModelAttribute("personaAsociada")
     public PersonaAsociada getPersonaAsociada(){

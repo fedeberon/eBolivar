@@ -161,10 +161,10 @@ public class PersonaService implements IPersonaService
         if ((cuit == null) || (cuit.isEmpty())) { return null;
         }
         Persona persona = dao.getByCUIT(cuit);
-        if (persona == null) {
-            LoginTicketResponse credencial = autenticacionAFIPService.obtenerCredenciales();
-            persona = create_PersonaRequest(credencial.getToken(), credencial.getSign(), Persona.CUIT_REPRESENTADA_MUNICIPALIDAD_BOLIVAR, cuit);
-        }
+//        if (persona == null) {
+//            LoginTicketResponse credencial = autenticacionAFIPService.obtenerCredenciales();
+//            persona = create_PersonaRequest(credencial.getToken(), credencial.getSign(), Persona.CUIT_REPRESENTADA_MUNICIPALIDAD_BOLIVAR, cuit);
+//        }
 
         return persona;
     }

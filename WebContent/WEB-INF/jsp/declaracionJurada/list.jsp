@@ -73,7 +73,7 @@
                             <td>${bo.persona.nombre} ${bo.persona.apellido}</td>
                             <td>${bo.padron.numero}</td>
                             <td>${bo.padron.tipoImpuesto.nombre}</td>
-                            <td>${bo.fecha}</td>
+                            <td>${f:formatLocalDateTime(bo.fecha, 'HH:mm:ss dd/MM/yyyy')}</td>
                             <td>${bo.periodo}</td>
                         </tr>
                     </c:forEach>
@@ -156,6 +156,8 @@
                                 DDJJ Anteriores<span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
+                                <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/create/byPersona?idPersona=${ddjjs[0].persona.idPersona}&anio=2018&idPadron=${ddjjs[0].padron.id}'/>">DDJJ 2018</a></li>
+                                <li role="separator" class="divider"></li>
                                 <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/create/byPersona?idPersona=${ddjjs[0].persona.idPersona}&anio=2017&idPadron=${ddjjs[0].padron.id}'/>">DDJJ 2017</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/create/byPersona?idPersona=${ddjjs[0].persona.idPersona}&anio=2016&idPadron=${ddjjs[0].padron.id}'/>">DDJJ 2016</a></li>
@@ -170,9 +172,9 @@
                                 Nueva Declaraci&oacute;n<span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/bimestral?idDDJJ=${ddjjs[0].id}&idPersona=${ddjjs[0].persona.idPersona}&anio=2018&idPadron=${ddjjs[0].padron.id}'/>">Bimestral</a></li>
+                                <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/bimestral?idDDJJ=${ddjjs[0].id}&idPersona=${ddjjs[0].persona.idPersona}&anio=2019&idPadron=${ddjjs[0].padron.id}'/>">Bimestral</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/anual?idDDJJ=${ddjjs[0].id}&idPersona=${ddjjs[0].persona.idPersona}&anio=2018&idPadron=${ddjjs[0].padron.id}'/>">Anual</a></li>
+                                <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/anual?idDDJJ=${ddjjs[0].id}&idPersona=${ddjjs[0].persona.idPersona}&anio=2019&idPadron=${ddjjs[0].padron.id}'/>">Anual</a></li>
                             </ul>
                         </div>
                     </div>

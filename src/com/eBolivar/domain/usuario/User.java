@@ -1,5 +1,6 @@
 package com.eBolivar.domain.usuario;
 
+import com.eBolivar.domain.interfaces.Clasificable;
 import com.eBolivar.domain.rol.Rol;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,7 +15,7 @@ import java.util.stream.Collectors;
 @Table(name = "USUARIOS")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TIPO_USUARIO")
-public abstract class User implements UserDetails {
+public abstract class User implements UserDetails , Clasificable {
 
     @Id
     @Column(name = "USU_USERNAME")

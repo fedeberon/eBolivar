@@ -62,7 +62,7 @@
       <xs:element minOccurs="0" name="descripcionProvincia" type="xs:string"/>
       <xs:element minOccurs="0" name="direccion" type="xs:string"/>
       <xs:element minOccurs="0" name="idProvincia" type="xs:int"/>
-      <xs:element minOccurs="0" name="localidad" type="xs:string"/>
+      <xs:element minOccurs="0" name="localidadAsociada" type="xs:string"/>
       <xs:element minOccurs="0" name="tipoDatoAdicional" type="xs:string"/>
       <xs:element minOccurs="0" name="tipoDomicilio" type="xs:string"/>
     </xs:sequence>

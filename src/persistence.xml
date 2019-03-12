@@ -1,11 +1,21 @@
-<?xml version="1.0"?>
-<!DOCTYPE beans PUBLIC
-        "-//SPRING//DTD BEAN//EN"
-        "http://www.springframework.org/dtd/spring-beans.dtd">
-<beans>
+<?xml version="1.0" encoding="windows-1252"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       						http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+          					http://www.springframework.org/schema/jee
+                            http://www.springframework.org/schema/jee/spring-jee-3.2.xsd">
+
+    <jee:jndi-lookup jndi-name="java:comp/env/url" id="urlJndi"/>
+    <jee:jndi-lookup jndi-name="java:comp/env/username" id="usernameJndi"/>
+    <jee:jndi-lookup jndi-name="java:comp/env/password" id="passwordJndi"/>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" ref="urlJndi"/>
+        <property name="username" ref="usernameJndi"/>
+        <property name="password" ref="passwordJndi"/>
 
 
         <!--<property name="url" value="jdbc:mysql://localhost:3306/os000353_rentas?autoReconnect=true"/>-->
@@ -20,7 +30,6 @@
         <property name="username" value="rentas"/>
         <property name="password" value="rentas"/>
     </bean>
-
 
     <!-- Hibernate SessionFactory -->
     <bean id="sessionFactory" class=" org.springframework.orm.hibernate3.LocalSessionFactoryBean">

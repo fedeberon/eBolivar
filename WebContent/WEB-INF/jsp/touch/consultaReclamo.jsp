@@ -119,7 +119,7 @@
 
 	<tr>
 	<td><p>Localidad</p></td>
-	<td id="localidad">No se encontraron Registros</td>
+	<td id="localidadAsociada">No se encontraron Registros</td>
 	</tr>
 
 	<tr>
