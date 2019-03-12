@@ -161,7 +161,7 @@
             <p class="acuse-info">El Acuse de Recibo estar&aacute; disponible a partir de ${currentDate} a las ${acuseAvailableDate}hs</p>
         </c:if>
 
-        <a href="/rentas/webapp/ddjj/exportar?idDeclaracionJurada=${declaracionJurada.id}" target="_blank" class="btn btn-primary">Imprimir</a>
+        <a href="../..//webapp/ddjj/exportar?idDeclaracionJurada=${declaracionJurada.id}" target="_blank" class="btn btn-primary">Imprimir</a>
 
         <c:if test="${declaracionJurada.estadoDeDeclaracionJurada == 'EN_PROCESO' || declaracionJurada.estadoDeDeclaracionJurada == 'MODIFICADA' || declaracionJurada.estadoDeDeclaracionJurada == 'RECHAZADA'}">
             <a href="/rentas/webapp/ddjj/editar?id=${declaracionJurada.id}" class="btn btn-primary">Editar</a>

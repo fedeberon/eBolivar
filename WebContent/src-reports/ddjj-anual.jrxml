@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ddjj-anual" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ea4d5472-7716-4884-af4c-1795a2380736">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="69"/>
+	<property name="ireport.x" value="60"/>
+	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -423,12 +423,9 @@ where ddjj.dec_id = $P{idDecJur}]]>
 		</parameter>
 		<queryString>
 			<![CDATA[select *
-from domicilio
+from DOMICILIO
 where DOM_PER_ID = $P{idPersona}]]>
 		</queryString>
-		<field name="DOM_ID" class="java.lang.Integer">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
 		<field name="DOM_COD_POSTAL" class="java.lang.String">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
@@ -483,7 +480,6 @@ where DOM_PER_ID = $P{idPersona}]]>
 from DECLARACIONES_JURADAS D
 join PERSONAS P on D.PER_ID = P.PER_ID
 join PADRONES ON PADRONES.PAD_ID = D.PAD_ID
-join DOMICILIO ON DOMICILIO.DOM_ID = D.DOM_ID
 join USUARIOS on D.USU_USERNAME = USUARIOS.USU_USERNAME
 where dec_id = $P{idDeclaracionJurada}]]>
 	</queryString>
@@ -532,9 +528,6 @@ where dec_id = $P{idDeclaracionJurada}]]>
 	<field name="USU_USERNAME" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="DOM_ID" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
 	<field name="PER_APELLIDO" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
@@ -560,45 +553,6 @@ where dec_id = $P{idDeclaracionJurada}]]>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="TI_ID" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="DOM_COD_POSTAL" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="datoAdicional" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="descripcionProvincia" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="DOM_DIRECCION" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="idProvincia" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="DOM_LOCALIDAD" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="tipoDatoAdicional" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="DOM_TIPODOMICILIO" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="DOM_PER_ID" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="DOM_DATO_ADICIONAL" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="DOM_DESCRIPCION_PROVINCIA" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="DOM_ID_PROVINCIA" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="DOM_TIPO_DATO_ADICIONAL" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="USU_PASSWORD" class="java.lang.String">
@@ -680,7 +634,7 @@ where dec_id = $P{idDeclaracionJurada}]]>
 				<text><![CDATA[Declaración Jurada Cuota Año]]></text>
 			</staticText>
 			<line>
-				<reportElement x="83" y="106" width="83" height="1" uuid="f9167ca3-7ac4-4c2f-9909-6c0ebe885e97"/>
+				<reportElement x="83" y="106" width="99" height="1" uuid="f9167ca3-7ac4-4c2f-9909-6c0ebe885e97"/>
 			</line>
 			<staticText>
 				<reportElement x="0" y="120" width="51" height="13" uuid="aafd0b84-eafe-4f6b-8f9d-765dc80c2dbb"/>
@@ -690,16 +644,11 @@ where dec_id = $P{idDeclaracionJurada}]]>
 				<text><![CDATA[Periodo Declarado]]></text>
 			</staticText>
 			<line>
-				<reportElement x="54" y="128" width="112" height="1" uuid="d808a2ac-68c4-48a1-9147-b5117b06a6f1"/>
+				<reportElement x="83" y="128" width="99" height="1" uuid="d808a2ac-68c4-48a1-9147-b5117b06a6f1"/>
 			</line>
 			<line>
 				<reportElement x="0" y="133" width="355" height="1" uuid="7d3682dd-9f7b-481d-953c-f042719f3526"/>
 			</line>
-			<textField>
-				<reportElement x="55" y="111" width="112" height="20" uuid="518488a3-2af5-4341-99b0-3dd355f215af"/>
-				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{DEC_PERIODO}]]></textFieldExpression>
-			</textField>
 			<textField>
 				<reportElement x="430" y="13" width="124" height="13" uuid="dfbdf59b-fc29-497a-aa98-0524a77b166a"/>
 				<textElement verticalAlignment="Bottom">
@@ -710,14 +659,14 @@ where dec_id = $P{idDeclaracionJurada}]]>
 			<textField>
 				<reportElement x="204" y="114" width="151" height="20" uuid="390e6ede-cd74-4d05-ba15-08af201c2a70"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
-					<font size="12"/>
+					<font size="12" isBold="true" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Padrón: " + $F{PAD_NUMERO}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="403" y="44" width="151" height="14" uuid="f59c0941-1654-46d0-b203-f21a5a8e4a8e"/>
 				<textElement verticalAlignment="Bottom">
-					<font size="10"/>
+					<font size="10" isBold="true" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[(($F{PER_APELLIDO}!=null?$F{PER_APELLIDO}:""))+ " " + (($F{PER_NOMBRE}!=null?$F{PER_NOMBRE}:""))]]></textFieldExpression>
 			</textField>
@@ -760,7 +709,7 @@ where dec_id = $P{idDeclaracionJurada}]]>
 				<text><![CDATA[Por el usuario]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="278" y="44" width="77" height="13" uuid="f938dae0-1096-431e-a0b9-06c2690bc57e"/>
+				<reportElement x="204" y="44" width="151" height="14" uuid="f938dae0-1096-431e-a0b9-06c2690bc57e"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="10"/>
 				</textElement>
@@ -809,11 +758,11 @@ where dec_id = $P{idDeclaracionJurada}]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="56" uuid="fa769dff-7177-4707-a5f0-67f871f4487b">
+					<jr:column width="60" uuid="fa769dff-7177-4707-a5f0-67f871f4487b">
 						<jr:tableHeader style="table 14_TH" height="0" rowSpan="1"/>
 						<jr:columnHeader style="table 14_CH" height="20" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="56" height="20" uuid="7c4a1865-adc9-4ea6-a96a-d871c4f0d555"/>
+								<reportElement x="0" y="0" width="60" height="20" uuid="7c4a1865-adc9-4ea6-a96a-d871c4f0d555"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
@@ -822,7 +771,7 @@ where dec_id = $P{idDeclaracionJurada}]]>
 						</jr:columnHeader>
 						<jr:detailCell style="table 14_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="56" height="20" uuid="287cb532-4896-46cf-b4b5-15649113fbde"/>
+								<reportElement x="0" y="0" width="60" height="20" uuid="287cb532-4896-46cf-b4b5-15649113fbde"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
@@ -853,6 +802,18 @@ where dec_id = $P{idDeclaracionJurada}]]>
 					</jr:column>
 				</jr:table>
 			</componentElement>
+			<textField>
+				<reportElement x="93" y="90" width="66" height="15" uuid="033a87eb-c74f-4049-9588-6cfc236e8a89"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DEC_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="83" y="112" width="111" height="16" uuid="518488a3-2af5-4341-99b0-3dd355f215af"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DEC_PERIODO}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
@@ -895,7 +856,7 @@ where dec_id = $P{idDeclaracionJurada}]]>
 						<jr:detailCell style="table 4_TD" height="30" rowSpan="1">
 							<textField>
 								<reportElement x="0" y="0" width="52" height="20" uuid="ab5e3291-3982-425f-aa52-b5964b667192"/>
-								<textElement textAlignment="Justified">
+								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{TAS_CODIGO}]]></textFieldExpression>
@@ -1112,9 +1073,9 @@ CALCULADO]]></text>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="81" splitType="Stretch">
+		<band height="90" splitType="Stretch">
 			<line>
-				<reportElement x="0" y="33" width="555" height="1" uuid="6a5d6fd7-ba48-41c3-b077-b59da2f52dc8"/>
+				<reportElement x="1" y="79" width="555" height="1" uuid="6a5d6fd7-ba48-41c3-b077-b59da2f52dc8"/>
 			</line>
 			<textField isBlankWhenNull="true">
 				<reportElement x="74" y="59" width="482" height="20" uuid="6228b9c4-a0e0-4ccb-830a-df944aa7ed11"/>
@@ -1131,30 +1092,30 @@ CALCULADO]]></text>
 	</columnFooter>
 	<pageFooter>
 		<band height="202" splitType="Stretch">
-			<line>
-				<reportElement x="3" y="125" width="551" height="1" uuid="ef1d2838-ed14-4926-bb2a-e95203936014"/>
-				<graphicElement>
-					<pen lineStyle="Dotted"/>
-				</graphicElement>
-			</line>
 			<staticText>
-				<reportElement x="0" y="4" width="555" height="58" uuid="f049f28e-6ed9-4e57-aa42-55930594b68d"/>
+				<reportElement x="1" y="22" width="555" height="74" uuid="f049f28e-6ed9-4e57-aa42-55930594b68d"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[El que suscribe.............................................................. en su caracter de titular. Afirma bajo juramento que los datos consignados en esta Declaracion Jurada son correctos y que ha sido confeccionada sin falsear dato alguno, siendo fiel expresion de la verdad.
 Quedando, la misma, sujeta a las comprobaciones y verificaciones que efectue la Municipalidad.]]></text>
 			</staticText>
+			<line>
+				<reportElement x="3" y="125" width="551" height="1" uuid="ef1d2838-ed14-4926-bb2a-e95203936014"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
 			<textField isBlankWhenNull="true">
-				<reportElement x="72" y="0" width="116" height="11" uuid="cb792731-aa02-46ec-aa6d-a0e4ceca96c1"/>
+				<reportElement x="77" y="1" width="175" height="28" uuid="cb792731-aa02-46ec-aa6d-a0e4ceca96c1"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[(($F{PER_APELLIDO}!=null?$F{PER_APELLIDO}:""))+ " " + (($F{PER_NOMBRE}!=null?$F{PER_NOMBRE}:""))]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{PER_NOMBRE}.toString() + " " + $F{PER_APELLIDO}.toString()]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="353" y="126" width="200" height="76" uuid="0b1f5570-52d1-45d9-a39a-d4120144df33"/>
-				<imageExpression><![CDATA["d:\\Users\\erwin\\Downloads\\logonuevo.png"]]></imageExpression>
+				<reportElement x="355" y="126" width="200" height="76" uuid="78628b09-46b7-463c-a4e0-b87c2cecb9a7"/>
+				<imageExpression><![CDATA["/actualizaciones/imagenes/logonuevo.png"]]></imageExpression>
 			</image>
 		</band>
 	</pageFooter>

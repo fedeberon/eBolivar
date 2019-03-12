@@ -62,7 +62,6 @@ public class Persona implements Serializable {
     )
     private String descripcionActividadPrincipal;
     @XmlElement(
-            name = "domicilioFiscal"
     )
     @OneToMany(
             cascade = {CascadeType.PERSIST},
