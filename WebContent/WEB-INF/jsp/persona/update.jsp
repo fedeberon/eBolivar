@@ -35,6 +35,15 @@
         </p>
 
         <p>
+            <label for="nombre" class="campo">IVA:</label>
+            <form:input path="iva" />
+        </p>
+        <p>
+            <label for="nombre" class="campo">Monotributo:</label>
+            <form:input path="monotributo" />
+        </p>
+
+        <p>
             <label for="numeroDocumento" class="campo">Documento:</label>
             <form:input path="numeroDocumento" />
             <form:errors cssClass="form-text text-muted red" path="numeroDocumento"/>

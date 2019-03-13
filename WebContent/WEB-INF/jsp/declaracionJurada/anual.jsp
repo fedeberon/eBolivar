@@ -12,7 +12,9 @@
 
         $('#exampleModal').modal('show')
     });
+
 </script>
+
 
 <head>
     <style>

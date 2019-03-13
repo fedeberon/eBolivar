@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.ServletOutputStream;
+import java.text.DecimalFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -98,6 +100,7 @@ public class DeclaracionJuradaService implements IDeclaracionJuradaService{
     }
 
     private void calcularAlicuotaSobreBaseImponible(DeclaracionJurada declaracionJurada){
+
         declaracionJurada.getTasas().forEach(tasaAsociada -> {
             Double importeCalculado = tasaAsociada.getBaseImponible() * tasaAsociada.getTasa().getAlicuta()  / 1000;
             tasaAsociada.setImporteCalculadoSobreBaseImponible(importeCalculado);

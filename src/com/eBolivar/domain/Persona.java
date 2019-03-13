@@ -19,68 +19,61 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(
-        name = "datosGenerales"
-)
+@XmlRootElement(name = "datosGenerales")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(
-        name = "PERSONAS"
-)
+@Table(name = "PERSONAS")
 public class Persona implements Serializable {
     public static String CUIT_REPRESENTADA_FEDE_BERON = "20285640661";
     public static String CUIT_REPRESENTADA_MUNICIPALIDAD_BOLIVAR = "30999058392";
+
     @Id
-    @Column(
-            name = "PER_ID"
-    )
-    @GeneratedValue(
-            strategy = GenerationType.AUTO
-    )
+    @Column(name = "PER_ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
     @XmlElement
-    @Column(
-            name = "PER_NOMBRE"
-    )
+    @Column(name = "PER_NOMBRE")
     private String nombre;
+
     @XmlElement
-    @Column(
-            name = "PER_APELLIDO"
-    )
+    @Column(name = "PER_APELLIDO")
     private String apellido;
+
+    @XmlElement
+    @Column(name = "iva")
+    private String iva;
+
+    @XmlElement
+    @Column(name = "monotributo")
+    private String monotributo;
+
     @XmlElement
     @Transient
     private Long[] claveInactivaAsociada;
-    @XmlElement(
-            name = "dependencia"
-    )
+
+    @XmlElement(name = "dependencia")
     @Transient
     private Dependencia dependencia;
+
     @XmlElement
-    @Column(
-            name = "PER_DESCRIPCION_ACTIVIDAD_PRINCIPAL"
-    )
+    @Column(name = "PER_DESCRIPCION_ACTIVIDAD_PRINCIPAL")
     private String descripcionActividadPrincipal;
-    @XmlElement(
-    )
-    @OneToMany(
-            cascade = {CascadeType.PERSIST},
-            mappedBy = "persona",
-            fetch = FetchType.LAZY
-    )
+
+    @XmlElement(name = "domicilioFiscal")
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "persona", fetch = FetchType.LAZY)
     private Set<Domicilio> domicilio;
+
     @XmlElement
     @Transient
     private String estadoClave;
+
     @XmlElement
-    @Column(
-            name = "PER_ID_PERSONA"
-    )
+    @Column(name = "PER_ID_PERSONA")
     private Long idPersona;
+
     @XmlElement
-    @Column(
-            name = "PER_NUMERO_DOCUMENTO"
-    )
+    @Column(name = "PER_NUMERO_DOCUMENTO")
     private String numeroDocumento;
 
     public Persona() {
@@ -164,6 +157,21 @@ public class Persona implements Serializable {
 
     public void setNumeroDocumento(String numeroDocumento) {
         this.numeroDocumento = numeroDocumento;
+    }
+    public String getIva() {
+        return iva;
+    }
+
+    public void setIva(String iva) {
+        this.iva = iva;
+    }
+
+    public String getMonotributo() {
+        return monotributo;
+    }
+
+    public void setMonotributo(String monotributo) {
+        this.monotributo = monotributo;
     }
 
     public boolean equals(Persona p) {

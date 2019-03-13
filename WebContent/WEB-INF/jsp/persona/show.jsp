@@ -63,6 +63,16 @@
                             <th scope="row">D.N.I.</th>
                             <td>${persona.numeroDocumento}</td>
                         </tr>
+                        <tr>
+                            <th scope="row">IVA</th>
+                            <td>${persona.iva}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Monotributo</th>
+                            <td>${persona.monotributo}</td>
+                        </tr>
+
+
                         </tbody>
                     </table>
 
