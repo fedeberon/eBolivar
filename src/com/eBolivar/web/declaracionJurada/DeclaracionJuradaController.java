@@ -2,6 +2,7 @@ package com.eBolivar.web.declaracionJurada;
 
 import com.eBolivar.bean.AnioTypeEditor;
 import com.eBolivar.domain.*;
+import com.eBolivar.domain.usuario.User;
 import com.eBolivar.enumeradores.AnioEnum;
 import com.eBolivar.enumeradores.EstadoDeDeclaracionJurada;
 import com.eBolivar.enumeradores.PeriodoEnum;
@@ -12,6 +13,7 @@ import com.eBolivar.service.padron.interfaces.IPadronService;
 import com.eBolivar.service.persona.interfaces.IPersonaService;
 import com.eBolivar.service.tasa.interfaces.ITasaService;
 import com.eBolivar.service.tasaPersonaPadron.interfaces.ITasaPersonaPadronService;
+import com.eBolivar.service.usuario.interfaces.IUsuarioService;
 import com.eBolivar.validator.DeclaracionJuradaEditadaValidator;
 import com.eBolivar.validator.DeclaracionJuradaValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -58,6 +61,10 @@ public class DeclaracionJuradaController {
 
     @Autowired
     private ITasaPersonaPadronService tasaPersonaPadronService;
+
+    @Autowired
+    private IUsuarioService usuarioService;
+
 
     @RequestMapping(value = "create", method = RequestMethod.GET)
     public String create(Model model) {
@@ -114,6 +121,11 @@ public class DeclaracionJuradaController {
             model.addAttribute("anio", Arrays.asList(AnioEnum.A_2019));
             return "declaracionJurada/create";
         }
+
+        User presentadaPor = usuarioService.getAutenticate();
+        declaracionJurada.setFecha(LocalDateTime.now());
+        declaracionJurada.setPresentadaPor(presentadaPor);
+
         DeclaracionJurada ddjj = declaracionJuradaService.save(declaracionJurada);
         redirectAttributes.addAttribute("id", ddjj.getId());
         try {
@@ -209,6 +221,7 @@ public class DeclaracionJuradaController {
         declaracionJurada.setTasas(ddjj.getTasas());
         declaracionJurada.setTotalCalculado(ddjj.getTotalCalculado());
         declaracionJurada.setEstadoDeDeclaracionJurada(EstadoDeDeclaracionJurada.MODIFICADA);
+
         declaracionJuradaService.save(declaracionJurada);
         redirectAttributes.addAttribute("id", declaracionJurada.getId());
 
