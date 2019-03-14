@@ -21,6 +21,9 @@ public class Padron {
     @JoinColumn(name = "TI_ID")
     private TipoImpuesto tipoImpuesto;
 
+    @Column(name = "PAD_CALCULO_MINIMO")
+    private boolean isCalculoMinimo;
+
     public Padron() { }
 
     public Padron(String numeroDePadron, TipoImpuesto tipoImpuesto) {
@@ -57,6 +60,19 @@ public class Padron {
 
         return (p.id == id);
     }
+
+    public boolean isCalculoMinimo() {
+        return isCalculoMinimo;
+    }
+
+    public boolean getisCalculoMinimo(){
+        return isCalculoMinimo;
+    }
+
+    public void setisCalculoMinimo(boolean calculoMinimo) {
+        isCalculoMinimo = calculoMinimo;
+    }
+
 
 
     @Override

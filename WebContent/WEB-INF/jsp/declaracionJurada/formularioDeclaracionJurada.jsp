@@ -117,6 +117,14 @@
                     <th>Estado de la Declaracion Jurada</th>
                     <td>${declaracionJurada.estadoDeDeclaracionJurada}</td>
                 </tr>
+
+                <tr>
+                    <th colspan="2">Observaciones de la Declaracion Jurada</th>
+                </tr>
+                <tr ${declaracionJurada.observaciones == '' ? 'style="display: none"' : ''}>
+                    <td colspan="2">${declaracionJurada.observaciones}</td>
+                </tr>
+
             </table>
         </div>
 
@@ -144,6 +152,25 @@
                 <td>${tasaAsociada.baseImponible}</td>
                 <td>${tasaAsociada.deduccionArticulo89}</td>
                 <td>${tasaAsociada.deduccionArticulo90}</td>
+            </tr>
+
+
+            <tr ${declaracionJurada.padron.calculoMinimo ? '' : 'style="display: none"'}>
+                <th></th>
+                <th></th>
+                <th>Puestos de Atencion Bancaria</th>
+                <th>Personal Contratado</th>
+                <th>Cajeros Automaticos</th>
+                <th>Cajeros Automaticos Independientes</th>
+            </tr>
+
+            <tr ${declaracionJurada.padron.calculoMinimo ? '' : 'style="display: none"'}>
+                <td></td>
+                <td></td>
+                <td>${tasaAsociada.totalPuestoAtencionBancaria}</td>
+                <td>${tasaAsociada.totalPersonalContratado}</td>
+                <td>${tasaAsociada.totalCajerosAutomaticos}</td>
+                <td>${tasaAsociada.totalCajerosAutomaticosIndependiente}</td>
             </tr>
 
         </c:forEach>

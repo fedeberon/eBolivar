@@ -40,4 +40,6 @@ public interface IDeclaracionJuradaService {
     String checkCurrentDay(DeclaracionJurada declaracionJurada);
 
     List<DeclaracionJurada> findAllPageable(String valor, Integer pageNumber);
+
+    void calcularCalculoMinimo (DeclaracionJurada declaracionJurada);
 }
