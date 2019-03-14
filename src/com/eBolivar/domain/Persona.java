@@ -2,18 +2,11 @@ package com.eBolivar.domain;
 
 import com.eBolivar.domain.Dependencia;
 import com.eBolivar.domain.Domicilio;
+import com.eBolivar.enumeradores.TipoPersonEnum;
+
 import java.io.Serializable;
 import java.util.Set;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -47,6 +40,10 @@ public class Persona implements Serializable {
     @XmlElement
     @Column(name = "monotributo")
     private String monotributo;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "PER_TIPO_PERSONA")
+    private TipoPersonEnum tipoDePersona;
 
     @XmlElement
     @Transient
@@ -172,6 +169,14 @@ public class Persona implements Serializable {
 
     public void setMonotributo(String monotributo) {
         this.monotributo = monotributo;
+    }
+
+    public TipoPersonEnum getTipoDePersona() {
+        return tipoDePersona;
+    }
+
+    public void setTipoDePersona(TipoPersonEnum tipoDePersona) {
+        this.tipoDePersona = tipoDePersona;
     }
 
     public boolean equals(Persona p) {

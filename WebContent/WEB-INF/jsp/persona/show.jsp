@@ -44,6 +44,10 @@
                         </thead>
                         <tbody>
                         <tr>
+                            <th scope="row">Tipo de persona</th>
+                            <td>${persona.tipoDePersona}</td>
+                        </tr>
+                        <tr>
                             <th scope="row">Nombre</th>
                             <td>${persona.nombre}</td>
                         </tr>

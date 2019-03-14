@@ -27,6 +27,13 @@
     </p>
 
     <p>
+        <label for="idPersona" class="campo" id="cuit">Tipo de persona:</label>
+        <form:select path="tipoDePersona" items="${tipoPersonaEnum}"/>
+        <form:errors cssClass="form-text text-muted red" path="tipoDePersona"/>
+    </p>
+
+
+    <p>
         <label for="idPersona" class="campo" id="cuit">C.U.I.T.:</label>
         <form:input  path="idPersona"/>
         <form:errors cssClass="form-text text-muted red" path="idPersona"/>

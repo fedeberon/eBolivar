@@ -1,6 +1,7 @@
 package com.eBolivar.config;
 
 import com.eBolivar.enumeradores.PeriodoEnum;
+import com.eBolivar.enumeradores.TipoPersonEnum;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -16,6 +17,7 @@ public class ConfigServletContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         sce.getServletContext().setAttribute("periodoEnum", PeriodoEnum.stream().filter(periodo -> !periodo.getDescripcion().equalsIgnoreCase(PeriodoEnum.ANUAL.getDescripcion())).collect(Collectors.toList()));
+        sce.getServletContext().setAttribute("tipoPersonaEnum", TipoPersonEnum.values());
     }
 
     @Override
