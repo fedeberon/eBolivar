@@ -26,6 +26,12 @@
             <form:select path="tipoImpuesto.codigo" items="${tipoImpuesto}" itemValue="codigo" itemLabel="nombre"/>
         </p>
         <br>
+        <p class="odd">
+            <label for="localidad.id" class="campo">Localidad:</label>
+            <form:select path="localidad.id" items="${localidad}" itemValue="id" itemLabel="nombre"/>
+        </p>
+        <br>
+
         <button type="submit" class="btn btn-lg btn-primary btn-block">Crear</button>
 
 

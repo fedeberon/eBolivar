@@ -28,8 +28,9 @@
 
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#home">Datos del Contribuyente</a></li>
+                <li><a data-toggle="tab" href="#menu2">Domicilio/s del Contribuyente</a></li>
                 <li><a data-toggle="tab" href="#menu1">Padrones Asociados</a></li>
-                <li><a data-toggle="tab" href="#menu2">Domicilios</a></li>
+
             </ul>
 
             <div class="tab-content">
@@ -75,7 +76,7 @@
                         <tr>
                             <th>Numero</th>
                             <th>Tipo de Tasa</th>
-                            <th>Direcciones</th>
+                            <th>Direccion/es</th>
                             <th></th>
                         </tr>
                         </thead>
