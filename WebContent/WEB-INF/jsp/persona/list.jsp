@@ -61,9 +61,13 @@
         <thead>
         <tr>
             <th scope="col">DNI</th>
+            <th scope="col">Tipo de persona</th>
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
             <th scope="col">Actividad</th>
+            <th scope="col">IVA</th>
+            <th scope="col">Monotributo</th>
+
             <th scope="col">Editar</th>
             <%--<th scope="col">Tipo</th>--%>
             <%--<th scope="col">Razon Social</th>--%>
@@ -85,13 +89,18 @@
                 <td>
                     <a href="<c:url value='/webapp/personas/get?id=${bo.id}'/>">${bo.idPersona}</a>
                 </td>
+                <td>${bo.tipoDePersona}</td>
                 <td>${bo.nombre}</td>
                 <td>${bo.apellido}</td>
                 <td>${bo.descripcionActividadPrincipal}</td>
+                <td>${bo.iva}</td>
+                <td>${bo.monotributo}</td>
+
+
                     <%--<td>${bo.tipoPersona}</td>--%>
                     <%--<td>${bo.razonSocial}</td>--%>
                 <td>
-                    <a href="<c:url value='/webapp/personas/update?id=${bo.id}'/>"><img src="<c:url value='/img/icons/icon-edit-persona.png'/>"/></a>
+                    <a  href="<c:url value='/webapp/personas/update?id=${bo.id}'/>"><img src="<c:url value='/img/icons/icon-edit-persona.png'/>"/></a>
                 </td>
             </tr>
         </c:forEach>

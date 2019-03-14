@@ -1,6 +1,7 @@
 package com.eBolivar.validator;
 
 import com.eBolivar.domain.Persona;
+import com.eBolivar.enumeradores.TipoPersonEnum;
 import com.eBolivar.service.persona.interfaces.IPersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -32,7 +33,11 @@ public class PersonaValidator implements Validator {
         }
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombre", "Persona.nombre", "Ingrese un nombre");
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "apellido", "Persona.apellido", "Ingrese un apellido");
+
+        if(persona.getTipoDePersona().equals(TipoPersonEnum.FISICA)){
+            ValidationUtils.rejectIfEmptyOrWhitespace(errors, "apellido", "Persona.apellido", "Ingrese un apellido");
+        }
+
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "idPersona", "Persona.idPersona", "Ingrese un CUIT");
     }

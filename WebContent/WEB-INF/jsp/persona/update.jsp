@@ -16,6 +16,12 @@
 
     <form:form name="form" method="post" commandName="persona" action="save">
         <form:hidden path="id" />
+
+        <p>
+            <label for="idPersona" class="campo" id="cuit">Tipo de persona:</label>
+            <form:select path="tipoDePersona" items="${tipoPersonaEnum}"/>
+            <form:errors cssClass="form-text text-muted red" path="tipoDePersona"/>
+        </p>
         <p>
             <label for="nombre" class="campo">Nombre:</label>
             <form:input path="nombre" />
@@ -32,6 +38,15 @@
             <label for="idPersona" class="campo">C.U.I.T.:</label>
             <form:input path="idPersona" />
             <form:errors cssClass="form-text text-muted red" path="idPersona"/>
+        </p>
+
+        <p>
+            <label for="nombre" class="campo">IVA:</label>
+            <form:input path="iva" />
+        </p>
+        <p>
+            <label for="nombre" class="campo">Monotributo:</label>
+            <form:input path="monotributo" />
         </p>
 
         <p>

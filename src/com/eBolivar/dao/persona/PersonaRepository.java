@@ -162,6 +162,14 @@ public class PersonaRepository implements com.eBolivar.dao.interfaces.IPersonaRe
                 criteria.add(Restrictions.ilike("apellido", "%" + searchObject.getPersona().getApellido() + "%"));
             }
 
+            if ((searchObject.getPersona().getMonotributo() != null) && (!searchObject.getPersona().getMonotributo().isEmpty())) {
+                criteria.add(Restrictions.ilike("monotributo", "%" + searchObject.getPersona().getMonotributo() + "%"));
+            }
+
+            if ((searchObject.getPersona().getIva() != null) && (!searchObject.getPersona().getIva().isEmpty())) {
+                criteria.add(Restrictions.ilike("iva", "%" + searchObject.getPersona().getIva() + "%"));
+            }
+
             if (searchObject.getPersona().getIdPersona() != null) {
                 criteria.add(Restrictions.eq("idPersona", searchObject.getPersona().getIdPersona()));
             }
