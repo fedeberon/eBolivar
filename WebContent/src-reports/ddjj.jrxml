@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ddjj" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ea4d5472-7716-4884-af4c-1795a2380736">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="189"/>
 	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
@@ -790,10 +790,10 @@ where dec_id = $P{idDeclaracionJurada}]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="41" uuid="e32624a4-7d83-4efa-b1b8-254117698ae9">
+					<jr:column width="31" uuid="e32624a4-7d83-4efa-b1b8-254117698ae9">
 						<jr:columnHeader style="table 17_CH" height="19" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="41" height="19" uuid="65fabaea-abcc-4564-9dc2-fa6d35e803ea"/>
+								<reportElement x="0" y="0" width="31" height="19" uuid="65fabaea-abcc-4564-9dc2-fa6d35e803ea"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
@@ -802,7 +802,7 @@ where dec_id = $P{idDeclaracionJurada}]]>
 						</jr:columnHeader>
 						<jr:detailCell style="table 17_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="41" height="20" uuid="62053a02-fec8-44c2-aff7-0ffe035134a8"/>
+								<reportElement x="0" y="0" width="31" height="20" uuid="62053a02-fec8-44c2-aff7-0ffe035134a8"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>

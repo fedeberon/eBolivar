@@ -75,6 +75,7 @@
                         <tr>
                             <th>Numero</th>
                             <th>Tipo de Tasa</th>
+                            <th>Direcciones</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -83,6 +84,17 @@
                             <tr>
                                 <td style="text-align: center">${bo.padron.numero}</td>
                                 <td style="text-align: center">${bo.padron.tipoImpuesto.nombre}</td>
+
+                                <td>
+                                    <ul>
+                                        <c:forEach items="${bo.direccionesDelPadron}" var="direccion">
+
+                                            <li>${direccion.nombreCalle} ${direccion.numeroCalle} - ${direccion.localidad.nombre}</li>
+
+                                        </c:forEach>
+                                    </ul>
+                                </td>
+
                                 <td style="text-align: center">
                                     <a href="<c:url value='/webapp/personas/desasociarPadron?id=${bo.id}'/>">desasociar</a>
                                 </td>
