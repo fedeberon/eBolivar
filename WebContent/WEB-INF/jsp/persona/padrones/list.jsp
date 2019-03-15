@@ -72,6 +72,8 @@
                                 <li role="separator" class="divider"></li>
                                 <li><a href="<c:url value='/webapp/ddjj/declaracionJurada/anualByPadronAsociado?idPadron=${bo.padron.id}&idPersona=${bo.persona.id}'/>">Anual</a></li>
                                 <li role="separator" class="divider"></li>
+                                <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/anteriorByPadronAsociado?idPersona=${bo.persona.id}&anio=2018&idPadron=${bo.padron.id}'/>">DDJJ 2018</a></li>
+                                <li role="separator" class="divider"></li>
                                 <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/anteriorByPadronAsociado?idPersona=${bo.persona.id}&anio=2017&idPadron=${bo.padron.id}'/>">DDJJ 2017</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/anteriorByPadronAsociado?idPersona=${bo.persona.id}&anio=2016&idPadron=${bo.padron.id}'/>">DDJJ 2016</a></li>
