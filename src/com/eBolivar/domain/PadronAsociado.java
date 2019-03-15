@@ -2,47 +2,33 @@ package com.eBolivar.domain;
 
 import com.eBolivar.domain.Padron;
 import com.eBolivar.domain.Persona;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(
-        name = "CUIT_POR_TASAS"
-)
+@Table(name = "CUIT_POR_TASAS")
 public class PadronAsociado {
+
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.AUTO
-    )
-    @Column(
-            name = "CPT_ID"
-    )
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "CPT_ID")
     private Integer id;
-    @ManyToOne(
-            cascade = {CascadeType.DETACH}
-    )
-    @JoinColumn(
-            name = "PAD_PER_ID"
-    )
+
+    @ManyToOne(cascade = {CascadeType.DETACH})
+    @JoinColumn(name = "PAD_PER_ID")
     private Persona persona;
-    @ManyToOne(
-            cascade = {CascadeType.DETACH}
-    )
-    @JoinColumn(
-            name = "PAD_ID"
-    )
+
+    @ManyToOne(cascade = {CascadeType.DETACH})
+    @JoinColumn(name = "PAD_ID")
     private Padron padron;
+
+    @OneToMany(mappedBy = "padron", fetch = FetchType.EAGER)
+    List<DireccionPadron> direccionesDelPadron;
+
     public static String LEYENDA_DE_PADRON_GENERICO = "TASA MUNICIPAL";
 
-    public PadronAsociado() {
-    }
+    public PadronAsociado() {}
 
     public PadronAsociado(Persona persona, Padron padron) {
         this.persona = persona;
@@ -71,5 +57,13 @@ public class PadronAsociado {
 
     public void setPadron(Padron padron) {
         this.padron = padron;
+    }
+
+    public List<DireccionPadron> getDireccionesDelPadron() {
+        return direccionesDelPadron;
+    }
+
+    public void setDireccionesDelPadron(List<DireccionPadron> direccionesDelPadron) {
+        this.direccionesDelPadron = direccionesDelPadron;
     }
 }

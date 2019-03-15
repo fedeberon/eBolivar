@@ -11,6 +11,7 @@ import com.eBolivar.domain.PadronAsociado;
 import com.eBolivar.domain.Persona;
 import com.eBolivar.service.TipoImpuestoServiceImpl;
 import com.eBolivar.service.cuitPorTasa.interfaces.ICuitPorTasaService;
+import com.eBolivar.service.localidad.ILocalidadService;
 import com.eBolivar.service.padron.interfaces.IPadronService;
 import com.eBolivar.service.persona.interfaces.IPersonaService;
 import com.eBolivar.validator.PadronAsociadoValidator;
@@ -37,6 +38,8 @@ public class PadronController {
     private IPersonaService personaService;
     @Autowired
     private TipoImpuestoServiceImpl tipoImpuestoService;
+    @Autowired
+    private ILocalidadService localidadesService;
 
     public PadronController() {
     }
@@ -98,7 +101,7 @@ public class PadronController {
     @RequestMapping("create")
     public String create(@ModelAttribute Padron padron, Model model) {
         model.addAttribute("tipoImpuesto", tipoImpuestoService.getObjects());
-
+        model.addAttribute("localidad", localidadesService.findAll());
         return "padron/create";
     }
 

@@ -28,8 +28,9 @@
 
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#home">Datos del Contribuyente</a></li>
+                <li><a data-toggle="tab" href="#menu2">Domicilio/s del Contribuyente</a></li>
                 <li><a data-toggle="tab" href="#menu1">Padrones Asociados</a></li>
-                <li><a data-toggle="tab" href="#menu2">Domicilios</a></li>
+
             </ul>
 
             <div class="tab-content">
@@ -89,6 +90,7 @@
                         <tr>
                             <th>Numero</th>
                             <th>Tipo de Tasa</th>
+                            <th>Direccion/es</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -97,6 +99,17 @@
                             <tr>
                                 <td style="text-align: center">${bo.padron.numero}</td>
                                 <td style="text-align: center">${bo.padron.tipoImpuesto.nombre}</td>
+
+                                <td>
+                                    <ul>
+                                        <c:forEach items="${bo.direccionesDelPadron}" var="direccion">
+
+                                            <li>${direccion.nombreCalle} ${direccion.numeroCalle} - ${direccion.localidad.nombre}</li>
+
+                                        </c:forEach>
+                                    </ul>
+                                </td>
+
                                 <td style="text-align: center">
                                     <a href="<c:url value='/webapp/personas/desasociarPadron?id=${bo.id}'/>">desasociar</a>
                                 </td>
