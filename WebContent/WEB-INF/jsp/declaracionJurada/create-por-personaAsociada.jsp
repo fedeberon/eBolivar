@@ -91,7 +91,7 @@
 
     <div class="row">
 
-        <form:form action="../../../../eBolivar/webapp/ddjj/save" modelAttribute="ddjj" method="post">
+        <form:form action="../../../../rentas/webapp/ddjj/save" modelAttribute="ddjj" method="post">
             <div class="col-md-4">
 
                 <div class="panel panel-default">

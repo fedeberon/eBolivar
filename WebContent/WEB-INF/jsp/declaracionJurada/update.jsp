@@ -39,7 +39,7 @@
 </div>
 
 <div id="formulario">
-    <form:form action="/eBolivar/webapp/ddjj/guardarCambios" modelAttribute="ddjj" method="post">
+    <form:form action="/rentas/webapp/ddjj/guardarCambios" modelAttribute="ddjj" method="post">
         <form:hidden path="id"/>
             <div class="row">
             <div class="col-md-12"><span>Fecha de creaci&oacute;n: ${f:formatLocalDateTime(ddjj.fecha, 'dd/MM/yyyy HH:mm:ss')}</span></div>

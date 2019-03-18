@@ -191,7 +191,7 @@
         <a href="/rentas/webapp/ddjj/exportar?idDeclaracionJurada=${declaracionJurada.id}" target="_blank" class="btn btn-primary">Imprimir</a>
 
         <c:if test="${declaracionJurada.estadoDeDeclaracionJurada == 'EN_PROCESO' || declaracionJurada.estadoDeDeclaracionJurada == 'MODIFICADA' || declaracionJurada.estadoDeDeclaracionJurada == 'RECHAZADA'}">
-            <a href="/eBolivar/webapp/ddjj/editar?id=${declaracionJurada.id}" class="btn btn-primary">Editar</a>
+            <a href="/rentas/webapp/ddjj/editar?id=${declaracionJurada.id}" class="btn btn-primary">Editar</a>
 
             <a href="/rentas/webapp/ddjj/presentarDeclaracionJurada?id=${declaracionJurada.id}" class="btn btn-primary">Presentar</a>
         </c:if>
