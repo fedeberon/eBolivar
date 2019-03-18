@@ -114,7 +114,7 @@ public class DeclaracionJuradaService implements IDeclaracionJuradaService{
             tasaAsociada.setTotalPersonalContratado(Double.valueOf(tasaAsociada.getPersonalContratado() * 950));
             tasaAsociada.setTotalCajerosAutomaticos(Double.valueOf(tasaAsociada.getCajerosAutomaticos() * 30000));
             tasaAsociada.setTotalCajerosAutomaticosIndependiente(Double.valueOf(tasaAsociada.getCajerosAutomaticosIndependiente() * 30000));
-            Double calculominimo = (315000 + tasaAsociada.getPuestoAtencionBancaria() + tasaAsociada.getTotalPersonalContratado() + tasaAsociada.getTotalCajerosAutomaticos() + tasaAsociada.getTotalCajerosAutomaticosIndependiente());
+            Double calculominimo = (315000 + tasaAsociada.getTotalPuestoAtencionBancaria() + tasaAsociada.getTotalPersonalContratado() + tasaAsociada.getTotalCajerosAutomaticos() + tasaAsociada.getTotalCajerosAutomaticosIndependiente());
             tasaAsociada.setImporteCalculoMinimo(calculominimo);
         });
     }
