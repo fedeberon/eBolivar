@@ -11,6 +11,7 @@ import com.eBolivar.service.padron.interfaces.IPadronService;
 import com.eBolivar.service.persona.interfaces.IPersonaService;
 import com.eBolivar.service.usuario.interfaces.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.NumberFormat;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.ServletOutputStream;
@@ -54,7 +55,11 @@ public class DeclaracionJuradaService implements IDeclaracionJuradaService{
         Persona persona = personaService.getByCUIT(declaracionJurada.getPersona().getIdPersona().toString());
         declaracionJurada.setPersona(persona);
         Padron padron = padronService.getByNumero(declaracionJurada.getPadron().getNumero());
+        User presentadaPor = usuarioService.getAutenticate();
         declaracionJurada.setPadron(padron);
+        User presentadaPor = usuarioService.getAutenticate();
+        declaracionJurada.setFecha(LocalDateTime.now());
+        declaracionJurada.setPresentadaPor(presentadaPor);
 
         return dao.save(declaracionJurada);
     }
@@ -72,7 +77,11 @@ public class DeclaracionJuradaService implements IDeclaracionJuradaService{
         Double total = declaracionJurada.getTasas().stream().mapToDouble(tasaAsociada -> tasaAsociada.getImporteCalculadoSobreBaseImponible()).sum();
         TasaAsociada tasaAsociadaConMayorPorcentajeDeAlicuota = this.obtenerTasaAsociadaConMayorPorcentajeDeAlicuota(declaracionJurada);
         total = (total > tasaAsociadaConMayorPorcentajeDeAlicuota.getTasa().getImporte() ? total : tasaAsociadaConMayorPorcentajeDeAlicuota.getTasa().getImporte());
+        if(declaracionJurada.getPadron().isCalculoMinimo()) {
+            total = (total > tasaAsociadaConMayorPorcentajeDeAlicuota.getImporteCalculoMinimo() ? total : tasaAsociadaConMayorPorcentajeDeAlicuota.getImporteCalculoMinimo());
+        }
         declaracionJurada.setTotalCalculado(FormatoUtil.formatearImporte(total));
+
     }
 
     private TasaAsociada obtenerTasaAsociadaConMayorPorcentajeDeAlicuota(DeclaracionJurada declaracionJurada){
@@ -97,13 +106,22 @@ public class DeclaracionJuradaService implements IDeclaracionJuradaService{
     }
 
     private void calcularAlicuotaSobreBaseImponible(DeclaracionJurada declaracionJurada){
-
         declaracionJurada.getTasas().forEach(tasaAsociada -> {
             Double importeCalculado = tasaAsociada.getBaseImponible() * tasaAsociada.getTasa().getAlicuta()  / 1000;
             tasaAsociada.setImporteCalculadoSobreBaseImponible(importeCalculado);
         });
     }
 
+    public void calcularCalculoMinimo(DeclaracionJurada declaracionJurada){
+        declaracionJurada.getTasas().forEach(tasaAsociada -> {
+            tasaAsociada.setTotalPuestoAtencionBancaria(Double.valueOf(tasaAsociada.getPuestoAtencionBancaria() * 5500));
+            tasaAsociada.setTotalPersonalContratado(Double.valueOf(tasaAsociada.getPersonalContratado() * 950));
+            tasaAsociada.setTotalCajerosAutomaticos(Double.valueOf(tasaAsociada.getCajerosAutomaticos() * 30000));
+            tasaAsociada.setTotalCajerosAutomaticosIndependiente(Double.valueOf(tasaAsociada.getCajerosAutomaticosIndependiente() * 30000));
+            Double calculominimo = (315000 + tasaAsociada.getTotalPuestoAtencionBancaria() + tasaAsociada.getTotalPersonalContratado() + tasaAsociada.getTotalCajerosAutomaticos() + tasaAsociada.getTotalCajerosAutomaticosIndependiente());
+            tasaAsociada.setImporteCalculoMinimo(calculominimo);
+        });
+    }
 
     @Override
     public List<DeclaracionJurada> find(String valor){

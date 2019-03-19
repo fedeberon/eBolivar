@@ -16,4 +16,5 @@ public interface IPadronService {
     List<Padron> search(SearchObject var1);
 
     Padron getByNumeroYTipo(Padron var1);
+
 }

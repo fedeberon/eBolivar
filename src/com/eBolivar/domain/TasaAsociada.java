@@ -32,6 +32,33 @@ public class TasaAsociada {
     @Column(name = "TASA_BASE_IMPONIBLE", precision = 10, scale = 2)
     private Double baseImponible = 0.0;
 
+    @Column(name = "TASA_PUESTOS_ATENCION_BANCARIA")
+    private Integer puestoAtencionBancaria = 0;
+
+    @Column(name = "TASA_PERSONAL_CONTRATADO")
+    private Integer personalContratado = 0;
+
+    @Column(name = "TASA_CANT_CAJEROS_AUTOMATICOS")
+    private Integer cajerosAutomaticos = 0;
+
+    @Column(name = "TASA_CANT_CAJEROS_AUTOMATICOS_INDEPENDIENTE")
+    private Integer cajerosAutomaticosIndependiente = 0;
+
+    @Column(name = "TASA_CALCULO_MINIMO")
+    private Double importeCalculoMinimo;
+
+    @Column(name = "TASA_TOTAL_PUESTOS_ATENCION_BANCARIA")
+    private Double totalPuestoAtencionBancaria;
+
+    @Column(name = "TASA_TOTAL_PERSONAL_CONTRATADO")
+    private Double totalPersonalContratado;
+
+    @Column(name = "TASA_TOTAL_CANT_CAJEROS_AUTOMATICOS")
+    private Double totalCajerosAutomaticos;
+
+    @Column(name = "TASA_TOTAL_CAJEROS_AUTOMATICOS_INDEPENDIENTE")
+    private Double totalCajerosAutomaticosIndependiente;
+
     public DeclaracionJurada getDeclaracionJurada() {
         return declaracionJurada;
     }
@@ -86,5 +113,77 @@ public class TasaAsociada {
 
     public void setDeduccionArticulo90(Double deduccionArticulo90) {
         this.deduccionArticulo90 = deduccionArticulo90;
+    }
+
+    public Integer getPuestoAtencionBancaria() {
+        return puestoAtencionBancaria;
+    }
+
+    public void setPuestoAtencionBancaria(Integer puestoAtencionBancaria) {
+        this.puestoAtencionBancaria = puestoAtencionBancaria;
+    }
+
+    public Integer getPersonalContratado() {
+        return personalContratado;
+    }
+
+    public void setPersonalContratado(Integer personalContratado) {
+        this.personalContratado = personalContratado;
+    }
+
+    public Integer getCajerosAutomaticos() {
+        return cajerosAutomaticos;
+    }
+
+    public void setCajerosAutomaticos(Integer cajerosAutomaticos) {
+        this.cajerosAutomaticos = cajerosAutomaticos;
+    }
+
+    public Integer getCajerosAutomaticosIndependiente() {
+        return cajerosAutomaticosIndependiente;
+    }
+
+    public void setCajerosAutomaticosIndependiente(Integer cajerosAutomaticosIndependiente) {
+        this.cajerosAutomaticosIndependiente = cajerosAutomaticosIndependiente;
+    }
+
+    public Double getImporteCalculoMinimo() {
+        return importeCalculoMinimo;
+    }
+
+    public void setImporteCalculoMinimo(Double importeCalculoMinimo) {
+        this.importeCalculoMinimo = importeCalculoMinimo;
+    }
+
+    public Double getTotalPuestoAtencionBancaria() {
+        return totalPuestoAtencionBancaria;
+    }
+
+    public void setTotalPuestoAtencionBancaria(Double totalPuestoAtencionBancaria) {
+        this.totalPuestoAtencionBancaria = totalPuestoAtencionBancaria;
+    }
+
+    public Double getTotalPersonalContratado() {
+        return totalPersonalContratado;
+    }
+
+    public void setTotalPersonalContratado(Double totalPersonalContratado) {
+        this.totalPersonalContratado = totalPersonalContratado;
+    }
+
+    public Double getTotalCajerosAutomaticos() {
+        return totalCajerosAutomaticos;
+    }
+
+    public void setTotalCajerosAutomaticos(Double totalCajerosAutomaticos) {
+        this.totalCajerosAutomaticos = totalCajerosAutomaticos;
+    }
+
+    public Double getTotalCajerosAutomaticosIndependiente() {
+        return totalCajerosAutomaticosIndependiente;
+    }
+
+    public void setTotalCajerosAutomaticosIndependiente(Double totalCajerosAutomaticosIndependiente) {
+        this.totalCajerosAutomaticosIndependiente = totalCajerosAutomaticosIndependiente;
     }
 }

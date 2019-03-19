@@ -34,7 +34,6 @@
         });
     }
 
-
 </script>
 
 <head>
@@ -94,7 +93,7 @@
 
     <div class="row">
 
-        <form:form action="../../../../../rentas/webapp/ddjj/save" modelAttribute="ddjj" method="post">
+        <form:form action="../../../../rentas/webapp/ddjj/save" modelAttribute="ddjj" method="post">
             <div class="col-md-4">
 
                 <div class="panel panel-default">
@@ -177,6 +176,56 @@
                         </td>
                     </tr>
 
+
+                    <tr>
+                        <td colspan="3">
+                            <table class="table" style="margin-bottom: 0px" >
+                                <td ${padron.calculoMinimo ? '' : 'style="display: none"'} style="border-top: 0px;" class="col-md-6">
+                                    <form:hidden path="padron.isCalculoMinimo"></form:hidden>
+                                    <div class="input-group" style="border-top: 0px solid #ddd;">
+                                        <span>Puestos de Atencion bancaria</span>
+                                        <form:input path="tasas[0].puestoAtencionBancaria" cssClass="form-control" data-toggle="tooltip" title="Puestos mecanicos o electronicos de atencion bancaria"/>
+                                        <br>
+                                        <form:errors cssClass="text-danger bg-secondary" path="tasas[0].puestoAtencionBancaria"/>
+                                    </div>
+                                </td>
+
+                                <td ${padron.calculoMinimo ? '' : 'style="display: none"'} style="border-top: 0px;" class="col-md-6">
+                                    <div class="input-group">
+                                        <span>Personal contratado </span>
+                                        <form:input path="tasas[0].personalContratado" cssClass="form-control" data-toggle="tooltip" title="Personal contratado de vigilancia y/o limpieza"/>
+                                        <br>
+                                        <form:errors cssClass="text-danger bg-secondary" path="tasas[0].personalContratado"/>
+                                    </div>
+                                </td>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="3">
+                            <table class="table" style="margin-bottom: 0px">
+                                <td ${padron.calculoMinimo ? '' : 'style="display: none"'} style="border-top: 0px;"  class="col-md-6">
+                                    <div class="input-group" >
+                                        <span>Cant.de cajeron automaticos</span>
+                                        <form:input path="tasas[0].cajerosAutomaticos" cssClass="form-control" data-toggle="tooltip" title="Cant.de cajeron automaticos dentro y/o o fuera de la entidad"/>
+                                        <br>
+                                        <form:errors cssClass="text-danger bg-secondary" path="tasas[0].cajerosAutomaticos"/>
+                                    </div>
+                                </td>
+
+                                <td ${padron.calculoMinimo ? '' : 'style="display: none"'} style="border-top: 0px;" class="col-md-6">
+                                    <div class="input-group" >
+                                        <span>Cajeros automaticos con inscripcion indepnte.</span>
+                                        <form:input path="tasas[0].cajerosAutomaticosIndependiente" cssClass="form-control" data-toggle="tooltip" title="Cajeros automaticos con inscripcion independiente"/>
+                                        <br>
+                                        <form:errors cssClass="text-danger bg-secondary" path="tasas[0].cajerosAutomaticosIndependiente"/>
+                                    </div>
+                                </td>
+                            </table>
+                        </td>
+                    </tr>
+
                     <tr>
                         <td rowspan="2" style="background-color: #ffcdc6">
                             <span class="nro-registro-tasa">2</span>
@@ -244,6 +293,12 @@
                                 <span class="input-group-addon">$</span>
                                 <form:input path="tasas[2].deduccionArticulo90" cssClass="inp-importes" data-toggle="tooltip" title="Deduccion Art. 90 sobre base imponible"/>
                             </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="4">
+                            <form:textarea path="observaciones" placeholder="Ingrese sus observaciones aqui..." cssStyle="width: 100%; min-height: 60px;"></form:textarea>
                         </td>
                     </tr>
 

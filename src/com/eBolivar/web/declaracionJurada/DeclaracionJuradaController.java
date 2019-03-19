@@ -2,7 +2,6 @@ package com.eBolivar.web.declaracionJurada;
 
 import com.eBolivar.bean.AnioTypeEditor;
 import com.eBolivar.domain.*;
-import com.eBolivar.domain.usuario.User;
 import com.eBolivar.enumeradores.AnioEnum;
 import com.eBolivar.enumeradores.EstadoDeDeclaracionJurada;
 import com.eBolivar.enumeradores.PeriodoEnum;
@@ -13,7 +12,6 @@ import com.eBolivar.service.padron.interfaces.IPadronService;
 import com.eBolivar.service.persona.interfaces.IPersonaService;
 import com.eBolivar.service.tasa.interfaces.ITasaService;
 import com.eBolivar.service.tasaPersonaPadron.interfaces.ITasaPersonaPadronService;
-import com.eBolivar.service.usuario.interfaces.IUsuarioService;
 import com.eBolivar.validator.DeclaracionJuradaEditadaValidator;
 import com.eBolivar.validator.DeclaracionJuradaValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +24,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -120,11 +117,20 @@ public class DeclaracionJuradaController {
         if (result.hasErrors()) {
             model.addAttribute("anio", Arrays.asList(AnioEnum.A_2019));
             return "declaracionJurada/create";
+            model.addAttribute("anio", Arrays.asList(AnioEnum.A_2019));
+            Padron padron = declaracionJurada.getPadron();
+            model.addAttribute("padron", padron);
+            return "declaracionJurada/create-por-personaAsociada";
         }
 
         User presentadaPor = usuarioService.getAutenticate();
         declaracionJurada.setFecha(LocalDateTime.now());
         declaracionJurada.setPresentadaPor(presentadaPor);
+
+
+        if(declaracionJurada.getPadron().isCalculoMinimo()) {
+            declaracionJuradaService.calcularCalculoMinimo(declaracionJurada);
+        }
 
         DeclaracionJurada ddjj = declaracionJuradaService.save(declaracionJurada);
         redirectAttributes.addAttribute("id", ddjj.getId());
@@ -159,6 +165,9 @@ public class DeclaracionJuradaController {
 
     private void recalcularValores(DeclaracionJurada declaracionJurada) {
         try {
+            if(declaracionJurada.getPadron().isCalculoMinimo()) {
+                declaracionJuradaService.calcularCalculoMinimo(declaracionJurada);
+            }
             declaracionJuradaService.actualizarImportesCalculados(declaracionJurada);
         } catch (Exception e) {
             e.printStackTrace();
@@ -182,6 +191,8 @@ public class DeclaracionJuradaController {
     public String editar(@RequestParam Long id, Model model) {
         DeclaracionJurada declaracionJurada = declaracionJuradaService.get(id);
         final Persona persona = personaService.get(declaracionJurada.getPersona().getId());
+        Padron padron = declaracionJurada.getPadron();
+        model.addAttribute("padron", padron);
         declaracionJurada.setPersona(persona);
         model.addAttribute("ddjj", declaracionJurada);
 
@@ -221,7 +232,6 @@ public class DeclaracionJuradaController {
         declaracionJurada.setTasas(ddjj.getTasas());
         declaracionJurada.setTotalCalculado(ddjj.getTotalCalculado());
         declaracionJurada.setEstadoDeDeclaracionJurada(EstadoDeDeclaracionJurada.MODIFICADA);
-
         declaracionJuradaService.save(declaracionJurada);
         redirectAttributes.addAttribute("id", declaracionJurada.getId());
 
@@ -332,6 +342,7 @@ public class DeclaracionJuradaController {
         }
         Persona persona = personaService.getByCUIT(idPersona);
         Padron padron = padronService.get(idPadron);
+        model.addAttribute("padron", padron);
         DeclaracionJurada declaracionJurada = new DeclaracionJurada(persona, anio, padron);
         model.addAttribute("ddjj", declaracionJurada);
         model.addAttribute("periodoEnum", PeriodoEnum.values());
@@ -342,9 +353,11 @@ public class DeclaracionJuradaController {
     }
 
     @RequestMapping("declaracionJurada/bimestral") //Metodo en ddjj/list
-    public String createBimestral(Model model , @RequestParam Long idDDJJ){
+    public String createBimestral(Model model , @RequestParam Long idDDJJ, @RequestParam Integer idPadron){
         DeclaracionJurada declaracionJurada = declaracionJuradaService.get(idDDJJ);
         DeclaracionJurada declaracionJuradaACrear = new DeclaracionJurada(declaracionJurada.getPersona(), AnioEnum.A_2019, declaracionJurada.getPadron());
+        Padron padron = padronService.get(idPadron);
+        model.addAttribute("padron", padron);
         model.addAttribute("ddjj", declaracionJuradaACrear);
         model.addAttribute("periodoEnum", PeriodoEnum.stream().filter(periodo -> !periodo.getDescripcion().equalsIgnoreCase(PeriodoEnum.ANUAL.getDescripcion())).collect(Collectors.toList()));
         List<TasaPersonaPadron> tasaPersonaPadron = tasaPersonaPadronService.findByPersonaPadron(declaracionJurada.getPersona(), declaracionJurada.getPadron());
@@ -355,9 +368,11 @@ public class DeclaracionJuradaController {
     }
 
     @RequestMapping("declaracionJurada/anual") //Metodo en ddjj/list
-    public String createAnual(Model model , @RequestParam Long idDDJJ){
+    public String createAnual(Model model , @RequestParam Long idDDJJ, @RequestParam Integer idPadron){
         DeclaracionJurada declaracionJurada = declaracionJuradaService.get(idDDJJ);
         DeclaracionJurada declaracionJuradaACrear = new DeclaracionJurada(declaracionJurada.getPersona(), AnioEnum.A_2019, declaracionJurada.getPadron(), PeriodoEnum.ANUAL);
+        Padron padron = padronService.get(idPadron);
+        model.addAttribute("padron", padron);
         model.addAttribute("ddjj", declaracionJuradaACrear);
         model.addAttribute("periodoEnum", PeriodoEnum.stream().filter(periodo -> periodo.getDescripcion().equalsIgnoreCase(PeriodoEnum.ANUAL.getDescripcion())).collect(Collectors.toList()));
         List<TasaPersonaPadron> tasaPersonaPadron = tasaPersonaPadronService.findByPersonaPadron(declaracionJurada.getPersona(), declaracionJurada.getPadron());
@@ -381,9 +396,9 @@ public class DeclaracionJuradaController {
         DeclaracionJurada declaracionJuradaACrear = new DeclaracionJurada(persona, AnioEnum.A_2019, padron);
         model.addAttribute("ddjj", declaracionJuradaACrear);
         model.addAttribute("periodoEnum", PeriodoEnum.stream().filter(periodo -> !periodo.getDescripcion().equalsIgnoreCase(PeriodoEnum.ANUAL.getDescripcion())).collect(Collectors.toList()));
+        model.addAttribute("padron", padron);
         List<TasaPersonaPadron> tasaPersonaPadron = tasaPersonaPadronService.findByPersonaPadron(persona, padron);
         List<Tasa> tasas = tasaService.findByTasaPersonaPadron(tasaPersonaPadron, AnioEnum.A_2019);
-        model.addAttribute("tasas", tasas);
 
         return "declaracionJurada/create-por-personaAsociada";
     }
@@ -400,6 +415,7 @@ public class DeclaracionJuradaController {
         Persona persona = personaService.get(idPersona);
         Padron padron = padronService.get(idPadron);
         DeclaracionJurada declaracionJuradaACrear = new DeclaracionJurada(persona, AnioEnum.A_2019, padron);
+        model.addAttribute("padron", padron);
         model.addAttribute("ddjj", declaracionJuradaACrear);
         model.addAttribute("periodoEnum", PeriodoEnum.stream().filter(periodo -> periodo.getDescripcion().equalsIgnoreCase(PeriodoEnum.ANUAL.getDescripcion())).collect(Collectors.toList()));
         List<TasaPersonaPadron> tasaPersonaPadron = tasaPersonaPadronService.findByPersonaPadron(persona, padron);
@@ -414,6 +430,7 @@ public class DeclaracionJuradaController {
         Persona persona = personaService.get(idPersona);
         Padron padron = padronService.get(idPadron);
         DeclaracionJurada declaracionJurada = new DeclaracionJurada(persona, anio, padron);
+        model.addAttribute("padron", padron);
         model.addAttribute("ddjj", declaracionJurada);
         model.addAttribute("periodoEnum", PeriodoEnum.values());
         List<TasaPersonaPadron> tasaPersonaPadron = tasaPersonaPadronService.findByPersonaPadron(persona, padron);
