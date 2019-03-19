@@ -2,6 +2,7 @@ package com.eBolivar.web.declaracionJurada;
 
 import com.eBolivar.bean.AnioTypeEditor;
 import com.eBolivar.domain.*;
+import com.eBolivar.domain.usuario.User;
 import com.eBolivar.enumeradores.AnioEnum;
 import com.eBolivar.enumeradores.EstadoDeDeclaracionJurada;
 import com.eBolivar.enumeradores.PeriodoEnum;
@@ -12,6 +13,7 @@ import com.eBolivar.service.padron.interfaces.IPadronService;
 import com.eBolivar.service.persona.interfaces.IPersonaService;
 import com.eBolivar.service.tasa.interfaces.ITasaService;
 import com.eBolivar.service.tasaPersonaPadron.interfaces.ITasaPersonaPadronService;
+import com.eBolivar.service.usuario.interfaces.IUsuarioService;
 import com.eBolivar.validator.DeclaracionJuradaEditadaValidator;
 import com.eBolivar.validator.DeclaracionJuradaValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -115,8 +118,6 @@ public class DeclaracionJuradaController {
         declaracionJurada.setEstadoDeDeclaracionJurada(EstadoDeDeclaracionJurada.EN_PROCESO);
         this.validator.validate(declaracionJurada, result);
         if (result.hasErrors()) {
-            model.addAttribute("anio", Arrays.asList(AnioEnum.A_2019));
-            return "declaracionJurada/create";
             model.addAttribute("anio", Arrays.asList(AnioEnum.A_2019));
             Padron padron = declaracionJurada.getPadron();
             model.addAttribute("padron", padron);
@@ -389,17 +390,19 @@ public class DeclaracionJuradaController {
      * @param model
      * @return
      */
-    @RequestMapping("declaracionJurada/bimestralByPadronAsociado")
-    public String createBimestralByPadronAsociado(@RequestParam Integer idPadron, @RequestParam Integer idPersona, Model model){
-        Persona persona = personaService.get(idPersona);
-        Padron padron = padronService.get(idPadron);
+    @RequestMapping({"declaracionJurada/bimestralByPadronAsociado"})
+    public String createBimestralByPadronAsociado(@RequestParam Integer idPadron, @RequestParam Integer idPersona, Model model) {
+        Persona persona = this.personaService.get(idPersona);
+        Padron padron = this.padronService.get(idPadron);
         DeclaracionJurada declaracionJuradaACrear = new DeclaracionJurada(persona, AnioEnum.A_2019, padron);
         model.addAttribute("ddjj", declaracionJuradaACrear);
-        model.addAttribute("periodoEnum", PeriodoEnum.stream().filter(periodo -> !periodo.getDescripcion().equalsIgnoreCase(PeriodoEnum.ANUAL.getDescripcion())).collect(Collectors.toList()));
+        model.addAttribute("periodoEnum", PeriodoEnum.stream().filter((periodo) -> {
+            return !periodo.getDescripcion().equalsIgnoreCase(PeriodoEnum.ANUAL.getDescripcion());
+        }).collect(Collectors.toList()));
+        List tasaPersonaPadron = this.tasaPersonaPadronService.findByPersonaPadron(persona, padron);
+        List tasas = this.tasaService.findByTasaPersonaPadron(tasaPersonaPadron, AnioEnum.A_2019);
         model.addAttribute("padron", padron);
-        List<TasaPersonaPadron> tasaPersonaPadron = tasaPersonaPadronService.findByPersonaPadron(persona, padron);
-        List<Tasa> tasas = tasaService.findByTasaPersonaPadron(tasaPersonaPadron, AnioEnum.A_2019);
-
+        model.addAttribute("tasas", tasas);
         return "declaracionJurada/create-por-personaAsociada";
     }
 

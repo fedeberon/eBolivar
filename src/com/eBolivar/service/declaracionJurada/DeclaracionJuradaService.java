@@ -55,11 +55,7 @@ public class DeclaracionJuradaService implements IDeclaracionJuradaService{
         Persona persona = personaService.getByCUIT(declaracionJurada.getPersona().getIdPersona().toString());
         declaracionJurada.setPersona(persona);
         Padron padron = padronService.getByNumero(declaracionJurada.getPadron().getNumero());
-        User presentadaPor = usuarioService.getAutenticate();
         declaracionJurada.setPadron(padron);
-        User presentadaPor = usuarioService.getAutenticate();
-        declaracionJurada.setFecha(LocalDateTime.now());
-        declaracionJurada.setPresentadaPor(presentadaPor);
 
         return dao.save(declaracionJurada);
     }

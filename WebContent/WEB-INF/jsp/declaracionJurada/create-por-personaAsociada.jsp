@@ -139,7 +139,7 @@
                     </thead>
 
                     <tr>
-                        <td rowspan="2" style="background-color: #41fff2">
+                        <td rowspan="4" style="background-color: #41fff2">
                             <span class="nro-registro-tasa">1</span>
                         </td>
 
@@ -178,7 +178,7 @@
 
 
                     <tr>
-                        <td colspan="3">
+                        <td colspan="6">
                             <table class="table" style="margin-bottom: 0px" >
                                 <td ${padron.calculoMinimo ? '' : 'style="display: none"'} style="border-top: 0px;" class="col-md-6">
                                     <form:hidden path="padron.isCalculoMinimo"></form:hidden>
@@ -203,7 +203,7 @@
                     </tr>
 
                     <tr>
-                        <td colspan="3">
+                        <td colspan="6">
                             <table class="table" style="margin-bottom: 0px">
                                 <td ${padron.calculoMinimo ? '' : 'style="display: none"'} style="border-top: 0px;"  class="col-md-6">
                                     <div class="input-group" >
