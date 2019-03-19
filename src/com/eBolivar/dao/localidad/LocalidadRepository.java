@@ -30,7 +30,7 @@ public class LocalidadRepository implements ILocalidadRepository {
 
     public List<Localidad> findAll(){
         try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
-            Query query = session.delegate().createQuery("from Localidad");
+            Query query = session.delegate().createQuery("from Localidad order by nombre");
 
             return query.list();
         }
