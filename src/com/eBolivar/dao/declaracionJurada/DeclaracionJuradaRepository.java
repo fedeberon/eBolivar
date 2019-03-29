@@ -90,6 +90,7 @@ public class DeclaracionJuradaRepository implements IDeclaracionJuradaRepository
         JasperReport reporte ;
         try {
             String file = declaracionJurada.getPeriodo().equals(PeriodoEnum.ANUAL) ? "/ddjj-anual.jasper" : "/ddjj.jasper";
+            file = declaracionJurada.getPadron().getisCalculoMinimo() ? "/ddjj-identidad-financiera.jasper" : file;
             reporte = (JasperReport) JRLoader.loadObject(new File("/actualizaciones" + file));
             JasperPrint jp = this.crearPrint(reporte, map);
             JRPdfExporter pdfExporter = new JRPdfExporter();

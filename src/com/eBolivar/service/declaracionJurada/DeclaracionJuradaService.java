@@ -1,5 +1,6 @@
 package com.eBolivar.service.declaracionJurada;
 
+import com.eBolivar.bean.DefaultValues;
 import com.eBolivar.bean.FormatoUtil;
 import com.eBolivar.dao.declaracionJurada.interfaces.IDeclaracionJuradaRepository;
 import com.eBolivar.domain.*;
@@ -11,6 +12,7 @@ import com.eBolivar.service.padron.interfaces.IPadronService;
 import com.eBolivar.service.persona.interfaces.IPersonaService;
 import com.eBolivar.service.usuario.interfaces.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.support.PropertiesBeanDefinitionReader;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.stereotype.Service;
 
@@ -114,8 +116,8 @@ public class DeclaracionJuradaService implements IDeclaracionJuradaService{
             tasaAsociada.setTotalPersonalContratado(Double.valueOf(tasaAsociada.getPersonalContratado() * 950));
             tasaAsociada.setTotalCajerosAutomaticos(Double.valueOf(tasaAsociada.getCajerosAutomaticos() * 30000));
             tasaAsociada.setTotalCajerosAutomaticosIndependiente(Double.valueOf(tasaAsociada.getCajerosAutomaticosIndependiente() * 30000));
-            Double calculominimo = (315000 + tasaAsociada.getTotalPuestoAtencionBancaria() + tasaAsociada.getTotalPersonalContratado() + tasaAsociada.getTotalCajerosAutomaticos() + tasaAsociada.getTotalCajerosAutomaticosIndependiente());
-            tasaAsociada.setImporteCalculoMinimo(calculominimo);
+            Double calculoMinimo = (315000 + tasaAsociada.getTotalPuestoAtencionBancaria() + tasaAsociada.getTotalPersonalContratado() + tasaAsociada.getTotalCajerosAutomaticos() + tasaAsociada.getTotalCajerosAutomaticosIndependiente());
+            tasaAsociada.setImporteCalculoMinimo(calculoMinimo);
         });
     }
 

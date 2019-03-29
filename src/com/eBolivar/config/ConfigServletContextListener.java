@@ -2,6 +2,8 @@ package com.eBolivar.config;
 
 import com.eBolivar.enumeradores.PeriodoEnum;
 import com.eBolivar.enumeradores.TipoPersonEnum;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -23,5 +25,10 @@ public class ConfigServletContextListener implements ServletContextListener {
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
 
+    }
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer placeHolderConfigurer() {
+        return new PropertySourcesPlaceholderConfigurer();
     }
 }

@@ -128,7 +128,6 @@ public class DeclaracionJuradaController {
         declaracionJurada.setFecha(LocalDateTime.now());
         declaracionJurada.setPresentadaPor(presentadaPor);
 
-
         if(declaracionJurada.getPadron().isCalculoMinimo()) {
             declaracionJuradaService.calcularCalculoMinimo(declaracionJurada);
         }
@@ -166,7 +165,7 @@ public class DeclaracionJuradaController {
 
     private void recalcularValores(DeclaracionJurada declaracionJurada) {
         try {
-            if(declaracionJurada.getPadron().isCalculoMinimo()) {
+            if(declaracionJurada.getPadron().isCalculoMinimo()){
                 declaracionJuradaService.calcularCalculoMinimo(declaracionJurada);
             }
             declaracionJuradaService.actualizarImportesCalculados(declaracionJurada);

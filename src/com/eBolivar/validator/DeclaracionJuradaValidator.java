@@ -54,23 +54,6 @@ public class DeclaracionJuradaValidator implements Validator {
             errors.rejectValue("padron.numero", "Padron.numero.noEncontrado","Error verifique nuevamente");
         }
 
-        if(declaracionJurada.getPadron().isCalculoMinimo()) {
-            declaracionJurada.getTasas().forEach(tasaAsociada -> {
-                if(tasaAsociada.getPuestoAtencionBancaria() < 0){
-                    errors.rejectValue("tasas[0].puestoAtencionBancaria", "DeclaracionJurada.TasaAsociada.cantidadNoValida","Error verifique nuevamente");
-                }
-                else if (tasaAsociada.getPersonalContratado() < 0 ){
-                    errors.rejectValue("tasas[0].personalContratado", "DeclaracionJurada.TasaAsociada.cantidadNoValida","Error verifique nuevamente");
-                }
-                else if(tasaAsociada.getCajerosAutomaticos() < 0){
-                    errors.rejectValue("tasas[0].cajerosAutomaticos", "DeclaracionJurada.TasaAsociada.cantidadNoValida","Error verifique nuevamente");
-                }
-                else if(tasaAsociada.getCajerosAutomaticosIndependiente() < 0){
-                    errors.rejectValue("tasas[0].cajerosAutomaticosIndependiente", "DeclaracionJurada.TasaAsociada.cantidadNoValida","Error verifique nuevamente");
-                }
-            });
-        }
-
         try {
             String  cuit = declaracionJurada.getPersona().getIdPersona().toString();
 

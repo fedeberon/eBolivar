@@ -139,7 +139,7 @@
                     </thead>
 
                     <tr>
-                        <td rowspan="4" style="background-color: #41fff2">
+                        <td rowspan="3" style="background-color: #41fff2">
                             <span class="nro-registro-tasa">1</span>
                         </td>
 
@@ -180,51 +180,104 @@
                     <tr>
                         <td colspan="6">
                             <table class="table" style="margin-bottom: 0px" >
-                                <td ${padron.calculoMinimo ? '' : 'style="display: none"'} style="border-top: 0px;" class="col-md-6">
+                                <td ${padron.calculoMinimo == true && ddjj.anio.descripcion == '2019' ? '' : 'style="display: none"'} style="border-top: 0px;" class="col-md-3">
                                     <form:hidden path="padron.isCalculoMinimo"></form:hidden>
                                     <div class="input-group" style="border-top: 0px solid #ddd;">
-                                        <span>Puestos de Atencion bancaria</span>
-                                        <form:input path="tasas[0].puestoAtencionBancaria" cssClass="form-control" data-toggle="tooltip" title="Puestos mecanicos o electronicos de atencion bancaria"/>
-                                        <br>
-                                        <form:errors cssClass="text-danger bg-secondary" path="tasas[0].puestoAtencionBancaria"/>
+                                        <span>Puestos de Atencion</span>
+                                        <form:select path="tasas[0].puestoAtencionBancaria" cssClass="form-control" data-toggle="tooltip" title="Puestos mecanicos o electronicos de atencion bancaria">
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                            <option value="13">13</option>
+                                            <option value="14">14</option>
+                                            <option value="15">15</option>
+                                        </form:select>
                                     </div>
                                 </td>
 
-                                <td ${padron.calculoMinimo ? '' : 'style="display: none"'} style="border-top: 0px;" class="col-md-6">
+                                <td ${padron.calculoMinimo ? '' : 'style="display: none"'} style="border-top: 0px;" class="col-md-3">
                                     <div class="input-group">
-                                        <span>Personal contratado </span>
-                                        <form:input path="tasas[0].personalContratado" cssClass="form-control" data-toggle="tooltip" title="Personal contratado de vigilancia y/o limpieza"/>
+                                        <span>Personal contratado</span>
+                                        <form:select path="tasas[0].personalContratado" cssClass="form-control" data-toggle="tooltip" title="Personal contratado de vigilancia y/o limpieza">
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                            <option value="13">13</option>
+                                            <option value="14">14</option>
+                                            <option value="15">15</option>
+                                        </form:select>
+                                    </div>
+                                </td>
+
+                                <td ${padron.calculoMinimo ? '' : 'style="display: none"'} style="border-top: 0px;"  class="col-md-3">
+                                    <div class="input-group" >
+                                        <span>Cajeros automaticos</span>
+                                        <form:select path="tasas[0].cajerosAutomaticos" cssClass="form-control" data-toggle="tooltip" title="Cant.de cajeros automaticos dentro y/o o fuera de la entidad">
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                        </form:select>
+                                    </div>
+                                </td>
+
+                                <td ${padron.calculoMinimo ? '' : 'style="display: none"'} style="border-top: 0px;" class="col-md-3">
+                                    <div class="input-group" >
+                                        <span>Cajeros aut. indepnte.</span>
+                                        <form:select path="tasas[0].cajerosAutomaticosIndependiente" cssClass="form-control" data-toggle="tooltip" title="Cant. de cajeros automaticos con inscripcion independiente">
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                        </form:select>
                                         <br>
-                                        <form:errors cssClass="text-danger bg-secondary" path="tasas[0].personalContratado"/>
                                     </div>
                                 </td>
                             </table>
                         </td>
                     </tr>
 
-                    <tr>
-                        <td colspan="6">
-                            <table class="table" style="margin-bottom: 0px">
-                                <td ${padron.calculoMinimo ? '' : 'style="display: none"'} style="border-top: 0px;"  class="col-md-6">
-                                    <div class="input-group" >
-                                        <span>Cant.de cajeron automaticos</span>
-                                        <form:input path="tasas[0].cajerosAutomaticos" cssClass="form-control" data-toggle="tooltip" title="Cant.de cajeron automaticos dentro y/o o fuera de la entidad"/>
-                                        <br>
-                                        <form:errors cssClass="text-danger bg-secondary" path="tasas[0].cajerosAutomaticos"/>
-                                    </div>
-                                </td>
-
-                                <td ${padron.calculoMinimo ? '' : 'style="display: none"'} style="border-top: 0px;" class="col-md-6">
-                                    <div class="input-group" >
-                                        <span>Cajeros automaticos con inscripcion indepnte.</span>
-                                        <form:input path="tasas[0].cajerosAutomaticosIndependiente" cssClass="form-control" data-toggle="tooltip" title="Cajeros automaticos con inscripcion independiente"/>
-                                        <br>
-                                        <form:errors cssClass="text-danger bg-secondary" path="tasas[0].cajerosAutomaticosIndependiente"/>
-                                    </div>
-                                </td>
-                            </table>
-                        </td>
-                    </tr>
+                    <%--<tr>--%>
+                        <%--<td colspan="6">--%>
+                            <%--<table class="table" style="margin-bottom: 0px">--%>
+                               <%----%>
+                            <%--</table>--%>
+                        <%--</td>--%>
+                    <%--</tr>--%>
 
                     <tr>
                         <td rowspan="2" style="background-color: #ffcdc6">

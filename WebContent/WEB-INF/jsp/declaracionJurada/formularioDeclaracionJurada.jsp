@@ -156,30 +156,39 @@
                 <td>${tasaAsociada.deduccionArticulo90}</td>
             </tr>
 
+        <tr ${declaracionJurada.padron.calculoMinimo ? 'style="display: none"' : ''} style="border-top: #555 2px solid">
+            <td colspan="5">Importe a Pagar</td>
+            <td>${declaracionJurada.totalCalculado}</td>
+        </tr>
+    </table>
+
+    <table class="table table-bordered">
 
             <tr ${declaracionJurada.padron.calculoMinimo ? '' : 'style="display: none"'}>
-                <th></th>
-                <th></th>
-                <th>Puestos de Atencion Bancaria</th>
-                <th>Personal Contratado</th>
-                <th>Cajeros Automaticos</th>
-                <th>Cajeros Automaticos Independientes</th>
+                <td colspan="5" >Puestos de Atencion Bancaria</td>
+                <td>${tasaAsociada.totalPuestoAtencionBancaria}</td>
             </tr>
 
             <tr ${declaracionJurada.padron.calculoMinimo ? '' : 'style="display: none"'}>
-                <td></td>
-                <td></td>
-                <td>${tasaAsociada.totalPuestoAtencionBancaria}</td>
+                <td colspan="5">Personal Contratado</td>
                 <td>${tasaAsociada.totalPersonalContratado}</td>
+            </tr>
+
+            <tr ${declaracionJurada.padron.calculoMinimo ? '' : 'style="display: none"'}>
+                <td colspan="5" >Cajeros Automaticos</td>
                 <td>${tasaAsociada.totalCajerosAutomaticos}</td>
+            </tr>
+
+            <tr ${declaracionJurada.padron.calculoMinimo ? '' : 'style="display: none"'}>
+                <td colspan="5" >Cajeros Automaticos Independientes</td>
                 <td>${tasaAsociada.totalCajerosAutomaticosIndependiente}</td>
             </tr>
 
         </c:forEach>
 
-        <tr style="border-top: #555 2px solid">
+        <tr ${declaracionJurada.padron.calculoMinimo ? '' : 'style="display: none"'} style="border-top: #555 2px solid">
             <td colspan="5">Importe a Pagar</td>
-            <td>${declaracionJurada.totalCalculado}</td>
+            <td colspan="7">${declaracionJurada.totalCalculado}</td>
         </tr>
 
     </table>
