@@ -141,6 +141,50 @@
                     </td>
 
                 </tr>
+
+                <tr>
+                    <td colspan="12">
+                        <table class="table" style="margin-bottom: 0px" >
+
+                            <td ${padron.calculoMinimo ? '' : 'style="display: none"'} style="border-top: 0px;" class="col-md-3">
+                                <form:hidden path="padron.isCalculoMinimo"></form:hidden>
+                                <div class="input-group" style="border-top: 0px solid #ddd;">
+                                    <span>Puestos de Atencion bancaria</span>
+                                    <form:input path="tasas[0].puestoAtencionBancaria" cssClass="form-control" data-toggle="tooltip" title="Puestos mecanicos o electronicos de atencion bancaria"/>
+                                    <br>
+                                    <form:errors cssClass="text-danger bg-secondary" path="tasas[0].puestoAtencionBancaria"/>
+                                </div>
+                            </td>
+
+                            <td ${padron.calculoMinimo ? '' : 'style="display: none"'} style="border-top: 0px;" class="col-md-2">
+                                <div class="input-group">
+                                    <span>Personal contratado </span>
+                                    <form:input path="tasas[0].personalContratado" cssClass="form-control" data-toggle="tooltip" title="Personal contratado de vigilancia y/o limpieza"/>
+                                    <br>
+                                    <form:errors cssClass="text-danger bg-secondary" path="tasas[0].personalContratado"/>
+                                </div>
+                            </td>
+
+                            <td ${padron.calculoMinimo ? '' : 'style="display: none"'} style="border-top: 0px;"  class="col-md-3">
+                                <div class="input-group" >
+                                    <span>Cant.de cajeron automaticos</span>
+                                    <form:input path="tasas[0].cajerosAutomaticos" cssClass="form-control" data-toggle="tooltip" title="Cant.de cajeron automaticos dentro y/o o fuera de la entidad"/>
+                                    <br>
+                                    <form:errors cssClass="text-danger bg-secondary" path="tasas[0].cajerosAutomaticos"/>
+                                </div>
+                            </td>
+
+                            <td ${padron.calculoMinimo ? '' : 'style="display: none"'} style="border-top: 0px;" class="col-md-3">
+                                <div class="input-group" >
+                                    <span>Cajeros automaticos con inscripcion indepnte.</span>
+                                    <form:input path="tasas[0].cajerosAutomaticosIndependiente" cssClass="form-control" data-toggle="tooltip" title="Cajeros automaticos con inscripcion independiente"/>
+                                    <br>
+                                    <form:errors cssClass="text-danger bg-secondary" path="tasas[0].cajerosAutomaticosIndependiente"/>
+                                </div>
+                            </td>
+                        </table>
+                    </td>
+                </tr>
             </c:forEach>
 
             <tr>
@@ -156,10 +200,9 @@
 
         </table>
 
-        <div class="col-lg-12">
+        <div class="col-lg-12" modelAttribute="ddjj">
 
             <button type="submit"  name="action" value="recalcularValores" class="btn btn-primary" style="display: inline">Re Calcular Alicuota</button>
-
             <button type="submit" class="btn btn-primary" style="display: inline">Guardar</button>
 
         </div>

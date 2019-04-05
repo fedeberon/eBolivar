@@ -54,7 +54,6 @@ public class DeclaracionJuradaValidator implements Validator {
             errors.rejectValue("padron.numero", "Padron.numero.noEncontrado","Error verifique nuevamente");
         }
 
-
         try {
             String  cuit = declaracionJurada.getPersona().getIdPersona().toString();
 

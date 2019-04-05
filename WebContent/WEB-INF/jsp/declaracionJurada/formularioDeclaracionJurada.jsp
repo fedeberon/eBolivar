@@ -119,6 +119,14 @@
                     <th>Estado de la Declaracion Jurada</th>
                     <td>${declaracionJurada.estadoDeDeclaracionJurada}</td>
                 </tr>
+
+                <tr>
+                    <th colspan="2">Observaciones de la Declaracion Jurada</th>
+                </tr>
+                <tr ${declaracionJurada.observaciones == '' ? 'style="display: none"' : ''}>
+                    <td colspan="2">${declaracionJurada.observaciones}</td>
+                </tr>
+
             </table>
         </div>
 
@@ -148,11 +156,39 @@
                 <td>${tasaAsociada.deduccionArticulo90}</td>
             </tr>
 
-        </c:forEach>
-
-        <tr style="border-top: #555 2px solid">
+        <tr ${declaracionJurada.padron.calculoMinimo ? 'style="display: none"' : ''} style="border-top: #555 2px solid">
             <td colspan="5">Importe a Pagar</td>
             <td>${declaracionJurada.totalCalculado}</td>
+        </tr>
+    </table>
+
+    <table class="table table-bordered">
+
+            <tr ${declaracionJurada.padron.calculoMinimo ? '' : 'style="display: none"'}>
+                <td colspan="5" >Puestos de Atencion Bancaria</td>
+                <td>${tasaAsociada.totalPuestoAtencionBancaria}</td>
+            </tr>
+
+            <tr ${declaracionJurada.padron.calculoMinimo ? '' : 'style="display: none"'}>
+                <td colspan="5">Personal Contratado</td>
+                <td>${tasaAsociada.totalPersonalContratado}</td>
+            </tr>
+
+            <tr ${declaracionJurada.padron.calculoMinimo ? '' : 'style="display: none"'}>
+                <td colspan="5" >Cajeros Automaticos</td>
+                <td>${tasaAsociada.totalCajerosAutomaticos}</td>
+            </tr>
+
+            <tr ${declaracionJurada.padron.calculoMinimo ? '' : 'style="display: none"'}>
+                <td colspan="5" >Cajeros Automaticos Independientes</td>
+                <td>${tasaAsociada.totalCajerosAutomaticosIndependiente}</td>
+            </tr>
+
+        </c:forEach>
+
+        <tr ${declaracionJurada.padron.calculoMinimo ? '' : 'style="display: none"'} style="border-top: #555 2px solid">
+            <td colspan="5">Importe a Pagar</td>
+            <td colspan="7">${declaracionJurada.totalCalculado}</td>
         </tr>
 
     </table>

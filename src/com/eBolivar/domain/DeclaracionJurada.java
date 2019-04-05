@@ -11,12 +11,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name ="DECLARACIONES_JURADAS")
+@Table(name = "DECLARACIONES_JURADAS")
 public class DeclaracionJurada {
 
     @Id
     @Column(name = "DEC_ID")
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long Id;
 
     @OneToOne
@@ -222,7 +222,7 @@ public class DeclaracionJurada {
 
     @Override
     public String toString() {
-        return "DeclaracionJurada: Id = " + Id  + " Persona: [ " + persona + " ]" + "Padron: [ " + padron + " ]";
+        return "DeclaracionJurada: Id = " + Id + " Persona: [ " + persona + " ]" + "Padron: [ " + padron + " ]";
     }
 }
 

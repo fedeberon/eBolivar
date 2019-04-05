@@ -98,4 +98,10 @@
         <property name="basename" value="mensajes"/>
     </bean>
 
+    <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        <property name="environment">
+            <bean class="org.springframework.web.context.support.StandardServletEnvironment"/>
+        </property>
+    </bean>
+
 </beans>
