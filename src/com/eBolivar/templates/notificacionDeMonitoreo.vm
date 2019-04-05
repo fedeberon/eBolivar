@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+
+    <style type="text/css">
+        .tituloPrincipal{
+            font-family: 'Lato', sans-serif;
+            text-align: center;
+            margin-top: 30px;
+        }
+        table{
+            background-color: #EAEAEA;
+
+            width: 80%;
+            font-family: 'Lato', sans-serif;
+            margin: auto;
+            text-align: center;
+            font-size: 16px;
+        }
+        thead{
+            background-color: #343a40;
+            color: white;
+        }
+        table td{
+            padding: .75rem;
+            border-top: 1px solid #dee2e6;
+        }
+
+        tr{
+            display: table-row;
+            vertical-align: inherit;
+            border-color: inherit;
+        }
+
+    </style>
+
+</head>
+<body>
+
+
+<div class="container">
+    <h2 class="tituloPrincipal">Se presentó una nueva declración 	 jurada</h2><br><br>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>PADRON</th>
+            <th>LOCALIDAD</th>
+            <th>VER DDJJ</th>
+            <th>DESCARGAR</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>${id}</td>
+            <td>${padron}</td>
+            <td>${localidad}</td>
+            <td>
+                <a href="http://localhost:8080/rentas//webapp/ddjj/show?id=${id}">
+                   <img src="https://img.icons8.com/material/24/000000/visible.png">
+                </a>
+            </td>
+            <td>
+                <a href="http://localhost:8080/rentas//webapp/ddjj/exportar?idDeclaracionJurada=${id}">
+                    <img src="https://img.icons8.com/material/24/000000/downloads.png">
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+
+
+</div>
+</body>
+</html>

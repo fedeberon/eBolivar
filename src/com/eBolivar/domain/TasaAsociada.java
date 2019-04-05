@@ -59,6 +59,8 @@ public class TasaAsociada {
     @Column(name = "TASA_TOTAL_CAJEROS_AUTOMATICOS_INDEPENDIENTE")
     private Double totalCajerosAutomaticosIndependiente;
 
+    private String baseImponibleView;
+
     public DeclaracionJurada getDeclaracionJurada() {
         return declaracionJurada;
     }
@@ -185,5 +187,13 @@ public class TasaAsociada {
 
     public void setTotalCajerosAutomaticosIndependiente(Double totalCajerosAutomaticosIndependiente) {
         this.totalCajerosAutomaticosIndependiente = totalCajerosAutomaticosIndependiente;
+    }
+
+    public String getBaseImponibleView() {
+        return baseImponibleView;
+    }
+
+    public void setBaseImponibleView(String baseImponibleView) {
+        this.baseImponibleView = baseImponibleView;
     }
 }

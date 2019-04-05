@@ -151,7 +151,7 @@
                 <td>${tasaAsociada.tasa.codigo}</td>
                 <td>${tasaAsociada.tasa.concepto}</td>
                 <td>${tasaAsociada.tasa.alicuta}</td>
-                <td>${tasaAsociada.baseImponible}</td>
+                <td>${tasaAsociada.baseImponibleView}</td>
                 <td>${tasaAsociada.deduccionArticulo89}</td>
                 <td>${tasaAsociada.deduccionArticulo90}</td>
             </tr>
@@ -199,24 +199,24 @@
             <p class="acuse-info">El Acuse de Recibo estar&aacute; disponible a partir de ${currentDate} a las ${acuseAvailableDate}hs</p>
         </c:if>
 
-        <a href="../..//webapp/ddjj/exportar?idDeclaracionJurada=${declaracionJurada.id}" target="_blank" class="btn btn-primary">Imprimir</a>
+        <a href="../../webapp/ddjj/exportar?idDeclaracionJurada=${declaracionJurada.id}" target="_blank" class="btn btn-primary">Imprimir</a>
 
         <c:if test="${declaracionJurada.estadoDeDeclaracionJurada == 'EN_PROCESO' || declaracionJurada.estadoDeDeclaracionJurada == 'MODIFICADA' || declaracionJurada.estadoDeDeclaracionJurada == 'RECHAZADA'}">
-            <a href="/rentas/webapp/ddjj/editar?id=${declaracionJurada.id}" class="btn btn-primary">Editar</a>
+            <a href="../../webapp/ddjj/editar?id=${declaracionJurada.id}" class="btn btn-primary">Editar</a>
 
-            <a href="/rentas/webapp/ddjj/presentarDeclaracionJurada?id=${declaracionJurada.id}" class="btn btn-primary">Presentar</a>
+            <a href="../..//webapp/ddjj/presentarDeclaracionJurada?id=${declaracionJurada.id}" class="btn btn-primary">Presentar</a>
         </c:if>
 
         <c:if test="${declaracionJurada.estadoDeDeclaracionJurada == 'ACEPTADA' || declaracionJurada.estadoDeDeclaracionJurada == 'PRESENTADA' || acuseIsPrintable}">
-            <a href="/rentas/webapp/ddjj/imprimirAcuseDeRecibo?id=${declaracionJurada.id}" target="_blank" class="btn btn-primary">Imprimir Acuse Recibo</a>
+            <a href="../../webapp/ddjj/imprimirAcuseDeRecibo?id=${declaracionJurada.id}" target="_blank" class="btn btn-primary">Imprimir Acuse Recibo</a>
         </c:if>
 
         <sec:authorize ifAllGranted="ROLE_WRITE_DDJJ">
-            <a href="/rentas/webapp/ddjj/editar?id=${declaracionJurada.id}" class="btn btn-primary">Editar(Administrador)</a>
+            <a href="../../webapp/ddjj/editar?id=${declaracionJurada.id}" class="btn btn-primary">Editar(Administrador)</a>
 
-            <a href="/rentas/webapp/ddjj/aceptarDeclaracionJurada?id=${declaracionJurada.id}" class="btn btn-primary">Aceptar</a>
+            <a href="../../webapp/ddjj/aceptarDeclaracionJurada?id=${declaracionJurada.id}" class="btn btn-primary">Aceptar</a>
 
-            <a href="/rentas/webapp/ddjj/rechazarDeclaracionJurada?id=${declaracionJurada.id}" class="btn btn-primary">Rechazar</a>
+            <a href="../../webapp/ddjj/rechazarDeclaracionJurada?id=${declaracionJurada.id}" class="btn btn-primary">Rechazar</a>
         </sec:authorize>
 
     </div>

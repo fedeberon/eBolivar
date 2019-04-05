@@ -30,6 +30,9 @@ public abstract class User implements UserDetails , Clasificable {
     @Column(name = "USU_PASSWORD")
     private String password;
 
+    @Column(name = "USL_EMAIL")
+    private String email;
+
     @ManyToOne
     @JoinColumn(name = "USU_ROL_ID")
     private Rol rol;
@@ -99,6 +102,14 @@ public abstract class User implements UserDetails , Clasificable {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override

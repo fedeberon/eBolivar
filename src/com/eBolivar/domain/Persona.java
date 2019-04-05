@@ -182,4 +182,14 @@ public class Persona implements Serializable {
     public boolean equals(Persona p) {
         return p == null?false:p.id == this.id;
     }
+
+    @Override
+    public String toString() {
+        return "Persona{" +
+                "nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", tipoDePersona=" + tipoDePersona +
+                ", idPersona=" + idPersona +
+                '}';
+    }
 }

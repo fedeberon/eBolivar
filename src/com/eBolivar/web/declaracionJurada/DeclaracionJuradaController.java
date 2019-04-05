@@ -1,34 +1,60 @@
 package com.eBolivar.web.declaracionJurada;
 
 import com.eBolivar.bean.AnioTypeEditor;
+import com.eBolivar.bean.FormatoUtil;
+import com.eBolivar.bean.Mail;
 import com.eBolivar.domain.*;
+import com.eBolivar.domain.administradorCuenta.PersonaAsociada;
 import com.eBolivar.domain.usuario.User;
+import com.eBolivar.domain.usuario.UsuarioLocalidad;
 import com.eBolivar.enumeradores.AnioEnum;
 import com.eBolivar.enumeradores.EstadoDeDeclaracionJurada;
 import com.eBolivar.enumeradores.PeriodoEnum;
 import com.eBolivar.service.cuitPorTasa.interfaces.ICuitPorTasaService;
+import com.eBolivar.service.declaracionJurada.DeclaracionJuradaService;
 import com.eBolivar.service.declaracionJurada.interfaces.IDeclaracionJuradaService;
+import com.eBolivar.service.localidad.LocalidadService;
 import com.eBolivar.service.mail.interfaces.IMailService;
 import com.eBolivar.service.padron.interfaces.IPadronService;
 import com.eBolivar.service.persona.interfaces.IPersonaService;
+import com.eBolivar.service.personaAsociada.PersonaAsociadaService;
+import com.eBolivar.service.tasa.TasaService;
 import com.eBolivar.service.tasa.interfaces.ITasaService;
 import com.eBolivar.service.tasaPersonaPadron.interfaces.ITasaPersonaPadronService;
 import com.eBolivar.service.usuario.interfaces.IUsuarioService;
 import com.eBolivar.validator.DeclaracionJuradaEditadaValidator;
 import com.eBolivar.validator.DeclaracionJuradaValidator;
+import org.apache.logging.log4j.message.Message;
+import org.apache.logging.log4j.message.SimpleMessage;
+import org.apache.velocity.Template;
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.velocity.VelocityEngineUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.mail.Address;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.naming.ldap.PagedResultsResponseControl;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.StringWriter;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
@@ -178,6 +204,7 @@ public class DeclaracionJuradaController {
     public String show(@RequestParam Long id, Model model) {
         DeclaracionJurada declaracionJurada = declaracionJuradaService.get(id);
         final Persona persona = personaService.get(declaracionJurada.getPersona().getId());
+        declaracionJurada.getTasas().forEach(tasaAsociada -> tasaAsociada.setBaseImponibleView(FormatoUtil.convertirBaseImponibleNotacion(tasaAsociada.getBaseImponible())));
         declaracionJurada.setPersona(persona);
         model.addAttribute("declaracionJurada", declaracionJurada);
         model.addAttribute("acuseIsPrintable" , declaracionJuradaService.isBeforeOneDaysAgo(declaracionJurada));
@@ -279,14 +306,38 @@ public class DeclaracionJuradaController {
         return "redirect:show";
     }
 
-    @RequestMapping("presentarDeclaracionJurada")
+    @RequestMapping(value = "presentarDeclaracionJurada")
     public String presentarDeclaracionJurada(@RequestParam Long id, RedirectAttributes redirectAttributes){
         DeclaracionJurada declaracionJurada = declaracionJuradaService.get(id);
         declaracionJurada.setEstadoDeDeclaracionJurada(EstadoDeDeclaracionJurada.PRESENTADA);
         redirectAttributes.addAttribute("id" , declaracionJurada.getId());
         declaracionJuradaService.save(declaracionJurada);
+
         try {
-            mailService.send("rentas.bolivar@gmail.com", "Nueva DDJJ Web", "Se Presentó la declaracion Jurada: " + declaracionJurada);
+            Mail mail = new Mail();
+            mail.setFrom("rentas.bolivar@gmail.com");
+            Long localidad = declaracionJurada.getPadron().getLocalidad().getId();
+            switch (Integer.parseInt(String.valueOf(localidad))){
+                case 3:
+                    String[] delegacionUrdampilleta = {Mail.DELEGACION_URDAMPILLETA, Mail.LOCALIDAD_BOLIVAR};
+                    mail.setTo(delegacionUrdampilleta);
+                    break;
+                case 15:
+                    String[] delegacionPirovano = {Mail.DELEGACION_PIROVANO, Mail.LOCALIDAD_BOLIVAR};
+                    mail.setTo(delegacionPirovano);
+                    break;
+                default:
+                    String[] delegacionBolivar = {Mail.LOCALIDAD_BOLIVAR};
+                    mail.setTo(delegacionBolivar);
+            }
+            mail.setSubject("Nueva DDJJ cargada.");
+            Map < String, Object > model = new HashMap();
+            model.put("id", declaracionJurada.getId());
+            model.put("padron", declaracionJurada.getPadron().getNumero());
+            model.put("localidad", declaracionJurada.getPadron().getLocalidad().getNombre());
+            mail.setModel(model);
+            mailService.send(mail);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
