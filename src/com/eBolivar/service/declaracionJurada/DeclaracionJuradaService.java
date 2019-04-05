@@ -7,25 +7,31 @@ import com.eBolivar.domain.administradorCuenta.AdministradorCuenta;
 import com.eBolivar.domain.usuario.User;
 import com.eBolivar.domain.usuario.Usuario;
 import com.eBolivar.service.declaracionJurada.interfaces.IDeclaracionJuradaService;
+import com.eBolivar.service.localidad.ILocalidadService;
 import com.eBolivar.service.padron.interfaces.IPadronService;
 import com.eBolivar.service.persona.interfaces.IPersonaService;
 import com.eBolivar.service.usuario.interfaces.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import javax.servlet.ServletOutputStream;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.text.Normalizer;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Fede Beron on 10/7/2017.
  */
 @Service
-public class DeclaracionJuradaService implements IDeclaracionJuradaService{
+public class DeclaracionJuradaService implements IDeclaracionJuradaService {
 
     @Autowired
     private IDeclaracionJuradaRepository dao;
@@ -66,6 +72,7 @@ public class DeclaracionJuradaService implements IDeclaracionJuradaService{
         this.sumarTotalAPagar(declaracionJurada);
 
         this.save(declaracionJurada);
+
     }
 
     private void sumarTotalAPagar(DeclaracionJurada declaracionJurada) {
@@ -97,13 +104,12 @@ public class DeclaracionJuradaService implements IDeclaracionJuradaService{
     }
 
     private void calcularAlicuotaSobreBaseImponible(DeclaracionJurada declaracionJurada){
-
         declaracionJurada.getTasas().forEach(tasaAsociada -> {
             Double importeCalculado = tasaAsociada.getBaseImponible() * tasaAsociada.getTasa().getAlicuta()  / 1000;
+            FormatoUtil.convertirBaseImponibleNotacion(tasaAsociada.getBaseImponible());
             tasaAsociada.setImporteCalculadoSobreBaseImponible(importeCalculado);
         });
     }
-
 
     @Override
     public List<DeclaracionJurada> find(String valor){

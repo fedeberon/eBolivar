@@ -32,6 +32,8 @@ public class TasaAsociada {
     @Column(name = "TASA_BASE_IMPONIBLE", precision = 10, scale = 2)
     private Double baseImponible = 0.0;
 
+    private String baseImponibleView;
+
     public DeclaracionJurada getDeclaracionJurada() {
         return declaracionJurada;
     }
@@ -86,5 +88,13 @@ public class TasaAsociada {
 
     public void setDeduccionArticulo90(Double deduccionArticulo90) {
         this.deduccionArticulo90 = deduccionArticulo90;
+    }
+
+    public String getBaseImponibleView() {
+        return baseImponibleView;
+    }
+
+    public void setBaseImponibleView(String baseImponibleView) {
+        this.baseImponibleView = baseImponibleView;
     }
 }

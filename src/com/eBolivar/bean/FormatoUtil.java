@@ -1,7 +1,7 @@
 package com.eBolivar.bean;
 
-import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.util.Locale;
 
 /**
  * Created by Fede Beron on 26/9/2017.
@@ -13,5 +13,11 @@ public class FormatoUtil {
         importeAFormatear = importeAFormatear * factor;
         long tmp = Math.round(importeAFormatear);
         return (double) tmp / factor;
+    }
+
+    public static String convertirBaseImponibleNotacion(Double val){
+        Locale.setDefault(Locale.US);
+        DecimalFormat num = new DecimalFormat("#,###.00");
+        return num.format(val);
     }
 }

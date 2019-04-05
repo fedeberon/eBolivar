@@ -1,6 +1,10 @@
 package com.eBolivar.config;
 
 import com.eBolivar.service.usuario.interfaces.IUsuarioService;
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.exception.VelocityException;
+import org.apache.velocity.runtime.RuntimeConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +15,11 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.ui.velocity.VelocityEngineFactory;
+import org.springframework.web.servlet.view.velocity.VelocityConfigurer;
+
+import java.io.IOException;
+import java.util.Properties;
 
 @Configuration
 @EnableWebSecurity
@@ -50,5 +59,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public AuthenticationTrustResolver getAuthenticationTrustResolver() {
         return new AuthenticationTrustResolverImpl();
+    }
+
+    @Bean
+    public VelocityEngine getVelocityEngine() throws VelocityException, IOException {
+//        VelocityEngineFactory velocityEngineFactory = new VelocityEngineFactory();
+//        Properties props = new Properties();
+//        props.put("class.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
+//        velocityEngineFactory.setVelocityProperties(props);
+//        return velocityEngineFactory.createVelocityEngine();
+        Properties properties = new Properties();
+        properties.setProperty("input.encoding", "UTF-8");
+        properties.setProperty("output.encoding", "UTF-8");
+        properties.setProperty("resource.loader", "class");
+        properties.setProperty("class.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
+        VelocityEngine velocityEngine = new VelocityEngine(properties);
+        return velocityEngine;
     }
 }
