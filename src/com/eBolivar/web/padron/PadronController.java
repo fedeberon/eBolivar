@@ -6,9 +6,7 @@
 package com.eBolivar.web.padron;
 
 import com.eBolivar.common.SearchObject;
-import com.eBolivar.domain.Padron;
-import com.eBolivar.domain.PadronAsociado;
-import com.eBolivar.domain.Persona;
+import com.eBolivar.domain.*;
 import com.eBolivar.service.TipoImpuestoServiceImpl;
 import com.eBolivar.service.cuitPorTasa.interfaces.ICuitPorTasaService;
 import com.eBolivar.service.localidad.ILocalidadService;
@@ -25,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
 @Controller
 @RequestMapping({"padron"})
 public class PadronController {
@@ -39,7 +39,7 @@ public class PadronController {
     @Autowired
     private TipoImpuestoServiceImpl tipoImpuestoService;
     @Autowired
-    private ILocalidadService localidadesService;
+    private ILocalidadService localidaService;
 
     public PadronController() {
     }
@@ -101,13 +101,30 @@ public class PadronController {
     @RequestMapping("create")
     public String create(@ModelAttribute Padron padron, Model model) {
         model.addAttribute("tipoImpuesto", tipoImpuestoService.getObjects());
-        model.addAttribute("localidad", localidadesService.findAll());
+        model.addAttribute("localidad", localidaService.findAll());
         return "padron/create";
     }
 
+    @ModelAttribute
+    public List<TipoImpuesto> getTipoImpuesto(){
+        return tipoImpuestoService.getObjects();
+    }
+
+    @ModelAttribute("localidades")
+    public List<Localidad> getLocalidades() {
+        return localidaService.findAll();
+    }
+
     @RequestMapping({"savePadron"})
-    public String create(@ModelAttribute Padron padron) {
-        this.padronService.save(padron);
+    public String create(@ModelAttribute Padron padron, BindingResult result, Model model) {
+        this.validator.validateNumber(padron, result);
+        if(result.hasErrors()) {
+            model.addAttribute("tipoImpuesto", getTipoImpuesto());
+            model.addAttribute("localidad", getLocalidades());
+            return "padron/create";
+        } else {
+            this.padronService.save(padron);
+        }
         return "redirect:list";
     }
 

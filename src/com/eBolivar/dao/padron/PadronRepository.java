@@ -169,7 +169,7 @@ public class PadronRepository implements IPadronRepository {
             try {
                 Query query = e.delegate().createQuery("from Padron where numero = :numero and tipoImpuesto.id = :idTipo");
                 query.setString("numero", p.getNumero());
-                query.setParameter("numero", p.getTipoImpuesto().getCodigo());
+                query.setParameter("idTipo", p.getTipoImpuesto().getCodigo());
                 var5 = (Padron)query.uniqueResult();
             } catch (Throwable var15) {
                 var3 = var15;

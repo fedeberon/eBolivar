@@ -19,6 +19,7 @@
         <p class="odd">
             <label for="numero" class="campo">Numero Padron:</label>
             <form:input path="numero" />
+            <form:errors cssClass="text-danger bg-secondary" path="numero"/>
         </p>
         <br>
         <p class="odd">
