@@ -57,12 +57,12 @@
             <td>${padron}</td>
             <td>${localidad}</td>
             <td>
-                <a href="http://localhost:8080/rentas//webapp/ddjj/show?id=${id}">
+                <a href="http://179.43.121.224:8080/rentas//webapp/ddjj/show?id=${id}">
                    <img src="https://img.icons8.com/material/24/000000/visible.png">
                 </a>
             </td>
             <td>
-                <a href="http://localhost:8080/rentas//webapp/ddjj/exportar?idDeclaracionJurada=${id}">
+                <a href="http://179.43.121.224:8080/rentas//webapp/ddjj/exportar?idDeclaracionJurada=${id}">
                     <img src="https://img.icons8.com/material/24/000000/downloads.png">
                 </a>
             </td>
