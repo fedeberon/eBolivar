@@ -4,6 +4,7 @@ import com.eBolivar.bean.Pagination;
 import com.eBolivar.common.SearchObject;
 import com.eBolivar.dao.CloseableSession;
 import com.eBolivar.dao.padron.interfaces.IPadronRepository;
+import com.eBolivar.domain.DeclaracionJurada;
 import com.eBolivar.domain.Padron;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -12,6 +13,8 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -65,6 +68,8 @@ public class PadronRepository implements IPadronRepository {
             throw var17;
         }
     }
+
+
 
     public Padron get(Integer id) {
         try {
