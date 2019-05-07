@@ -27,15 +27,15 @@
 
     <div class="row">
 
-            <form:form action="../ddjj/buscar" modelAttribute="ddjj" method="post">
-                <div class="col-md-6">
-                    <input name="valor" value="${valor}" class="form-control" placeholder="Ingrese su b&uacute;squeda"/>
-                </div>
+        <form:form action="../ddjj/buscar" modelAttribute="ddjj" method="post">
+            <div class="col-md-6">
+                <input name="valor" value="${valor}" class="form-control" placeholder="Ingrese su b&uacute;squeda"/>
+            </div>
 
-                <div class="col-md-3">
-                    <button type="submit" class="btn btn-block btn-primary">Buscar</button>
-                </div>
-            </form:form>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-block btn-primary">Buscar</button>
+            </div>
+        </form:form>
 
         <br/>
         <hr>
@@ -67,16 +67,16 @@
                     </tr>
                 </c:if>
 
-                    <c:forEach items="${ddjjs}" var="bo">
-                        <tr>
-                            <td><a href="<c:url value='/webapp/ddjj/show?id=${bo.id}'/>">${bo.id}</a></td>
-                            <td>${bo.persona.nombre} ${bo.persona.apellido}</td>
-                            <td>${bo.padron.numero}</td>
-                            <td>${bo.padron.tipoImpuesto.nombre}</td>
-                            <td>${f:formatLocalDateTime(bo.fecha, 'HH:mm:ss dd/MM/yyyy')}</td>
-                            <td>${bo.periodo}</td>
-                        </tr>
-                    </c:forEach>
+                <c:forEach items="${ddjjs}" var="bo">
+                    <tr>
+                        <td><a href="<c:url value='/webapp/ddjj/show?id=${bo.id}'/>">${bo.id}</a></td>
+                        <td>${bo.persona.nombre} ${bo.persona.apellido}</td>
+                        <td>${bo.padron.numero}</td>
+                        <td>${bo.padron.tipoImpuesto.nombre}</td>
+                        <td>${f:formatLocalDateTime(bo.fecha, 'HH:mm:ss dd/MM/yyyy')}</td>
+                        <td>${bo.periodo}</td>
+                    </tr>
+                </c:forEach>
                 </tbody>
 
             </table>
@@ -148,37 +148,37 @@
 
             </sec:authorize>
 
-                <c:if test='${not empty ddjjs}'>
-                    <div class="col-xs-2">
-                        <!-- Single button -->
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                DDJJ Anteriores<span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/create/byPersona?idPersona=${ddjjs[0].persona.idPersona}&anio=2018&idPadron=${ddjjs[0].padron.id}'/>">DDJJ 2018</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/create/byPersona?idPersona=${ddjjs[0].persona.idPersona}&anio=2017&idPadron=${ddjjs[0].padron.id}'/>">DDJJ 2017</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/create/byPersona?idPersona=${ddjjs[0].persona.idPersona}&anio=2016&idPadron=${ddjjs[0].padron.id}'/>">DDJJ 2016</a></li>
-                            </ul>
-                        </div>
+            <c:if test='${not empty ddjjs}'>
+                <div class="col-xs-2">
+                    <!-- Single button -->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            DDJJ Anteriores<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/create/byPersona?idPersona=${ddjjs[0].persona.idPersona}&anio=2018&idPadron=${ddjjs[0].padron.id}'/>">DDJJ 2018</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/create/byPersona?idPersona=${ddjjs[0].persona.idPersona}&anio=2017&idPadron=${ddjjs[0].padron.id}'/>">DDJJ 2017</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/create/byPersona?idPersona=${ddjjs[0].persona.idPersona}&anio=2016&idPadron=${ddjjs[0].padron.id}'/>">DDJJ 2016</a></li>
+                        </ul>
                     </div>
+                </div>
 
-                    <div class="col-xs-2">
-                        <!-- Single button -->
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Nueva Declaraci&oacute;n<span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/bimestral?idDDJJ=${ddjjs[0].id}&idPersona=${ddjjs[0].persona.idPersona}&anio=2019&idPadron=${ddjjs[0].padron.id}'/>">Bimestral</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/anual?idDDJJ=${ddjjs[0].id}&idPersona=${ddjjs[0].persona.idPersona}&anio=2019&idPadron=${ddjjs[0].padron.id}'/>">Anual</a></li>
-                            </ul>
-                        </div>
+                <div class="col-xs-2">
+                    <!-- Single button -->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Nueva Declaraci&oacute;n<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/bimestral?idDDJJ=${ddjjs[0].id}&idPersona=${ddjjs[0].persona.idPersona}&anio=2019&idPadron=${ddjjs[0].padron.id}'/>">Bimestral</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li> <a href="<c:url value='/webapp/ddjj/declaracionJurada/anual?idDDJJ=${ddjjs[0].id}&idPersona=${ddjjs[0].persona.idPersona}&anio=2019&idPadron=${ddjjs[0].padron.id}'/>">Anual</a></li>
+                        </ul>
                     </div>
-                </c:if>
+                </div>
+            </c:if>
 
 
 
