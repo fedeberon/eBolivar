@@ -64,15 +64,6 @@ public class PersonaController
         return "persona/list";
     }
 
-    @RequestMapping({"/busquedaPorPadron"})
-    public String obtenerPadrones(@RequestParam Integer idPadron, Model model) {
-        Padron padron = padronService.get(idPadron);
-        List<PadronAsociado> padrones = personaService.getByPadron(padron);
-        model.addAttribute("padrones", padrones);
-
-        return "persona/padrones/list";
-    }
-
     @RequestMapping({"/get"})
     public String get(@RequestParam Integer id, Model model) {
         Persona persona = personaService.get(id);

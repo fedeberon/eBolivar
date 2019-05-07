@@ -32,6 +32,7 @@ public class PadronService implements IPadronService {
         return this.dao.getByNumero(id);
     }
 
+
     public Padron getPadron(String numero) {
         if(!this.impuestoService.isUnPadron(numero)) {
             throw new IllegalArgumentException("No existe el numero de padron en la base de datos.");

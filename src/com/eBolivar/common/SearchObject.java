@@ -292,9 +292,7 @@ public class SearchObject {
         this.filter = filter;
     }
 
-    public int getPage() {
-        return this.page;
-    }
+    public int getPage() {return this.page;}
 
     public void setPage(int page) {
         this.page = page;
