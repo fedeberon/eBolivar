@@ -1,7 +1,6 @@
 package com.eBolivar.domain.usuario;
 
 import com.eBolivar.domain.Localidad;
-import com.eBolivar.domain.administradorCuenta.AdministradorCuenta;
 
 import javax.persistence.*;
 

@@ -96,7 +96,18 @@
                                 </c:forEach>
 
                             </td>
-                            <td><a class="btn btn-success" href="<c:url value='/webapp/usuario/saveAdministradorCuenta?username=${bo.username}'/>"/>Pasar como Administrador de Cuenta</td>
+                            <td>
+                          <c:choose>
+                                 <c:when test="${bo.getClass().simpleName == 'Usuario'}">
+                                    <a class="btn btn-success" href="<c:url value='/webapp/usuario/saveAdministradorCuenta?username=${bo.username}'/>"/>Pasar como Administrador de Cuenta
+                                 </c:when>
+                                 <c:otherwise>
+
+                                    <a href="#" class="btn btn-success"> Administrador de Cuenta</a>
+
+                                 </c:otherwise>
+                             </c:choose>
+                            </td>
                         </tr>
                     </c:forEach>
 

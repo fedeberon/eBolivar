@@ -83,6 +83,7 @@
                             <td>${bo.rol.nombre}</td>
                             <td><a class="btn btn-secondary" href="<c:url value='/webapp/personaAsociada/create?username=${bo.username}'/>"/>Asociar CUIT</td>
                             <td><a class="btn btn-success" href="<c:url value='/webapp/personaAsociada/list?username=${bo.username}'/>"/>CUIT's Asociados</td>
+                            <td><a class="btn btn-primary" href="<c:url value='/webapp/usuario/add-location?username=${bo.username}'/>"/>Asociar Localidad</td>
                         </tr>
                     </c:forEach>
 

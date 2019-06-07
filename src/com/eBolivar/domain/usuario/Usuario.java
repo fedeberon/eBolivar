@@ -13,19 +13,6 @@ import java.util.function.Function;
 @DiscriminatorValue(value="USUARIO_DE_SISTEMA")
 public class Usuario extends User{
 
-
-    @OneToMany(mappedBy = "usuario")
-    private List<UsuarioLocalidad> usuarioLocalidad;
-
-
-    public List<UsuarioLocalidad> getUsuarioLocalidad() {
-        return usuarioLocalidad;
-    }
-
-    public void setUsuarioLocalidad(List<UsuarioLocalidad> usuarioLocalidad) {
-        this.usuarioLocalidad = usuarioLocalidad;
-    }
-
     @Override
     public String toString() {
         return "Usuario de Sistema" + " - Rol." + getRol().getNombre();

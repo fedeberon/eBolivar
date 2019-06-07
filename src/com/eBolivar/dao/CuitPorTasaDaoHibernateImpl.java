@@ -1,20 +1,18 @@
 package com.eBolivar.dao;
 
-import com.eBolivar.dao.CloseableSession;
 import com.eBolivar.dao.interfaces.ICuitPorTasaRepository;
+import com.eBolivar.domain.Localidad;
 import com.eBolivar.domain.Padron;
 import com.eBolivar.domain.PadronAsociado;
 import com.eBolivar.domain.Persona;
-import java.util.List;
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.SQLQuery;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 import org.hibernate.classic.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+
+import java.util.Collection;
+import java.util.List;
 
 @Repository
 public class CuitPorTasaDaoHibernateImpl implements ICuitPorTasaRepository {
@@ -176,37 +174,29 @@ public class CuitPorTasaDaoHibernateImpl implements ICuitPorTasaRepository {
         }
     }
 
+
+    @SuppressWarnings("Duplicates")
     public List<PadronAsociado> byPersona(Persona persona) {
-        try {
-            CloseableSession e = new CloseableSession(this.sessionFactory.openSession());
-            Throwable var3 = null;
+        try(CloseableSession e = new CloseableSession(this.sessionFactory.openSession())) {
+            Query query = e.delegate().createQuery("from PadronAsociado where persona = :persona");
+            query.setParameter("persona", persona);
 
-            List var5;
-            try {
-                Query query = e.delegate().createQuery("from PadronAsociado where persona = :persona");
-                query.setParameter("persona", persona);
-                var5 = query.list();
-            } catch (Throwable var15) {
-                var3 = var15;
-                throw var15;
-            } finally {
-                if(e != null) {
-                    if(var3 != null) {
-                        try {
-                            e.close();
-                        } catch (Throwable var14) {
-                            var3.addSuppressed(var14);
-                        }
-                    } else {
-                        e.close();
-                    }
-                }
-
-            }
-
-            return var5;
+            return query.list();
         } catch (HibernateException var17) {
-            var17.printStackTrace();
+            throw var17;
+        }
+    }
+
+    @Override
+    @SuppressWarnings("Duplicates")
+    public List<PadronAsociado> byPersona(Persona persona, Collection<Localidad> localidades) {
+        try(CloseableSession e = new CloseableSession(this.sessionFactory.openSession())) {
+            Query query = e.delegate().createQuery("from PadronAsociado where persona = :persona and padron.localidad in (:localidades)");
+            query.setParameter("persona", persona);
+            query.setParameter("localidades", localidades);
+
+            return query.list();
+        } catch (HibernateException var17) {
             throw var17;
         }
     }

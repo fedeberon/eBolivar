@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 
@@ -36,6 +37,17 @@ public abstract class User implements UserDetails , Clasificable {
     @ManyToOne
     @JoinColumn(name = "USU_ROL_ID")
     private Rol rol;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<UsuarioLocalidad> usuarioLocalidad;
+
+    public List<UsuarioLocalidad> getUsuarioLocalidad() {
+        return usuarioLocalidad;
+    }
+
+    public void setUsuarioLocalidad(List<UsuarioLocalidad> usuarioLocalidad) {
+        this.usuarioLocalidad = usuarioLocalidad;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -116,4 +128,6 @@ public abstract class User implements UserDetails , Clasificable {
     public String toString() {
         return username + " - "  + rol.getNombre();
     }
+
+
 }

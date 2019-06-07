@@ -13,7 +13,7 @@ import java.util.function.Function;
 
 @Entity
 @DiscriminatorValue(value="ADMINISTRADOR_DE_CUENTA")
-public class AdministradorCuenta extends User {
+public class AdministradorCuenta extends Usuario {
 
     @OneToMany(mappedBy = "administradorCuenta")
     private List<PersonaAsociada> personasAsociadas;
