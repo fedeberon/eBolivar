@@ -1,6 +1,5 @@
 package com.eBolivar.dao.usuario.interfaces;
 
-import com.eBolivar.domain.DeclaracionJurada;
 import com.eBolivar.domain.administradorCuenta.AdministradorCuenta;
 import com.eBolivar.domain.usuario.User;
 import com.eBolivar.domain.usuario.Usuario;
@@ -28,5 +27,5 @@ public interface IUsuarioRepository {
 
     AdministradorCuenta getAdministradorDeCuenta(String username);
 
-    List<UsuarioLocalidad> getLocalidades(Usuario usuario);
+    List<UsuarioLocalidad> getLocalidades(User usuario);
 }

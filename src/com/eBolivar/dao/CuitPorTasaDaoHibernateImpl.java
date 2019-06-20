@@ -5,17 +5,23 @@ import com.eBolivar.domain.Localidad;
 import com.eBolivar.domain.Padron;
 import com.eBolivar.domain.PadronAsociado;
 import com.eBolivar.domain.Persona;
+import org.bouncycastle.asn1.isismtt.x509.Restriction;
 import org.hibernate.*;
 import org.hibernate.classic.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.IntFunction;
 
+@SuppressWarnings("Duplicates")
 @Repository
 public class CuitPorTasaDaoHibernateImpl implements ICuitPorTasaRepository {
+
     @Autowired
     @Qualifier("sessionFactoryJpa")
     private SessionFactory sessionFactory;
@@ -188,14 +194,15 @@ public class CuitPorTasaDaoHibernateImpl implements ICuitPorTasaRepository {
     }
 
     @Override
-    @SuppressWarnings("Duplicates")
-    public List<PadronAsociado> byPersona(Persona persona, Collection<Localidad> localidades) {
+    public List<PadronAsociado> byPersona(Persona persona, List<Localidad> localidades) {
         try(CloseableSession e = new CloseableSession(this.sessionFactory.openSession())) {
-            Query query = e.delegate().createQuery("from PadronAsociado where persona = :persona and padron.localidad in (:localidades)");
+            Query query = e.delegate().createQuery("from PadronAsociado where persona = :persona and padron.localidad.id in (:ids)");
+            Long[] ids = localidades.stream().map( v -> v.getId()).toArray(Long[]::new);
             query.setParameter("persona", persona);
-            query.setParameter("localidades", localidades);
+            query.setParameterList("ids", ids);
 
             return query.list();
+
         } catch (HibernateException var17) {
             throw var17;
         }

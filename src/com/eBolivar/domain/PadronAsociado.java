@@ -1,8 +1,5 @@
 package com.eBolivar.domain;
 
-import com.eBolivar.domain.Padron;
-import com.eBolivar.domain.Persona;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -23,10 +20,8 @@ public class PadronAsociado {
     @JoinColumn(name = "PAD_ID")
     private Padron padron;
 
-    @OneToMany(mappedBy = "padron", fetch = FetchType.EAGER)
-    List<DireccionPadron> direccionesDelPadron;
-
-    public static String LEYENDA_DE_PADRON_GENERICO = "TASA MUNICIPAL";
+    @OneToMany(mappedBy = "padronAsociado", fetch = FetchType.EAGER)
+    private List<DireccionPadron> direccionesDelPadron;
 
     public PadronAsociado() {}
 

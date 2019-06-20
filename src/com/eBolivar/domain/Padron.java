@@ -1,6 +1,7 @@
 package com.eBolivar.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "PADRONES")
@@ -21,7 +22,7 @@ public class Padron {
     @JoinColumn(name = "TI_ID")
     private TipoImpuesto tipoImpuesto;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "PAD_LOC_ID")
     private Localidad localidad;
 
@@ -84,7 +85,6 @@ public class Padron {
     public void setisCalculoMinimo(boolean calculoMinimo) {
         isCalculoMinimo = calculoMinimo;
     }
-
 
 
     @Override

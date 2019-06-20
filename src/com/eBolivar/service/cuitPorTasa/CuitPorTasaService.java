@@ -1,12 +1,10 @@
 package com.eBolivar.service.cuitPorTasa;
 
 import com.eBolivar.dao.interfaces.ICuitPorTasaRepository;
-import com.eBolivar.domain.DireccionPadron;
-import com.eBolivar.domain.Localidad;
-import com.eBolivar.domain.PadronAsociado;
-import com.eBolivar.domain.Persona;
+import com.eBolivar.domain.*;
 import com.eBolivar.domain.usuario.User;
 import com.eBolivar.domain.usuario.Usuario;
+import com.eBolivar.domain.usuario.UsuarioLocalidad;
 import com.eBolivar.service.cuitPorTasa.interfaces.ICuitPorTasaService;
 
 import java.util.ArrayList;
@@ -51,16 +49,16 @@ public class CuitPorTasaService implements ICuitPorTasaService
         return dao.get(id);
     }
 
-    public com.eBolivar.domain.Padron getByNumero(String numero)
+    public Padron getByNumero(String numero)
     {
         return dao.get(numero);
     }
 
     public List<PadronAsociado> byPersona(Persona persona){
         User usuario = usuarioService.getAutenticate();
-
+        List<UsuarioLocalidad> localidadesDelUsuario = usuarioService.getLocalidades(usuario);
         List<Localidad> localidades = new ArrayList<>();
-        usuario.getUsuarioLocalidad().forEach(usuarioLocalidad -> localidades.add(usuarioLocalidad.getLocalidadAsociada()));
+        localidadesDelUsuario.forEach(usuarioLocalidad -> localidades.add(usuarioLocalidad.getLocalidadAsociada()));
 
         List<PadronAsociado> padrones = localidades.isEmpty() ? dao.byPersona(persona) : dao.byPersona(persona, localidades);
 

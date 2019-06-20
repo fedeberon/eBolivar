@@ -177,7 +177,7 @@ public class UsuarioRepository implements IUsuarioRepository {
 
 
     @Override
-    public List<UsuarioLocalidad> getLocalidades(Usuario usuario){
+    public List<UsuarioLocalidad> getLocalidades(User usuario){
         try(CloseableSession session = new CloseableSession(sessionFactory.openSession())){
             Query query = session.delegate().createQuery("from Usuario where username = :username");
             query.setParameter("username", usuario.getUsername());

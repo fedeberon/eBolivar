@@ -1,7 +1,6 @@
 package com.eBolivar.service.usuario.interfaces;
 
 
-import com.eBolivar.domain.Localidad;
 import com.eBolivar.domain.administradorCuenta.AdministradorCuenta;
 import com.eBolivar.domain.usuario.User;
 import com.eBolivar.domain.usuario.Usuario;
@@ -32,5 +31,5 @@ public interface IUsuarioService extends UserDetailsService {
 
     AdministradorCuenta getAdministrador(String username);
 
-    List<UsuarioLocalidad> getLocalidades(Usuario usuario);
+    List<UsuarioLocalidad> getLocalidades(User usuario);
 }

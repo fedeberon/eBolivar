@@ -30,7 +30,7 @@ public class DireccionPadron {
 
     @ManyToOne
     @JoinColumn(name = "DIR_CPT_ID")
-    private PadronAsociado padron;
+    private PadronAsociado padronAsociado;
 
     public Long getId() {
         return Id;
@@ -72,12 +72,12 @@ public class DireccionPadron {
         this.localidad = localidad;
     }
 
-    public PadronAsociado getPadron() {
-        return padron;
+    public PadronAsociado getPadronAsociado() {
+        return padronAsociado;
     }
 
-    public void setPadron(PadronAsociado padron) {
-        this.padron = padron;
+    public void setPadronAsociado(PadronAsociado padronAsociado) {
+        this.padronAsociado = padronAsociado;
     }
 
     @Override
