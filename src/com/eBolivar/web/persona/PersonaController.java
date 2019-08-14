@@ -2,8 +2,10 @@ package com.eBolivar.web.persona;
 
 import com.eBolivar.common.SearchObject;
 import com.eBolivar.domain.*;
+import com.eBolivar.service.TipoImpuestoServiceImpl;
 import com.eBolivar.service.cuitPorTasa.CuitPorTasaService;
 import com.eBolivar.service.direccionPadron.interfaces.IDireccionPadronService;
+import com.eBolivar.service.localidad.ILocalidadService;
 import com.eBolivar.service.padron.interfaces.IPadronService;
 import com.eBolivar.service.persona.interfaces.IPersonaService;
 import com.eBolivar.validator.PadronAsociadoValidator;
@@ -22,8 +24,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping({"/personas"})
-public class PersonaController
-{
+public class PersonaController {
     @Autowired
     private IPersonaService personaService;
     @Autowired
@@ -34,9 +35,12 @@ public class PersonaController
     private PersonaValidator personaValidator;
     @Autowired
     private PadronAsociadoValidator padronAsociadoValidator;
-
     @Autowired
-    private IDireccionPadronService direccionPadronService;
+    private TipoImpuestoServiceImpl tipoImpuestoService;
+    @Autowired
+    private ILocalidadService localidaService;
+    @Autowired
+    private PadronAsociadoValidator validator;
 
     public PersonaController() {}
 
@@ -99,6 +103,15 @@ public class PersonaController
         return "redirect:get";
     }
 
+    @RequestMapping("savePadronAsociado")
+    public String create(@ModelAttribute PadronAsociado padronAsociado, RedirectAttributes redirectAttributes) {
+        this.padronService.save(padronAsociado.getPadron());
+        this.cuitPorTasaService.save(padronAsociado);
+        redirectAttributes.addAttribute("id", padronAsociado.getPersona().getId());
+
+        return "redirect:get";
+    }
+
     @RequestMapping({"create"})
     public String create() {
 
@@ -130,6 +143,8 @@ public class PersonaController
 
         return "persona/list";
     }
+
+
 
     @ModelAttribute("persona")
     public Persona getPersona()
@@ -163,9 +178,36 @@ public class PersonaController
         return "domicilio/create";
     }
 
+    @ModelAttribute("padron")
+    public Padron getPadron(Model model){
+        model.addAttribute("tipoImpuesto", tipoImpuestoService.getObjects());
+        model.addAttribute("localidad", localidaService.findAll());
+        return new Padron();
+    }
 
-//    public String saveDomicilio(@ModelAttribute Domicilio domicilio){
-//         Persona persona = personaService.get(domicilio.getPersona().getId());
-//        personaService.save(persona);
-//    }
+    @RequestMapping({"savePadron"})
+    public String create(@ModelAttribute Padron padron, BindingResult result, Model model) {
+        this.validator.validateNumber(padron, result);
+        if(result.hasErrors()) {
+            model.addAttribute("tipoImpuesto", getTipoImpuesto());
+            model.addAttribute("localidad", getLocalidades());
+
+            return "padron/create";
+        } else {
+            this.padronService.save(padron);
+        }
+        return "redirect:get";
+    }
+
+    @ModelAttribute
+    public List<TipoImpuesto> getTipoImpuesto(){
+        return tipoImpuestoService.getObjects();
+    }
+
+    @ModelAttribute("localidades")
+    public List<Localidad> getLocalidades() {
+        return localidaService.findAll();
+    }
+
+
 }

@@ -50,15 +50,20 @@ public class PersonaAsociadaController {
     private ICuitPorTasaService cuitPorTasaService;
 
     @RequestMapping("save")
-    public String save(@ModelAttribute PersonaAsociada personaAsociada, BindingResult result, RedirectAttributes redirectAttributes){
+    public String save(@ModelAttribute PersonaAsociada personaAsociada, BindingResult result, RedirectAttributes redirectAttributes,Model model, String username){
         this.validator.validate(personaAsociada, result);
-        if (result.hasErrors()) return "personaAsociada/create";
-        Persona persona = personaService.getByCUIT(personaAsociada.getPersona().getIdPersona().toString());
-        personaAsociada.setPersona(persona);
-        personaAsociadaService.save(personaAsociada);
-        redirectAttributes.addAttribute("username", personaAsociada.getAdministradorCuenta().getUsername());
+        if (result.hasErrors()) {
+            redirectAttributes.addAttribute("username", personaAsociada.getAdministradorCuenta().getUsername());
+            model.addAttribute("personaError", "El cuit no existe en la base de datos");
+            return "redirect:create";
+        }else{
+            Persona persona = personaService.getByCUIT(personaAsociada.getPersona().getIdPersona().toString());
+            personaAsociada.setPersona(persona);
+            personaAsociadaService.save(personaAsociada);
+            redirectAttributes.addAttribute("username", personaAsociada.getAdministradorCuenta().getUsername());
 
-        return "redirect:list";
+            return "redirect:list";
+        }
     }
 
     @RequestMapping("create")

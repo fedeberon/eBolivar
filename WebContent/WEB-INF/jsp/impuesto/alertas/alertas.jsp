@@ -11,7 +11,6 @@
 
 <body>
 
-
     <div id="alertaMensajeExitoso" class="alert alert-success">
         <strong>Si!</strong> Encontramos tasas para este padron.
     </div>

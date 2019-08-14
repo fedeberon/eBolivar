@@ -74,6 +74,7 @@
                 <c:if test="${not empty cuitError}">
                     <a class="cuitError" onclick="ocultarCuitErrorRedireccionar();" >
                         <div id="errorCuit" class="alert alert-danger">${cuitError}</div>
+
                     </a>
                 </c:if>
             </div>

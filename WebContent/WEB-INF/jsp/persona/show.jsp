@@ -16,15 +16,25 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+
+        <div class="col-lg-4">
 
             <spring:hasBindErrors name="padronAsociado">
                 <div class="errorBox">
-                        <c:forEach items="${errors.allErrors}" var="error">
-                            <b style="color: red">${error.defaultMessage}</b>
-                        </c:forEach>
+                    <c:forEach items="${errors.allErrors}" var="error">
+                        <b style="color: red">${error.defaultMessage}</b>
+                        <a class="btn btn-block btn-success" data-toggle="modal" data-target="#exampleModal">Agregar Nuevo Padr&oacute;n<label/> </a>
+
+                    </c:forEach>
                 </div>
             </spring:hasBindErrors>
+
+
+        </div>
+
+
+        <div class="col-md-12">
+
 
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#home">Datos del Contribuyente</a></li>
@@ -157,7 +167,6 @@
                                     <hr>
                                 </td>
                             </tr>
-
                         </c:forEach>
                         </tbody>
 
@@ -174,7 +183,6 @@
 </div>
 
 
-
 <div id='botonera'>
     <a href="javascript:history.back()" class="btn btn-default">Volver</a>
     <a href="#" class="verificarPadron btn btn-default">Agregar Padron</a>
@@ -187,6 +195,9 @@
         <form:input path="padron.numero" placeholder="Ingrese el Padron"/>
     </form:form>
 </div>
+
+
+<jsp:include page="../persona/padrones/modal-nuevo-padron.jsp"/>
 
 <jsp:include page="../impuesto/alertas/alertas.jsp"/>
 

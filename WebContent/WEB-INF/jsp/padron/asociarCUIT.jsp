@@ -42,4 +42,11 @@
 </div>
 <jsp:include page="../bottom.jsp"/>
 </body>
+<input type="text" id="aqui">
+<script type="text/javascript">
+    var url_string = window.location.href; //
+    var url = new URL(url_string);
+    var c = url.searchParams.get("filtro");
+    document.getElementById("aqui").value = c;
+</script>
 </html>

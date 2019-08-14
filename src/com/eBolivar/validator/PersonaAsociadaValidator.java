@@ -3,6 +3,7 @@ package com.eBolivar.validator;
 import com.eBolivar.domain.Persona;
 import com.eBolivar.domain.administradorCuenta.PersonaAsociada;
 import com.eBolivar.service.persona.interfaces.IPersonaService;
+import com.eBolivar.service.personaAsociada.interfaces.IPersonaAsociadaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -18,6 +19,9 @@ public class PersonaAsociadaValidator  implements Validator {
     @Autowired
     private IPersonaService personaService;
 
+    @Autowired
+    private IPersonaAsociadaService personaAsociadaService;
+
     @Override
     public boolean supports(Class<?> aClass) {
         return PersonaAsociada.class.isAssignableFrom(aClass);
@@ -28,7 +32,7 @@ public class PersonaAsociadaValidator  implements Validator {
         PersonaAsociada personaAsociada = (PersonaAsociada) o;
         Persona persona = personaService.getByCUIT(personaAsociada.getPersona().getIdPersona().toString());
         if(persona == null){
-            ValidationUtils.rejectIfEmptyOrWhitespace(errors, "persona.idPersona", "persona.req", "No encontramos el numero de CUIT.");
+            errors.rejectValue("persona.idPersona", "persona.req", "El numero de CUIT no existe.");
         }
     }
 }

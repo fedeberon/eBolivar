@@ -13,52 +13,64 @@
 <div id="scrollable">
 
 <form:form name="form" method="post" commandName="persona" action="save">
+    <div class="row">
+        <div class="col-md-12 form-group">
+            <p>
+                <label for="nombre" class="campo">Nombre:</label>
+                <form:input path="nombre" />
+                <form:errors cssClass="form-text text-muted red" path="nombre"/>
+            </p>
+        </div>
+        <div class="col-md-12 form-group">
+            <p class="odd">
+                <label for="apellido" class="campo">Apellido:</label>
+                <form:input path="apellido" />
+                <form:errors cssClass="form-text text-muted red" path="apellido"/>
+            </p>
+        </div>
+        <div class="col-md-12 form-group">
+            <p>
+                <label for="idPersona" class="campo" id="cuit">Tipo de persona:</label>
+                <form:select path="tipoDePersona" items="${tipoPersonaEnum}"/>
+                <form:errors cssClass="form-text text-muted red" path="tipoDePersona"/>
+            </p>
+        </div>
+        <div class="col-md-12 form-group">
+            <p>
+                <label for="idPersona" class="campo" id="cuit">C.U.I.T.:</label>
+                <form:input  id="cuit2" path="idPersona"/>
+                <form:errors cssClass="form-text text-muted red" path="idPersona"/>
+            </p>
+        </div>
+        <div class="col-md-12 form-group">
+            <p>
+                <label for="nombre" class="campo">Monotributo:</label>
+                <form:input path="monotributo" />
+            </p>
+        </div>
+        <div class="col-md-12 form-group">
+            <p>
+                <label for="nombre" class="campo">IVA:</label>
+                <form:input path="iva" />
+            </p>
+        </div>
+        <div class="col-md-12 form-group">
+            <div id='botonera'>
+                <a class="btn btn-default" href="javascript:history.back()">Volver </a>
 
-    <p>
-        <label for="nombre" class="campo">Nombre:</label>
-        <form:input path="nombre" />
-        <form:errors cssClass="form-text text-muted red" path="nombre"/>
-    </p>
+                <a onclick="document.forms['form'].submit();"   class="btn btn-primary">Guardar</a>
+            </div>
+        </div>
+    </div>
 
-    <p class="odd">
-        <label for="apellido" class="campo">Apellido:</label>
-        <form:input path="apellido" />
-        <form:errors cssClass="form-text text-muted red" path="apellido"/>
-    </p>
-
-    <p>
-        <label for="idPersona" class="campo" id="cuit">Tipo de persona:</label>
-        <form:select path="tipoDePersona" items="${tipoPersonaEnum}"/>
-        <form:errors cssClass="form-text text-muted red" path="tipoDePersona"/>
-    </p>
-
-
-    <p>
-        <label for="idPersona" class="campo" id="cuit">C.U.I.T.:</label>
-        <form:input  path="idPersona"/>
-        <form:errors cssClass="form-text text-muted red" path="idPersona"/>
-    </p>
-    <p>
-        <label for="nombre" class="campo">Monotributo:</label>
-        <form:input path="monotributo" />
-    </p>
-    <p>
-        <label for="nombre" class="campo">IVA:</label>
-        <form:input path="iva" />
-    </p>
 </form:form>
 
 </div>
 
-<div id='botonera'>
-    <a class="btn btn-default" href="javascript:history.back()">Volver </a>
 
-    <a onclick="document.forms['form'].submit();"   class="btn btn-primary">Guardar</a>
-</div>
 
 <br clear="all">
 <br>
 <jsp:include page="../bottom.jsp" />
-
 </body>
 </html>

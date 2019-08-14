@@ -5,7 +5,7 @@
 <html>
 <head>
     <title>${initParam['AppName']} - Personas</title>
-
+    <style><%@include file="../../../css/personaList.css"%></style>
 
 </head>
 <body>
@@ -129,21 +129,93 @@
             <div class="col-xs-2">
                 <a onclick="pagSiguiente()" href="#" class="btn btn-block btn-primary">Siguiente</a>
             </div>
+
         </c:when>
 
         <c:otherwise>
             <div class="col-xs-2">
                 <a class="btn btn-block btn-primary disabled" aria-disabled="true">Siguiente</a>
             </div>
+            <div class="col-xs-2">
+                <a class="btn btn-block btn-primary" data-toggle="modal" data-target="#exampleModal">Nueva Persona<label/> </a>
+            </div>
         </c:otherwise>
     </c:choose>
-
-
 </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <%--<h3 class="modal-title text-center" id="exampleModalLabel">Notificacion para <label class="cliente"></label></h3>--%>
+                <h4 class="notice notice-danger modal-title text-center" id="exampleModalLabel">
+                    <strong>Crear nueva persona</strong>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form:form name="form" method="post" commandName="persona" action="save">
+                    <div class="row">
+                        <div class="col-md-12 form-group campo">
+                            <p>
+                                <label for="nombre" class="campo">Nombre:</label>
+                                <form:input path="nombre" />
+                                <form:errors cssClass="form-text text-muted red" path="nombre"/>
+                            </p>
+                        </div>
+                        <div class="col-md-12 form-group campo">
+                            <p class="odd">
+                                <label for="apellido" class="campo">Apellido:</label>
+                                <form:input path="apellido" />
+                                <form:errors cssClass="form-text text-muted red" path="apellido"/>
+                            </p>
+                        </div>
+                        <div class="col-md-12 form-group campo">
+                            <p>
+                                <label for="idPersona" class="campo" id="cuit">Tipo de persona:</label>
+                                <form:select path="tipoDePersona" items="${tipoPersonaEnum}"/>
+                                <form:errors cssClass="form-text text-muted red" path="tipoDePersona"/>
+                            </p>
+                        </div>
+                        <div class="col-md-12 form-group campo">
+                            <p>
+                                <label for="idPersona" class="campo" id="cuit">C.U.I.T.:</label>
+                                <form:input  id="cuit2" path="idPersona"/>
+                                <form:errors cssClass="form-text text-muted red" path="idPersona"/>
+                            </p>
+                        </div>
+                        <div class="col-md-12 form-group campo">
+                            <p>
+                                <label for="nombre" class="campo">Monotributo:</label>
+                                <form:input path="monotributo" />
+                            </p>
+                        </div>
+                        <div class="col-md-12 form-group campo">
+                            <p>
+                                <label for="nombre" class="campo">IVA:</label>
+                                <form:input path="iva" />
+                            </p>
+                        </div>
+                        <div class="col-md-12 form-group campo">
+                            <div id='botonera'>
+                                <a class="btn btn-default" href="javascript:history.back()">Volver </a>
 
+                                <a onclick="document.forms['form'].submit();" class="btn btn-primary">Guardar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </form:form>
+            </div>
+        </div>
+    </div>
+</div>
 <br clear="all">
 <br>
 <jsp:include page="../bottom.jsp" />
 
 </body>
+
 </html>

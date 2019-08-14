@@ -1,4 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <jsp:include page="../header.jsp"/>
 <html>
 <header>
@@ -38,7 +40,11 @@
         <br/>
         <p class="odd">
             <label class="campo">CUIT:</label>
-            <form:input type="text" path="persona.idPersona"/>
+            <form:input type="text" id="text" required="true" path="persona.idPersona"/>
+            <form:errors cssClass="text-danger bg-secondary" path="persona.idPersona"/>
+            <c:if test="${not empty personaError}">
+                <script>alert('hola mundo')</script>
+            </c:if>
         </p>
         <br/>
 
@@ -47,9 +53,17 @@
     </form:form>
 
 </div>
+<script>
+    $("#formulario").submit(function () {
+        if($("#cuit").val().length < 1) {
+            alert("El nombre es obligatorio");
+            return false;
+        }
+        return false;
+    });
+</script>
 
 <jsp:include page="../bottom.jsp"/>
-
 </body>
 </html>
 

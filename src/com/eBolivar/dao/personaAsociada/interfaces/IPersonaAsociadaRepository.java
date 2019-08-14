@@ -9,5 +9,4 @@ public interface IPersonaAsociadaRepository {
     PersonaAsociada save(PersonaAsociada personaAsociada);
 
     List<PersonaAsociada> findAll(String username);
-
 }

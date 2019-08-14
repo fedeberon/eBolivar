@@ -49,7 +49,4 @@ public class PersonaAsociadaRepository implements IPersonaAsociadaRepository{
             throw e;
         }
     }
-
-
-
 }

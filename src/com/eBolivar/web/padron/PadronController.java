@@ -10,7 +10,6 @@ import com.eBolivar.domain.*;
 import com.eBolivar.service.TipoImpuestoServiceImpl;
 import com.eBolivar.service.cuitPorTasa.interfaces.ICuitPorTasaService;
 import com.eBolivar.service.localidad.ILocalidadService;
-import com.eBolivar.service.padron.PadronService;
 import com.eBolivar.service.padron.interfaces.IPadronService;
 import com.eBolivar.service.persona.interfaces.IPersonaService;
 import com.eBolivar.validator.PadronAsociadoValidator;
@@ -41,9 +40,6 @@ public class PadronController {
     private TipoImpuestoServiceImpl tipoImpuestoService;
     @Autowired
     private ILocalidadService localidaService;
-
-    public PadronController() {
-    }
 
     @RequestMapping({"asociarPadronACUIT"})
     private String asociarPadronACUIT() {
@@ -122,7 +118,7 @@ public class PadronController {
             model.addAttribute("localidad", getLocalidades());
             return "padron/create";
         } else {
-            this.padronService.save(padron);
+                this.padronService.save(padron);
         }
         return "redirect:list";
     }
@@ -135,7 +131,6 @@ public class PadronController {
 
         return "persona/padrones/list";
     }
-
 
     @ModelAttribute("padronAsociado")
     public PadronAsociado getPadronAsociado() {
