@@ -42,9 +42,6 @@
             <label class="campo">CUIT:</label>
             <form:input type="text" id="text" required="true" path="persona.idPersona"/>
             <form:errors cssClass="text-danger bg-secondary" path="persona.idPersona"/>
-            <c:if test="${not empty personaError}">
-                <script>alert('hola mundo')</script>
-            </c:if>
         </p>
         <br/>
 

@@ -54,7 +54,6 @@ public class PersonaAsociadaController {
         this.validator.validate(personaAsociada, result);
         if (result.hasErrors()) {
             redirectAttributes.addAttribute("username", personaAsociada.getAdministradorCuenta().getUsername());
-            model.addAttribute("personaError", "El cuit no existe en la base de datos");
             return "redirect:create";
         }else{
             Persona persona = personaService.getByCUIT(personaAsociada.getPersona().getIdPersona().toString());
