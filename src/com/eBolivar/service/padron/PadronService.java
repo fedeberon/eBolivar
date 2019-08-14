@@ -2,6 +2,7 @@ package com.eBolivar.service.padron;
 
 import com.eBolivar.common.SearchObject;
 import com.eBolivar.dao.padron.interfaces.IPadronRepository;
+import com.eBolivar.domain.DeclaracionJurada;
 import com.eBolivar.domain.Impuesto;
 import com.eBolivar.domain.Padron;
 import com.eBolivar.service.impuesto.interfaces.IImpuestoService;
@@ -9,6 +10,8 @@ import com.eBolivar.service.padron.interfaces.IPadronService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.ServletOutputStream;
 
 @Service
 public class PadronService implements IPadronService {
@@ -18,6 +21,11 @@ public class PadronService implements IPadronService {
     private IImpuestoService impuestoService;
 
     public PadronService() {
+    }
+
+    @Override
+    public void obtenerPadronQr(Padron padron, ServletOutputStream outputStream) {
+        dao.obtenerPadronQr(padron, outputStream);
     }
 
     public Padron save(Padron padron) {
@@ -55,4 +63,6 @@ public class PadronService implements IPadronService {
     public Padron getByNumeroYTipo(Padron p) {
         return this.dao.getByNumeroYTipo(p);
     }
+
+
 }

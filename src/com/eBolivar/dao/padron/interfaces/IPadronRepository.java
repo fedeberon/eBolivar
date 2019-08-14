@@ -2,6 +2,7 @@ package com.eBolivar.dao.padron.interfaces;
 
 import com.eBolivar.common.SearchObject;
 import com.eBolivar.domain.Padron;
+import javax.servlet.ServletOutputStream;
 import java.util.List;
 
 public interface IPadronRepository {
@@ -14,4 +15,6 @@ public interface IPadronRepository {
     List<Padron> search(SearchObject var1);
 
     Padron getByNumeroYTipo(Padron var1);
+
+    void obtenerPadronQr(Padron padron, ServletOutputStream outputStream);
 }

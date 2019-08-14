@@ -110,8 +110,8 @@ public class DeclaracionJuradaController {
     }
 
 
-    private AnioEnum getAnio(String anio){
-        switch (anio){
+    private AnioEnum getAnio(String anio) {
+        switch (anio) {
             case "2016":
                 return AnioEnum.A_2016;
             case "2017":
@@ -124,7 +124,7 @@ public class DeclaracionJuradaController {
     }
 
     @RequestMapping(value = "anual", method = RequestMethod.GET)
-    public String anual(Model model){
+    public String anual(Model model) {
         model.addAttribute("tasas", tasaService.findAllAnio("2019"));
         model.addAttribute("anio", Arrays.asList(AnioEnum.A_2019));
         return "declaracionJurada/anual";
@@ -136,7 +136,9 @@ public class DeclaracionJuradaController {
     }
 
     @ModelAttribute("tasas")
-    public List<Tasa> getTasas(){return tasaService.findAll();}
+    public List<Tasa> getTasas() {
+        return tasaService.findAll();
+    }
 
     @RequestMapping(value = "save", method = RequestMethod.POST)
     public String save(@ModelAttribute("ddjj") DeclaracionJurada declaracionJurada, BindingResult result, RedirectAttributes redirectAttributes, Model model) {
@@ -154,7 +156,7 @@ public class DeclaracionJuradaController {
         declaracionJurada.setFecha(LocalDateTime.now());
         declaracionJurada.setPresentadaPor(presentadaPor);
 
-        if(declaracionJurada.getPadron().isCalculoMinimo()) {
+        if (declaracionJurada.getPadron().isCalculoMinimo()) {
             declaracionJuradaService.calcularCalculoMinimo(declaracionJurada);
         }
 
@@ -191,7 +193,7 @@ public class DeclaracionJuradaController {
 
     private void recalcularValores(DeclaracionJurada declaracionJurada) {
         try {
-            if(declaracionJurada.getPadron().isCalculoMinimo()){
+            if (declaracionJurada.getPadron().isCalculoMinimo()) {
                 declaracionJuradaService.calcularCalculoMinimo(declaracionJurada);
             }
             declaracionJuradaService.actualizarImportesCalculados(declaracionJurada);
@@ -207,9 +209,9 @@ public class DeclaracionJuradaController {
         declaracionJurada.getTasas().forEach(tasaAsociada -> tasaAsociada.setBaseImponibleView(FormatoUtil.convertirBaseImponibleNotacion(tasaAsociada.getBaseImponible())));
         declaracionJurada.setPersona(persona);
         model.addAttribute("declaracionJurada", declaracionJurada);
-        model.addAttribute("acuseIsPrintable" , declaracionJuradaService.isBeforeOneDaysAgo(declaracionJurada));
-        model.addAttribute("acuseAvailableDate" , declaracionJuradaService.getDateFromDeclaracionJurada(declaracionJurada));
-        model.addAttribute("currentDate" , declaracionJuradaService.checkCurrentDay(declaracionJurada));
+        model.addAttribute("acuseIsPrintable", declaracionJuradaService.isBeforeOneDaysAgo(declaracionJurada));
+        model.addAttribute("acuseAvailableDate", declaracionJuradaService.getDateFromDeclaracionJurada(declaracionJurada));
+        model.addAttribute("currentDate", declaracionJuradaService.checkCurrentDay(declaracionJurada));
 
         return "declaracionJurada/formularioDeclaracionJurada";
     }
@@ -274,7 +276,7 @@ public class DeclaracionJuradaController {
     public String exportar(@RequestParam Long idDeclaracionJurada, Model model, HttpServletResponse response) throws IOException {
         DeclaracionJurada declaracionJurada = declaracionJuradaService.get(idDeclaracionJurada);
         response.setContentType("application/x-pdf");
-        response.setHeader("Content-disposition", "inline; filename=Declaracion Jurada P-"+declaracionJurada.getPadron().getNumero()+".pdf");
+        response.setHeader("Content-disposition", "inline; filename=Declaracion Jurada P-" + declaracionJurada.getPadron().getNumero() + ".pdf");
         declaracionJuradaService.export(declaracionJurada, response.getOutputStream());
         model.addAttribute("declaracionJurada", declaracionJurada);
 
@@ -287,37 +289,37 @@ public class DeclaracionJuradaController {
     }
 
     @RequestMapping("buscar")
-        public String list(@RequestParam(defaultValue = "", required = false) String valor, @RequestParam(defaultValue = "1", required = false) Integer page, Model model) {
-            model.addAttribute("ddjjs", declaracionJuradaService.findAllPageable(valor, page));
-            model.addAttribute("valor", valor);
-            model.addAttribute("page", page);
+    public String list(@RequestParam(defaultValue = "", required = false) String valor, @RequestParam(defaultValue = "1", required = false) Integer page, Model model) {
+        model.addAttribute("ddjjs", declaracionJuradaService.findAllPageable(valor, page));
+        model.addAttribute("valor", valor);
+        model.addAttribute("page", page);
 
-            return "declaracionJurada/list";
+        return "declaracionJurada/list";
 
     }
 
     @RequestMapping("aceptarDeclaracionJurada")
-    public String aceptarDeclaracionJurada(@RequestParam Long id, RedirectAttributes redirectAttributes){
+    public String aceptarDeclaracionJurada(@RequestParam Long id, RedirectAttributes redirectAttributes) {
         DeclaracionJurada declaracionJurada = declaracionJuradaService.get(id);
         declaracionJurada.setEstadoDeDeclaracionJurada(EstadoDeDeclaracionJurada.ACEPTADA);
-        redirectAttributes.addAttribute("id" , declaracionJurada.getId());
+        redirectAttributes.addAttribute("id", declaracionJurada.getId());
         declaracionJuradaService.save(declaracionJurada);
 
         return "redirect:show";
     }
 
     @RequestMapping(value = "presentarDeclaracionJurada")
-    public String presentarDeclaracionJurada(@RequestParam Long id, RedirectAttributes redirectAttributes){
+    public String presentarDeclaracionJurada(@RequestParam Long id, RedirectAttributes redirectAttributes) {
         DeclaracionJurada declaracionJurada = declaracionJuradaService.get(id);
         declaracionJurada.setEstadoDeDeclaracionJurada(EstadoDeDeclaracionJurada.PRESENTADA);
-        redirectAttributes.addAttribute("id" , declaracionJurada.getId());
+        redirectAttributes.addAttribute("id", declaracionJurada.getId());
         declaracionJuradaService.save(declaracionJurada);
 
         try {
             Mail mail = new Mail();
             mail.setFrom("rentas.bolivar@gmail.com");
             Long localidad = declaracionJurada.getPadron().getLocalidad().getId();
-            switch (Integer.parseInt(String.valueOf(localidad))){
+            switch (Integer.parseInt(String.valueOf(localidad))) {
                 case 3:
                     String[] delegacionUrdampilleta = {Mail.DELEGACION_URDAMPILLETA, Mail.LOCALIDAD_BOLIVAR};
                     mail.setTo(delegacionUrdampilleta);
@@ -331,7 +333,7 @@ public class DeclaracionJuradaController {
                     mail.setTo(delegacionBolivar);
             }
             mail.setSubject("Nueva DDJJ cargada.");
-            Map < String, Object > model = new HashMap();
+            Map<String, Object> model = new HashMap();
             model.put("id", declaracionJurada.getId());
             model.put("padron", declaracionJurada.getPadron().getNumero());
             model.put("localidad", declaracionJurada.getPadron().getLocalidad().getNombre());
@@ -346,19 +348,19 @@ public class DeclaracionJuradaController {
     }
 
     @RequestMapping("rechazarDeclaracionJurada")
-    public String rechazarDeclaracionJurada(@RequestParam Long id, RedirectAttributes redirectAttributes){
+    public String rechazarDeclaracionJurada(@RequestParam Long id, RedirectAttributes redirectAttributes) {
         DeclaracionJurada declaracionJurada = declaracionJuradaService.get(id);
         declaracionJurada.setEstadoDeDeclaracionJurada(EstadoDeDeclaracionJurada.RECHAZADA);
-        redirectAttributes.addAttribute("id" , declaracionJurada.getId());
+        redirectAttributes.addAttribute("id", declaracionJurada.getId());
         declaracionJuradaService.save(declaracionJurada);
 
         return "redirect:show";
     }
 
     @RequestMapping("imprimirAcuseDeRecibo")
-    public String imprimirAcuseDeRecibo(@RequestParam Long id, HttpServletResponse response,  RedirectAttributes redirectAttributes) throws IOException {
+    public String imprimirAcuseDeRecibo(@RequestParam Long id, HttpServletResponse response, RedirectAttributes redirectAttributes) throws IOException {
         DeclaracionJurada declaracionJurada = declaracionJuradaService.get(id);
-        redirectAttributes.addAttribute("id" , declaracionJurada.getId());
+        redirectAttributes.addAttribute("id", declaracionJurada.getId());
         response.setContentType("application/x-pdf");
         response.setHeader("Content-disposition", "inline; filename=Acuse de Recibo.pdf");
         declaracionJuradaService.imprimirAcuseDeRecibo(declaracionJurada, response.getOutputStream());
@@ -367,7 +369,7 @@ public class DeclaracionJuradaController {
     }
 
     @RequestMapping("declaracionJurada/byPersona")
-    public String getDeclaracionesJuradas(Model model , @RequestParam String cuit){
+    public String getDeclaracionesJuradas(Model model, @RequestParam String cuit) {
         Persona persona = personaService.getByCUIT(cuit);
         model.addAttribute("ddjjs", declaracionJuradaService.getByPersona(persona));
         model.addAttribute("persona", persona);
@@ -376,18 +378,18 @@ public class DeclaracionJuradaController {
     }
 
     @RequestMapping("declaracionJurada/byPadronAsociado")
-    public String getByPadronAsociado(Model model , @RequestParam Integer idPadronAsociado, @RequestParam(defaultValue = "1", required = false) Integer page){
+    public String getByPadronAsociado(Model model, @RequestParam Integer idPadronAsociado, @RequestParam(defaultValue = "1", required = false) Integer page) {
         PadronAsociado padronAsociado = cuitPorTasaService.get(idPadronAsociado);
         model.addAttribute("ddjjs", declaracionJuradaService.getByPadronAsociado(padronAsociado, page));
-        model.addAttribute("padronAsociado" , padronAsociado);
+        model.addAttribute("padronAsociado", padronAsociado);
         model.addAttribute("page", page);
 
         return "declaracionJurada/list";
     }
 
     @RequestMapping("declaracionJurada/create/byPersona") //Metodo en ddjj/list (2016, 2017)
-    public String createByPersonaAsociada(Model model , @RequestParam String idPersona, @RequestParam AnioEnum anio, @RequestParam Integer idPadron,  RedirectAttributes redirectAttributes){
-        if(idPersona == null || idPersona.isEmpty()){
+    public String createByPersonaAsociada(Model model, @RequestParam String idPersona, @RequestParam AnioEnum anio, @RequestParam Integer idPadron, RedirectAttributes redirectAttributes) {
+        if (idPersona == null || idPersona.isEmpty()) {
             redirectAttributes.addAttribute("anio", anio.getDescripcion());
             return "redirect:/webapp/ddjj/declaracionJuradaAnteriores";
         }
@@ -404,7 +406,7 @@ public class DeclaracionJuradaController {
     }
 
     @RequestMapping("declaracionJurada/bimestral") //Metodo en ddjj/list
-    public String createBimestral(Model model , @RequestParam Long idDDJJ, @RequestParam Integer idPadron){
+    public String createBimestral(Model model, @RequestParam Long idDDJJ, @RequestParam Integer idPadron) {
         DeclaracionJurada declaracionJurada = declaracionJuradaService.get(idDDJJ);
         DeclaracionJurada declaracionJuradaACrear = new DeclaracionJurada(declaracionJurada.getPersona(), AnioEnum.A_2019, declaracionJurada.getPadron());
         Padron padron = padronService.get(idPadron);
@@ -419,7 +421,7 @@ public class DeclaracionJuradaController {
     }
 
     @RequestMapping("declaracionJurada/anual") //Metodo en ddjj/list
-    public String createAnual(Model model , @RequestParam Long idDDJJ, @RequestParam Integer idPadron){
+    public String createAnual(Model model, @RequestParam Long idDDJJ, @RequestParam Integer idPadron) {
         DeclaracionJurada declaracionJurada = declaracionJuradaService.get(idDDJJ);
         DeclaracionJurada declaracionJuradaACrear = new DeclaracionJurada(declaracionJurada.getPersona(), AnioEnum.A_2019, declaracionJurada.getPadron(), PeriodoEnum.ANUAL);
         Padron padron = padronService.get(idPadron);
@@ -435,6 +437,7 @@ public class DeclaracionJuradaController {
 
     /**
      * Este Metodo crea ddjj bimestral en lista de padrones
+     *
      * @param idPadron
      * @param idPersona
      * @param model
@@ -458,13 +461,14 @@ public class DeclaracionJuradaController {
 
     /**
      * Este Metodo crea ddjj anual en lista de padrones
+     *
      * @param idPadron
      * @param idPersona
      * @param model
      * @return String a vista
      */
     @RequestMapping("declaracionJurada/anualByPadronAsociado")
-    public String createAnualByPadronAsociado(@RequestParam Integer idPadron, @RequestParam Integer idPersona, Model model){
+    public String createAnualByPadronAsociado(@RequestParam Integer idPadron, @RequestParam Integer idPersona, Model model) {
         Persona persona = personaService.get(idPersona);
         Padron padron = padronService.get(idPadron);
         DeclaracionJurada declaracionJuradaACrear = new DeclaracionJurada(persona, AnioEnum.A_2019, padron);
@@ -478,8 +482,9 @@ public class DeclaracionJuradaController {
         return "declaracionJurada/create-por-personaAsociada";
     }
 
+
     @RequestMapping("declaracionJurada/anteriorByPadronAsociado") //Metodo en ddjj/list (2016, 2017)
-    public String createAnteriorByPadronAsociado(Model model , @RequestParam Integer idPersona, @RequestParam AnioEnum anio, @RequestParam Integer idPadron,  RedirectAttributes redirectAttributes){
+    public String createAnteriorByPadronAsociado(Model model, @RequestParam Integer idPersona, @RequestParam AnioEnum anio, @RequestParam Integer idPadron, RedirectAttributes redirectAttributes) {
         Persona persona = personaService.get(idPersona);
         Padron padron = padronService.get(idPadron);
         DeclaracionJurada declaracionJurada = new DeclaracionJurada(persona, anio, padron);

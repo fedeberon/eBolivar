@@ -207,9 +207,12 @@
             <a href="../..//webapp/ddjj/presentarDeclaracionJurada?id=${declaracionJurada.id}" class="btn btn-primary">Presentar</a>
         </c:if>
 
-        <c:if test="${declaracionJurada.estadoDeDeclaracionJurada == 'ACEPTADA' || declaracionJurada.estadoDeDeclaracionJurada == 'PRESENTADA' || acuseIsPrintable}">
-            <a href="../../webapp/ddjj/imprimirAcuseDeRecibo?id=${declaracionJurada.id}" target="_blank" class="btn btn-primary">Imprimir Acuse Recibo</a>
-        </c:if>
+<%--        <c:if test="${declaracionJurada.estadoDeDeclaracionJurada == 'ACEPTADA' || declaracionJurada.estadoDeDeclaracionJurada == 'PRESENTADA' || acuseIsPrintable}">--%>
+<%--            <a href="../../webapp/ddjj/imprimirAcuseDeRecibo?id=${declaracionJurada.id}" target="_blank" class="btn btn-primary">Imprimir Acuse Recibo</a>--%>
+<%--        </c:if>--%>
+
+            <a href="../../webapp/padron/obtenerPadronQr?numero=${declaracionJurada.padron.numero}" target="_blank" class="btn btn-primary">Obtener Qr</a>
+
 
         <sec:authorize ifAllGranted="ROLE_WRITE_DDJJ">
             <a href="../../webapp/ddjj/editar?id=${declaracionJurada.id}" class="btn btn-primary">Editar(Administrador)</a>
