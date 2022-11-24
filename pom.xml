@@ -346,7 +346,7 @@
         <java.version>1.8</java.version>
         <springframework.version>3.2.14.RELEASE</springframework.version>
         <springframework.security.version>3.2.10.RELEASE</springframework.security.version>
-        <hibernate.version>3.5.4-Final</hibernate.version>
+        <hibernate.version>5.3.20.Final</hibernate.version>
         <log4j.version>2.5</log4j.version>
     </properties>
 
